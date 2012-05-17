@@ -1,0 +1,10 @@
+適当に だらだらと 楽しく
+========================
+
+.. toctree::
+   :glob:
+   :titlesonly:
+
+   blog/*
+
+- :ref:`genindex`
