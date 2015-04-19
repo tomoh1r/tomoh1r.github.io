@@ -1,10 +1,16 @@
 適当に だらだらと 楽しく
 ========================
 
+.. TODO::
+
+   - google analytics
+   - ソーシャルボタン
+
+articles
+--------
+
 .. toctree::
    :glob:
    :titlesonly:
 
    blog/*
-
-- :ref:`genindex`
