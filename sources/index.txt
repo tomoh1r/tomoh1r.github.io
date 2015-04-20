@@ -2,11 +2,9 @@
 適当に だらだらと 楽しく
 ========================
 
-.. TODO::
-
+..
    - google analytics
    - ソーシャルボタン
-   - blogs のリストにそれぞれの記事の my_date をパースして、日付けを表示する
    - RSS
 
 blogs
@@ -18,6 +16,7 @@ blogs
    :maxdepth: 1
    :maxnum: 5
    :reverse:
+   :display_blog_date:
 
    blog/[0-9]*
 

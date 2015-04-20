@@ -1,0 +1,52 @@
+=============================
+Blog向けの toctree を作成する
+=============================
+
+:blog_date:`2015/04/21`
+
+`Top ページ </index.html>`_ に名前降順で、最新 N 件のみ表示したい。
+
+また、先頭に日付けを付けて表示したい。
+
+こういった機能は無いので、 `toctree` をカスタマイズして実装する。
+
+.. contents::
+   :local:
+   :depth: 1
+
+名前降順 N 件のみ表示
+=====================
+
+TocTree を継承した BlogTocTree を作り、 option_spec に設定をつけた。
+
+::
+
+  'reverse': directives.flag,
+  'maxnum': int,
+
+のような形で定義。後は `run()` メソッドで `ret[0][0]['entries']` に `toctree`
+に含まれる記事が入っているので、これらを処理した。
+
+タイトルの先頭に日付けをつけて表示する
+======================================
+
+本来的には「2015/04/19 Github Pages を Sphinx
+で」といったタイトルの場合、日付け部分をリンクにしないで `toctree`
+を表示したかった。
+
+Sphinx_ のコードを読んでみたが、どこの処理で `toctree` を HTML
+のリストに変えているか分からなかったので、手抜き。
+
+`ret[0][0]['entries']` は `(display_name, docname)`
+のタプルのリストで並んでおり、この `display_name`
+を書き換えると表示される文字列を変えることができる。
+
+`for` でループして、ファイルを読み込んで、
+実際に `blog_date` ロール定義があった場合に
+`display_name` を書き換えるようにした。
+
+終わりに
+========
+
+コードは `GitHub <https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_blog_toctree.py>`__
+に置いたので、興味のある方はどうぞ。
