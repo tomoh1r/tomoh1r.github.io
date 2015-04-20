@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-span.my_date {
+span.blog_date {
     display: block;
     text-align: right;
     padding-right: 1em;

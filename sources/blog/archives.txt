@@ -1,0 +1,14 @@
+========
+archives
+========
+
+blogs
+=====
+
+.. blog_toctree::
+   :glob:
+   :titlesonly:
+   :maxdepth: 1
+   :reverse:
+
+   *

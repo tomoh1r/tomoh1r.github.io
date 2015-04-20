@@ -7,14 +7,18 @@
    - google analytics
    - ソーシャルボタン
    - blogs のリストにそれぞれの記事の my_date をパースして、日付けを表示する
-   - toctree 逆順で個数決められるようにする
    - RSS
 
 blogs
 =====
 
-.. toctree::
+.. blog_toctree::
    :glob:
    :titlesonly:
+   :maxdepth: 1
+   :maxnum: 5
+   :reverse:
 
-   blog/*
+   blog/[0-9]*
+
+- :doc:`blog/archives`

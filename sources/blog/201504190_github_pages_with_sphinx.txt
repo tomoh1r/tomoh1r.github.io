@@ -1,0 +1,267 @@
+=========================
+Github Pages を Sphinx で
+=========================
+
+:blog_date:`2015/04/19`
+
+`GitHub Pages`_ というシステムがある。これは、
+`GitHub <https://github.com/>`_ に `<username>.github.io`
+といったプロジェクトを作成すると、そこに配置したファイルがこの URL
+で公開されるサービスとなっている。
+
+Python には Sphinx_ (`日本語 <http://sphinx-users.jp/>`__)
+といったドキュメンテーションツールがあるので、使えないかと思い試した。
+
+結果使えそうなので、以下に流れをまとめる。
+
+.. contents::
+   :local:
+
+細かい点は `github のリポジトリ <https://github.com/jptomo/github-pages>`_ をみてください。
+
+tl;dr
+=====
+
+- ソースと `jptomo.github.io` のリポジトリを分割した。
+
+- `GitHub Pages`_ では _static などのアンダーバー始まりのディレクトリは
+  公開できないので、 Sphinx_ の実行時にパッチを当てるようにした。
+
+- CSS を追加した。
+
+- サイドバーのリンクを書き換えた。
+
+- 日付けのロール `my_date` を作成した。
+
+ソースコード分割
+================
+
+`GitHub Pages`_ ではリポジトリ直下の `index.html` が先ず表示される。
+
+Sphinx_ で `make html` したものがリポジトリ直下に欲しかった。
+
+これを解決するため、記事のソースコードと、 `GitHub Pages`_ のコードを分けた。
+
+- 記事のソースコード: `jptomo/github-pages
+  <https://github.com/jptomo/github-pages>`_
+
+- `GitHub Pages`_ のコード: `jptomo/jptomo.github.io
+  <https://github.com/jptomo/jptomo.github.io>`_
+
+アンダーバー対策
+================
+
+`GitHub Pages`_ では、アンダーバーを接頭辞として持つディレクトリを公開できない。
+
+- `github - Names starting with underscore shows errors Page
+  doesnot exists for gh-pages branch - Stack Overflow
+  <http://stackoverflow.com/questions/6397780/names-starting-with-underscore-shows-errors-page-doesnot-exists-for-gh-pages-bra>`_ とか
+
+Sphinx_ は標準では `_static/` などのディレクトリに
+CSSファイルを書き出すので、対策が必要。
+
+`tk0miya <https://twitter.com/tk0miya/>`_ さんのロール作成サンプルがあったので
+流用させていただきました。ありがとうございます。
+
+- `Sphinx で _static ではないディレクトリに書き出す — そこはかとなく書くよん。
+  <http://tdoc.info/blog/2014/10/21/sphinx_static.html>`_
+
+- sphinxcontrib_staticdir_hack.py (`gist
+  <https://gist.github.com/tk0miya/a6b5dd01a019fb303a13>`_)
+
+以下コード (`github <https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_staticdir_hack.py>`__):
+
+.. code-block:: python
+
+   # -*- coding: utf-8 -*-
+   #
+   # Sphinx extension for renaming _static/ directory
+   #
+   # Author: Takeshi KOMIYA / License: BSD
+   #
+   import re
+   import os
+   import shutil
+
+
+   NEW_STATIC_NAME = 'static/'
+   NEW_SOURCES_NAME = 'sources/'
+
+
+   def on_builder_inited(app):
+       if app.builder.name == 'html':
+           for old, new in [('_static', NEW_STATIC_NAME),
+                            ('_source', NEW_SOURCES_NAME)]:
+               replacer = (lambda uri: re.sub(r'^{}/'.format(old), new, uri))
+               for i, f in enumerate(app.builder.script_files):
+                   app.builder.script_files[i] = replacer(f)
+               for i, f in enumerate(app.builder.css_files):
+                   app.builder.css_files[i] = replacer(f)
+
+
+   def on_html_page_context(app, pagename, templatename, context, doctree):
+       original_pathto = context['pathto']
+
+       def pathto(otheruri, *args, **kwargs):
+           otheruri = re.sub(r'^_static/', NEW_STATIC_NAME, otheruri)
+           otheruri = re.sub(r'^_sources/', NEW_SOURCES_NAME, otheruri)
+           return original_pathto(otheruri, *args, **kwargs)
+
+       context['pathto'] = pathto
+
+
+   def on_build_finished(app, exception):
+       if app.builder.name == 'html' and exception is None:
+           for old, new in [('_static', NEW_STATIC_NAME),
+                            ('_sources', NEW_SOURCES_NAME)]:
+               old_dir = os.path.join(app.outdir, old)
+               new_dir = os.path.join(app.outdir, new)
+               if os.path.exists(old_dir):
+                   if os.path.exists(new_dir):
+                       shutil.rmtree(new_dir)
+                   shutil.move(old_dir, new_dir)
+
+
+   def setup(app):
+       app.connect('builder-inited', on_builder_inited)
+       app.connect('html-page-context', on_html_page_context)
+       app.connect('build-finished', on_build_finished)
+
+CSS 追加
+========
+
+Sphinx_ のテーマは組込の alabaster (`github <https://github.com/bitprophet/alabaster>`__) を利用した。
+
+ただ、サイドバーを右側に寄せたかったので、
+CSSを追加し、文章とサイドバーの位置を逆にした。
+
+- `HTMLテーマに独自のCSS/JSファイルを読み込ませてデザイン調整等したい —
+  Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ会
+  <http://sphinx-users.jp/reverse-dict/html/custom-css-js.html>`_
+
+`conf.py` の末尾に以下の記載をする。
+
+.. code-block:: python
+
+   def setup(app):
+       app.add_stylesheet('style.css')
+
+その上で、以下のCSS (`github
+<https://github.com/jptomo/github-pages/blob/master/_static/style.css>`_) を
+`_static/` 配下に配置する。
+
+.. code-block:: css
+
+   @charset "utf-8";
+
+   div.bodywrapper {
+     margin: 0;
+     width: 730px;
+   }
+
+   div.sphinxsidebar {
+     float: right;
+     width: 230px;
+   }
+
+サイドバー修正
+==============
+
+標準の前の記事、次の記事、を少し書き換えて、 Top ページへのリンクにしたかった。
+
+先ずは、 `conf.py` の以下の設定を書き換える。
+
+.. code-block:: python
+
+   html_sidebars = {
+       '**': [
+           'side_index.html',
+           'searchbox.html',
+           'side_genindex.html',
+       ]
+   }
+
+後は、先程追加した `html` ファイルを `_templates` 配下に作成すれば良い。
+
+以下は作成したもの。 なお、 `searchbox.html` は組込である。
+
+- side_index.html (`github
+  <https://github.com/jptomo/github-pages/blob/master/_templates/side_index.html>`_)
+
+  .. code-block:: jinja
+
+     <h3><a href="/index.html">{{ _('Top') }}</a></h3>
+
+- side_genindex.html (`github
+  <https://github.com/jptomo/github-pages/blob/master/_templates/side_genindex.html>`_)
+
+  .. code-block:: jinja
+
+     <h3><a href="/genindex.html">{{ _('Index') }}</a></h3>
+
+日付のロール作成
+================
+
+ブログタイトル直下の日付を `my_date` といったロールを作成して、作りたかった。
+
+またまた `tk0miya <https://twitter.com/tk0miya/>`_ さんのロール作成サンプルがあったので
+流用させていただきました。ありがとうございます。
+
+- サンプル: `Sphinxで打ち消しを使う - TIM Labs <http://labs.timedia.co.jp/2012/04/sphinx.html>`__
+
+以下コード (`github <https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_date.py>`__):
+
+.. code-block:: python
+
+   # -*- coding: utf-8 -*-
+   import os
+   from textwrap import dedent
+
+   from docutils.parsers.rst import roles
+
+
+   def on_builder_inited(app):
+       roles.register_local_role(
+           'my_date',
+           roles.CustomRole(
+               'my_date',
+               roles.generic_custom_role,
+               {'class': ['my_date']}, []))
+
+
+   def on_html_collect_pages(app):
+       cssdir = os.path.join(app.builder.outdir, '_static')
+       cssfile = os.path.join(cssdir, 'roles.css')
+       if not os.path.exists(cssdir):
+           os.makedirs(cssdir)
+       with open(cssfile, 'w') as fp:
+           fp.write(dedent('''
+           @charset "utf-8";
+
+           span.my_date {
+               display: block;
+               text-align: right;
+               padding-right: 1em;
+           }
+           ''').strip())
+       return ()
+
+
+   def html_page_context(app, pagename, templatename, context, doctree):
+       if 'css_files' in context:
+           context['css_files'].append('_static/roles.css')
+
+
+   def setup(app):
+       app.connect("builder-inited", on_builder_inited)
+       app.connect("html-collect-pages", on_html_collect_pages)
+       app.connect("html-page-context", html_page_context)
+
+終わりに
+========
+
+`Google アナリティクス <http://www.google.com/intl/ja/analytics/>`_
+や各種ソーシャルボタン、コメント機能 (`DISQUS <https://disqus.com/>`_)
+をつけたい。そのうち、そのうちね。
+
+.. include:: links.rst
