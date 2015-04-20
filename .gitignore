@@ -48,8 +48,8 @@ coverage.xml
 
 # Sphinx documentation
 .buildinfo
-.doctrees/
-static/_static/
+doctrees/
+locale/
 
 # PyBuilder
 target/

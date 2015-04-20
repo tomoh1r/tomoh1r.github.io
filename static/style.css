@@ -1,11 +1,19 @@
 @charset "utf-8";
 
+div.document {
+  width: 980px;
+}
+
+div.documentwrapper {
+  width: 740px;
+}
+
 div.bodywrapper {
   margin: 0;
-  width: 730px;
+  width: 740px;
 }
 
 div.sphinxsidebar {
   float: right;
-  width: 230px;
+  width: 240px;
 }

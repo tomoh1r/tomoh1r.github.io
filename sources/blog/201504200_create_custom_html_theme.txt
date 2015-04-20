@@ -1,0 +1,74 @@
+==========================================================
+既存の html テーマを流用し、ユーザーの独自テーマを作成する
+==========================================================
+
+:my_date:`2015/04/20`
+
+alabaster (`github <https://github.com/bitprophet/alabaster>`__)
+を利用しているが、少し HTML タグとかカスタマイズをしてみたい。
+
+.. contents::
+   :local:
+   :depth: 1
+
+conf.py へのカスタムテーマの登録
+================================
+
+`conf.py` の `html_theme_path` に `_themes` (適宜変更可能) を指定し、
+`html_theme` に改編後の名前を指定する
+
+以下 `conf.py` の抜粋
+
+.. code-block:: python
+
+   ..
+
+   # The theme to use for HTML and HTML Help pages.  See the documentation for
+   # a list of builtin themes.
+   html_theme = 'alabaster_custom'
+
+   ..
+
+   # Add any paths that contain custom themes here, relative to this directory.
+   html_theme_path = ['_themes']
+
+   ..
+
+カスタムテーマの配置
+====================
+
+`git clone git://github.com/bitprophet/alabaster.git`
+などでソースコードをクローンし、ディレクトリ内の `alabaster` ディレクトリを
+`_themes/` 内に複製する。
+
+テーマの改変
+============
+
+とりあえず今回は一つ試みる。
+
+トップページのページタイトルをページのもののみにした (suffix 削除)
+------------------------------------------------------------------
+
+`htmltitle` ブロック内の記載がタイトルに出力されるので、以下のように
+`laytou.html` にて記載する。
+
+.. code-block:: html+jinja
+
+   {#- トップページは、ページのタイトルのみ表示 #}
+   {%- block htmltitle %}
+   {%- if pagename == 'index' %}
+       <title>{{ title }}</title>
+   {%- else %}
+       <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
+   {%- endif %}
+   {%- endblock %}
+
+終わりに
+========
+
+`前回 </blog/201504190_github_pages_with_sphinx.html>`__
+と今回の記事で、利用者それぞれにあった Sphinx_ での `GitHub Pages`_
+でのブログシステムを構築することができるようになるのではないか。
+御活用ください。
+
+.. include:: links.rst
