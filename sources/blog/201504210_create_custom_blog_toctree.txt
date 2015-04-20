@@ -50,3 +50,5 @@ Sphinx_ のコードを読んでみたが、どこの処理で `toctree` を HTM
 
 コードは `GitHub <https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_blog_toctree.py>`__
 に置いたので、興味のある方はどうぞ。
+
+.. include:: links.rst
