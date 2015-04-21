@@ -49,6 +49,7 @@
     </div>  
 
     <div class="document">
+    
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -292,7 +293,8 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 
           </div>
         </div>
-      </div>
+      </div><div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper"><h3><a href="/index.html">Top</a></h3>
           <div id="searchbox" style="display: none" role="search">
@@ -321,8 +323,14 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
       <a href="../sources/blog/201504190_github_pages_with_sphinx.txt"
           rel="nofollow">Page source</a></li>
     </div>
-    <script type="text/javascript">
 
+    <script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-62097156-1']);
       _gaq.push(['_setDomainName', 'none']);
@@ -334,7 +342,6 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-
     </script>
   </body>
 </html>

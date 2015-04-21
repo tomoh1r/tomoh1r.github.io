@@ -1,0 +1,92 @@
+=================================================
+DISQUS を利用して、静的ページにコメント欄をつける
+=================================================
+
+:blog_date:`2015/04/21`
+
+ブログなので簡単なコメントシステムが欲しい。
+
+静的ページでも使える `DISQUS <https://disqus.com/>`_ を導入する。
+
+.. contents::
+   :local:
+   :depth: 1
+
+DISQUS のコメント欄を設置する
+=============================
+
+DISQUS のアカウントを取得する
+-----------------------------
+
+DISQUS_ にアクセスして、右上の `Sign Up`
+よりアカウントを作成してください。
+
+管理するページを登録する
+------------------------
+
+アカウントを取得したのち、画面遷移し、ページを設定する。
+対象のページの設定をしてください。
+
+記載するコードを取得する
+------------------------
+
+ページの Settings -> Install
+を選択すると各種環境向けのアイコンが表示されると思う。
+`Universal Code` を選択すると `JavaScript` が表示されるので、
+そのコードを適宜ページに貼り付ける。
+
+特定のページのみに設置する
+==========================
+
+`layout.html` は Jinja2_ 記法を使えるので、以下のように `startswith`
+でページを判定した。
+
+僕はファイル名に `blog/%Y%m%dN_name` としているので、以下で問題無かった。
+
+.. code-block:: jinja
+
+   {%- if pagename.startswith('blog/20') %}
+   ...
+   {%- endif %}
+
+サイドバーの位置調整
+====================
+
+僕の場合、 DISQUS_ 向け `div` を設置するとサイドバーが画面の下の方に
+移動してしまった。
+
+対応するため、 `document` クラスに `position: relative` をつけ、
+サイドバーに `positoin: absolute; top: 0; right: 0;` の設定をした。
+
+具体的には下記となる。
+
+.. code-block:: css
+
+   div.document {
+     width: 980px;
+     position: relative;
+   }
+
+   div.sphinxsidebar {
+     width: 240px;
+     position: absolute;
+     top: 0;
+     right: 0;
+     margin: 0;
+     float: none;
+   }
+
+終わりに
+========
+
+上記の手順で問題なく DISQUS_ を導入できた。
+
+参考になればうれしい。
+
+参考
+====
+
+- `CSS : positionの「absolute」「relative」「fixed」のリファレンス | CSS Lecture
+  <http://www.css-lecture.com/log/css/037.html>`__
+
+.. include:: links.rst

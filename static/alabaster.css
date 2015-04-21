@@ -575,6 +575,7 @@ table.docutils.citation, table.docutils.citation td, table.docutils.citation th 
 /* user stylesheet */
 div.document {
   width: 980px;
+  position: relative;
 }
 
 div.documentwrapper {
@@ -587,6 +588,15 @@ div.bodywrapper {
 }
 
 div.sphinxsidebar {
-  float: right;
   width: 240px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  float: none;
+}
+
+div#disqus_thread {
+  width: 680px;
+  margin: 0 30px;
 }
