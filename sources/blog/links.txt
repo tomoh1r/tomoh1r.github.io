@@ -1,3 +1,0 @@
-.. link 集
-.. _Sphinx: http://sphinx-doc.org/
-.. _`GitHub Pages`: https://pages.github.com/

@@ -147,7 +147,7 @@ CSSを追加し、文章とサイドバーの位置を逆にした。
        app.add_stylesheet('style.css')
 
 その上で、以下のCSS (`github
-<https://github.com/jptomo/github-pages/blob/master/_static/style.css>`_) を
+<https://github.com/jptomo/github-pages/blob/master/_static/style.css>`__) を
 `_static/` 配下に配置する。
 
 .. code-block:: css
@@ -186,14 +186,14 @@ CSSを追加し、文章とサイドバーの位置を逆にした。
 以下は作成したもの。 なお、 `searchbox.html` は組込である。
 
 - side_index.html (`github
-  <https://github.com/jptomo/github-pages/blob/master/_templates/side_index.html>`_)
+  <https://github.com/jptomo/github-pages/blob/master/_templates/side_index.html>`__)
 
   .. code-block:: jinja
 
      <h3><a href="/index.html">{{ _('Top') }}</a></h3>
 
 - side_genindex.html (`github
-  <https://github.com/jptomo/github-pages/blob/master/_templates/side_genindex.html>`_)
+  <https://github.com/jptomo/github-pages/blob/master/_templates/side_genindex.html>`__)
 
   .. code-block:: jinja
 
