@@ -1,0 +1,186 @@
+=========================================================================
+Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた
+=========================================================================
+
+:blog_date:`2015/04/29`
+
+.. contents::
+   :local:
+   :depth: 1
+
+動機
+====
+
+自宅で開発に利用している X41 が 32bit しか対応しておらず、 Docker_
+に対応してなかった。
+
+そのため、 Systemd-nspawn_ で環境を構築することにした。
+
+開発環境を構築する際に Ansible_ を使いたいと思い、 Systemd-nspawn_ に対応する
+接続方式がるのかと軽く確認したところ、 nsenter というコマンドがあったので、
+使えたらよいと思い、ansible-connection-nsenter_ を書いた。
+
+.. _Systemd-nspawn: http://www.freedesktop.org/software/systemd/man/systemd-nspawn.html
+.. _ansible-connection-nsenter: https://github.com/jptomo/ansible-connection-nsenter
+
+進めかた
+========
+
+Ansible_ の plugin は大雑把に以下の流れで作成できる。
+
+.. contents::
+   :local:
+   :depth: 1
+
+それぞれ見ていこう。
+
+1. Plugin を書く。
+---------------------
+
+今回は GitHub_ の Ansible のリポジトリ、
+`lib/ansible/runner/connection_plugins/ssh.py
+<https://github.com/ansible/ansible/blob/devel/lib/ansible/runner/connection_plugins/ssh.py>`_
+をコピペして進めた。つくりもよくわかってなかったし。
+
+後ほど `chroot <https://github.com/ansible/ansible/blob/devel/lib/ansible/runner/connection_plugins/chroot.py>`_
+を見つけたのはご愛嬌。
+
+Ansible_ で生にシェルを実行しようとするらしく、環境変数の取り回しや、パイプ、
+``&&`` ``;`` の取り扱いが難儀した。
+
+環境変数
+++++++++
+
+コンテナ内の環境変数は、以下のように ``/proc/<PID>/environ`` からとれる。
+
+ヌル文字列で区切られているようなので、区切って、あとは ``=``
+で切り分けて、辞書にして取り扱うようにした。
+
+.. code-block:: python
+
+   def _get_container_env(self):
+       '''return container env dict'''
+       # get environ path
+       env_path = '/proc/{}/environ'.format(self._extract_var('Leader'))
+
+       # get container env separated by null char
+       env_str = subprocess.check_output(shlex.split('cat ' + env_path))
+
+       # split null and = char
+       proc_envs = env_str.split('\0')
+       proc_envs = dict([x.split('=') for x in proc_envs if x])
+       return proc_envs
+
+   def _extract_var(self, key):
+       output = subprocess.check_output(['machinectl', 'show', self.host])
+       for row in output.split('\n'):
+           if key in row:
+               return row.strip().lstrip(key + '=')
+
+``&&`` や ``;``
++++++++++++++++
+
+``&&`` ``;`` はその位置でとりあえず分割して、
+個別にコマンドを実行するようにした。
+
+``()`` とか ``||`` とかには対応してないが、とりあえず Ansible_
+が動くのでまずはよしとする。
+
+.. code-block:: python
+
+   # if multiple command then split it
+   if any(cmd.find(x) != -1 for x in ['&&', ';']):
+       # split set env and actual command
+       cmd_env, cmd = self._split_env(cmd)
+
+       # calc symbol position
+       pos_and = cmd.find('&&')
+       pos_sc = cmd.find(';')  # semicolon
+       conn_and = False
+       conn_sc = False
+       if (pos_and != -1 and
+               ((pos_sc != -1 and pos_and < pos_sc) or pos_sc == -1)):
+           pos = pos_and
+           post_pos = pos + 2
+           conn_and = True
+       else:
+           pos = pos_sc
+           post_pos = pos + 1
+           conn_sc = True
+
+       # parse cmd
+       cmd_pre, cmd_post = cmd[:pos].strip(), cmd[post_pos:].strip()
+       post_params = deepcopy(params)
+       params['cmd'] = ' '.join([cmd_env, cmd_pre]).strip()
+       post_params['cmd'] = ' '.join([cmd_env, cmd_post]).strip()
+
+       # exec cmd
+       result = self._exec_command(**params)
+       if conn_and and result[0] == 0:
+           return self._exec_command(**post_params)
+       elif conn_sc:
+           self._exec_command(**post_params)
+           return result
+       else:
+           return result
+   else:
+       return self._exec_command(**params)
+
+
+2. ディレクトリに配置する。
+---------------------------
+
+README.rst_ に書いたように以下のように配置する。
+
+.. code-block:: console
+
+   $ sudo mkdir -p /etc/ansible/plugins/connection_plugins
+   $ curl https://raw.githubusercontent.com/jptomo/ansible-nsenter/master/nsenter.py -o /etc/ansible/plugins/connection_plugins/nsenter.py
+
+PyPI_ において、 ``pip`` で入れたときに自動で Ansible_ に認識されるような
+仕組みができるとよいかと思ったが、依存で入って別に使わないけど影響しちゃうのもなあ
+と思い、悩ましいと思う。
+
+Sphinx_ でも ``pip`` で入れた上に設定ファイルである ``conf.py``
+に書く必要があるので辛いと思ったことがあったが、
+でも、依存で影響するのもとも思う。
+
+.. _README.rst: https://github.com/jptomo/ansible-connection-nsenter/blob/master/README.rst
+
+3. Ansible_ に認識させる。
+--------------------------
+
+`The Ansible Configuration File — Ansible Documentation <http://docs.ansible.com/intro_configuration.html>`_ を参考に、
+
+- ANSIBLE_CONFIG (an environment variable)
+- ansible.cfg (in the current directory)
+- .ansible.cfg (in the home directory)
+- /etc/ansible/ansible.cfg
+
+4つのいずれかの ``connection_plugins`` の設定でパスを認識させる。
+今回は ``/etc/ansible/plugins/connection_plugins/`` となる。
+
+
+書く際は ``defaults`` セクションに書く必要があるので、以下のように書く。
+
+.. code-block:: cfg
+
+   [defaults]
+   connection_plugins = /etc/ansible/plugins/connection_plugins/
+
+使い方
+======
+
+個人的に勉強用に進めている compare-rdbms_ を見ると何となく使い方がわかると思う。
+
+``ansible.cfg`` はトップディレクトリに配置し、このディレクトリで
+``ansible-playbook`` を実行した場合、参照されるようにする。
+
+``ansible/local.yml`` の通り、 ``connection`` に ``nsenter`` を指定すると
+使われるようになるので、指定する。
+
+後は、この ``connection`` を利用してタスクが動く。
+
+.. _compare-rdbms: https://github.com/jptomo/compare-rdbms
+
+.. include:: links.rst

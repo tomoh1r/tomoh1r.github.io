@@ -71,18 +71,18 @@
 <p>結果使えそうなので、以下に流れをまとめる。</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#tl-dr" id="id8">tl;dr</a></li>
-<li><a class="reference internal" href="#id2" id="id9">ソースコード分割</a></li>
-<li><a class="reference internal" href="#id3" id="id10">アンダーバー対策</a></li>
-<li><a class="reference internal" href="#css" id="id11">CSS 追加</a></li>
-<li><a class="reference internal" href="#id4" id="id12">サイドバー修正</a></li>
-<li><a class="reference internal" href="#id5" id="id13">日付のロール作成</a></li>
-<li><a class="reference internal" href="#id7" id="id14">終わりに</a></li>
+<li><a class="reference internal" href="#tl-dr" id="id9">tl;dr</a></li>
+<li><a class="reference internal" href="#id2" id="id10">ソースコード分割</a></li>
+<li><a class="reference internal" href="#id3" id="id11">アンダーバー対策</a></li>
+<li><a class="reference internal" href="#css" id="id12">CSS 追加</a></li>
+<li><a class="reference internal" href="#id4" id="id13">サイドバー修正</a></li>
+<li><a class="reference internal" href="#id5" id="id14">日付のロール作成</a></li>
+<li><a class="reference internal" href="#id7" id="id15">終わりに</a></li>
 </ul>
 </div>
 <p>細かい点は <a class="reference external" href="https://github.com/jptomo/github-pages">github のリポジトリ</a> をみてください。</p>
 <div class="section" id="tl-dr">
-<h2><a class="toc-backref" href="#id8">tl;dr</a><a class="headerlink" href="#tl-dr" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">tl;dr</a><a class="headerlink" href="#tl-dr" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>ソースと <cite>jptomo.github.io</cite> のリポジトリを分割した。</li>
 <li><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> では _static などのアンダーバー始まりのディレクトリは
@@ -93,7 +93,7 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id9">ソースコード分割</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">ソースコード分割</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> ではリポジトリ直下の <cite>index.html</cite> が先ず表示される。</p>
 <p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> で <cite>make html</cite> したものがリポジトリ直下に欲しかった。</p>
 <p>これを解決するため、記事のソースコードと、 <a class="reference external" href="https://pages.github.com/">GitHub Pages</a> のコードを分けた。</p>
@@ -103,7 +103,7 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id10">アンダーバー対策</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">アンダーバー対策</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> では、アンダーバーを接頭辞として持つディレクトリを公開できない。</p>
 <ul class="simple">
 <li><a class="reference external" href="http://stackoverflow.com/questions/6397780/names-starting-with-underscore-shows-errors-page-doesnot-exists-for-gh-pages-bra">github - Names starting with underscore shows errors Page
@@ -175,7 +175,7 @@ CSSファイルを書き出すので、対策が必要。</p>
 </div>
 </div>
 <div class="section" id="css">
-<h2><a class="toc-backref" href="#id11">CSS 追加</a><a class="headerlink" href="#css" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">CSS 追加</a><a class="headerlink" href="#css" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> のテーマは組込の alabaster (<a class="reference external" href="https://github.com/bitprophet/alabaster">github</a>) を利用した。</p>
 <p>ただ、サイドバーを右側に寄せたかったので、
 CSSを追加し、文章とサイドバーの位置を逆にした。</p>
@@ -205,7 +205,7 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id12">サイドバー修正</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">サイドバー修正</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>標準の前の記事、次の記事、を少し書き換えて、 Top ページへのリンクにしたかった。</p>
 <p>先ずは、 <cite>conf.py</cite> の以下の設定を書き換える。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
@@ -233,7 +233,7 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 </ul>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id13">日付のロール作成</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">日付のロール作成</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ブログタイトル直下の日付を <cite>my_date</cite> といったロールを作成して、作りたかった。</p>
 <p>またまた <a class="reference external" href="https://twitter.com/tk0miya/">tk0miya</a> さんのロール作成サンプルがあったので
 流用させていただきました。ありがとうございます。</p>
@@ -288,7 +288,7 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 </div>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id14">終わりに</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">終わりに</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="http://www.google.com/intl/ja/analytics/">Google アナリティクス</a>
 や各種ソーシャルボタン、コメント機能 (<a class="reference external" href="https://disqus.com/">DISQUS</a>)
 をつけたい。そのうち、そのうちね。</p>
