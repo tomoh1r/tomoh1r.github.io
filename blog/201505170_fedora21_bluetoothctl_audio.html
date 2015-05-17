@@ -74,6 +74,46 @@
 <p>シンプルに <code class="docutils literal"><span class="pre">bluetoothctl</span></code>
 ( <a class="reference external" href="https://wiki.archlinux.org/index.php/Bluetooth#Bluetoothctl">Arch Wiki Bluetoothctl</a> )
 で接続して、 <code class="docutils literal"><span class="pre">cinnamon</span></code> の音声設定を UI から設定して、即座に反映できた。</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo bluetoothctl
+<span class="go">[sudo] password for tomo:</span>
+<span class="go">[NEW] Controller 60:D8:19:AF:1F:92 x220 [default]</span>
+<span class="go">[bluetooth]# power on</span>
+<span class="go">[CHG] Controller 60:D8:19:AF:1F:92 Class: 0x0c010c</span>
+<span class="go">Changing power on succeeded</span>
+<span class="go">[CHG] Controller 60:D8:19:AF:1F:92 Powered: yes</span>
+<span class="go">[bluetooth]# scan</span>
+<span class="go">Missing on/off argument</span>
+<span class="go">[bluetooth]# scan on</span>
+<span class="go">Discovery started</span>
+<span class="go">[CHG] Controller 60:D8:19:AF:1F:92 Discovering: yes</span>
+<span class="go">[NEW] Device 00:1A:7D:A0:AD:AA LBT-SPP11</span>
+<span class="go">[bluetooth]# agent on</span>
+<span class="go">Agent registered</span>
+<span class="go">[bluetooth]# default-agent</span>
+<span class="go">Default agent request successful</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA RSSI: -51</span>
+<span class="go">[bluetooth]# pair 00:1A:7D:A0:AD:AA</span>
+<span class="go">Attempting to pair with 00:1A:7D:A0:AD:AA</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA Connected: yes</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA UUIDs: 00001108-0000-1000-8000-00805f9b34fb</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA UUIDs: 0000110b-0000-1000-8000-00805f9b34fb</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA UUIDs: 0000111e-0000-1000-8000-00805f9b34fb</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA Paired: yes</span>
+<span class="go">Pairing successful</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA Connected: no</span>
+<span class="go">[bluetooth]# connect 00:1A:7D:A0:AD:AA</span>
+<span class="go">Attempting to connect to 00:1A:7D:A0:AD:AA</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA Connected: yes</span>
+<span class="go">[LBT-SPP11]# help</span>
+<span class="go">Connection successful</span>
+<span class="go">[LBT-SPP11]# trust 00:1A:7D:A0:AD:AA</span>
+<span class="go">[CHG] Device 00:1A:7D:A0:AD:AA Trusted: yes</span>
+<span class="go">Changing 00:1A:7D:A0:AD:AA trust succeeded</span>
+<span class="go">[LBT-SPP11]# quit</span>
+<span class="go">Agent unregistered</span>
+<span class="go">[DEL] Controller 60:D8:19:AF:1F:92 x220 [default]</span>
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="../_images/201505170_fedora21_bluetoothctl_audio_001.png"><img alt="../_images/201505170_fedora21_bluetoothctl_audio_001.png" src="../_images/201505170_fedora21_bluetoothctl_audio_001.png" style="width: 640px;" /></a>
 <p><code class="docutils literal"><span class="pre">A2DP</span></code> でクリアな音声も流れるし、すごい</p>
 </div>

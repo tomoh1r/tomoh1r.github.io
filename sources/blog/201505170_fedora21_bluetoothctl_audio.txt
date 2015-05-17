@@ -20,6 +20,47 @@
 ( `Arch Wiki Bluetoothctl <https://wiki.archlinux.org/index.php/Bluetooth#Bluetoothctl>`__ )
 で接続して、 ``cinnamon`` の音声設定を UI から設定して、即座に反映できた。
 
+.. code-block:: console
+
+   $ sudo bluetoothctl
+   [sudo] password for tomo:
+   [NEW] Controller 60:D8:19:AF:1F:92 x220 [default]
+   [bluetooth]# power on
+   [CHG] Controller 60:D8:19:AF:1F:92 Class: 0x0c010c
+   Changing power on succeeded
+   [CHG] Controller 60:D8:19:AF:1F:92 Powered: yes
+   [bluetooth]# scan
+   Missing on/off argument
+   [bluetooth]# scan on
+   Discovery started
+   [CHG] Controller 60:D8:19:AF:1F:92 Discovering: yes
+   [NEW] Device 00:1A:7D:A0:AD:AA LBT-SPP11
+   [bluetooth]# agent on
+   Agent registered
+   [bluetooth]# default-agent
+   Default agent request successful
+   [CHG] Device 00:1A:7D:A0:AD:AA RSSI: -51
+   [bluetooth]# pair 00:1A:7D:A0:AD:AA
+   Attempting to pair with 00:1A:7D:A0:AD:AA
+   [CHG] Device 00:1A:7D:A0:AD:AA Connected: yes
+   [CHG] Device 00:1A:7D:A0:AD:AA UUIDs: 00001108-0000-1000-8000-00805f9b34fb
+   [CHG] Device 00:1A:7D:A0:AD:AA UUIDs: 0000110b-0000-1000-8000-00805f9b34fb
+   [CHG] Device 00:1A:7D:A0:AD:AA UUIDs: 0000111e-0000-1000-8000-00805f9b34fb
+   [CHG] Device 00:1A:7D:A0:AD:AA Paired: yes
+   Pairing successful
+   [CHG] Device 00:1A:7D:A0:AD:AA Connected: no
+   [bluetooth]# connect 00:1A:7D:A0:AD:AA
+   Attempting to connect to 00:1A:7D:A0:AD:AA
+   [CHG] Device 00:1A:7D:A0:AD:AA Connected: yes
+   [LBT-SPP11]# help
+   Connection successful
+   [LBT-SPP11]# trust 00:1A:7D:A0:AD:AA
+   [CHG] Device 00:1A:7D:A0:AD:AA Trusted: yes
+   Changing 00:1A:7D:A0:AD:AA trust succeeded
+   [LBT-SPP11]# quit
+   Agent unregistered
+   [DEL] Controller 60:D8:19:AF:1F:92 x220 [default]
+
 .. image:: /_static/201505170_fedora21_bluetoothctl_audio_001.png
    :width: 640px
 
