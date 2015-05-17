@@ -61,7 +61,7 @@
    Agent unregistered
    [DEL] Controller 60:D8:19:AF:1F:92 x220 [default]
 
-.. image:: /_static/201505170_fedora21_bluetoothctl_audio_001.png
+.. image:: /_images/blog/201505170_fedora21_bluetoothctl_audio_001.png
    :width: 640px
 
 ``A2DP`` でクリアな音声も流れるし、すごい
