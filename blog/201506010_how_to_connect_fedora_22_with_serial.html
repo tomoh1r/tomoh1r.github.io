@@ -85,7 +85,7 @@ GUI から入力するのではなく、ホスト OS の仮想ターミナル
 <h2><a class="toc-backref" href="#id6">grub の設定</a><a class="headerlink" href="#grub" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ゲスト OS にて <cite>/etc/default/grub</cite> に以下の設定を追記する。</p>
 <div class="highlight-guess"><div class="highlight"><pre>GRUB_TERMINAL=&quot;serial&quot;
-GRUB_SERIAL_COMMAND=&quot;serial --speed=9600 --unit=0 --word=8 --parity=no --stop=1&quot;
+GRUB_SERIAL_COMMAND=&quot;serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1&quot;
 GRUB_CMDLINE_LINUX=&quot;console=tty0 console=ttyS0,115200n8&quot;
 </pre></div>
 </div>
