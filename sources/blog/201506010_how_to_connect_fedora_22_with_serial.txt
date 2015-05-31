@@ -34,8 +34,8 @@ grub の設定
    GRUB_SERIAL_COMMAND="serial --speed=9600 --unit=0 --word=8 --parity=no --stop=1"
    GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8"
 
-`GRUB_TERMINAL_OUTPUT`, `GRUB_CMDLINE_LINUX` は設定があると思うが、
-これら 2つの既存の設定はコメントアウトすること。
+`GRUB_TERMINAL_OUTPUT`, `GRUB_CMDLINE_LINUX` は既存で設定があると思うが、
+これら 2つの設定はコメントアウトすること。
 
 最終的な内容
 

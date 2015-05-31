@@ -89,8 +89,8 @@ GRUB_SERIAL_COMMAND=&quot;serial --speed=9600 --unit=0 --word=8 --parity=no --st
 GRUB_CMDLINE_LINUX=&quot;console=tty0 console=ttyS0,115200n8&quot;
 </pre></div>
 </div>
-<p><cite>GRUB_TERMINAL_OUTPUT</cite>, <cite>GRUB_CMDLINE_LINUX</cite> は設定があると思うが、
-これら 2つの既存の設定はコメントアウトすること。</p>
+<p><cite>GRUB_TERMINAL_OUTPUT</cite>, <cite>GRUB_CMDLINE_LINUX</cite> は既存で設定があると思うが、
+これら 2つの設定はコメントアウトすること。</p>
 <p>最終的な内容</p>
 <div class="highlight-guess"><div class="highlight"><pre>GRUB_TIMEOUT=5
 GRUB_DISTRIBUTOR=&quot;$(sed &#39;s, release .*$,,g&#39; /etc/system-release)&quot;
