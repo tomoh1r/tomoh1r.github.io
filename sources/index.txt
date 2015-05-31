@@ -3,13 +3,17 @@
 ========================
 
 ..
-   - ソーシャルボタン
-   - OGP / Twitter Card
-   - RSS
-   - タグ機能
-   - github-pages 管理リポジトリ向けの README.rst 出力機能
-   - 下書き機能、 rst の先頭になにかロールを書いておくなど
-   - インデント調整機能
+  on going
+  - OGP / Twitter Card
+
+..
+  new
+  - ソーシャルボタン
+  - RSS
+  - タグ機能
+  - github-pages 管理リポジトリ向けの README.rst 出力機能
+  - 下書き機能、 rst の先頭になにかロールを書いておくなど
+  - インデント調整機能
 
 blogs
 =====

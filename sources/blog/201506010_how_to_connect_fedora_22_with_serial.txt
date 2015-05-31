@@ -1,0 +1,95 @@
+====================================================
+QEMU 上の Fedora 22 にシリアルで接続出きるようにする
+====================================================
+
+:blog_date:`2015/06/01`
+
+.. contents::
+   :local:
+   :depth: 1
+
+動機
+====
+
+仮想マシンマネージャーから Fedora 22 環境を構築後、
+GUI から入力するのではなく、ホスト OS の仮想ターミナル
+エミュレータにて操作をしたかった。
+
+情報をおってみると、シリアル接続ならできそうだと分かり、
+`grub` に設定をしてみようと思った。
+
+対象ゲスト OS
+=============
+
+- Fedora 22
+
+grub の設定
+===========
+
+ゲスト OS にて `/etc/default/grub` に以下の設定を追記する。
+
+.. code-block:: guess
+
+   GRUB_TERMINAL="serial"
+   GRUB_SERIAL_COMMAND="serial --speed=9600 --unit=0 --word=8 --parity=no --stop=1"
+   GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8"
+
+`GRUB_TERMINAL_OUTPUT`, `GRUB_CMDLINE_LINUX` は設定があると思うが、
+これら 2つの既存の設定はコメントアウトすること。
+
+最終的な内容
+
+.. code-block:: guess
+
+   GRUB_TIMEOUT=5
+   GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+   GRUB_DEFAULT=saved
+   GRUB_DISABLE_SUBMENU=true
+   #GRUB_TERMINAL_OUTPUT="console"
+   #GRUB_CMDLINE_LINUX="rhgb quiet"
+   GRUB_DISABLE_RECOVERY="true"
+   GRUB_TERMINAL="serial"
+   GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1"
+   GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8"
+
+上記設定後、 `sudo grub2-mkconfig -o /boot/grub2/grub.cfg` を実行し、
+`grub` に反映すること。
+
+.. code-block:: console
+
+   [some@localhost ~]$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+   [sudo] password for some:
+   Generating grub configuration file ...
+   Found linux image: /boot/vmlinuz-4.0.4-301.fc22.x86_64
+   Found initrd image: /boot/initramfs-4.0.4-301.fc22.x86_64.img
+   Found linux image: /boot/vmlinuz-0-rescue-7090bcf635650045bc27626748bf72bd
+   Found initrd image: /boot/initramfs-0-rescue-7090bcf635650045bc27626748bf72bd.img
+   [  410.390204] SGI XFS with ACLs, security attributes, no debug enabled
+   [  410.409687] JFS: nTxBlock = 8192, nTxLock = 65536
+   [  410.467944] fuse init (API version 7.23)
+   done
+
+接続
+====
+
+上述の設定をし、ゲスト OS を再起動すれば、ホスト OS にて
+`sudo virsh console target` でシリアル接続できる。
+
+参照
+====
+
+- `KVM のゲストOS(Linux)にコンソールログインするための設定 : まだプログラマーですが何か？
+  <http://dotnsf.blog.jp/archives/980512.html>`_
+
+- `fedora DOCUMENTATION - 20.5. GRUB 2 over Serial Console
+  <https://docs.fedoraproject.org/en-US/Fedora/22/html/System_Administrators_Guide/sec-GRUB_2_over_Serial_Console.html>`_
+
+- `RHEL 7 MANUAL - 22.5. シリアルコンソールでの GRUB 2
+  <https://access.redhat.com/documentation/ja-JP/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sec-GRUB_2_over_Serial_Console.html>`_
+
+  - シリアル接続による grub ターミナルのアクセス設定の説明
+
+- `RHEL 7 MANUAL - 22.2. GRUB 2 メニューのカスタマイズ
+  <https://access.redhat.com/documentation/ja-JP/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sec-Customizing_GRUB_2_Menu.html#sec-Editing_an_Entry>`_
+
+  - カーネルパラメータの設定方法、カーネルへのシリアル接続を監視設定
