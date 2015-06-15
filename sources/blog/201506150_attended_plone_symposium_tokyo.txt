@@ -102,7 +102,7 @@ Plone は細やかなアクセス制限とカスタマイズ性がうりだと�
 LT とか
 =======
 
-2ch クローンの `Zsh <https://github.com/nakagami/Products.Zch>`_ を Plone 4 で
+2ch クローンの `Zch <https://github.com/nakagami/Products.Zch>`_ を Plone 4 で
 動かせるようにしたよとか、事例とか。
 
 まとめ
@@ -112,3 +112,8 @@ LT とか
 ユーザーさんの用例を聞くのもとても参考になる部分もあり、楽しかった。
 
 関係者のかたがたお疲れ様でした。
+
+修正履歴
+========
+
+2015/06/15 typo 修正
