@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="MySQL・PostgreSQLユーザーグループ（MyNA・JPUG）合同DB勉強会 in 東京 に参加してきた" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="MySQL・PostgreSQLユーザーグループ（MyNA・JPUG）合同DB勉強会 in 東京 に参加してきた" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/201506280_attended_dbstudychugoku_in_tokyo.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@__10100__" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>MySQL・PostgreSQLユーザーグループ（MyNA・JPUG）合同DB勉強会 in 東京 に参加してきた &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="適当に だらだらと 楽しく" href="../index.html" />
+    <link rel="prev" title="Plone Symposium Tokyo 2015" href="201506150_attended_plone_symposium_tokyo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="201506150_attended_plone_symposium_tokyo.html" title="Plone Symposium Tokyo 2015"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mysqlpostgresql-mynajpug-db-in">
+<h1>MySQL・PostgreSQLユーザーグループ（MyNA・JPUG）合同DB勉強会 in 東京 に参加してきた<a class="headerlink" href="#mysqlpostgresql-mynajpug-db-in" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2015/06/28</span></p>
+<p>金曜日午後半日休みを取り、 <a class="reference external" href="https://dbstudychugoku.doorkeeper.jp/events/25804">MySQL・PostgreSQLユーザーグループ（MyNA・JPUG）合同DB勉強会 in 東京</a>
+が 6/26 にあり、参加してきた。</p>
+<p>一応NoSQL回ということになってはいましたが、そこまでNoSQL・NoSQLしていなかった
+のが印象的だった。最終的には適材適所、それはそうだしそうなんだよねと思うところ。</p>
+<p>とても面白い回で、ラストの資料のそれぞれのコンテナごとのInnoDB層までの層を説明し
+ていた資料がとても面白かった。階層がいくつかあって、それを飛ばせると確かに
+パフォーマンス出そうだなと。</p>
+<p>回の中で軽く話題に出てきていたとおり、MySQLにあるストレージエンジンが、
+PostgreSQLのFDWに相当するんだろうなと思った。</p>
+<p>当日は会場をおかしいただいた <a class="reference external" href="http://labo.dmm.com/">株式会社DMM.com ラボ</a> 様、会場
+ありがとうございました。</p>
+<p>主催者および講演者の方々お疲れ様でした。</p>
+<p>以下当日の感想</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#myna-7-nosql" id="id1">MyNA 奥野 データモデルについて知っておくべき7つのこと 〜NoSQLに手を出す前に〜</a></li>
+<li><a class="reference internal" href="#jpug-postgresqlnosql-fdw" id="id2">JPUG 曽根 PostgreSQLから見るNoSQL（FDWの話）</a></li>
+<li><a class="reference internal" href="#ntt-jsonbpostgresql9-5" id="id3">NTTデータ 澤田、藤井 JSONBはPostgreSQL9.5でいかに改善されたのか？今後の展望は？</a></li>
+<li><a class="reference internal" href="#adsj-dynamodb" id="id4">ADSJ 森 DynamoDBの話(仮)</a></li>
+<li><a class="reference internal" href="#mysql-mysql-json-http-plugin-for-mysql" id="id5">MySQL 梶山 MySQL JSON, HTTP Plugin for MySQLなど</a></li>
+<li><a class="reference internal" href="#mysql-nosqlmysql-cluster" id="id6">MySQL 杉山 トランザクション対応NoSQLとしてのMySQL Cluster</a></li>
+<li><a class="reference internal" href="#yoku0825-handler-innodb-memcached-pluginndb-memcached-engine" id="id7">&#64;yoku0825さん Handlerさんコンニチワ 〜主にInnoDB memcached PluginとNDB memcached Engineの違いについて〜</a></li>
+</ul>
+</div>
+<div class="section" id="myna-7-nosql">
+<h2><a class="toc-backref" href="#id1">MyNA 奥野 データモデルについて知っておくべき7つのこと 〜NoSQLに手を出す前に〜</a><a class="headerlink" href="#myna-7-nosql" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/bG4IkBh5Z7bujS" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/nippondanji/7-nosql" title="データモデルについて知っておくべき7つのこと 〜NoSQLに手を出す前に〜" target="_blank">データモデルについて知っておくべき7つのこと 〜NoSQLに手を出す前に〜</a> </strong> from <strong><a href="//www.slideshare.net/nippondanji" target="_blank">Mikiya Okuno</a></strong> </div><p><a class="reference external" href="http://nippondanji.blogspot.jp/2015/06/mysqlpostgresqlmynajpugdb7-nosql.html">漢(オトコ)のコンピュータ道: MySQL・PostgreSQLユーザーグループ（MyNA・JPUG）合同DB勉強会で発表した資料を公開しました。「データモデルについて知っておくべき7つのこと 〜NoSQLに手を出す前に〜」</a></p>
+<p>最近奥野さんが書かれた本の内容も絡めた内容。MySQLとNoSQLでシステムの境界がある
+場合に、これらのデータの整合性を保つやり方を「同期」と表現していたのが
+面白かった。</p>
+<p>それは確かにそうだ。</p>
+</div>
+<div class="section" id="jpug-postgresqlnosql-fdw">
+<h2><a class="toc-backref" href="#id2">JPUG 曽根 PostgreSQLから見るNoSQL（FDWの話）</a><a class="headerlink" href="#jpug-postgresqlnosql-fdw" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/mmzc5LKCTJH6lQ" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/SoudaiSone/postgre-sqlnosql" title="Postgre sqlから見るnosql" target="_blank">Postgre sqlから見るnosql</a> </strong> from <strong><a href="//www.slideshare.net/SoudaiSone" target="_blank">Soudai Sone</a></strong> </div><p>当日はプロジェクターとの接続がうまくいってなさそうな印象を受けていた。その影響が
+プレゼンに出てしまって大変そうだった。</p>
+<p>とはいえ内容は面白く、PostgreSQLのFDWがCと後Pythonでかけるらしく、面白い。</p>
+</div>
+<div class="section" id="ntt-jsonbpostgresql9-5">
+<h2><a class="toc-backref" href="#id3">NTTデータ 澤田、藤井 JSONBはPostgreSQL9.5でいかに改善されたのか？今後の展望は？</a><a class="headerlink" href="#ntt-jsonbpostgresql9-5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>PostgreSQLのJSON/JSONBの歴史と現状についてのプレゼン。</p>
+<p>なぜ最初からPostgreSQLで取り扱いしやすいバイナリーなどにして内部で
+持ってなかったんだろうなとは思うけど、いろいろあるんだろうなあ。</p>
+</div>
+<div class="section" id="adsj-dynamodb">
+<h2><a class="toc-backref" href="#id4">ADSJ 森 DynamoDBの話(仮)</a><a class="headerlink" href="#adsj-dynamodb" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>DynamoDB についての説明。 (記憶違いかもしれないけど) memcached とかで
+マネージドでより簡単に性能を上げたい場合のだいたいとか。</p>
+</div>
+<div class="section" id="mysql-mysql-json-http-plugin-for-mysql">
+<h2><a class="toc-backref" href="#id5">MySQL 梶山 MySQL JSON, HTTP Plugin for MySQLなど</a><a class="headerlink" href="#mysql-mysql-json-http-plugin-for-mysql" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MySQL の人の発表。この人のプレゼンうまいと思う、さすがです。</p>
+<p>Generated Column は面白い、構文は以下。</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="o">&lt;</span><span class="n">type</span><span class="o">&gt;</span>   <span class="p">[</span> <span class="n">GENERATED</span> <span class="n">ALWAYS</span> <span class="p">]</span>   <span class="n">AS</span>   <span class="p">(</span> <span class="o">&lt;</span><span class="n">expression</span><span class="o">&gt;</span> <span class="p">)</span>   <span class="p">[</span> <span class="n">VIRTUAL</span><span class="o">|</span><span class="n">STORED</span> <span class="p">]</span>
+<span class="p">[</span> <span class="n">UNIQUE</span> <span class="p">[</span><span class="n">KEY</span><span class="p">]</span> <span class="p">]</span>   <span class="p">[</span> <span class="p">[</span><span class="n">PRIMARY</span><span class="p">]</span> <span class="n">KEY</span> <span class="p">]</span>   <span class="p">[</span> <span class="n">NOT</span> <span class="nb">NULL</span> <span class="p">]</span>   <span class="p">[</span> <span class="n">COMMENT</span> <span class="o">&lt;</span><span class="n">text</span><span class="o">&gt;</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://mysqlserverteam.com/generated-columns-in-mysql-5-7-5/">Generated Columns in MySQL 5.7.5 | MySQL Server Blog</a>
+より</p>
+<p>けど、たぶん検索条件にしたいとき Virtual だとフルスキャン？が走って
+遅いんだろうなあって考えてた。</p>
+<p>検索対象にしたいなら、 STORED にしてインデックスをかけよう。</p>
+</div>
+<div class="section" id="mysql-nosqlmysql-cluster">
+<h2><a class="toc-backref" href="#id6">MySQL 杉山 トランザクション対応NoSQLとしてのMySQL Cluster</a><a class="headerlink" href="#mysql-nosqlmysql-cluster" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/mWa9dE1lP6RWI0" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ShinyaSugiyama/no-sql-with-mysql-cluster" title="No sql with mysql cluster (MyNA・JPUG合同DB勉強会)" target="_blank">No sql with mysql cluster (MyNA・JPUG合同DB勉強会)</a> </strong> from <strong><a href="//www.slideshare.net/ShinyaSugiyama" target="_blank">Shinya Sugiyama</a></strong> </div><p>NDB って InnnoDB と別物で、 SQL 以外のアクセスが元々の意図だったんだなと。</p>
+<p>NDB のトランザクションについて
+<a class="reference external" href="https://dev.mysql.com/doc/mysql-cluster-excerpt/5.6/en/mysql-cluster-ndb-innodb-engines.html">3.5.1 Differences Between the NDB and InnoDB Storage Engines</a>
+をみると MVCC No なので、どうなるのかなとは思う。</p>
+</div>
+<div class="section" id="yoku0825-handler-innodb-memcached-pluginndb-memcached-engine">
+<h2><a class="toc-backref" href="#id7">&#64;yoku0825さん Handlerさんコンニチワ 〜主にInnoDB memcached PluginとNDB memcached Engineの違いについて〜</a><a class="headerlink" href="#yoku0825-handler-innodb-memcached-pluginndb-memcached-engine" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ストレージエンジンの処理レイヤーが図で示されていてとてもわかりやすかった。</p>
+<p>使いませんが、 HANDLER 構文があるのも初めて知った、おもしろい。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="/index.html">Top</a></h3>
+          <div id="searchbox" style="display: none" role="search">
+            <h3>クイック検索</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="検索" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">検索文字列を入力してください。</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="/genindex.html">索引</a></h3>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="201506150_attended_plone_symposium_tokyo.html" title="Plone Symposium Tokyo 2015"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>| <a href="../sources/blog/201506280_attended_dbstudychugoku_in_tokyo.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
