@@ -8,7 +8,7 @@ boilerplate-setup.py を作ってみた
 
 ちょうど `ansible-vault <https://github.com/jptomo/ansible-vault>`__ の p-r
 を対応する際に tox/travis 対応などをしたので、まとめとして
-`boilerplate-setup.py <boilerplate-setup.py>`
+`boilerplate-setup.py <https://github.com/jptomo/boilerplate-setup.py>`__
 を作成した。
 
 ``spam_ham_egg/spam-ham-egg``
