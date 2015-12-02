@@ -15,3 +15,15 @@ boilerplate-setup.py を作ってみた
 の箇所を書き換えたり、名前とか書き換えればつかえると思う。
 
 ご活用ください。
+
+追記
+====
+
+`cookiecutter <https://github.com/audreyr/cookiecutter>`__ に対応しました。
+
+.. code-block:: consle
+
+   $ pip install cookiecutter
+   $ cookiecutter https://github.com/jptomo/boilerplate-setup.py
+
+で使えます。
