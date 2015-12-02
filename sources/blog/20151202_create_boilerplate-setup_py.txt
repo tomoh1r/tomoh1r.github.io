@@ -1,0 +1,17 @@
+=================================
+boilerplate-setup.py を作ってみた
+=================================
+
+:blog_date:`2015/12/02`
+
+いくつか package を作っていて setup.py のひな形が欲しいなって思っていた。
+
+ちょうど `ansible-vault <https://github.com/jptomo/ansible-vault>`__ の p-r
+を対応する際に tox/travis 対応などをしたので、まとめとして
+`boilerplate-setup.py <boilerplate-setup.py>`
+を作成した。
+
+``spam_ham_egg/spam-ham-egg``
+の箇所を書き換えたり、名前とか書き換えればつかえると思う。
+
+ご活用ください。
