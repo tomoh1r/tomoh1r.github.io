@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="仕事の進め方雑感 2015春" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="仕事の進め方雑感 2015春" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2015/05200_working.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@__10100__" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>仕事の進め方雑感 2015春 &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="top" title="適当に だらだらと 楽しく" href="../../index.html" />
+    <link rel="next" title="Innodb の COUNT とセカンダリーインデックス" href="05250_innodb_count_and_sencondary_index.html" />
+    <link rel="prev" title="今って、 Fedora 21 で bluetoothctl でヘッドセットに接続して、オンザフライで音声出力先変えられるのね、すごい。" href="05170_fedora21_bluetoothctl_audio.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="05250_innodb_count_and_sencondary_index.html" title="Innodb の COUNT とセカンダリーインデックス"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="05170_fedora21_bluetoothctl_audio.html" title="今って、 Fedora 21 で bluetoothctl でヘッドセットに接続して、オンザフライで音声出力先変えられるのね、すごい。"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>仕事の進め方雑感 2015春<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2015/05/20</span></p>
+<p>仕事の進め方最近感じたことなどまとめてみる。</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id2" id="id6">一人でのミーティング</a></li>
+<li><a class="reference internal" href="#id3" id="id7">課題のハンドリング</a></li>
+<li><a class="reference internal" href="#id4" id="id8">修正しすぎ問題</a></li>
+<li><a class="reference internal" href="#id5" id="id9">立ち位置</a></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id6">一人でのミーティング</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>平たく言うと、一人でミーティングすると辛いなと思う。</p>
+<p>通常はプロジェクト PM にミーティングをファシリテートしてもらい、
+必要な時に僕などエンジニアが各議論に返答をする進め方をしている。</p>
+<p>ただ、この前ややこみ入った問題があって、ただシングルイシューのミーティングだったので
+一人で進められるかなと、お客さんに来社いただきミーティングをした。</p>
+<p>ミーティングを進めていくなかで、舵取りと個別の返答を
+両方しなくてはならなくなり、ただ、それぞれの役割にやはり差があって、難しい。</p>
+<p>最終的にお客さんに舵取りを任せてしまい、それはそれでよいと思うけど、力不足。</p>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id7">課題のハンドリング</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>仕様がふわふわしている課題って、対応が大変だよねってことで。</p>
+<p>最初中規模の機能開発があって、対応していた。</p>
+<p>途中で分割してリリースしましょうとなった。</p>
+<p>しかし、開発終わったと思ったら分割して後からで良いよとなっていた箇所が
+実は分割できないとわかった。</p>
+<p>実は、お客さん側でシステムのマニュアルを作成してもらっていて、
+同時でないとその修正が辛かったりする感じ。</p>
+<p>他にも、お客さんが作業をアウトソーシングしていて、
+アウトソーシング先に修正箇所の伝達、というか教育が必要で、同時リリースでないと辛いと。</p>
+<p>後は、お客さんの中で、社内SE部門があり、その部門で弊社との機能開発の進捗を管理しているのだが、
+今回の機能がシステム横断的な機能であって、お客さんのなかで仕様がまとまってないぶぶんもあって、
+そういうのは、大変だけどしょうがないよね。</p>
+<p>最終的にお客さんで利用している別の機能の開発が間に合わずリリースが伸びた。</p>
+<p>社内的には、お前きちんと機能開発最後までできるのかよと不安をばらまいてしまい、
+申し訳なかった。</p>
+<p>なんか、多分、どこかの段階で警戒して、問題にならないようにするべきだったんだろうなあと。</p>
+<p>最終的にどのように落ち着くべきか、ハンドリングできないとね。</p>
+<p>難しい。</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id8">修正しすぎ問題</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>口をすっぱくして言われてしまっている。</p>
+<p>機能開発やバグ修正で直接は関係のない場所を修正してしまう件。</p>
+<p>3年程度継続で開発されているシステムで、開発者が入れ替わりがある程度あり、
+うまくかけてなさそうな箇所をついでに直してしまう場合がある。</p>
+<p>しかし、レビュー時に何故となり大変だし、修正時に typo などでバグを埋め込み品質が悪くなることも
+気になる。ついでに修正した場合、お客さんに説明できないでしょと。</p>
+<p>対応する場合は別の枠、チケットでやりましょうと。</p>
+<p>システムがより良い状態であれと思い、ショートカットしてやってしまいることは
+自覚しているので、プロジェクトで受け入れ易い形で修正をしていけたら
+なあと思う。</p>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id9">立ち位置</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>将来こんなことやりたいな、このような立ち位置でいたいなと見えておらず、
+何とか見えるように進めていきたいとは思うけど。</p>
+<p>個人的には MySQL / PostgreSQL の RDBMS まわりの差を理解できると良いなと。</p>
+<p>memcached / redis や solr などあるが、 web で最終的に重要なのは DB
+ではないかなって思って探っている感じ。</p>
+<p>もう歳だし、PG定年に近くなっている感じ。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="/index.html">Top</a></h3>
+          <div id="searchbox" style="display: none" role="search">
+            <h3>クイック検索</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="検索" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">検索文字列を入力してください。</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="/genindex.html">索引</a></h3>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="05250_innodb_count_and_sencondary_index.html" title="Innodb の COUNT とセカンダリーインデックス"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="05170_fedora21_bluetoothctl_audio.html" title="今って、 Fedora 21 で bluetoothctl でヘッドセットに接続して、オンザフライで音声出力先変えられるのね、すごい。"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2015/05200_working.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

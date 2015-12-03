@@ -1,0 +1,48 @@
+=====================================================
+OGP 情報をつけ Twitter でページの詳細が出るようにする
+=====================================================
+
+:blog_date:`2015/04/22`
+:blog_description:`hoge`
+
+Twitter card などのために OGP の設定をしたい。
+
+.. contents::
+   :local:
+   :depth: 1
+
+データの準備
+============
+
+メタ情報の整備
+==============
+
+テンプレートの修正
+==================
+
+Twitter への登録
+================
+
+1. `Card validator <https://cards-dev.twitter.com/validator>`_ にアクセスし、 URL を検証する。
+
+   公開したサイトを指定すればいい。
+
+2. 実行すると以下の画面になり、 `Twitter <https://twitter.com/>`_ に登録される。
+
+終わりに
+========
+
+参照
+====
+
+- `これだけは知っておきたいOGP （Open Graph Protocol）  |  NEX.FM
+  <http://nex.fm/ogp/>`__
+- `【OGP】prefix?xmlns?どっちを入れればいいのか。 - Qiita
+  <http://qiita.com/rico/items/9bfddcf3200afcde782c>`__
+- `FacebookでシェアしたときのOGP画像、大きな表示で出てますか？ |
+  編集長ブログ―安田英久 | Web担当者Forum
+  <http://web-tan.forum.impressrd.jp/e/2015/03/24/19610>`__
+- `Twitter
+  Cardsを設定して自社サイト情報をツイートに出す2つの手順（OGP済みなら10分でOK）
+  | 編集長ブログ―安田英久 | Web担当者Forum
+  <http://web-tan.forum.impressrd.jp/e/2012/09/04/13551>`__
