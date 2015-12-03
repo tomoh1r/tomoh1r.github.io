@@ -27,3 +27,11 @@ boilerplate-setup.py を作ってみた
    $ cookiecutter https://github.com/jptomo/boilerplate-setup.py
 
 で使えます。
+
+追記 2
+======
+
+`Nekroze/cookiecutter-pypackage <https://github.com/Nekroze/cookiecutter-pypackage>`__
+があり、こちらの方が整備されているので、こちらを利用すると良いと思います。
+
+まー、みんな考えるよね。
