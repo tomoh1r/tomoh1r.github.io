@@ -1,0 +1,34 @@
+================================================
+npm グローバル指定時のインストールパスを変更する
+================================================
+
+:blog_date:`2015/12/03`
+
+`sindresorhus/guides/npm-global-without-sudo.md <https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md>`__
+には、 ``~/.npmrc`` にて ``prefix`` を指定すると良いとあります。
+
+また、 `config | npm Documentation <https://docs.npmjs.com/misc/config>`__ には
+環境変数にて ``npm_config_`` 接頭辞で設定すると良いとあります。
+また、大文字小文字はみないとあります。
+
+それゆえ、 ``~/.bashrc`` などで以下のように指定すると良い。
+なお、 ``PATH`` は ``bin`` の下に実行バイナリーが
+インストールされるので指定する。
+
+.. code-block:: bash
+
+   export NPM_CONFIG_PREFIX="${HOME}/.npm-packages"$
+   export PATH="${NPM_CONFIG_PREFIX}/bin:$PATH"$
+
+インストール時はこうなる。
+
+.. code-block:: console
+
+   $ npm install -g typescript
+   npm http GET https://registry.npmjs.org/typescript
+   npm http 304 https://registry.npmjs.org/typescript
+   /home/blah/.npm-packages/bin/tsserver ->
+   /home/blah/.npm-packages/lib/node_modules/typescript/bin/tsserver
+   /home/blah/.npm-packages/bin/tsc ->
+   /home/blah/.npm-packages/lib/node_modules/typescript/bin/tsc
+   typescript@1.7.3 /home/blah/.npm-packages/lib/node_modules/typescript
