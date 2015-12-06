@@ -1,0 +1,197 @@
+==================
+Samba on Fedora 23
+==================
+
+:blog_date:`2015/12/07`
+
+Samba_ を使って、 Fedora_ 上のディレクトリを共有したい。
+Fedora に Samba_ をインストールし、 Windows からアクセスできるまでを実施する。
+
+.. _Samba: https://www.samba.org/
+.. _Fedora: https://getfedora.org/ja/
+
+.. contents::
+   :local:
+   :depth: 2
+
+0. 環境
+=======
+
+:サーバー: Fedora 23
+:クライアント: Windows 8.1 64-bit Pro
+
+1. (Fedora) Samba をインストールする
+=====================================
+
+1. インストール
+---------------
+
+Fedora のパッケージマネージャー dnf で Samba_ をインストールする。
+
+.. code-block:: console
+
+   $ sudo dnf install samba
+
+2. 設定
+-------
+
+``/etc/samba/smb.conf`` を更新し、ディレクトリ共有できるように設定する。
+エディターで前述ファイルを開き、以下のように更新する。
+
+- 65行目あたりの ``[global]`` セクション直下に以下を記載する。
+
+  Windows が読み取る際のファイル名の文字コード
+
+  ::
+
+    dos charset = CP932
+
+- ``workgroup``/``netbios name``
+
+  ``workgroup`` は Windows のワークグループ名である。
+  ``netbios name`` はサーバーの Windows 認識用のホスト名である。
+
+  先頭のセミコロン ( ``;`` ) はコメントを示すので、
+  ``workgroup`` は利用する Windows 環境に合わせ、設定ください。
+
+  ``netbios name`` は識別できるよう適宜設定ください。
+
+  ::
+
+    ;	workgroup = MYGROUP
+    ;	netbios name = MYSERVER
+
+- ``hosts allow``
+
+  利用する LAN の IP に合わせ、設定ください。
+
+  ``192.168.1.0/24`` であれば、 ``hosta allow`` は ``hosts allow = 127. 192.168.1.`` と設定すれば良いです。
+
+  ::
+
+    ;	hosts allow = 127. 192.168.12. 192.168.13.
+
+- ディレクトリ共有の設定
+
+  下の方の ``[homes]`` の ``valid users = %S`` の行頭のセミコロンを外すと、
+  各ユーザーのホームディレクトリが共有されるので、簡便である。
+
+3. Samba 認証用のアカウント追加
+-------------------------------
+
+共有したいユーザーを Samba_ のアカウントDB に登録する。
+
+以下のコマンドで ``user_name`` が Samba_ で利用可能になる。
+
+入力語パスワードを入力する必要があるので適宜設定すること。
+
+.. code-block:: console
+
+   $ pdbedit -a user_name
+
+4. 再起動とサーバー起動時に起動するようにする
+---------------------------------------------
+
+``smb.service``/``nmb.service`` を再起動し、システム起動時に起動するようにする。
+
+.. code-block:: console
+
+   $ sudo systemctl restart smb.service nmb.service
+   $ sudo systemctl enable smb.service nmb.service
+
+REF. 参考
+---------
+
+- smb.conf の設定: `Windowsファイルサーバー構築(Samba) - Fedoraで自宅サーバー構築 <http://fedorasrv.com/samba.shtml>`__
+
+
+2. (Fedora) SELinux で Samba 公開ディレクトリへのアクセスを許可する
+===================================================================
+
+SELinux_ にて Samba_ のディレクトリアクセスが制限されているので、設定し、
+取り外す。
+
+.. code-block:: console
+
+   $ setsebool -P samba_export_all_rw on
+
+.. _SELinux: http://selinuxproject.org/page/Main_Page
+
+REF. 参考
+---------
+
+- コマンドを引用: `プログラマ ずんべ の日記 Ⅱ » Sambaで小ハマリ <http://blog2.zunbe.com/?p=1821>`__
+
+3. (Fedora) firewall で外部からの接続を許可する
+===============================================
+
+Firewall にてアクセス制限されているので、解除する。
+
+.. code-block:: console
+
+   $ sudo firewall-cmd --permanent --add-service=samba
+
+REF. 参考
+---------
+
+- コマンド引用: `Fedoraの新しいファイアウォールでSambaを使用可能にする - 公的内省 <http://d.hatena.ne.jp/superstring04/20130814/1376512931>`__
+
+4. まとめ
+=========
+
+手順 1, 2, 3 を参考にすると Windows マシンからアクセスできると思う。
+
+``SELinux`` は新要素だと思う。
+
+Firewall は最近の Fedora_ だと ``firewall-cmd`` にて設定するようだ。
+
+X. デバッグ方法
+===============
+
+Fedora 上で接続できるか確認する
+-------------------------------
+
+最初に ``smbclient`` をインストールする。
+
+.. code-block:: console
+
+   $ sudo dnf install samba-client
+
+その上で、以下のコマンドでサーバーにアクセスできるか確認する。
+
+これは、手順 1, 2 の動作確認に利用できる。
+
+なお、 ``user_password`` は ``pdbedit`` で設定したパスワードである。
+
+以下はうまくいった場合を示す。
+
+.. code-block:: console
+
+   $ smbclient //SMB_SERVER/user_name user_password -u user_name
+   Domain=[WORKGROUP] OS=[Windows 6.1] Server=[Samba 4.3.1]
+   smb: \>
+
+Windows 上で接続できるか確認する
+--------------------------------
+
+Windows 上で管理者権限でコマンド プロンプトを起動する。
+
+右クリックで管理者権限として実行が表示されるので、これをクリックする。
+
+``NET USE`` コマンドでアクセスできるか確認する。
+
+これは、手順 3 の動作確認に利用できる。
+
+なお、 ``user_password`` は ``pdbedit`` で設定したパスワードである。
+
+以下はうまくいった場合を示す。
+
+.. code-block:: cmd
+
+   C:\Windows\system32>NET USE \\SMB_SERVER\user_name /USER:user_name user_pasword
+   コマンドは正常に終了しました。
+
+REF. 参考
+=========
+
+- `Fedora 23 - Chapter 13. File and Print Servers - 13.1.5. Configuring a Samba Server <https://docs.fedoraproject.org/en-US/Fedora/23/html/System_Administrators_Guide/ch-File_and_Print_Servers.html#sect-Samba-Configuring_a_Samba_Server>`__
