@@ -1,3 +1,5 @@
+:orphan:
+
 .. link 集
 .. _Sphinx: http://sphinx-doc.org/
 .. _GitHub: https://github.com/

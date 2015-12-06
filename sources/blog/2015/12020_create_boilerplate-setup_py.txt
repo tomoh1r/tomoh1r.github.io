@@ -21,7 +21,7 @@ boilerplate-setup.py を作ってみた
 
 `cookiecutter <https://github.com/audreyr/cookiecutter>`__ に対応しました。
 
-.. code-block:: consle
+.. code-block:: console
 
    $ pip install cookiecutter
    $ cookiecutter https://github.com/jptomo/boilerplate-setup.py

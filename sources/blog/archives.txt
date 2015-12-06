@@ -14,4 +14,5 @@ blogs
    :reverse:
    :display_blog_date:
 
-   2015/*
+   2015/0*
+   2015/1*
