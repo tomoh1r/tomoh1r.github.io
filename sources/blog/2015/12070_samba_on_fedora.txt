@@ -99,12 +99,6 @@ Fedora のパッケージマネージャー dnf で Samba_ をインストール
    $ sudo systemctl restart smb.service nmb.service
    $ sudo systemctl enable smb.service nmb.service
 
-REF. 参考
----------
-
-- smb.conf の設定: `Windowsファイルサーバー構築(Samba) - Fedoraで自宅サーバー構築 <http://fedorasrv.com/samba.shtml>`__
-
-
 2. (Fedora) SELinux で Samba 公開ディレクトリへのアクセスを許可する
 ===================================================================
 
@@ -117,11 +111,6 @@ SELinux_ にて Samba_ のディレクトリアクセスが制限されている
 
 .. _SELinux: http://selinuxproject.org/page/Main_Page
 
-REF. 参考
----------
-
-- コマンドを引用: `プログラマ ずんべ の日記 Ⅱ » Sambaで小ハマリ <http://blog2.zunbe.com/?p=1821>`__
-
 3. (Fedora) firewall で外部からの接続を許可する
 ===============================================
 
@@ -130,11 +119,6 @@ Firewall にてアクセス制限されているので、解除する。
 .. code-block:: console
 
    $ sudo firewall-cmd --permanent --add-service=samba
-
-REF. 参考
----------
-
-- コマンド引用: `Fedoraの新しいファイアウォールでSambaを使用可能にする - 公的内省 <http://d.hatena.ne.jp/superstring04/20130814/1376512931>`__
 
 4. まとめ
 =========
@@ -195,3 +179,6 @@ REF. 参考
 =========
 
 - `Fedora 23 - Chapter 13. File and Print Servers - 13.1.5. Configuring a Samba Server <https://docs.fedoraproject.org/en-US/Fedora/23/html/System_Administrators_Guide/ch-File_and_Print_Servers.html#sect-Samba-Configuring_a_Samba_Server>`__
+- 手順 1 smb.conf の設定: `Windowsファイルサーバー構築(Samba) - Fedoraで自宅サーバー構築 <http://fedorasrv.com/samba.shtml>`__
+- 手順 2 コマンドを引用: `プログラマ ずんべ の日記 Ⅱ » Sambaで小ハマリ <http://blog2.zunbe.com/?p=1821>`__
+- 手順 3 コマンド引用: `Fedoraの新しいファイアウォールでSambaを使用可能にする - 公的内省 <http://d.hatena.ne.jp/superstring04/20130814/1376512931>`__
