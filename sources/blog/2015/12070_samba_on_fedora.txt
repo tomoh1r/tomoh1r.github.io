@@ -170,7 +170,7 @@ Windows 上で管理者権限でコマンド プロンプトを起動する。
 
 以下はうまくいった場合を示す。
 
-.. code-block:: cmd
+.. code-block:: guess
 
    C:\Windows\system32>NET USE \\SMB_SERVER\user_name /USER:user_name user_pasword
    コマンドは正常に終了しました。
