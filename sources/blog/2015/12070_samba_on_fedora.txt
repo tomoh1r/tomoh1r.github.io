@@ -175,8 +175,8 @@ Windows 上で管理者権限でコマンド プロンプトを起動する。
    C:\Windows\system32>NET USE \\SMB_SERVER\user_name /USER:user_name user_pasword
    コマンドは正常に終了しました。
 
-REF. 参考
-=========
+参考
+====
 
 - `Fedora 23 - Chapter 13. File and Print Servers - 13.1.5. Configuring a Samba Server <https://docs.fedoraproject.org/en-US/Fedora/23/html/System_Administrators_Guide/ch-File_and_Print_Servers.html#sect-Samba-Configuring_a_Samba_Server>`__
 - 手順 1 smb.conf の設定: `Windowsファイルサーバー構築(Samba) - Fedoraで自宅サーバー構築 <http://fedorasrv.com/samba.shtml>`__
