@@ -1,0 +1,80 @@
+===============================
+zipapp が便利そうだったので書く
+===============================
+
+:blog_date:`2015/12/07`
+
+この記事は、 `2015 tech-yuruyuru アドベントカレンダー <http://connpass.com/event/22759/>`__ 7 日目の記事です。
+
+.. contents::
+   :local:
+   :depth: 1
+
+zipapp について
+===============
+
+以下のようなディレクトリ構成とする。
+
+::
+
+  test001/
+  ├── __init__.py
+  └── __main__.py
+
+``__init__.py`` は空のファイル、 ``__main__.py`` の中身は以下とする。
+
+.. code-block:: python
+
+   print('hello, world')
+
+通常、この場合以下のように実行することができる。
+
+.. code-block:: console
+
+   $ python2.7 test001/
+   hello, world
+
+さらに、このディレクトリ構成で、 ``test001`` 内を zipファイルとして
+まとめると、この zipファイルを読み込み実行することができる。
+
+まず、zipファイルは以下のように作成する。
+
+.. code-block:: console
+
+   $ cd test001
+   $ zip test001.zip -r *
+   adding: __init__.py (stored 0%)
+   adding: __main__.py (stored 0%)
+
+この状態で python インタプリタに引数として渡すと、実行される。
+これでも、便利だと思う。
+
+.. code-block:: console
+
+   $ python2.7 test001.zip
+   hello, world
+
+さて、 zipapp だ。拡張子は ``.pyz`` となるが、作成しよう。
+実行可能なバイナリを作成したいので、 ``-p`` オプションで ``shebang`` を指定しよう。
+
+.. code-block:: console
+
+   $ rm test001.zip
+   $ cd ..
+   $ python3.5 -m zipapp -p '/usr/bin/env python2.7' test001/
+
+この状態で ``.pyz`` ファイルは実行可能だ。実行してみよう。
+
+.. code-block:: console
+
+   $ ./test001.pyz
+   hello, world
+
+このように、適切に作成したモジュールを簡単に実行可能なバイナリに変換できて、
+とても便利だと思います。
+
+.. note::
+
+   `28.4. zipapp — Manage executable python zip archives — Python 3.5.1rc1 documentation <https://docs.python.org/3/library/zipapp.html>`__
+
+   zipapp モジュールの説明
