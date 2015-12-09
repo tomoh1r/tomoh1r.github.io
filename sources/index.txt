@@ -22,7 +22,7 @@ blogs
    :glob:
    :titlesonly:
    :maxdepth: 1
-   :maxnum: 5
+   :maxnum: 8
    :reverse:
    :display_blog_date:
 
