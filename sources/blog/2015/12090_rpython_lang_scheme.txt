@@ -1,0 +1,40 @@
+===================================================
+pypy/lang-scheme を簡単にビルドできるようにまとめた
+===================================================
+
+:blog_date:`2015/12/09`
+
+この記事は、 `2015 tech-yuruyuru アドベントカレンダー <http://connpass.com/event/22759/>`__ 2日遅れの 8 日目の記事です。
+
+.. contents::
+   :local:
+   :depth: 1
+
+`pypy <http://pypy.org/>`_ は `RPython <http://doc.pypy.org/en/release-1.9/coding-guide.html#id1>`_
+で記載され、コンパイルし利用することができる。
+
+同様に scheme の rpython 実装である `lang-scheme <https://bitbucket.org/pypy/lang-scheme/>`_ がある。
+
+これを簡単にビルドできればと思い、 `rpython-lang-scheme <https://github.com/jptomo/rpython-lang-scheme>`_
+をまとめた。
+
+利用方法は README に記載の通り、以下。
+
+.. code-block:: console
+
+   $ hg clone https://bitbucket.org/pypy/lang-scheme
+   $ python rpython/bin/rpython targetscheme.py
+
+やったことは以下の通りである。
+
+- rpython を pypy_ 4.0.0 からもってくる。
+- pytest を pypy_ 4.0.0 からもってくる。
+- targetscheme.py を lang-scheme_ からもってきて、 lang-scheme_ を clone した
+  状態でビルドできるようにした。
+- interactive.py lang-scheme_ からもってきて、 lang-scheme_ を clone した
+  状態で実行できるようにした。
+
+紹介で終わってしまい申し訳ないが、こんなものを作ったと言うことで。
+
+
+
