@@ -2,10 +2,10 @@
 <html lang="ja">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <meta charset="utf-8" />
-    <meta property="og:title" content="pypy/lang-scheme を簡単にビルドできるようにまとめた" />
+    <meta property="og:title" content="「スクラム実践入門 ── 成果を生み出すアジャイルな開発プロセス」を読んだ" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="pypy/lang-scheme を簡単にビルドできるようにまとめた" />
-    <meta property="og:url" content="http://jptomo.github.io/blog/2015/12090_rpython_lang_scheme.html" />
+    <meta property="og:description" content="「スクラム実践入門 ── 成果を生み出すアジャイルな開発プロセス」を読んだ" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2015/12250_read_scrum_jissen_nyuumon.html" />
     <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
     <meta property="og:site_name" content="適当に だらだらと 楽しく" />
     <meta property="og:email" content="quickness.net@gmail.com" />
@@ -14,7 +14,7 @@
     <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
     <meta name="twitter:image:width" content="632" />
     <meta name="twitter:image:height" content="512" />
-    <title>pypy/lang-scheme を簡単にビルドできるようにまとめた &mdash; 適当に だらだらと 楽しく</title>
+    <title>「スクラム実践入門 ── 成果を生み出すアジャイルな開発プロセス」を読んだ &mdash; 適当に だらだらと 楽しく</title>
     <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
@@ -32,8 +32,7 @@
     <script type="text/javascript" src="../../static/doctools.js"></script>
     <script type="text/javascript" src="../../static/translations.js"></script>
     <link rel="top" title="適当に だらだらと 楽しく" href="../../index.html" />
-    <link rel="next" title="「スクラム実践入門 ── 成果を生み出すアジャイルな開発プロセス」を読んだ" href="12250_read_scrum_jissen_nyuumon.html" />
-    <link rel="prev" title="zipapp が便利そうだったので書く" href="12071_zipapp.html" />
+    <link rel="prev" title="pypy/lang-scheme を簡単にビルドできるようにまとめた" href="12090_rpython_lang_scheme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
@@ -45,10 +44,7 @@
           <a href="../../genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="12250_read_scrum_jissen_nyuumon.html" title="「スクラム実践入門 ── 成果を生み出すアジャイルな開発プロセス」を読んだ"
-             accesskey="N">次へ</a> |</li>
-        <li class="right" >
-          <a href="12071_zipapp.html" title="zipapp が便利そうだったので書く"
+          <a href="12090_rpython_lang_scheme.html" title="pypy/lang-scheme を簡単にビルドできるようにまとめた"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
       </ul>
@@ -59,30 +55,36 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="pypy-lang-scheme">
-<h1>pypy/lang-scheme を簡単にビルドできるようにまとめた<a class="headerlink" href="#pypy-lang-scheme" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><span class="blog_date">2015/12/09</span></p>
-<p>この記事は、 <a class="reference external" href="http://connpass.com/event/22759/">2015 tech-yuruyuru アドベントカレンダー</a> 2日遅れの 8 日目の記事です。</p>
-<p><a class="reference external" href="http://pypy.org/">pypy</a> は <a class="reference external" href="http://doc.pypy.org/en/release-1.9/coding-guide.html#id1">RPython</a>
-で記載され、コンパイルし利用することができる。</p>
-<p>同様に scheme の rpython 実装である <a class="reference external" href="https://bitbucket.org/pypy/lang-scheme/">lang-scheme</a> がある。</p>
-<p>これを簡単にビルドできればと思い、 <a class="reference external" href="https://github.com/jptomo/rpython-lang-scheme">rpython-lang-scheme</a>
-をまとめた。</p>
-<p>利用方法は README に記載の通り、以下。</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hg clone https://bitbucket.org/pypy/lang-scheme
-<span class="gp">$</span> python rpython/bin/rpython targetscheme.py
-</pre></div>
-</div>
-<p>やったことは以下の通りである。</p>
+  <div class="section" id="id1">
+<h1>「スクラム実践入門 ── 成果を生み出すアジャイルな開発プロセス」を読んだ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2015/12/25</span></p>
 <ul class="simple">
-<li>rpython を <a class="reference external" href="http://pypy.org/">pypy</a> 4.0.0 からもってくる。</li>
-<li>pytest を <a class="reference external" href="http://pypy.org/">pypy</a> 4.0.0 からもってくる。</li>
-<li>targetscheme.py を <a class="reference external" href="https://bitbucket.org/pypy/lang-scheme/">lang-scheme</a> からもってきて、 <a class="reference external" href="https://bitbucket.org/pypy/lang-scheme/">lang-scheme</a> を clone した
-状態でビルドできるようにした。</li>
-<li>interactive.py <a class="reference external" href="https://bitbucket.org/pypy/lang-scheme/">lang-scheme</a> からもってきて、 <a class="reference external" href="https://bitbucket.org/pypy/lang-scheme/">lang-scheme</a> を clone した
-状態で実行できるようにした。</li>
+<li><a class="reference external" href="http://www.amazon.co.jp/dp/4774172367/">書籍はこちら</a></li>
+<li><a class="reference external" href="https://gihyo.jp/dp/ebook/2015/978-4-7741-7290-3">電子書籍はこちら</a></li>
 </ul>
-<p>紹介で終わってしまい申し訳ないが、こんなものを作ったと言うことで。</p>
+<p>スクラムのキーワードの説明と進め方、各ユースケースに対応する FAQ がまとまっている。
+重厚な本ではなく、小さくよくまとまった本で読みやすかった。</p>
+<p>バックログバックログとよく見たことがあるが、ざっくりと書くと TODO のことだと、やっと意味がわかった。</p>
+<p>読んでいて、「スプリントバックログのタイムボックスを厳守するべき」とあって、最初は機能が当初想定していた
+より大きい場合無理だよな、どうするの？と思った。ただ、これは僕の認識誤りだった。その後の章で次のスプリントに
+持ち越すか、そもそも取りやめるか、など検討するらしかった。なるほどと。</p>
+<p>あと、スクラムは PO 1名 スクラムマスター 1名 エンジニア 3-8名 で構成すると良いらしいが、
+その場合どうするかと言うことも事例と主に記載されていたので面白かった。
+分けられる単位で分けるのだ。これは本文中ではスクラム・オブ・スクラムなどと書いてあった。
+<a class="reference external" href="http://forza.cocolog-nifty.com/blog/2010/05/post-4a7e.html">スクラムオブスクラム</a> では PMBOK/ITIL などでも似たような記載があるらしく、
+そうなんですねと。</p>
+<p>はじめに書いたけど、本文もそこまで量が多くはなく、読みやすかった</p>
+<p>このスクラムだが、プロジェクトバックログ (TODO) をいかに消化するかを目的とした
+フレームワークなんだと読んでいて感じた。5W1H だと What と How を目的としたフレームワークらしい。</p>
+<p>最初 What/How が大事と書いてあって、 Why のほうが大事なんじゃないの？と思ったけど、
+読み進めてプロジェクトバックログを消化するのが大目的かと理解し、腑に落ちた。</p>
+<p>読んでいて、属人性の排除、を指向しているかなと思ったんだけど、今読み返すと事例で
+属人性の排除のためスクラムを導入したとあって、明記されてなかったんだなと。
+確かに属人性をなるべく排除できれば、チームに参画するメンバーがかわっても開発が進められて
+経営的にうれしいんだろうなとは思う。</p>
+<p>自己組織化が進んだとしたら力量があるメンバーがないメンバーに対して教えると思うけど、
+その際メンバーによって自分からは学ぼうとしない人がいるとして、わざわざ教えるのかなと
+思いはした。けど、それも開発よね。</p>
 </div>
 
 
@@ -115,17 +117,14 @@
           <a href="../../genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="12250_read_scrum_jissen_nyuumon.html" title="「スクラム実践入門 ── 成果を生み出すアジャイルな開発プロセス」を読んだ"
-             >次へ</a> |</li>
-        <li class="right" >
-          <a href="12071_zipapp.html" title="zipapp が便利そうだったので書く"
+          <a href="12090_rpython_lang_scheme.html" title="pypy/lang-scheme を簡単にビルドできるようにまとめた"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
       &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2015/12090_rpython_lang_scheme.txt"
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2015/12250_read_scrum_jissen_nyuumon.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {
