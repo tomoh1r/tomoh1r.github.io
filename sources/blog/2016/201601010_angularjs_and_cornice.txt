@@ -1,0 +1,57 @@
+=========================================================
+Angular.js と Cornice を用いて簡単に RESTful の練習をする
+=========================================================
+
+:blog_date:`2016/01/01`
+
+あけましておめでとうございます。本年もよろしくお願いいたします。
+
+frontend Angular.js_、 backend Cornice_ と言う構成で軽く組んでみたので、
+感想等をまとめることにする。
+
+以下のように clone し docker-compose を利用して環境を構築すると環境を構築でき、
+`<http://localhost:8000/>`__ にて動作を確認することができる。
+
+.. code-block:: console
+
+   $ git clone --depth 1 -b 01-basic-restful-server-client https://github.com/jptomo/example-pyramid-rest-app.git
+   $ cd example-pyramid-rest-app/
+   $ docker-compose up -d
+
+組んでみて、とりあえず、大雑把に Angular.js_ (1系) の使い方が分かってよかった。
+
+細かい感想は以下として、この上に、値のバリデーション、認証、認可、 RDBMS などのデータ管理、
+ロギングあたりの機能を実装できれば一通り実際のシステムとして良いのかな。
+
+frontend (Angular.js_)
+======================
+
+`チュートリアル <https://docs.angularjs.org/tutorial>`__ があるので、
+一通り読む。基本的なことは記載がある。
+
+ngResource_ を利用した API アクセスは、軽く探したところ、 POST/PUT は
+URLパラメーターとしてデータを送信し、JSONデータとしては送信しない。
+
+JSONデータとして送信したい場合、 ``$http`` を利用して低レイヤーの処理として
+組むんだろうなと思った。
+
+ngResource_ にて取ってきたデータを加工する処理をする際は、
+``$SomeService.someMethod().$promise.then(function() { /* some processure */ });`` として
+処理を callback として記載しないといけないのが手間 (
+`ここらへん <https://github.com/jptomo/example-pyramid-rest-app/blob/01-basic-restful-server-client/frontend/main.js#L39>`__
+参照)、だけどそんなもんですね、非同期処理だし。
+
+backend (Cornice_)
+===================
+
+`Service <https://github.com/jptomo/example-pyramid-rest-app/blob/01-basic-restful-server-client/backend/backend/resource.py#L24>`__
+のように記載して、後は適当にエンドポイント定義すれば動くのでとても楽でした.
+
+細かいところはいろいろ見つつ眺めつつ。
+
+CORS は `この説明ページ <http://cornice.readthedocs.org/en/latest/api.html>`__ を参照にしつつとりあえず動くように設定。
+
+.. _Angular.js: https://angularjs.org/
+.. _ngResource: https://docs.angularjs.org/api/ngResource/service/$resource
+.. _Pyramid: http://docs.pylonsproject.jp/projects/pyramid-doc-ja/en/latest/
+.. _Cornice: https://cornice.readthedocs.org/en/latest/

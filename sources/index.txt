@@ -27,5 +27,6 @@ blogs
    :display_blog_date:
 
    blog/2015/[0-9]*
+   blog/2016/[0-9]*
 
 - :doc:`blog/archives`
