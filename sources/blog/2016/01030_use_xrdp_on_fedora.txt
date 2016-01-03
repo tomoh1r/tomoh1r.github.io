@@ -97,3 +97,9 @@ Fedora 23 に xrdp をインストールして表示するところまで動作�
       `[Fedora19] XRDPでリモートデスクトップ : J-Linuxer <http://jlinuxer.dip.jp/?p=1100>`_
 
       - ファイアウォールの設定方法の参照
+
+X. LXQt を利用するようにする。
+
+   ``~/.vnc/xstartup`` が起動時に実行されるので、
+   最終行を ``exec /usr/bin/startlxqt`` に更新する。
+
