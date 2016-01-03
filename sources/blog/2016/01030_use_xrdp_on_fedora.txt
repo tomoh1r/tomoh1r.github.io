@@ -1,0 +1,99 @@
+============================
+Fedora 23 で xrdp を利用する
+============================
+
+:blog_date:`2016/01/03`
+
+Fedora 23 に xrdp をインストールして表示するところまで動作確認できたので、
+手順をまとめます。
+
+ただ、ホスト側が US キーボードなんだけど、リモート側が JP キーボードになってしまい
+どう直せば良いのかわからないのが、現在の問題点。
+
+1. xrdp と依存の tigervnc-server をインストールする
+
+   .. code-block:: console
+
+      # dnf install xrdp tigervnc-server
+      # chcon -t bin_t /usr/sbin/xrdp*
+      # systemctl enable xrdp.service
+      # systemctl start xrdp.service
+
+   tiger-vncserver は一度起動したことがないと systemd 経由に起動できないので、
+   `CentOS • View topic - VNC won't start CentOS 7`_ の手順に従う。
+
+   ログインパスワードを設定する。
+
+   .. code-block:: console
+
+      $ vncserver :2 -geometry 1280x720
+      $ vncserver -kill :2
+
+   .. note::
+
+      `XRDPのインストール方法 - Narrow Escape <http://hiroom2.jimdo.com/2015/06/13/xrdpのインストール方法/>`_
+
+      - SELinux の対応
+
+   .. note::
+
+      `リモートの CentOS に Windows からリモートデスクトップ接続する - clock-up-blog <http://blog.clock-up.jp/entry/2014/12/29/centos-rdp>`_
+
+      - VNC に依存する件
+
+   .. note::
+
+      `CentOS • View topic - VNC won't start CentOS 7 <https://www.centos.org/forums/viewtopic.php?f=48&t=47713>`_
+
+      - あらかじめ vncsrever コマンドを起動する必要がある件
+
+2. vnc の systemd 設定をする。
+
+   起動ファイルをコピーする。
+
+   .. code-block:: console
+
+      # cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
+
+   ``/etc/systemd/system/vncserver@.service`` ファイル内の ``<USER>`` をログインしたい
+   ユーザーid に更新する。
+
+   また、別に tiger-vncserver のオプションを指定する場合は ``ExecStart`` に設定する。
+
+   その上で、以下のコマンドで有効化し、起動する。
+
+   .. code-block:: console
+
+      # systemctl enable vncserver@:2.service
+      # systemctl start vncserver@:2.service
+
+3. xrdp の vnc 参照ポートを更新する。
+
+   以下のコマンドで利用しているポートを取得する。
+
+   .. code-block:: console
+
+      $ ss -nae | grep \:\:\:59
+      tcp    LISTEN     0      5        :::5902                 :::*
+
+   その上で、 ``/etc/xrdp/xrdp.ini`` の下の方の ``xrdpN`` (Nは数字)
+   の設定中の ``port`` の番号を ``-1`` から上記で取得した数字に更新する。
+
+   その上で、 xrdp を再読込する。
+
+   .. code-block:: console
+
+      # systemctl restart xrdp.service
+
+4. ファイアウォールにて rdp のポートを許可する。
+
+   .. code-block:: console
+
+      # firewall-cmd --add-port=3389/tcp --permanent
+      # firewall-cmd --reload
+
+   .. note::
+
+      `[Fedora19] XRDPでリモートデスクトップ : J-Linuxer <http://jlinuxer.dip.jp/?p=1100>`_
+
+      - ファイアウォールの設定方法の参照
