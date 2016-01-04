@@ -1,0 +1,21 @@
+========================================================================
+いったん shallow に git clone して、clone 後に完全なリポジトリに変換する
+========================================================================
+
+:blog_date:`2016/01/04`
+
+``git fetch`` のオプション ``--unshallow`` を利用する。
+
+.. code-block:: console
+
+   $ git clone --depth 1 git://github.com/jptomo/acme.hello.git
+   $ cd acme.hello
+   $ git fetch --unshallow
+
+
+参考
+====
+
+- `git - Convert shallow clone to full clone - Stack Overflow <http://stackoverflow.com/questions/6802145/convert-shallow-clone-to-full-clone>`_
+
+  - unshallow オプションの存在提示。
