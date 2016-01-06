@@ -1,0 +1,36 @@
+===================================================
+Django で settings を切り替えて、利用する値を変える
+===================================================
+
+:blog_date:`2016/01/07`
+
+Django_ には settings という仕組みが有る。
+
+.. _Django: https://www.djangoproject.com/
+
+以下のようにすると、 settings 中で指定した MESSAGE 変数の値を利用することができる。
+
+もっとストレートに書くとしたら、 ``settings.MESSAGE`` で値を取得することができる。
+
+詳しくは `ドキュメント <https://docs.djangoproject.com/en/1.9/topics/settings/#custom-default-settings>`_
+(外部リンク) に記載があるので参照ください。
+
+.. code-block:: python
+
+   from django.conf import settings
+   from django.http import HttpResponse
+
+
+   def index(request):
+       return HttpResponse(getattr(settings, 'MESSAGE', '!!! EMPTY !!!'))
+
+`ここ <https://github.com/jptomo/example-django-change-settings>`__ (github) に
+``app.settings.settings_spam`` ``app.settings.settings_ham`` と二つの settings
+をもつコードをおいたので、動作を確認すると面白いかもしれません。
+
+参照
+====
+
+- `1. The World’s Smallest Django Project - Lightweight Django [Book] <https://www.safaribooksonline.com/library/view/lightweight-django/9781491946275/ch01.html>`__
+
+  one file django のサンプル参照
