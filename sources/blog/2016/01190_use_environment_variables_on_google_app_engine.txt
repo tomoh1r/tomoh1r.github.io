@@ -1,0 +1,39 @@
+======================================
+Google App Engine で環境変数を利用する
+======================================
+
+:blog_date:`2016/01/19`
+
+``app.yaml`` の ``env_variables`` を利用すると、アプリケーションで利用する環境変数を設定することができる。
+
+.. code-block:: yaml
+
+   application: <YOUR_OWN_APP_ID>
+   version: <YOUR_OWN_VERSION>
+
+   runtime: python27
+   api_version: 1
+   threadsafe: true
+
+   handlers:
+     - url: /.*
+       script: main.app
+
+   env_variables:
+     FOO: 'my FOO'
+     BAR: 'my BAR'
+
+また、この環境変数を ``appcfg.py`` コマンドのオプション、
+``-E NAME:VALUE, --env_variable=NAME:VALUE`` にて上書きすることができる。
+
+そのため、環境毎に読み込む設定ファイルなどを同じソースコードを利用して、
+異なる App Engine のバージョンでデプロイするなどを簡易にすることができる。
+
+複数環境変数を設定するときは、以下のように複数引数を記載すると良いようだ。
+
+.. code-block:: console
+
+   $ appcfg.py update . -E FOO:"Injected!" -E BAR:"Injected!"
+
+サンプルのソースコードは `こちら <https://github.com/jptomo/example-app-engine-environment-variables>`__
+(github)

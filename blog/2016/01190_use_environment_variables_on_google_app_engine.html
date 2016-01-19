@@ -2,10 +2,10 @@
 <html lang="ja">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <meta charset="utf-8" />
-    <meta property="og:title" content="DDD本 第2章 コミュニケーションと言語の使い方 読んだ" />
+    <meta property="og:title" content="Google App Engine で環境変数を利用する" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="DDD本 第2章 コミュニケーションと言語の使い方 読んだ" />
-    <meta property="og:url" content="http://jptomo.github.io/blog/2016/01120_read_ddd_2_communication_and_the_use_of_language.html" />
+    <meta property="og:description" content="Google App Engine で環境変数を利用する" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/01190_use_environment_variables_on_google_app_engine.html" />
     <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
     <meta property="og:site_name" content="適当に だらだらと 楽しく" />
     <meta property="og:email" content="quickness.net@gmail.com" />
@@ -14,7 +14,7 @@
     <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
     <meta name="twitter:image:width" content="632" />
     <meta name="twitter:image:height" content="512" />
-    <title>DDD本 第2章 コミュニケーションと言語の使い方 読んだ &mdash; 適当に だらだらと 楽しく</title>
+    <title>Google App Engine で環境変数を利用する &mdash; 適当に だらだらと 楽しく</title>
     <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
@@ -32,8 +32,7 @@
     <script type="text/javascript" src="../../static/doctools.js"></script>
     <script type="text/javascript" src="../../static/translations.js"></script>
     <link rel="top" title="適当に だらだらと 楽しく" href="../../index.html" />
-    <link rel="next" title="Google App Engine で環境変数を利用する" href="01190_use_environment_variables_on_google_app_engine.html" />
-    <link rel="prev" title="Django で settings を切り替えて、利用する値を変える" href="01070_example_django_change_settings.html" />
+    <link rel="prev" title="DDD本 第2章 コミュニケーションと言語の使い方 読んだ" href="01120_read_ddd_2_communication_and_the_use_of_language.html" />
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
@@ -45,10 +44,7 @@
           <a href="../../genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="01190_use_environment_variables_on_google_app_engine.html" title="Google App Engine で環境変数を利用する"
-             accesskey="N">次へ</a> |</li>
-        <li class="right" >
-          <a href="01070_example_django_change_settings.html" title="Django で settings を切り替えて、利用する値を変える"
+          <a href="01120_read_ddd_2_communication_and_the_use_of_language.html" title="DDD本 第2章 コミュニケーションと言語の使い方 読んだ"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
       </ul>
@@ -59,32 +55,36 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="ddd-2">
-<h1>DDD本 第2章 コミュニケーションと言語の使い方 読んだ<a class="headerlink" href="#ddd-2" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><span class="blog_date">2016/01/12</span></p>
-<p><a class="reference external" href="http://connpass.com/event/24020/">DDD 読書会 #2</a> (connpass) にて第2章を読んだので以下まとめ。</p>
-<ul>
-<li><p class="first">読んだとき、章の頭のほうで以下のようなまとめが入った。:</p>
-<blockquote>
-<div><p>しなやかで知識豊富な設計を行うには、用途の幅広い、共有されたチームの言語と、その言語を使った活発な実験が必要である</p>
-</div></blockquote>
-<p>この章の内容をまさにまとめた良い文だと思う。</p>
-</li>
-<li><p class="first">この章のなかの節、声に出してモデリングするは確かにその通りだと思う。
-発声したときに何かおかしければおかしいのだと思う。</p>
-</li>
-<li><p class="first">UML などの図について、結局図では (複雑になりすぎて) 詳細を記載できないので言語でまとめろと記載があった。
-いまいちぴんとこないけど、そのうちわかるんだと思う。</p>
-</li>
-<li><p class="first">説明のためのモデルがぴんとこなかった。
-モデルって、個々できちんと小さくまとまった意味のまとまりで、説明のためのという
-文言とモデルがつながらなかった。</p>
-<p>けど、会を進めていくなかで、モデル単体では意味がわかりづらいけど、
-このモデルが利用されるケースであれば意味がわかるんじゃないのとあって、
-そういうことかと理解。</p>
-</li>
-</ul>
-<p>DDD 読書会次回は <a class="reference external" href="http://connpass.com/event/25386/">こちら</a> (connpass) です。ふるってご参加ください。</p>
+  <div class="section" id="google-app-engine">
+<h1>Google App Engine で環境変数を利用する<a class="headerlink" href="#google-app-engine" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/01/19</span></p>
+<p><code class="docutils literal"><span class="pre">app.yaml</span></code> の <code class="docutils literal"><span class="pre">env_variables</span></code> を利用すると、アプリケーションで利用する環境変数を設定することができる。</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l-Scalar-Plain">application</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;YOUR_OWN_APP_ID&gt;</span>
+<span class="l-Scalar-Plain">version</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;YOUR_OWN_VERSION&gt;</span>
+
+<span class="l-Scalar-Plain">runtime</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">python27</span>
+<span class="l-Scalar-Plain">api_version</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+<span class="l-Scalar-Plain">threadsafe</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+
+<span class="l-Scalar-Plain">handlers</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/.*</span>
+    <span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">main.app</span>
+
+<span class="l-Scalar-Plain">env_variables</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">FOO</span><span class="p-Indicator">:</span> <span class="s">&#39;my</span><span class="nv"> </span><span class="s">FOO&#39;</span>
+  <span class="l-Scalar-Plain">BAR</span><span class="p-Indicator">:</span> <span class="s">&#39;my</span><span class="nv"> </span><span class="s">BAR&#39;</span>
+</pre></div>
+</div>
+<p>また、この環境変数を <code class="docutils literal"><span class="pre">appcfg.py</span></code> コマンドのオプション、
+<code class="docutils literal"><span class="pre">-E</span> <span class="pre">NAME:VALUE,</span> <span class="pre">--env_variable=NAME:VALUE</span></code> にて上書きすることができる。</p>
+<p>そのため、環境毎に読み込む設定ファイルなどを同じソースコードを利用して、
+異なる App Engine のバージョンでデプロイするなどを簡易にすることができる。</p>
+<p>複数環境変数を設定するときは、以下のように複数引数を記載すると良いようだ。</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> appcfg.py update . -E FOO:<span class="s2">&quot;Injected!&quot;</span> -E BAR:<span class="s2">&quot;Injected!&quot;</span>
+</pre></div>
+</div>
+<p>サンプルのソースコードは <a class="reference external" href="https://github.com/jptomo/example-app-engine-environment-variables">こちら</a>
+(github)</p>
 </div>
 
 
@@ -117,17 +117,14 @@
           <a href="../../genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="01190_use_environment_variables_on_google_app_engine.html" title="Google App Engine で環境変数を利用する"
-             >次へ</a> |</li>
-        <li class="right" >
-          <a href="01070_example_django_change_settings.html" title="Django で settings を切り替えて、利用する値を変える"
+          <a href="01120_read_ddd_2_communication_and_the_use_of_language.html" title="DDD本 第2章 コミュニケーションと言語の使い方 読んだ"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
       &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2016/01120_read_ddd_2_communication_and_the_use_of_language.txt"
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2016/01190_use_environment_variables_on_google_app_engine.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {
