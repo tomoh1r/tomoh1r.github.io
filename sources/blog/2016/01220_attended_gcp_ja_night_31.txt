@@ -6,6 +6,10 @@ gcp ja night 31 参加メモ
 
 `gcp ja night #31 <http://gcpja.connpass.com/event/23874/>`__ (connpass) に参加したので参加メモ
 
+当日は Google 様会場ご提供ありがとうございました。
+
+また、スタッフの皆様お疲れ様でした。
+
 以下タイトルは connpass より取得したものだったりするので不正確です。
 
 .. contents::
