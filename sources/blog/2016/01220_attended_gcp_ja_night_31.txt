@@ -1,0 +1,329 @@
+========================
+gcp ja night 31 参加メモ
+========================
+
+:blog_date:`2016/01/21`
+
+`gcp ja night #31 <http://gcpja.connpass.com/event/23874/>`__ (connpass) に参加したので参加メモ
+
+以下タイトルは connpass より取得したものだったりするので不正確です。
+
+.. contents::
+   :local:
+
+個人的まとめ
+============
+
+- K8s の RC と Service は独立した構成要素。 RC は Pod の死活監視、 Service は L4
+  LB 的な動きをする。
+- GKE は 5 node まで無料で使えるので、安く動かせることが多い。
+- BigQuery の操作には `Cloud Datalab`_ (`Jupytter Notebook <http://jupyter.org/>`_ 派生) が便利。 python で BigQuery を動かしたり
+  pandas などを動かすことができる。
+
+19:15 GKE Introduction @ gcp ja night #31 by @IanMLewis
+=======================================================
+
+.. raw:: html
+
+   <script async class="speakerdeck-embed" data-id="6ccba7e944b54306876509d1e250dd63" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+- 今日の話は 2015 Borg -> `GoogleがBorgの詳細を公開 - InfoQ<http://www.infoq.com/jp/news/2015/04/google-borg>`__
+- コンテナー は chroot ulimit とかで実現されている
+- コンテナ 軽量ポータブル 効率性
+- Borg は Google社内で利用しているコンテナエンジン
+- Borg は DCaaS (Datacenter as a Service)
+
+  - Borg は DC の OS
+
+- Borg の設定ファイル は DSL だな 「some = { some = { some = some } }」 みたいな
+
+  - (感想) Borg で Kubernetes (K8s) を管理するんだなこれは
+
+- scheduler から BorgMaster に設定が渡され、コンテナにいろいろ展開される
+- コンテナ管理の課題 とは 複数サーバーのデプロイ、ノード障害時のリカバリー、コンテナ障害時のリカバリー、コンテナのアップグレード
+- K8s は Borg の対外的な実装、K8s の実装者は Borg の実装者と同じ
+- CNCF (Cloud Native Compiuting Foundatoin) で K8s の開発を支援
+- Container Engine は K8s のhosted版
+- (疑問) 実際 Docker を直接動かしてるの？ Docker 互換の何か？
+- ポッド とは 複数のコンテナを同じホストで動かしたもの
+- 多数のポッドを識別する には 各々のポッドに種別のラベルを設定して識別
+
+  - (感想) ラベルはタグ的な
+
+- レプリケーションコントローラー は ポッドの実行状態を管理
+
+  - 管理対象はポッド
+
+- サービス とは エンドポイントを抽象化したもの
+
+  - 仮想IPが割り振られる
+  - ポッド間 は ラウンドロビン的に Load Balancing する
+
+- yaml ファイルに ``type: LoadBalancer`` とかかくと LoadBalancing してくれて便利
+- (感想) K8s は GUI でコンテナーの状態を表示する機能がありそうで、便利そう
+- Google Cloud Platform を使ってみよう ってイベントある
+- GCP NEXT 2016 (参加費 499ドル) ってイベントある
+
+20:00 GKEで半年運用してみた by @na_ga
+=====================================
+
+.. raw:: html
+
+   <iframe src="//www.slideshare.net/slideshow/embed_code/key/i2VmMzEKFKugRk" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/katsutoshinagaoka/gke-57322091" title="GKEで半年運用してみた" target="_blank">GKEで半年運用してみた</a> </strong> from <strong><a href="//www.slideshare.net/katsutoshinagaoka" target="_blank">Katsutoshi Nagaoka</a></strong> </div>
+
+- takusuta では AWS/GKE 利用している
+- takusuta
+
+  - Web版は GKE で作成
+  - モバイルは AWS Web は GKE
+  - GA 前だけど GKE 利用したかったため、利用した
+
+- GKE ざっくり説明
+
+  - K8s のフルマネージドサービス
+  - すごい安い
+  - 5Node まで無料なので、安い
+  - Pod と RC (Replication Controller) をしっていれば何とか使える
+  - Service は Pod に対する L4 の LB な見たいな奴
+  - kube-proxy が動いていて便利
+
+- GKE 構成した場合
+
+  - Service に SSL 証明書置けない
+  - GCE の LB をおいて, GKE を NodePort として起動して使った
+  - Cross Region LB 構成ができて、 CPU/リクエストの閾値を指定して、変更できる
+  - ただ、 Zone によって性能に差があるので、気をつける
+
+- GKE の構成
+
+  - Google Cloud SDK を利用すればワンストップで利用できる
+  - gcloud コマンドで動かせる
+  - コンテナ作成時しか指定できない設定もあるので、注意。作り直しになる
+  - gci.io ってコンテナのアップロード先が地域毎に存在する、日本は asia.gcr.io を利用すると早い
+  - kubectl でコンテナにアタッチできる
+
+- GKE 活用例
+
+  - 5 ノード以下は無料なので、大きなクラスターは作らない
+  - ennis-asia-app-001 がポッドの命名規則
+
+    - ennis はプロジェクト名、 asia はリージョン、app コンテナの種別、001 はユニークキー
+
+  - インスタンステンプレートを更新する API がないので、不便
+  - gcr へのアップロードは、遅い
+  - アップロードは Jenkins でビルド後にアップロード、 hubot でリリース指示
+  - 今のところ gcr は落ちたことなさそう
+  - gcr のイメージの名前は、ハッシュなので、消し辛い。そのうち改善するでしょう
+  - kubectl rolling-update ってコマンドがあって、一台ずつ inc/dec してくれる
+  - multi-container-pod の場合は同じ名前ではアップデート失敗するので、駄目
+  - クラスタの方は gcloud コマンドで制御
+  - RC の数は kubectl で replica を制御
+  - Cloud Logging によるログ管理もでき、 Pod ごとにクラスタごとに検索できる
+
+    - 標準の状態では標準出力もみるので、ノイズが多い。ログ名とかレベル名とかでフィルターできるようにしよう
+
+  - Monitoring は StackDricer ベータなので、 Monitoring できる
+
+  - Kubernetes dashboard は表示が不正確で、使い辛い
+  - Kubedash 結構使えるので、便利
+
+- まとめ
+
+  - 簡単、安い、将来へ期待
+  - 本番でとりあえず使えるのでは
+
+20:50 GCPで新規サービスを開発した話 by @Morikuma_Works
+======================================================
+
+- 内容が被った
+
+  - 構成や使う動機が同じ
+
+- どんなプロジェクトだったか
+
+  - 現実世界の混雑度合を IoT を利用して検知を行う系
+  - 必要な物
+
+    - センサデバイス
+    - 20億レコード/月 を保存する DB
+    - デバイスの管理、解析をするバックエンド
+    - 画面を実際に提供するフロントエンド
+
+  - 1.5ヶ月で作成する
+  - 3人で作った
+
+    - フロントエンドの人がいて、すごいできた人だった
+
+  - プロトタイプ的なものなので、人が少なかった
+  - 下の二つ話す
+
+    - デバイスの管理、解析をするバックエンド
+    - 画面を実際に提供するフロントエンド
+
+  - 設計
+
+    - マイクロサービスアーキテクチャー
+
+- 何が問題だったか
+
+  - 資源の無駄遣い
+  - 人が少なく、Ansible を利用していたが、無理がでた
+  - リリースなどの Ops の作業が難しかった
+
+- どう解決したか
+
+  - フロントエンド/バックエンド
+
+    - GKE は GCP の他のサービスと連携できる点が良かった
+
+    - GKE は CI が行いやすい
+
+      - GHE -(CI)-> circleci -(upload)-> gcr -(ローリングアップデート)-> GKE
+
+    - デプロイとロールバックが容易だった
+    - Dockerfile/Docker Image ですべてコンテナ管理できて便利
+    - モジュールなどを細かく記述できるので、マイクロサービスと親和性があった
+
+    - GKE L7LB (Load Balancer) を使った
+
+      - 100万リクエスト/s をウォームアップなしでさばける
+      - SSL
+      - http2
+      - url-map
+
+    - HTTP LB はまだ Beta
+    - セットアップの記載は複雑
+    - Google Cloud Monitoring を利用
+
+  - 20億レコード/月 を保存する DB
+
+    - Streaming Insert でほぼリアルタイプでセンサデータをインサートできる
+    - BQ はリアルタイム性が必要ない分析には速度十分、ちょっとまっても良い処理
+    - 保存、分析料金が安い
+    - GCE で静的なIP取得してほっておくとお金かかる、、、
+
+  - BigQuery へは fluentd でデータを入れている
+
+- GCPを使ってみてどうだったか
+
+  - k8s はマイクロサービスアーキテクチャに最適
+  - k8s + GKE は時短になる
+  - BQ ででかいデータの分析ができる
+  - -> IoT サービスと GCP は親和性が高いのでは
+
+21:20 広告配信システムにおけるGCEでのAutoscalerとCloudLoggingの活用 by @_zoo
+============================================================================
+
+- GCE の Autoscaler と CloudLogging
+
+  - 配信の一部で HTTP(S) LB と GCE を利用
+  - fluct に所属、純国産 SSP(SuplySidePlatform)
+  - 広告素材の CDN
+  - インプレッション計測サーバー、計画値ゅ
+  - 利用したもの
+
+    - GCE
+    - HTTP(SP) LB
+    - Autoscaler
+    - Cloud Monitoring
+    - Cloud Logging
+    - BigQuery
+
+  - official に発表されたものが中心
+  - ハマったところや、利用したものを書いた
+  - LB は組み合わせて利用するもの、 AWS とは異なる感じ
+
+- GCE の Autoscaler
+
+  - CPU utilization
+  - Cloud Monitoring Metrics
+  - HTTP LB serving cap
+
+    - インスタンスごとの RPS(RequestPerSec) を見る
+
+- 管理方法
+
+  - gcloud をラップしたコマンドを利用
+  - さらに ``Makefile`` 書いて、 ``make`` コマンドで動くようにしている
+- Cloud Monitoring
+
+  - Agent方式
+  - Disk Usage, Memory Usage が見られる
+  - Network, Load Average
+
+- Cloud Logging
+
+  - 広告といえばログ、ログといえば解析、解析といえば BigQuery
+  - Cloud Logging は google 提供の td-agent
+
+    - 入れると設定サンプルとかごっそり入れる
+
+  - tag 単位で export できる
+  - BigQuery, Google Cloud Storage に export できる
+
+21:40 Cloud DatalabとBigQueryを使ったアドホックデータ解析 by @hagino3000
+========================================================================
+
+.. raw:: html
+
+   <iframe src="//www.slideshare.net/slideshow/embed_code/key/sME2jZHLrjTlQT" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/hagino_3000/cloud-datalabbigquery" title="Cloud DatalabとBigQueryを使ったアドホックデータ解析" target="_blank">Cloud DatalabとBigQueryを使ったアドホックデータ解析</a> </strong> from <strong><a href="//www.slideshare.net/hagino_3000" target="_blank">hagino 3000</a></strong> </div>
+
+- Zucks
+- 多椀バンデットアルゴリズム
+- バナー広告
+- 機械学習やら最適化やっている
+- 担当
+
+  - CTRの予測
+  - CVRの予測
+  - 最適な入札価格
+  - インプレッションの予測
+  - 異常枠の検知
+
+- アドホックな解析に `Cloud Datalab <https://cloud.google.com/datalab/?hl=ja>`_ を利用し始めた
+
+- S3 -(トリガー)-> ColudStorage -(1時間に一回)-> BigQuery って感じに流す
+- Hadoopクラスタ無い
+- AdHok なデータ利用する環境
+- *複数の環境から BigQuery 流すと動かないことがある*
+- 300GB/day 取り込めれば良い
+- マネージドサービスなので、楽
+- 73TBで2000ドル/月
+- DataLoad
+
+  - 既存のシステムに影響したくないので、 Streaming Insert は利用しない
+  - Streaming Insert お金かかるので リアルタイムに見るデータでは無いので別にいい
+  - 今なら Embulk, Cloud Dataflow を利用するかも
+
+- Job管理
+
+  - Luigi を利用している
+  - タスク間の依存性定義
+  - 入出力管理の抽象化
+  - リトライエラー管理
+  - モニタリング用UIある
+  - 処理は Python で書ける
+
+- チームへの共有
+
+  - Google App Script は Cron的に使えるので便利
+  - GAS で Google Spreadsheet に書き出している
+
+- re:dash `<http://redash.io>`__
+
+  - Kibana っぽい画面を使える
+  - EC2 / GCE のイメージがある
+  - ちゃんと使うなら、 TLS + Google Account 認証にする
+
+- `Cloud Datalab`_
+
+  - Jupyter Notebook ベース
+  - AppEngine + ManagedVM で動作
+  - Jupyter Notebook 課題
+
+    - 実験ノートをもっと気軽に
+    - アクセス制限をかけたい
+    - 管理したくない
+
+   - `Cloud Datalab`_ はコンテナなので、もろもろ解決
+   - `Cloud Datalab`_ は BigQuery にもアクセスでき、便利
