@@ -20,7 +20,7 @@ gcp ja night 31 参加メモ
 
 - K8s の RC と Service は独立した構成要素。 RC は Pod の死活監視、 Service は L4
   LB 的な動きをする。
-- GKE は 5 node まで無料で使えるので、安く動かせることが多い。
+- `GKE は 5 node まで無料で使える <https://cloud.google.com/container-engine/pricing#pricing_for_cluster_management>`__ ので、安く動かせることが多い。
 - BigQuery の操作には `Cloud Datalab`_ (`Jupytter Notebook <http://jupyter.org/>`_ 派生) が便利。 python で BigQuery を動かしたり
   pandas などを動かすことができる。
 
