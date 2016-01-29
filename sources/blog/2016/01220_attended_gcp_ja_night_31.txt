@@ -21,7 +21,7 @@ gcp ja night 31 参加メモ
 - K8s の RC と Service は独立した構成要素。 RC は Pod の死活監視、 Service は L4
   LB 的な動きをする。
 - `GKE は 5 node まで無料で使える <https://cloud.google.com/container-engine/pricing#pricing_for_cluster_management>`__ ので、安く動かせることが多い。
-- BigQuery の操作には `Cloud Datalab`_ (`Jupytter Notebook <http://jupyter.org/>`_ 派生) が便利。 python で BigQuery を動かしたり
+- BigQuery の操作には `Cloud Datalab <https://cloud.google.com/datalab/?hl=ja>`_ (`Jupytter Notebook <http://jupyter.org/>`_ 派生) が便利。 python で BigQuery を動かしたり
   pandas などを動かすことができる。
 
 19:15 GKE Introduction @ gcp ja night #31 by @IanMLewis
@@ -31,7 +31,7 @@ gcp ja night 31 参加メモ
 
    <script async class="speakerdeck-embed" data-id="6ccba7e944b54306876509d1e250dd63" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
-- 今日の話は 2015 Borg -> `GoogleがBorgの詳細を公開 - InfoQ<http://www.infoq.com/jp/news/2015/04/google-borg>`__
+- 今日の話は 2015 Borg -> `GoogleがBorgの詳細を公開 - InfoQ <http://www.infoq.com/jp/news/2015/04/google-borg>`__
 - コンテナー は chroot ulimit とかで実現されている
 - コンテナ 軽量ポータブル 効率性
 - Borg は Google社内で利用しているコンテナエンジン
@@ -284,7 +284,7 @@ gcp ja night 31 参加メモ
   - インプレッションの予測
   - 異常枠の検知
 
-- アドホックな解析に `Cloud Datalab <https://cloud.google.com/datalab/?hl=ja>`_ を利用し始めた
+- アドホックな解析に `Cloud Datalab`_ を利用し始めた
 
 - S3 -(トリガー)-> ColudStorage -(1時間に一回)-> BigQuery って感じに流す
 - Hadoopクラスタ無い
