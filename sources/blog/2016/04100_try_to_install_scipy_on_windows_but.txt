@@ -96,20 +96,38 @@ lapack とかのライブラリがない感じ。
          Successfully uninstalled pip-7.1.2
    Successfully installed pip-8.1.1 setuptools-20.6.7
 
-   .\venv\Scripts\python.exe -m pip install -U numpy cython nose tempita
+   .\venv\Scripts\python.exe -m pip install -U numpy
    Collecting numpy
      Using cached numpy-1.11.0-cp34-none-win_amd64.whl
+   Installing collected packages: numpy
+   Successfully installed numpy-1.11.0
+
+   .\venv\Scripts\python.exe -m pip install -U numpy cython nose tempita
+   Requirement already up-to-date: numpy in d:\tomo\documents\bld_scipy\venv\lib\site-packages
    Collecting cython
      Using cached Cython-0.24-cp34-none-win_amd64.whl
    Collecting nose
      Using cached nose-1.3.7-py3-none-any.whl
    Collecting tempita
      Using cached Tempita-0.5.2.tar.gz
-   Installing collected packages: numpy, cython, nose, tempita
+   Installing collected packages: cython, nose, tempita
      Running setup.py install for tempita ... done
-   Successfully installed cython-0.24 nose-1.3.7 numpy-1.11.0 tempita-0.5.2
+   Successfully installed cython-0.24 nose-1.3.7 tempita-0.5.2
 
-   GOTO hoge
+   IF EXIST .\scipy (RD /S /Q .\scipy  )
+
+   git clone -q -b v0.17.0 --depth 1 git://github.com/scipy/scipy.git
+   Note: checking out '4b17e2bcbed2ef65cd14923a1ed5d1ccb6d8f8aa'.
+
+   You are in 'detached HEAD' state. You can look around, make experimental
+   changes and commit them, and you can discard any commits you make in this
+   state without impacting any branches by performing another checkout.
+
+   If you want to create a new branch to retain commits you create, you may
+   do so (now or later) by using -b with the checkout command again. Example:
+
+     git checkout -b <new-branch-name>
+
 
    CD /D D:\tomo\Documents\bld_scipy\\venv\lib
 
@@ -166,20 +184,20 @@ lapack とかのライブラリがない感じ。
      warnings.warn(msg)
    lapack_opt_info:
    openblas_lapack_info:
-   creating C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users
-   creating C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo
-   creating C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData
-   creating C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local
-   creating C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp
-   creating C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws
-   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\cl.exe /c /nologo /Ox /MD /W3 /GS- /DNDEBUG /TcC:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\source.c /FoC:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\source.obj
+   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users
+   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo
+   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData
+   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local
+   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp
+   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0
+   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\cl.exe /c /nologo /Ox /MD /W3 /GS- /DNDEBUG /TcC:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.c /FoC:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.obj
    Found executable C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\cl.exe
-   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\link.exe /nologo /INCREMENTAL:NO /LIBPATH:D:\tomo\Documents\bld_scipy\venv\lib openblas.lib C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\source.obj /OUT:C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe /MANIFESTFILE:C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe.manifest
+   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\link.exe /nologo /INCREMENTAL:NO /LIBPATH:D:\tomo\Documents\bld_scipy\venv\lib openblas.lib C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.obj /OUT:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe /MANIFESTFILE:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest
    Found executable C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\link.exe
-   mt.exe -nologo -manifest C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe.manifest -outputresource:C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe;1
+   mt.exe -nologo -manifest C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest -outputresource:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe;1
    Found executable C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\mt.exe
 
-   C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe.manifest : general error c1010070: Failed to load and parse the manifest. ??????????????????
+   C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest : general error c1010070: Failed to load and parse the manifest. ??????????????????
 
      NOT AVAILABLE
 

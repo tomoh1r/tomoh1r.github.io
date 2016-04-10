@@ -142,22 +142,40 @@ Installing collected packages: setuptools<span class="p">,</span> pip
       Successfully uninstalled pip<span class="m">-7</span>.<span class="m">1</span>.<span class="m">2</span>
 Successfully installed pip<span class="m">-8</span>.<span class="m">1</span>.<span class="m">1</span> setuptools<span class="m">-20</span>.<span class="m">6</span>.<span class="m">7</span>
 
-.\venv\Scripts\python.exe -m pip install -U numpy cython nose tempita
+.\venv\Scripts\python.exe -m pip install -U numpy
 Collecting numpy
   Using cached numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span>-cp<span class="m">34</span>-none-win_amd<span class="m">64</span>.whl
+Installing collected packages: numpy
+Successfully installed numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span>
+
+.\venv\Scripts\python.exe -m pip install -U numpy cython nose tempita
+Requirement already up-to-date: numpy in d:\tomo\documents\bld_scipy\venv\lib\site-packages
 Collecting cython
   Using cached Cython<span class="m">-0</span>.<span class="m">24</span>-cp<span class="m">34</span>-none-win_amd<span class="m">64</span>.whl
 Collecting nose
   Using cached nose<span class="m">-1</span>.<span class="m">3</span>.<span class="m">7</span>-py<span class="m">3</span>-none-any.whl
 Collecting tempita
   Using cached Tempita<span class="m">-0</span>.<span class="m">5</span>.<span class="m">2</span>.tar.gz
-Installing collected packages: numpy<span class="p">,</span> cython<span class="p">,</span> nose<span class="p">,</span> tempita
+Installing collected packages: cython<span class="p">,</span> nose<span class="p">,</span> tempita
   Running setup.py install <span class="k">for</span> tempita ... done
-Successfully installed cython<span class="m">-0</span>.<span class="m">24</span> nose<span class="m">-1</span>.<span class="m">3</span>.<span class="m">7</span> numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span> tempita<span class="m">-0</span>.<span class="m">5</span>.<span class="m">2</span>
+Successfully installed cython<span class="m">-0</span>.<span class="m">24</span> nose<span class="m">-1</span>.<span class="m">3</span>.<span class="m">7</span> tempita<span class="m">-0</span>.<span class="m">5</span>.<span class="m">2</span>
 
-<span class="k">GOTO</span> <span class="nl">hoge</span>
+<span class="k">IF</span> <span class="k">EXIST</span> .\scipy (RD <span class="n">/S</span> <span class="n">/Q</span> .\scipy  )
 
-<span class="k">CD</span> <span class="n">/D</span> D:\tomo\Documents\bld_scipy\\venv\lib
+git clone -q -b v<span class="m">0</span>.<span class="m">17</span>.<span class="m">0</span> --depth <span class="m">1</span> git:<span class="n">//github.com/scipy/scipy.git</span>
+Note: checking out <span class="s1">&#39;4b17e2bcbed2ef65cd14923a1ed5d1ccb6d8f8aa&#39;</span>.
+
+You are in <span class="s1">&#39;detached HEAD&#39;</span> state. You can look around<span class="p">,</span> make experimental
+changes and commit them<span class="p">,</span> and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+<span class="k">If</span> you want to create a new branch to retain commits you create<span class="p">,</span> you may
+<span class="k">do</span> so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <span class="p">&lt;</span><span class="n">new</span>-branch-name<span class="p">&gt;</span>
+
+
+<span class="n">CD</span> <span class="n">/D</span> D:\tomo\Documents\bld_scipy\\venv\lib
 
 COPY C:\msys<span class="m">64</span>\mingw<span class="m">64</span>\bin\libopenblas.dll D:\tomo\Documents\bld_scipy\\venv\lib\
         <span class="m">1</span> 個のファイルをコピーしました。
@@ -212,20 +230,20 @@ C:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</s
   warnings.warn(msg)
 lapack_opt_info:
 openblas_lapack_info:
-creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users
-creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo
-creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData
-creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local
-creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp
-creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws
-C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\cl.exe <span class="n">/c</span> <span class="n">/nologo</span> <span class="n">/Ox</span> <span class="n">/MD</span> <span class="n">/W3</span> <span class="n">/GS-</span> <span class="n">/DNDEBUG</span> <span class="n">/TcC:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\source.c</span> <span class="n">/FoC:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\source.obj</span>
+creating C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users
+creating C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users\tomo
+creating C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users\tomo\AppData
+creating C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users\tomo\AppData\Local
+creating C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users\tomo\AppData\Local\Temp
+creating C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>
+C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\cl.exe <span class="n">/c</span> <span class="n">/nologo</span> <span class="n">/Ox</span> <span class="n">/MD</span> <span class="n">/W3</span> <span class="n">/GS-</span> <span class="n">/DNDEBUG</span> <span class="n">/TcC:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.c</span> <span class="n">/FoC:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.obj</span>
 Found executable C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\cl.exe
-C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\link.exe <span class="n">/nologo</span> <span class="n">/INCREMENTAL:NO</span> <span class="n">/LIBPATH:D:\tomo\Documents\bld_scipy\venv\lib</span> openblas.lib C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\source.obj <span class="n">/OUT:C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe</span> <span class="n">/MANIFESTFILE:C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe.manifest</span>
+C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\link.exe <span class="n">/nologo</span> <span class="n">/INCREMENTAL:NO</span> <span class="n">/LIBPATH:D:\tomo\Documents\bld_scipy\venv\lib</span> openblas.lib C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\source.obj <span class="n">/OUT:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe</span> <span class="n">/MANIFESTFILE:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest</span>
 Found executable C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\link.exe
-mt.exe -nologo -manifest C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\a.out.exe.manifest -outputresource:C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\a.out.exe;<span class="m">1</span>
+mt.exe -nologo -manifest C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\a.out.exe.manifest -outputresource:C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\a.out.exe;<span class="m">1</span>
 Found executable C:\Program Files\Microsoft SDKs\Windows\v<span class="m">7</span>.<span class="m">1</span>\Bin\x<span class="m">64</span>\mt.exe
 
-C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\a.out.exe.manifest : general error c<span class="m">1010070</span>: Failed to load and parse the manifest. ??????????????????
+C:\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\Users\tomo\AppData\Local\Temp\tmp<span class="m">8</span>tb<span class="m">2</span>pzb<span class="m">0</span>\a.out.exe.manifest : general error c<span class="m">1010070</span>: Failed to load and parse the manifest. ??????????????????
 
   NOT AVAILABLE
 
