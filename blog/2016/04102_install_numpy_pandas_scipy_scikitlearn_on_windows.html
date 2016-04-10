@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="Windows 上の Python に NumPy/Pandas/SciPy/scikit-learn をインストールする" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Windows 上の Python に NumPy/Pandas/SciPy/scikit-learn をインストールする" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/04102_install_numpy_pandas_scipy_scikitlearn_on_windows.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@__10100__" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>Windows 上の Python に NumPy/Pandas/SciPy/scikit-learn をインストールする &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="top" title="適当に だらだらと 楽しく" href="../../index.html" />
+    <link rel="prev" title="Windows 上で Python 3.4 のインストールと MSVC のセットアップをする" href="04101_how_to_setup_python_3.4_environment_on_windows.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="04101_how_to_setup_python_3.4_environment_on_windows.html" title="Windows 上で Python 3.4 のインストールと MSVC のセットアップをする"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="windows-python-numpy-pandas-scipy-scikit-learn">
+<h1>Windows 上の Python に NumPy/Pandas/SciPy/scikit-learn をインストールする<a class="headerlink" href="#windows-python-numpy-pandas-scipy-scikit-learn" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/04/10</span></p>
+<p>インストール時に NumPy/SciPy については
+<a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">Christoph Gohlke provides pre-built Windows installers</a>
+のものを利用する。</p>
+<p>他は PyPI に上がっている whl を利用する。</p>
+<p>それですべてなんだけど、とりあえず以下で jupyter-notebook を起動するところまで
+書いてみる。</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#whl" id="id5">1. あらかじめ必要な whl ファイルをダウンロードする</a><ul>
+<li><a class="reference internal" href="#python-3-4" id="id6">Python 3.4 の場合</a></li>
+<li><a class="reference internal" href="#python-3-5" id="id7">Python 3.5 の場合</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1" id="id8">2. 環境に必要なパッケージをインストールする</a><ul>
+<li><a class="reference internal" href="#id2" id="id9">前提</a></li>
+<li><a class="reference internal" href="#id3" id="id10">Python 3.4 の場合の手順</a></li>
+<li><a class="reference internal" href="#id4" id="id11">Python 3.5 の場合の手順</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#x" id="id12">X. 動作確認</a><ul>
+<li><a class="reference internal" href="#scipy" id="id13">SciPy</a></li>
+<li><a class="reference internal" href="#scikit-learn" id="id14">scikit-learn</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="whl">
+<h2><a class="toc-backref" href="#id5">1. あらかじめ必要な whl ファイルをダウンロードする</a><a class="headerlink" href="#whl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">Christoph Gohlke provides pre-built Windows installers</a> より
+必要な NumPy/SciPy の whl ファイルをダウンロードする。</p>
+<div class="section" id="python-3-4">
+<h3><a class="toc-backref" href="#id6">Python 3.4 の場合</a><a class="headerlink" href="#python-3-4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl</span></code></li>
+<li><code class="docutils literal"><span class="pre">scipy-0.17.0-cp34-none-win_amd64.whl</span></code></li>
+</ul>
+</div>
+<div class="section" id="python-3-5">
+<h3><a class="toc-backref" href="#id7">Python 3.5 の場合</a><a class="headerlink" href="#python-3-5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl</span></code></li>
+<li><code class="docutils literal"><span class="pre">scipy-0.17.0-cp35-none-win_amd64.whl</span></code></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id8">2. 環境に必要なパッケージをインストールする</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下のパッケージは PyPI 上に whl ファイルがあるので、
+特に何の必要もなく pip によってインストールができる。</p>
+<ul class="simple">
+<li>pandas</li>
+<li>matplotlib</li>
+<li>sympy</li>
+<li>jupyter</li>
+<li>scikit-learn</li>
+</ul>
+<p>以下の手順では venv (
+<a class="reference external" href="/blog/2016/01310_not_use_pyvenv_but_venv.html">参考記事</a>
+) にパッケージをインストールする事を前提としている。
+venv は環境を分けるのに便利なので、利用すると良いと思う。</p>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id9">前提</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">C:\Python\3.x.y.amd64\python.exe</span></code> に Python の 3.x.y を
+インストールしている事を前提としている。</li>
+<li><code class="docutils literal"><span class="pre">C:\path\to</span></code> は 手順 1 でダウンロードしたディレクトリを想定している。</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id10">Python 3.4 の場合の手順</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bat"><div class="highlight"><pre><span class="p">&gt;</span> <span class="n">C</span>:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</span>.amd<span class="m">64</span>\python.exe -m venv --copies --clear venv<span class="m">344</span>
+&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U setuptools pip
+&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U C:\path\to\numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span>+mkl-cp<span class="m">34</span>-cp<span class="m">34</span>m-win_amd<span class="m">64</span>.whl
+&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
+&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U C:\path\to\scipy<span class="m">-0</span>.<span class="m">17</span>.<span class="m">0</span>-cp<span class="m">34</span>-none-win_amd<span class="m">64</span>.whl
+&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U scikit-learn
+</pre></div>
+</div>
+<p>この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。</p>
+<div class="highlight-bat"><div class="highlight"><pre>&gt; .\venv<span class="m">344</span>\Scripts\jupyter-notebook --port<span class="o">=</span><span class="m">8888</span> --no-browser
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id11">Python 3.5 の場合の手順</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bat"><div class="highlight"><pre><span class="p">&gt;</span> <span class="n">C</span>:\Python\<span class="m">3</span>.<span class="m">5</span>.<span class="m">1</span>.amd<span class="m">64</span>\python.exe -m venv --copies --clear venv<span class="m">351</span>
+&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U setuptools pip
+&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U C:\path\to\numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span>+mkl-cp<span class="m">35</span>-cp<span class="m">35</span>m-win_amd<span class="m">64</span>.whl
+&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
+&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U C:\path\to\scipy<span class="m">-0</span>.<span class="m">17</span>.<span class="m">0</span>-cp<span class="m">35</span>-none-win_amd<span class="m">64</span>.whl
+&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U scikit-learn
+</pre></div>
+</div>
+<p>この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。</p>
+<div class="highlight-bat"><div class="highlight"><pre>&gt; .\venv<span class="m">351</span>\Scripts\jupyter-notebook --port<span class="o">=</span><span class="m">8888</span> --no-browser
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="x">
+<h2><a class="toc-backref" href="#id12">X. 動作確認</a><a class="headerlink" href="#x" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>SciPy/scikit-learn はそれぞれ以下の手順で動作確認できると思う。</p>
+<div class="section" id="scipy">
+<h3><a class="toc-backref" href="#id13">SciPy</a><a class="headerlink" href="#scipy" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>確認手順は
+<a class="reference external" href="https://www.scipy.org/getting-started.html#an-example-session">Getting Started — SciPy.org - An example session</a>
+の手順をお借りした。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span><span class="p">,</span> <span class="n">special</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">jv</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">special</span><span class="o">.</span><span class="n">jv</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scikit-learn">
+<h3><a class="toc-backref" href="#id14">scikit-learn</a><a class="headerlink" href="#scikit-learn" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>確認手順は
+<a class="reference external" href="http://qiita.com/ynakayama/items/88b4dd5d0dd9b1604006">scikit-learn を使った回帰モデルとその可視化 - Qiita</a>
+の手順をお借りした。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets.samples_generator</span> <span class="kn">import</span> <span class="n">make_regression</span>
+
+<span class="c"># サンプルデータからの訓練データ生成</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span>
+   <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+   <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c"># 訓練データと試験データの分割</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">80</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:]</span>
+<span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">80</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:]</span>
+
+<span class="c"># 分類器の訓練</span>
+<span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">u&#39;### 推定値を表示する ###&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+<span class="c"># 値の予測</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">u&#39;### 予測値を表示する ###&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1</span><span class="p">))</span>
+
+<span class="c"># 評価</span>
+<span class="k">print</span><span class="p">(</span><span class="s">u&#39;### 結果を評価する ###&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+
+<span class="c"># 可視化</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="c"># Data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;#00CC00&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;#FF7800&#39;</span><span class="p">)</span>
+
+<span class="n">coef</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">line</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">:</span> <span class="n">coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x2</span>
+
+<span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10j</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10j</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span><span class="p">,</span> <span class="n">line</span><span class="p">(</span><span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span><span class="p">),</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="/index.html">Top</a></h3>
+          <div id="searchbox" style="display: none" role="search">
+            <h3>クイック検索</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="検索" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">検索文字列を入力してください。</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="/genindex.html">索引</a></h3>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="04101_how_to_setup_python_3.4_environment_on_windows.html" title="Windows 上で Python 3.4 のインストールと MSVC のセットアップをする"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2016/04102_install_numpy_pandas_scipy_scikitlearn_on_windows.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

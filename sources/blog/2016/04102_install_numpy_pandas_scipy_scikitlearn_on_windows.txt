@@ -1,0 +1,181 @@
+=========================================================================
+Windows 上の Python に NumPy/Pandas/SciPy/scikit-learn をインストールする
+=========================================================================
+
+:blog_date:`2016/04/10`
+
+インストール時に NumPy/SciPy については
+`Christoph Gohlke provides pre-built Windows installers <http://www.lfd.uci.edu/~gohlke/pythonlibs/>`_
+のものを利用する。
+
+他は PyPI に上がっている whl を利用する。
+
+それですべてなんだけど、とりあえず以下で jupyter-notebook を起動するところまで
+書いてみる。
+
+.. contents::
+   :local:
+
+1. あらかじめ必要な whl ファイルをダウンロードする
+==================================================
+
+`Christoph Gohlke provides pre-built Windows installers`_ より
+必要な NumPy/SciPy の whl ファイルをダウンロードする。
+
+Python 3.4 の場合
+-----------------
+
+- ``numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl``
+- ``scipy-0.17.0-cp34-none-win_amd64.whl``
+
+Python 3.5 の場合
+-----------------
+
+- ``numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl``
+- ``scipy-0.17.0-cp35-none-win_amd64.whl``
+
+2. 環境に必要なパッケージをインストールする
+===========================================
+
+以下のパッケージは PyPI 上に whl ファイルがあるので、
+特に何の必要もなく pip によってインストールができる。
+
+- pandas
+- matplotlib
+- sympy
+- jupyter
+- scikit-learn
+
+以下の手順では venv (
+`参考記事 </blog/2016/01310_not_use_pyvenv_but_venv.html>`__
+) にパッケージをインストールする事を前提としている。
+venv は環境を分けるのに便利なので、利用すると良いと思う。
+
+前提
+----
+
+- ``C:\Python\3.x.y.amd64\python.exe`` に Python の 3.x.y を
+  インストールしている事を前提としている。
+- ``C:\path\to`` は 手順 1 でダウンロードしたディレクトリを想定している。
+
+Python 3.4 の場合の手順
+-----------------------
+
+.. code-block:: bat
+
+   > C:\Python\3.4.4.amd64\python.exe -m venv --copies --clear venv344
+   > .\venv344\Scripts\python.exe -m pip install -U setuptools pip
+   > .\venv344\Scripts\python.exe -m pip install -U C:\path\to\numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl
+   > .\venv344\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
+   > .\venv344\Scripts\python.exe -m pip install -U C:\path\to\scipy-0.17.0-cp34-none-win_amd64.whl
+   > .\venv344\Scripts\python.exe -m pip install -U scikit-learn
+
+この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。
+
+.. code-block:: bat
+
+   > .\venv344\Scripts\jupyter-notebook --port=8888 --no-browser
+
+Python 3.5 の場合の手順
+-----------------------
+
+.. code-block:: bat
+
+   > C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear venv351
+   > .\venv351\Scripts\python.exe -m pip install -U setuptools pip
+   > .\venv351\Scripts\python.exe -m pip install -U C:\path\to\numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl
+   > .\venv351\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
+   > .\venv351\Scripts\python.exe -m pip install -U C:\path\to\scipy-0.17.0-cp35-none-win_amd64.whl
+   > .\venv351\Scripts\python.exe -m pip install -U scikit-learn
+
+この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。
+
+.. code-block:: bat
+
+   > .\venv351\Scripts\jupyter-notebook --port=8888 --no-browser
+
+X. 動作確認
+===========
+
+SciPy/scikit-learn はそれぞれ以下の手順で動作確認できると思う。
+
+SciPy
+-----
+
+確認手順は
+`Getting Started — SciPy.org - An example session <https://www.scipy.org/getting-started.html#an-example-session>`__
+の手順をお借りした。
+
+.. code-block:: python
+
+   %matplotlib inline
+
+   from __future__ import print_function
+   import matplotlib.pyplot as plt
+   import numpy as np
+   from scipy import optimize, special
+
+   sol = optimize.minimize(lambda x: -sp.special.jv(3, x), 1.0)
+   x = np.linspace(0, 10, 5000)
+   plt.plot(x, special.jv(3, x), '-', sol.x, -sol.fun, 'o')
+
+scikit-learn
+------------
+
+確認手順は
+`scikit-learn を使った回帰モデルとその可視化 - Qiita <http://qiita.com/ynakayama/items/88b4dd5d0dd9b1604006>`__
+の手順をお借りした。
+
+.. code-block:: python
+
+   %matplotlib inline
+
+   from __future__ import print_function
+   import numpy as np
+   import matplotlib.pyplot as plt
+   from mpl_toolkits.mplot3d import Axes3D
+   from sklearn import linear_model
+   from sklearn.datasets.samples_generator import make_regression
+
+   # サンプルデータからの訓練データ生成
+   X, y = make_regression(
+      n_samples=100, n_features=2, n_informative=1,
+      random_state=0, noise=50)
+
+   # 訓練データと試験データの分割
+   X_train, X_test = X[:80], X[-20:]
+   y_train, y_test = y[:80], y[-20:]
+
+   # 分類器の訓練
+   regr = linear_model.LinearRegression()
+   regr.fit(X_train, y_train)
+   print(u'### 推定値を表示する ###')
+   print(regr.coef_)
+
+   # 値の予測
+   X1 = np.array([1.2, 4])
+   print(u'### 予測値を表示する ###')
+   print(regr.predict(X1))
+
+   # 評価
+   print(u'### 結果を評価する ###')
+   print(regr.score(X_test, y_test))
+
+   # 可視化
+   fig = plt.figure(figsize=(8, 5))
+   ax = fig.add_subplot(111, projection='3d')
+
+   # Data
+   ax.scatter(X_train[:, 0], X_train[:, 1], y_train, facecolor='#00CC00')
+   ax.scatter(X_test[:, 0], X_test[:, 1], y_test, facecolor='#FF7800')
+
+   coef = regr.coef_
+   line = lambda x1, x2: coef[0] * x1 + coef[1] * x2
+
+   grid_x1, grid_x2 = np.mgrid[-2:2:10j, -2:2:10j]
+   ax.plot_surface(grid_x1, grid_x2, line(grid_x1, grid_x2),
+                   alpha=0.1, color='k')
+   ax.xaxis.set_visible(False)
+   ax.yaxis.set_visible(False)
+   ax.zaxis.set_visible(False)
+   plt.show()
