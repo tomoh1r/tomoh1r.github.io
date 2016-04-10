@@ -70,8 +70,6 @@ PyPI に存在するので、特に問題なくインストールできる。</p
 <span class="c">:: biuld scipy</span>
 <span class="c">::</span>
 
-<span class="c">:: @ECHO off</span>
-
 <span class="k">setlocal</span>
 
 <span class="k">SET</span> <span class="nv">MyCurDir</span><span class="o">=</span><span class="nv">%CD%</span>
@@ -80,8 +78,6 @@ PyPI に存在するので、特に問題なくインストールできる。</p
 <span class="k">SET</span> <span class="nv">MyOpenBlas</span><span class="o">=</span>C:\msys<span class="m">64</span>\mingw<span class="m">64</span>\bin\libopenblas.dll
 
 <span class="k">CD</span> <span class="n">/D</span> <span class="nv">%~dp0</span>
-
-<span class="k">GOTO</span> <span class="nl">hoge</span>
 
 <span class="c">:: create venv</span>
 <span class="k">IF</span> <span class="k">EXIST</span> .\venv ( RD <span class="n">/S</span> <span class="n">/Q</span> .\venv )
@@ -95,8 +91,6 @@ PyPI に存在するので、特に問題なくインストールできる。</p
 <span class="c">:: clone scipy</span>
 <span class="k">IF</span> <span class="k">EXIST</span> .\scipy ( RD <span class="n">/S</span> <span class="n">/Q</span> .\scipy )
 git clone -q -b <span class="nv">%MyScipyVer%</span> --depth <span class="m">1</span> git:<span class="n">//github.com/scipy/scipy.git</span>
-
-<span class="nl">:hoge</span>
 
 <span class="c">:: copy libs</span>
 <span class="k">CD</span> <span class="n">/D</span> <span class="nv">%~dp0</span>\venv\lib

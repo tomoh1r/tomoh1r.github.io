@@ -22,8 +22,6 @@ PyPI に存在するので、特に問題なくインストールできる。
    :: biuld scipy
    ::
 
-   :: @ECHO off
-
    setlocal
 
    SET MyCurDir=%CD%
@@ -32,8 +30,6 @@ PyPI に存在するので、特に問題なくインストールできる。
    SET MyOpenBlas=C:\msys64\mingw64\bin\libopenblas.dll
 
    CD /D %~dp0
-
-   GOTO hoge
 
    :: create venv
    IF EXIST .\venv ( RD /S /Q .\venv )
@@ -47,8 +43,6 @@ PyPI に存在するので、特に問題なくインストールできる。
    :: clone scipy
    IF EXIST .\scipy ( RD /S /Q .\scipy )
    git clone -q -b %MyScipyVer% --depth 1 git://github.com/scipy/scipy.git
-
-   :hoge
 
    :: copy libs
    CD /D %~dp0\venv\lib
