@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="SciPy を Windows 上でインストールしてみようとしたけど、失敗している" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="SciPy を Windows 上でインストールしてみようとしたけど、失敗している" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/04100_try_to_install_scipy_on_windows_but.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@__10100__" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>SciPy を Windows 上でインストールしてみようとしたけど、失敗している &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="top" title="適当に だらだらと 楽しく" href="../../index.html" />
+    <link rel="prev" title="PostgreSQL PAGER の設定するのと行を vertical に表示する" href="02090_psql_pager_and_vertical.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="02090_psql_pager_and_vertical.html" title="PostgreSQL PAGER の設定するのと行を vertical に表示する"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="scipy-windows">
+<h1>SciPy を Windows 上でインストールしてみようとしたけど、失敗している<a class="headerlink" href="#scipy-windows" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/04/10</span></p>
+<p>とりあえずのメモとして残す意味で書こうと思う。</p>
+<p>公式で配布されている Windows 向けPython 3.4.4 は numpy/pandas は 3.4 向け wheel が
+PyPI に存在するので、特に問題なくインストールできる。</p>
+<p>しかし、 <a class="reference external" href="https://www.scipy.org/">SciPy</a> は、公式でも
+<a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">Christoph Gohlke provides pre-built Windows installers</a> を
+利用するということになっている。</p>
+<p>何かローカルでもインストールできないかなと簡単に以下のような bat ファイルの感じに
+処理をしてみたけど、なかなかうまくいかない感じ。</p>
+<div class="highlight-bat"><div class="highlight"><pre><span class="c">::</span>
+<span class="c">:: biuld scipy</span>
+<span class="c">::</span>
+
+<span class="c">:: @ECHO off</span>
+
+<span class="k">setlocal</span>
+
+<span class="k">SET</span> <span class="nv">MyCurDir</span><span class="o">=</span><span class="nv">%CD%</span>
+<span class="k">SET</span> <span class="nv">MyPythonPath</span><span class="o">=</span>C:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</span>.amd<span class="m">64</span>\python.exe
+<span class="k">SET</span> <span class="nv">MyScipyVer</span><span class="o">=</span>v<span class="m">0</span>.<span class="m">17</span>.<span class="m">0</span>
+<span class="k">SET</span> <span class="nv">MyOpenBlas</span><span class="o">=</span>C:\msys<span class="m">64</span>\mingw<span class="m">64</span>\bin\libopenblas.dll
+
+<span class="k">CD</span> <span class="n">/D</span> <span class="nv">%~dp0</span>
+
+<span class="k">GOTO</span> <span class="nl">hoge</span>
+
+<span class="c">:: create venv</span>
+<span class="k">IF</span> <span class="k">EXIST</span> .\venv ( RD <span class="n">/S</span> <span class="n">/Q</span> .\venv )
+<span class="nv">%MyPythonPath%</span> -m venv --clear venv
+.\venv\Scripts\python.exe -m pip install -U setuptools pip
+<span class="c">:: install Scipy dep</span>
+.\venv\Scripts\python.exe -m pip install -U numpy
+<span class="c">:: install Scipy build dep</span>
+.\venv\Scripts\python.exe -m pip install -U cython nose tempita
+
+<span class="c">:: clone scipy</span>
+<span class="k">IF</span> <span class="k">EXIST</span> .\scipy ( RD <span class="n">/S</span> <span class="n">/Q</span> .\scipy )
+git clone -q -b <span class="nv">%MyScipyVer%</span> --depth <span class="m">1</span> git:<span class="n">//github.com/scipy/scipy.git</span>
+
+<span class="nl">:hoge</span>
+
+<span class="c">:: copy libs</span>
+<span class="k">CD</span> <span class="n">/D</span> <span class="nv">%~dp0</span>\venv\lib
+
+COPY <span class="nv">%MyOpenBlas%</span> <span class="nv">%~dp0</span>\venv\lib\
+gendef.exe - libopenblas.dll <span class="p">&gt;</span> <span class="n">libopenblas</span>.def
+lib.exe <span class="n">/MACHINE:x64</span> <span class="n">/DEF:libopenblas.def</span> <span class="n">/OUT:openblas.lib</span>
+
+<span class="c">:: install scipy</span>
+<span class="k">CD</span> <span class="n">/D</span> <span class="nv">%~dp0</span>\scipy
+<span class="nv">%~dp0</span>\venv\Scripts\python.exe setup.py install
+
+<span class="k">CD</span> <span class="s2">&quot;%MyCurDir%&quot;</span>
+
+<span class="k">endlocal</span>
+</pre></div>
+</div>
+<p>ログは以下の感じ。 manifest で ????? ってログが出ているのと、
+lapack とかのライブラリがない感じ。</p>
+<div class="highlight-bat"><div class="highlight"><pre>λ .\build.bat
+
+<span class="k">setlocal</span>
+
+<span class="k">SET</span> <span class="nv">MyCurDir</span><span class="o">=</span>D:\tomo\Documents\bld_scipy
+
+<span class="k">SET</span> <span class="nv">MyPythonPath</span><span class="o">=</span>C:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</span>.amd<span class="m">64</span>\python.exe
+
+<span class="k">SET</span> <span class="nv">MyScipyVer</span><span class="o">=</span>v<span class="m">0</span>.<span class="m">17</span>.<span class="m">0</span>
+
+<span class="k">SET</span> <span class="nv">MyOpenBlas</span><span class="o">=</span>C:\msys<span class="m">64</span>\mingw<span class="m">64</span>\bin\libopenblas.dll
+
+<span class="k">CD</span> <span class="n">/D</span> D:\tomo\Documents\bld_scipy\
+
+<span class="k">IF</span> <span class="k">EXIST</span> .\venv (RD <span class="n">/S</span> <span class="n">/Q</span> .\venv  )
+
+C:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</span>.amd<span class="m">64</span>\python.exe -m venv --clear venv
+
+.\venv\Scripts\python.exe -m pip install -U setuptools pip
+Collecting setuptools
+  Using cached setuptools<span class="m">-20</span>.<span class="m">6</span>.<span class="m">7</span>-py<span class="m">2</span>.py<span class="m">3</span>-none-any.whl
+Collecting pip
+  Using cached pip<span class="m">-8</span>.<span class="m">1</span>.<span class="m">1</span>-py<span class="m">2</span>.py<span class="m">3</span>-none-any.whl
+Installing collected packages: setuptools<span class="p">,</span> pip
+  Found existing installation: setuptools <span class="m">18</span>.<span class="m">2</span>
+    Uninstalling setuptools<span class="m">-18</span>.<span class="m">2</span>:
+      Successfully uninstalled setuptools<span class="m">-18</span>.<span class="m">2</span>
+  Found existing installation: pip <span class="m">7</span>.<span class="m">1</span>.<span class="m">2</span>
+    Uninstalling pip<span class="m">-7</span>.<span class="m">1</span>.<span class="m">2</span>:
+      Successfully uninstalled pip<span class="m">-7</span>.<span class="m">1</span>.<span class="m">2</span>
+Successfully installed pip<span class="m">-8</span>.<span class="m">1</span>.<span class="m">1</span> setuptools<span class="m">-20</span>.<span class="m">6</span>.<span class="m">7</span>
+
+.\venv\Scripts\python.exe -m pip install -U numpy cython nose tempita
+Collecting numpy
+  Using cached numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span>-cp<span class="m">34</span>-none-win_amd<span class="m">64</span>.whl
+Collecting cython
+  Using cached Cython<span class="m">-0</span>.<span class="m">24</span>-cp<span class="m">34</span>-none-win_amd<span class="m">64</span>.whl
+Collecting nose
+  Using cached nose<span class="m">-1</span>.<span class="m">3</span>.<span class="m">7</span>-py<span class="m">3</span>-none-any.whl
+Collecting tempita
+  Using cached Tempita<span class="m">-0</span>.<span class="m">5</span>.<span class="m">2</span>.tar.gz
+Installing collected packages: numpy<span class="p">,</span> cython<span class="p">,</span> nose<span class="p">,</span> tempita
+  Running setup.py install <span class="k">for</span> tempita ... done
+Successfully installed cython<span class="m">-0</span>.<span class="m">24</span> nose<span class="m">-1</span>.<span class="m">3</span>.<span class="m">7</span> numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span> tempita<span class="m">-0</span>.<span class="m">5</span>.<span class="m">2</span>
+
+<span class="k">GOTO</span> <span class="nl">hoge</span>
+
+<span class="k">CD</span> <span class="n">/D</span> D:\tomo\Documents\bld_scipy\\venv\lib
+
+COPY C:\msys<span class="m">64</span>\mingw<span class="m">64</span>\bin\libopenblas.dll D:\tomo\Documents\bld_scipy\\venv\lib\
+        <span class="m">1</span> 個のファイルをコピーしました。
+
+gendef.exe - libopenblas.dll  <span class="m">1</span><span class="p">&gt;</span><span class="n">libopenblas</span>.def
+ * [libopenblas.dll] Found PE+ image
+
+lib.exe <span class="n">/MACHINE:x64</span> <span class="n">/DEF:libopenblas.def</span> <span class="n">/OUT:openblas.lib</span>
+Microsoft (R) Library Manager Version <span class="m">10</span>.<span class="m">00</span>.<span class="m">30319</span>.<span class="m">01</span>
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+   Creating library openblas.lib and object openblas.exp
+
+<span class="k">CD</span> <span class="n">/D</span> D:\tomo\Documents\bld_scipy\\scipy
+
+D:\tomo\Documents\bld_scipy\\venv\Scripts\python.exe setup.py install
+Cythonizing sources
+Processing scipy\cluster\_hierarchy.pyx
+Processing scipy\cluster\_vq.pyx
+Processing scipy\interpolate\interpnd.pyx
+Processing scipy\interpolate\_ppoly.pyx
+Processing scipy\io\matlab\mio<span class="m">5</span>_utils.pyx
+Processing scipy\io\matlab\mio_utils.pyx
+Processing scipy\io\matlab\streams.pyx
+Processing scipy\linalg\cython_blas.pyx
+Processing scipy\linalg\cython_lapack.pyx
+Processing scipy\linalg\_decomp_update.pyx.in
+Processing scipy\linalg\_solve_toeplitz.pyx
+Processing scipy\ndimage\src\_ni_label.pyx
+Processing scipy\optimize\_group_columns.pyx
+Processing scipy\optimize\_lsq\givens_elimination.pyx
+Processing scipy\signal\_max_len_seq_inner.pyx
+Processing scipy\signal\_spectral.pyx
+Processing scipy\sparse\_csparsetools.pyx.in
+Processing scipy\sparse\csgraph\_min_spanning_tree.pyx
+Processing scipy\sparse\csgraph\_reordering.pyx
+Processing scipy\sparse\csgraph\_shortest_path.pyx
+Processing scipy\sparse\csgraph\_tools.pyx
+Processing scipy\sparse\csgraph\_traversal.pyx
+Processing scipy\spatial\ckdtree.pyx
+Processing scipy\spatial\qhull.pyx
+Processing scipy\special\_ellip_harm_<span class="m">2</span>.pyx
+Processing scipy\special\_ufuncs.pyx
+Processing scipy\special\_ufuncs_cxx.pyx
+Processing scipy\stats\vonmises_cython.pyx
+Processing scipy\stats\_rank.pyx
+C:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</span>.amd<span class="m">64</span>\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: <span class="s1">&#39;test_suite&#39;</span>
+  warnings.warn(msg)
+C:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</span>.amd<span class="m">64</span>\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: <span class="s1">&#39;install_requires&#39;</span>
+  warnings.warn(msg)
+C:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</span>.amd<span class="m">64</span>\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: <span class="s1">&#39;setup_requires&#39;</span>
+  warnings.warn(msg)
+lapack_opt_info:
+openblas_lapack_info:
+creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users
+creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo
+creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData
+creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local
+creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp
+creating C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws
+C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\cl.exe <span class="n">/c</span> <span class="n">/nologo</span> <span class="n">/Ox</span> <span class="n">/MD</span> <span class="n">/W3</span> <span class="n">/GS-</span> <span class="n">/DNDEBUG</span> <span class="n">/TcC:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\source.c</span> <span class="n">/FoC:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\source.obj</span>
+Found executable C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\cl.exe
+C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\link.exe <span class="n">/nologo</span> <span class="n">/INCREMENTAL:NO</span> <span class="n">/LIBPATH:D:\tomo\Documents\bld_scipy\venv\lib</span> openblas.lib C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\source.obj <span class="n">/OUT:C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe</span> <span class="n">/MANIFESTFILE:C:\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\Users\tomo\AppData\Local\Temp\tmpdi3e1rws\a.out.exe.manifest</span>
+Found executable C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">10</span>.<span class="m">0</span>\VC\Bin\amd<span class="m">64</span>\link.exe
+mt.exe -nologo -manifest C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\a.out.exe.manifest -outputresource:C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\a.out.exe;<span class="m">1</span>
+Found executable C:\Program Files\Microsoft SDKs\Windows\v<span class="m">7</span>.<span class="m">1</span>\Bin\x<span class="m">64</span>\mt.exe
+
+C:\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\Users\tomo\AppData\Local\Temp\tmpdi<span class="m">3</span>e<span class="m">1</span>rws\a.out.exe.manifest : general error c<span class="m">1010070</span>: Failed to load and parse the manifest. ??????????????????
+
+  NOT AVAILABLE
+
+lapack_mkl_info:
+mkl_info:
+  libraries mkl<span class="p">,</span>vml<span class="p">,</span>guide not found in [<span class="s1">&#39;D:\\tomo\\Documents\\bld_scipy\\venv\\lib&#39;</span><span class="p">,</span> <span class="s1">&#39;C:\\&#39;</span>]
+  NOT AVAILABLE
+
+  NOT AVAILABLE
+
+atlas_<span class="m">3</span>_<span class="m">10</span>_threads_info:
+Setting PTATLAS<span class="o">=</span>ATLAS
+D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:633: UserWarning: Specified path C:\projects\windows-wheel-builder\atlas-builds\atlas<span class="m">-3</span>.<span class="m">11</span>.<span class="m">38</span>-sse<span class="m">2-64</span>\lib is invalid.
+  warnings.warn(<span class="s1">&#39;Specified path %s is invalid.&#39;</span> % d)
+<span class="p">&lt;</span><span class="n">class</span> <span class="s1">&#39;numpy.distutils.system_info.atlas_3_10_threads_info&#39;</span><span class="p">&gt;</span>
+  <span class="n">NOT</span> AVAILABLE
+
+atlas_<span class="m">3</span>_<span class="m">10</span>_info:
+<span class="p">&lt;</span><span class="n">class</span> <span class="s1">&#39;numpy.distutils.system_info.atlas_3_10_info&#39;</span><span class="p">&gt;</span>
+  <span class="n">NOT</span> AVAILABLE
+
+atlas_threads_info:
+Setting PTATLAS<span class="o">=</span>ATLAS
+<span class="p">&lt;</span><span class="n">class</span> <span class="s1">&#39;numpy.distutils.system_info.atlas_threads_info&#39;</span><span class="p">&gt;</span>
+  <span class="n">NOT</span> AVAILABLE
+
+atlas_info:
+<span class="p">&lt;</span><span class="n">class</span> <span class="s1">&#39;numpy.distutils.system_info.atlas_info&#39;</span><span class="p">&gt;</span>
+  <span class="n">NOT</span> AVAILABLE
+
+D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1542: UserWarning:
+    Atlas (http:<span class="n">//math-atlas.sourceforge.net/)</span> libraries not found.
+    Directories to search <span class="k">for</span> the libraries can be specified in the
+    numpy<span class="n">/distutils/site.cfg</span> file (section [atlas]) or by setting
+    the ATLAS environment variable.
+  warnings.warn(AtlasNotFoundError.__doc__)
+lapack_info:
+  libraries lapack not found in [<span class="s1">&#39;D:\\tomo\\Documents\\bld_scipy\\venv\\lib&#39;</span><span class="p">,</span> <span class="s1">&#39;C:\\&#39;</span>]
+  NOT AVAILABLE
+
+D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1553: UserWarning:
+    Lapack (http:<span class="n">//www.netlib.org/lapack/)</span> libraries not found.
+    Directories to search <span class="k">for</span> the libraries can be specified in the
+    numpy<span class="n">/distutils/site.cfg</span> file (section [lapack]) or by setting
+    the LAPACK environment variable.
+  warnings.warn(LapackNotFoundError.__doc__)
+lapack_src_info:
+  NOT AVAILABLE
+
+D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1556: UserWarning:
+    Lapack (http:<span class="n">//www.netlib.org/lapack/)</span> sources not found.
+    Directories to search <span class="k">for</span> the sources can be specified in the
+    numpy<span class="n">/distutils/site.cfg</span> file (section [lapack_src]) or by setting
+    the LAPACK_SRC environment variable.
+  warnings.warn(LapackSrcNotFoundError.__doc__)
+  NOT AVAILABLE
+
+Running from scipy source directory.
+Traceback (most recent <span class="k">call</span> last):
+  File <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> line <span class="m">265</span><span class="p">,</span> in <span class="p">&lt;</span><span class="n">module</span><span class="p">&gt;</span>
+    <span class="n">setup_package</span>()
+  File <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> line <span class="m">262</span><span class="p">,</span> in setup_package
+    setup(**metadata)
+  File <span class="s2">&quot;D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\core.py&quot;</span><span class="p">,</span> line <span class="m">135</span><span class="p">,</span> in setup
+    config <span class="o">=</span> configuration()
+  File <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> line <span class="m">182</span><span class="p">,</span> in configuration
+    config.add_subpackage(<span class="s1">&#39;scipy&#39;</span>)
+  File <span class="s2">&quot;D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py&quot;</span><span class="p">,</span> line <span class="m">1003</span><span class="p">,</span> in add_subpackage
+    caller_level <span class="o">=</span> <span class="m">2</span>)
+  File <span class="s2">&quot;D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py&quot;</span><span class="p">,</span> line <span class="m">972</span><span class="p">,</span> in get_subpackage
+    caller_level <span class="o">=</span> caller_level + <span class="m">1</span>)
+  File <span class="s2">&quot;D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py&quot;</span><span class="p">,</span> line <span class="m">909</span><span class="p">,</span> in _get_configuration_from_setup_py
+    config <span class="o">=</span> setup_module.configuration(*args)
+  File <span class="s2">&quot;scipy\setup.py&quot;</span><span class="p">,</span> line <span class="m">15</span><span class="p">,</span> in configuration
+    config.add_subpackage(<span class="s1">&#39;linalg&#39;</span>)
+  File <span class="s2">&quot;D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py&quot;</span><span class="p">,</span> line <span class="m">1003</span><span class="p">,</span> in add_subpackage
+    caller_level <span class="o">=</span> <span class="m">2</span>)
+  File <span class="s2">&quot;D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py&quot;</span><span class="p">,</span> line <span class="m">972</span><span class="p">,</span> in get_subpackage
+    caller_level <span class="o">=</span> caller_level + <span class="m">1</span>)
+  File <span class="s2">&quot;D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py&quot;</span><span class="p">,</span> line <span class="m">909</span><span class="p">,</span> in _get_configuration_from_setup_py
+    config <span class="o">=</span> setup_module.configuration(*args)
+  File <span class="s2">&quot;scipy\linalg\setup.py&quot;</span><span class="p">,</span> line <span class="m">20</span><span class="p">,</span> in configuration
+    raise NotFoundError(<span class="s1">&#39;no lapack/blas resources found&#39;</span>)
+numpy.distutils.system_info.NotFoundError: no lapack<span class="n">/blas</span> resources found
+
+<span class="k">CD</span> <span class="s2">&quot;D:\tomo\Documents\bld_scipy&quot;</span>
+
+<span class="k">endlocal</span>
+</pre></div>
+</div>
+<p>よくわからんね。</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="/index.html">Top</a></h3>
+          <div id="searchbox" style="display: none" role="search">
+            <h3>クイック検索</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="検索" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">検索文字列を入力してください。</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="/genindex.html">索引</a></h3>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="02090_psql_pager_and_vertical.html" title="PostgreSQL PAGER の設定するのと行を vertical に表示する"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">適当に だらだらと 楽しく</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2016/04100_try_to_install_scipy_on_windows_but.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
