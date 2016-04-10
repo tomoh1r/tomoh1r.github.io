@@ -1,0 +1,51 @@
+==================================================================
+Windows 上で Python 3.4 のインストールと MSVC のセットアップをする
+==================================================================
+
+:blog_date:`2016/04/10`
+
+現状の Python の 3系最新版は 3.5.1 である。
+
+whl ファイルを利用するとビルド済みの Windows 向けパッケージを利用できるので
+とても便利だが、 3.5 が配布されていない場合があり、その場合のメモとして、
+Python 3.4 向けの手順をまとめる。
+
+.. contents::
+   :local:
+
+1. Python 3.4 のインストール
+============================
+
+`公式の Python ダウンロード一覧 <https://www.python.org/downloads/>`__ から 3.4
+の最新版のインストーラーを見つけて、インストールする。
+
+個人的には、インストール先は ``C:\Python\3.4.4.amd64`` といったかたちの場所にすれば
+これ何だっけとならないので便利なんじゃないかと思う。
+
+2. MSVC のインストール
+======================
+
+MSVC は
+`Microsoft Windows SDK for Windows 7 and .NET Framework 4 <https://www.microsoft.com/en-us/download/details.aspx?id=8279>`__
+に入っているものを利用します。
+
+ただ、このインストーラー、 .NET Framework 4.6 を 4系として認識しないので、
+こちらのリンク先
+`.NET Framework 4.6 がインストールされた環境でWindows SDK for Windows 7 and .NET Framework 4 の Visual C++ Compilers がインストールできない | JAPAN Platform SDK（Windows SDK） Support Team Blog <https://blogs.msdn.microsoft.com/japan_platform_sdkwindows_sdk_support_team_blog/2016/02/10/net-framework-4-6-windows-sdk-for-windows-7-and-net-framework-4-visual-c-compilers/>`__
+の手順を参照してインストールしてください。
+
+この手順は、最初 .NET Framework 4.6 入ってんじゃんと、はまるのではないでしょうか。
+
+3. MSVC を利用できるようにする
+==============================
+
+`Windows での Python 2.7, 3.4, 3.5 の拡張モジュールビルド環境 -- Qiita <http://qiita.com/methane/items/2210712763b91e75fdf0>`__
+の
+`Python 3.4 <http://qiita.com/methane/items/2210712763b91e75fdf0#python-34>`__
+を参考にしてください。
+
+``C:\Windows\System32\cmd.exe /E:ON /V:ON /T:0E /K "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /Release /x64``
+とかでショートカットを作成したり、
+
+cmd 上で ``"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /Release /x64``
+とかしてみると良いのではないでしょうか。
