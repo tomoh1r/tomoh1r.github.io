@@ -98,7 +98,7 @@
 <p><cite>layout.html</cite> は <a class="reference external" href="http://jinja.pocoo.org/">Jinja2</a> 記法を使えるので、以下のように <cite>startswith</cite>
 でページを判定した。</p>
 <p>僕はファイル名に <cite>blog/%Y%m%dN_name</cite> としているので、以下で問題無かった。</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span class="cp">{%</span>- <span class="k">if</span> <span class="nv">pagename.startswith</span><span class="o">(</span><span class="s1">&#39;blog/20&#39;</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span>- <span class="k">if</span> <span class="nv">pagename.startswith</span><span class="o">(</span><span class="s1">&#39;blog/20&#39;</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">...</span>
 <span class="cp">{%</span>- <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
@@ -111,18 +111,18 @@
 <p>対応するため、 <cite>document</cite> クラスに <cite>position: relative</cite> をつけ、
 サイドバーに <cite>positoin: absolute; top: 0; right: 0;</cite> の設定をした。</p>
 <p>具体的には下記となる。</p>
-<div class="highlight-css"><div class="highlight"><pre><span class="nt">div</span><span class="nc">.document</span> <span class="p">{</span>
-  <span class="k">width</span><span class="o">:</span> <span class="m">980px</span><span class="p">;</span>
-  <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">div</span><span class="nc">.document</span> <span class="p">{</span>
+  <span class="nb">width</span><span class="o">:</span> <span class="m">980px</span><span class="p">;</span>
+  <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nt">div</span><span class="nc">.sphinxsidebar</span> <span class="p">{</span>
-  <span class="k">width</span><span class="o">:</span> <span class="m">240px</span><span class="p">;</span>
-  <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
-  <span class="k">top</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="k">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="k">float</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+  <span class="nb">width</span><span class="o">:</span> <span class="m">240px</span><span class="p">;</span>
+  <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nb">top</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nb">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nb">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nb">float</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -179,8 +179,8 @@
       </ul>
     </div>
     <div class="footer">
-      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2015/04211_add_disqus_comment_system.txt"
+      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>| <a href="../../sources/blog/2015/04211_add_disqus_comment_system.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

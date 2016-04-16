@@ -128,31 +128,31 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 </div>
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id10">Python 3.4 の場合の手順</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-bat"><div class="highlight"><pre><span class="p">&gt;</span> <span class="n">C</span>:\Python\<span class="m">3</span>.<span class="m">4</span>.<span class="m">4</span>.amd<span class="m">64</span>\python.exe -m venv --copies --clear venv<span class="m">344</span>
-&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U setuptools pip
-&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U C:\path\to\numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span>+mkl-cp<span class="m">34</span>-cp<span class="m">34</span>m-win_amd<span class="m">64</span>.whl
-&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
-&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U C:\path\to\scipy<span class="m">-0</span>.<span class="m">17</span>.<span class="m">0</span>-cp<span class="m">34</span>-none-win_amd<span class="m">64</span>.whl
-&gt; .\venv<span class="m">344</span>\Scripts\python.exe -m pip install -U scikit-learn
+<div class="highlight-batch"><div class="highlight"><pre><span></span><span class="p">&gt;</span> C:\Python\3.4.4.amd64\python.exe -m venv --copies --clear venv344
+<span class="p">&gt;</span> .\venv344\Scripts\python.exe -m pip install -U setuptools pip
+<span class="p">&gt;</span> .\venv344\Scripts\python.exe -m pip install -U C:\path\to\numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl
+<span class="p">&gt;</span> .\venv344\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
+<span class="p">&gt;</span> .\venv344\Scripts\python.exe -m pip install -U C:\path\to\scipy-0.17.0-cp34-none-win_amd64.whl
+<span class="p">&gt;</span> .\venv344\Scripts\python.exe -m pip install -U scikit-learn
 </pre></div>
 </div>
 <p>この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。</p>
-<div class="highlight-bat"><div class="highlight"><pre>&gt; .\venv<span class="m">344</span>\Scripts\jupyter-notebook --port<span class="o">=</span><span class="m">8888</span> --no-browser
+<div class="highlight-batch"><div class="highlight"><pre><span></span><span class="p">&gt;</span> .\venv344\Scripts\jupyter-notebook --port=8888 --no-browser
 </pre></div>
 </div>
 </div>
 <div class="section" id="id4">
 <h3><a class="toc-backref" href="#id11">Python 3.5 の場合の手順</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-bat"><div class="highlight"><pre><span class="p">&gt;</span> <span class="n">C</span>:\Python\<span class="m">3</span>.<span class="m">5</span>.<span class="m">1</span>.amd<span class="m">64</span>\python.exe -m venv --copies --clear venv<span class="m">351</span>
-&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U setuptools pip
-&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U C:\path\to\numpy<span class="m">-1</span>.<span class="m">11</span>.<span class="m">0</span>+mkl-cp<span class="m">35</span>-cp<span class="m">35</span>m-win_amd<span class="m">64</span>.whl
-&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
-&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U C:\path\to\scipy<span class="m">-0</span>.<span class="m">17</span>.<span class="m">0</span>-cp<span class="m">35</span>-none-win_amd<span class="m">64</span>.whl
-&gt; .\venv<span class="m">351</span>\Scripts\python.exe -m pip install -U scikit-learn
+<div class="highlight-batch"><div class="highlight"><pre><span></span><span class="p">&gt;</span> C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear venv351
+<span class="p">&gt;</span> .\venv351\Scripts\python.exe -m pip install -U setuptools pip
+<span class="p">&gt;</span> .\venv351\Scripts\python.exe -m pip install -U C:\path\to\numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl
+<span class="p">&gt;</span> .\venv351\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
+<span class="p">&gt;</span> .\venv351\Scripts\python.exe -m pip install -U C:\path\to\scipy-0.17.0-cp35-none-win_amd64.whl
+<span class="p">&gt;</span> .\venv351\Scripts\python.exe -m pip install -U scikit-learn
 </pre></div>
 </div>
 <p>この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。</p>
-<div class="highlight-bat"><div class="highlight"><pre>&gt; .\venv<span class="m">351</span>\Scripts\jupyter-notebook --port<span class="o">=</span><span class="m">8888</span> --no-browser
+<div class="highlight-batch"><div class="highlight"><pre><span></span><span class="p">&gt;</span> .\venv351\Scripts\jupyter-notebook --port=8888 --no-browser
 </pre></div>
 </div>
 </div>
@@ -165,7 +165,7 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <p>確認手順は
 <a class="reference external" href="https://www.scipy.org/getting-started.html#an-example-session">Getting Started — SciPy.org - An example session</a>
 の手順をお借りした。</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -174,7 +174,7 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 
 <span class="n">sol</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">jv</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">special</span><span class="o">.</span><span class="n">jv</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">special</span><span class="o">.</span><span class="n">jv</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -183,7 +183,7 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <p>確認手順は
 <a class="reference external" href="http://qiita.com/ynakayama/items/88b4dd5d0dd9b1604006">scikit-learn を使った回帰モデルとその可視化 - Qiita</a>
 の手順をお借りした。</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -192,44 +192,44 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets.samples_generator</span> <span class="kn">import</span> <span class="n">make_regression</span>
 
-<span class="c"># サンプルデータからの訓練データ生成</span>
+<span class="c1"># サンプルデータからの訓練データ生成</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span>
    <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 
-<span class="c"># 訓練データと試験データの分割</span>
+<span class="c1"># 訓練データと試験データの分割</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">80</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:]</span>
 <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">80</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:]</span>
 
-<span class="c"># 分類器の訓練</span>
+<span class="c1"># 分類器の訓練</span>
 <span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">u&#39;### 推定値を表示する ###&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">u&#39;### 推定値を表示する ###&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
 
-<span class="c"># 値の予測</span>
+<span class="c1"># 値の予測</span>
 <span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="s">u&#39;### 予測値を表示する ###&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">u&#39;### 予測値を表示する ###&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1</span><span class="p">))</span>
 
-<span class="c"># 評価</span>
-<span class="k">print</span><span class="p">(</span><span class="s">u&#39;### 結果を評価する ###&#39;</span><span class="p">)</span>
+<span class="c1"># 評価</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">u&#39;### 結果を評価する ###&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 
-<span class="c"># 可視化</span>
+<span class="c1"># 可視化</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 
-<span class="c"># Data</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;#00CC00&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;#FF7800&#39;</span><span class="p">)</span>
+<span class="c1"># Data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#00CC00&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#FF7800&#39;</span><span class="p">)</span>
 
 <span class="n">coef</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">coef_</span>
 <span class="n">line</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">:</span> <span class="n">coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x2</span>
 
 <span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10j</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10j</span><span class="p">]</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span><span class="p">,</span> <span class="n">line</span><span class="p">(</span><span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span><span class="p">),</span>
-                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
@@ -276,8 +276,8 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
       </ul>
     </div>
     <div class="footer">
-      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2016/04102_install_numpy_pandas_scipy_scikitlearn_on_windows.txt"
+      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>| <a href="../../sources/blog/2016/04102_install_numpy_pandas_scipy_scikitlearn_on_windows.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

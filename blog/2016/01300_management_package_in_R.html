@@ -82,7 +82,7 @@
 <blockquote>
 <div><p>R_LIBS_USER にユーザーのライブラリパスを指定すると R で利用されるので、
 環境変数に指定する。 <code class="docutils literal"><span class="pre">~/.bashrc</span></code> あたりで指定しておくとよい。</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">export </span><span class="nv">R_LIBS_USER</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.config/R/lib/3.2.3&quot;</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">R_LIBS_USER</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.config/R/lib/3.2.3&quot;</span>
 <span class="gp">$</span> mkdir -p <span class="nv">$R_LIBS_USER</span>
 </pre></div>
 </div>
@@ -93,7 +93,7 @@
 <blockquote>
 <div><p>以下の内容の install.R ファイルを作成する。</p>
 <p>但し、 <code class="docutils literal"><span class="pre">c(...)</span></code> で指定するパッケージは必要に応じて読み替えること。</p>
-<div class="highlight-R"><div class="highlight"><pre>install.packages<span class="p">(</span>
+<div class="highlight-R"><div class="highlight"><pre><span></span>install.packages<span class="p">(</span>
   <span class="kt">c</span><span class="p">(</span><span class="s">&#39;data.table&#39;</span><span class="p">,</span> <span class="s">&#39;dplyr&#39;</span><span class="p">),</span>
   repos<span class="o">=</span><span class="s">&#39;http://cran.ism.ac.jp/&#39;</span><span class="p">,</span>
   dependencies<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
@@ -104,7 +104,7 @@
 <div class="section" id="id2">
 <h3><a class="toc-backref" href="#id6">3. 作成した R スクリプトを実行し、パッケージをインストールする。</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
-<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> R CMD BATCH install.R
+<div><div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> R CMD BATCH install.R
 </pre></div>
 </div>
 </div></blockquote>
@@ -157,8 +157,8 @@
       </ul>
     </div>
     <div class="footer">
-      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2016/01300_management_package_in_R.txt"
+      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>| <a href="../../sources/blog/2016/01300_management_package_in_R.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

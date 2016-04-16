@@ -71,24 +71,24 @@
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id2">zipapp について</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下のようなディレクトリ構成とする。</p>
-<div class="highlight-python"><div class="highlight"><pre>test001/
+<div class="highlight-default"><div class="highlight"><pre><span></span>test001/
 ├── __init__.py
 └── __main__.py
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">__init__.py</span></code> は空のファイル、 <code class="docutils literal"><span class="pre">__main__.py</span></code> の中身は以下とする。</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">&#39;hello, world&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;hello, world&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>通常、この場合以下のように実行することができる。</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python2.7 test001/
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python2.7 test001/
 <span class="go">hello, world</span>
 </pre></div>
 </div>
 <p>さらに、このディレクトリ構成で、 <code class="docutils literal"><span class="pre">test001</span></code> 内を zipファイルとして
 まとめると、この zipファイルを読み込み実行することができる。</p>
 <p>まず、zipファイルは以下のように作成する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>test001
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> test001
 <span class="gp">$</span> zip test001.zip -r *
 <span class="go">adding: __init__.py (stored 0%)</span>
 <span class="go">adding: __main__.py (stored 0%)</span>
@@ -96,19 +96,19 @@
 </div>
 <p>この状態で python インタプリタに引数として渡すと、実行される。
 これでも、便利だと思う。</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python2.7 test001.zip
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python2.7 test001.zip
 <span class="go">hello, world</span>
 </pre></div>
 </div>
 <p>さて、 zipapp だ。拡張子は <code class="docutils literal"><span class="pre">.pyz</span></code> となるが、作成しよう。
 実行可能なバイナリを作成したいので、 <code class="docutils literal"><span class="pre">-p</span></code> オプションで <code class="docutils literal"><span class="pre">shebang</span></code> を指定しよう。</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> rm test001.zip
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> rm test001.zip
 <span class="gp">$</span> <span class="nb">cd</span> ..
 <span class="gp">$</span> python3.5 -m zipapp -p <span class="s1">&#39;/usr/bin/env python2.7&#39;</span> test001/
 </pre></div>
 </div>
 <p>この状態で <code class="docutils literal"><span class="pre">.pyz</span></code> ファイルは実行可能だ。実行してみよう。</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./test001.pyz
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./test001.pyz
 <span class="go">hello, world</span>
 </pre></div>
 </div>
@@ -161,8 +161,8 @@
       </ul>
     </div>
     <div class="footer">
-      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>| <a href="../../sources/blog/2015/12071_zipapp.txt"
+      &copy;2015, Tomohiro NAKAMURA.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>| <a href="../../sources/blog/2015/12071_zipapp.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

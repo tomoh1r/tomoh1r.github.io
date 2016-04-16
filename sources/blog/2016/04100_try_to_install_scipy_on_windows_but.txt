@@ -16,275 +16,275 @@ PyPI に存在するので、特に問題なくインストールできる。
 何かローカルでもインストールできないかなと簡単に以下のような bat ファイルの感じに
 処理をしてみたけど、なかなかうまくいかない感じ。
 
-.. code-block:: bat
+::
 
-   ::
-   :: biuld scipy
-   ::
+  ::
+  :: biuld scipy
+  ::
 
-   setlocal
+  setlocal
 
-   SET MyCurDir=%CD%
-   SET MyPythonPath=C:\Python\3.4.4.amd64\python.exe
-   SET MyScipyVer=v0.17.0
-   SET MyOpenBlas=C:\msys64\mingw64\bin\libopenblas.dll
+  SET MyCurDir=%CD%
+  SET MyPythonPath=C:\Python\3.4.4.amd64\python.exe
+  SET MyScipyVer=v0.17.0
+  SET MyOpenBlas=C:\msys64\mingw64\bin\libopenblas.dll
 
-   CD /D %~dp0
+  CD /D %~dp0
 
-   :: create venv
-   IF EXIST .\venv ( RD /S /Q .\venv )
-   %MyPythonPath% -m venv --clear venv
-   .\venv\Scripts\python.exe -m pip install -U setuptools pip
-   :: install Scipy dep
-   .\venv\Scripts\python.exe -m pip install -U numpy
-   :: install Scipy build dep
-   .\venv\Scripts\python.exe -m pip install -U cython nose tempita
+  :: create venv
+  IF EXIST .\venv ( RD /S /Q .\venv )
+  %MyPythonPath% -m venv --clear venv
+  .\venv\Scripts\python.exe -m pip install -U setuptools pip
+  :: install Scipy dep
+  .\venv\Scripts\python.exe -m pip install -U numpy
+  :: install Scipy build dep
+  .\venv\Scripts\python.exe -m pip install -U cython nose tempita
 
-   :: clone scipy
-   IF EXIST .\scipy ( RD /S /Q .\scipy )
-   git clone -q -b %MyScipyVer% --depth 1 git://github.com/scipy/scipy.git
+  :: clone scipy
+  IF EXIST .\scipy ( RD /S /Q .\scipy )
+  git clone -q -b %MyScipyVer% --depth 1 git://github.com/scipy/scipy.git
 
-   :: copy libs
-   CD /D %~dp0\venv\lib
+  :: copy libs
+  CD /D %~dp0\venv\lib
 
-   COPY %MyOpenBlas% %~dp0\venv\lib\
-   gendef.exe - libopenblas.dll > libopenblas.def
-   lib.exe /MACHINE:x64 /DEF:libopenblas.def /OUT:openblas.lib
+  COPY %MyOpenBlas% %~dp0\venv\lib\
+  gendef.exe - libopenblas.dll > libopenblas.def
+  lib.exe /MACHINE:x64 /DEF:libopenblas.def /OUT:openblas.lib
 
-   :: install scipy
-   CD /D %~dp0\scipy
-   %~dp0\venv\Scripts\python.exe setup.py install
+  :: install scipy
+  CD /D %~dp0\scipy
+  %~dp0\venv\Scripts\python.exe setup.py install
 
-   CD "%MyCurDir%"
+  CD "%MyCurDir%"
 
-   endlocal
+  endlocal
 
 ログは以下の感じ。 manifest で ????? ってログが出ているのと、
 lapack とかのライブラリがない感じ。
 
-.. code-block:: bat
+::
 
-   λ .\build.bat
+  λ .\build.bat
 
-   setlocal
+  setlocal
 
-   SET MyCurDir=D:\tomo\Documents\bld_scipy
+  SET MyCurDir=D:\tomo\Documents\bld_scipy
 
-   SET MyPythonPath=C:\Python\3.4.4.amd64\python.exe
+  SET MyPythonPath=C:\Python\3.4.4.amd64\python.exe
 
-   SET MyScipyVer=v0.17.0
+  SET MyScipyVer=v0.17.0
 
-   SET MyOpenBlas=C:\msys64\mingw64\bin\libopenblas.dll
+  SET MyOpenBlas=C:\msys64\mingw64\bin\libopenblas.dll
 
-   CD /D D:\tomo\Documents\bld_scipy\
+  CD /D D:\tomo\Documents\bld_scipy\
 
-   IF EXIST .\venv (RD /S /Q .\venv  )
+  IF EXIST .\venv (RD /S /Q .\venv  )
 
-   C:\Python\3.4.4.amd64\python.exe -m venv --clear venv
+  C:\Python\3.4.4.amd64\python.exe -m venv --clear venv
 
-   .\venv\Scripts\python.exe -m pip install -U setuptools pip
-   Collecting setuptools
-     Using cached setuptools-20.6.7-py2.py3-none-any.whl
-   Collecting pip
-     Using cached pip-8.1.1-py2.py3-none-any.whl
-   Installing collected packages: setuptools, pip
-     Found existing installation: setuptools 18.2
-       Uninstalling setuptools-18.2:
-         Successfully uninstalled setuptools-18.2
-     Found existing installation: pip 7.1.2
-       Uninstalling pip-7.1.2:
-         Successfully uninstalled pip-7.1.2
-   Successfully installed pip-8.1.1 setuptools-20.6.7
+  .\venv\Scripts\python.exe -m pip install -U setuptools pip
+  Collecting setuptools
+    Using cached setuptools-20.6.7-py2.py3-none-any.whl
+  Collecting pip
+    Using cached pip-8.1.1-py2.py3-none-any.whl
+  Installing collected packages: setuptools, pip
+    Found existing installation: setuptools 18.2
+      Uninstalling setuptools-18.2:
+        Successfully uninstalled setuptools-18.2
+    Found existing installation: pip 7.1.2
+      Uninstalling pip-7.1.2:
+        Successfully uninstalled pip-7.1.2
+  Successfully installed pip-8.1.1 setuptools-20.6.7
 
-   .\venv\Scripts\python.exe -m pip install -U numpy
-   Collecting numpy
-     Using cached numpy-1.11.0-cp34-none-win_amd64.whl
-   Installing collected packages: numpy
-   Successfully installed numpy-1.11.0
+  .\venv\Scripts\python.exe -m pip install -U numpy
+  Collecting numpy
+    Using cached numpy-1.11.0-cp34-none-win_amd64.whl
+  Installing collected packages: numpy
+  Successfully installed numpy-1.11.0
 
-   .\venv\Scripts\python.exe -m pip install -U numpy cython nose tempita
-   Requirement already up-to-date: numpy in d:\tomo\documents\bld_scipy\venv\lib\site-packages
-   Collecting cython
-     Using cached Cython-0.24-cp34-none-win_amd64.whl
-   Collecting nose
-     Using cached nose-1.3.7-py3-none-any.whl
-   Collecting tempita
-     Using cached Tempita-0.5.2.tar.gz
-   Installing collected packages: cython, nose, tempita
-     Running setup.py install for tempita ... done
-   Successfully installed cython-0.24 nose-1.3.7 tempita-0.5.2
+  .\venv\Scripts\python.exe -m pip install -U numpy cython nose tempita
+  Requirement already up-to-date: numpy in d:\tomo\documents\bld_scipy\venv\lib\site-packages
+  Collecting cython
+    Using cached Cython-0.24-cp34-none-win_amd64.whl
+  Collecting nose
+    Using cached nose-1.3.7-py3-none-any.whl
+  Collecting tempita
+    Using cached Tempita-0.5.2.tar.gz
+  Installing collected packages: cython, nose, tempita
+    Running setup.py install for tempita ... done
+  Successfully installed cython-0.24 nose-1.3.7 tempita-0.5.2
 
-   IF EXIST .\scipy (RD /S /Q .\scipy  )
+  IF EXIST .\scipy (RD /S /Q .\scipy  )
 
-   git clone -q -b v0.17.0 --depth 1 git://github.com/scipy/scipy.git
-   Note: checking out '4b17e2bcbed2ef65cd14923a1ed5d1ccb6d8f8aa'.
+  git clone -q -b v0.17.0 --depth 1 git://github.com/scipy/scipy.git
+  Note: checking out '4b17e2bcbed2ef65cd14923a1ed5d1ccb6d8f8aa'.
 
-   You are in 'detached HEAD' state. You can look around, make experimental
-   changes and commit them, and you can discard any commits you make in this
-   state without impacting any branches by performing another checkout.
+  You are in 'detached HEAD' state. You can look around, make experimental
+  changes and commit them, and you can discard any commits you make in this
+  state without impacting any branches by performing another checkout.
 
-   If you want to create a new branch to retain commits you create, you may
-   do so (now or later) by using -b with the checkout command again. Example:
+  If you want to create a new branch to retain commits you create, you may
+  do so (now or later) by using -b with the checkout command again. Example:
 
-     git checkout -b <new-branch-name>
+    git checkout -b <new-branch-name>
 
 
-   CD /D D:\tomo\Documents\bld_scipy\\venv\lib
+  CD /D D:\tomo\Documents\bld_scipy\\venv\lib
 
-   COPY C:\msys64\mingw64\bin\libopenblas.dll D:\tomo\Documents\bld_scipy\\venv\lib\
-           1 個のファイルをコピーしました。
+  COPY C:\msys64\mingw64\bin\libopenblas.dll D:\tomo\Documents\bld_scipy\\venv\lib\
+          1 個のファイルをコピーしました。
 
-   gendef.exe - libopenblas.dll  1>libopenblas.def
-    * [libopenblas.dll] Found PE+ image
+  gendef.exe - libopenblas.dll  1>libopenblas.def
+   * [libopenblas.dll] Found PE+ image
 
-   lib.exe /MACHINE:x64 /DEF:libopenblas.def /OUT:openblas.lib
-   Microsoft (R) Library Manager Version 10.00.30319.01
-   Copyright (C) Microsoft Corporation.  All rights reserved.
+  lib.exe /MACHINE:x64 /DEF:libopenblas.def /OUT:openblas.lib
+  Microsoft (R) Library Manager Version 10.00.30319.01
+  Copyright (C) Microsoft Corporation.  All rights reserved.
 
-      Creating library openblas.lib and object openblas.exp
+     Creating library openblas.lib and object openblas.exp
 
-   CD /D D:\tomo\Documents\bld_scipy\\scipy
+  CD /D D:\tomo\Documents\bld_scipy\\scipy
 
-   D:\tomo\Documents\bld_scipy\\venv\Scripts\python.exe setup.py install
-   Cythonizing sources
-   Processing scipy\cluster\_hierarchy.pyx
-   Processing scipy\cluster\_vq.pyx
-   Processing scipy\interpolate\interpnd.pyx
-   Processing scipy\interpolate\_ppoly.pyx
-   Processing scipy\io\matlab\mio5_utils.pyx
-   Processing scipy\io\matlab\mio_utils.pyx
-   Processing scipy\io\matlab\streams.pyx
-   Processing scipy\linalg\cython_blas.pyx
-   Processing scipy\linalg\cython_lapack.pyx
-   Processing scipy\linalg\_decomp_update.pyx.in
-   Processing scipy\linalg\_solve_toeplitz.pyx
-   Processing scipy\ndimage\src\_ni_label.pyx
-   Processing scipy\optimize\_group_columns.pyx
-   Processing scipy\optimize\_lsq\givens_elimination.pyx
-   Processing scipy\signal\_max_len_seq_inner.pyx
-   Processing scipy\signal\_spectral.pyx
-   Processing scipy\sparse\_csparsetools.pyx.in
-   Processing scipy\sparse\csgraph\_min_spanning_tree.pyx
-   Processing scipy\sparse\csgraph\_reordering.pyx
-   Processing scipy\sparse\csgraph\_shortest_path.pyx
-   Processing scipy\sparse\csgraph\_tools.pyx
-   Processing scipy\sparse\csgraph\_traversal.pyx
-   Processing scipy\spatial\ckdtree.pyx
-   Processing scipy\spatial\qhull.pyx
-   Processing scipy\special\_ellip_harm_2.pyx
-   Processing scipy\special\_ufuncs.pyx
-   Processing scipy\special\_ufuncs_cxx.pyx
-   Processing scipy\stats\vonmises_cython.pyx
-   Processing scipy\stats\_rank.pyx
-   C:\Python\3.4.4.amd64\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: 'test_suite'
-     warnings.warn(msg)
-   C:\Python\3.4.4.amd64\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: 'install_requires'
-     warnings.warn(msg)
-   C:\Python\3.4.4.amd64\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: 'setup_requires'
-     warnings.warn(msg)
-   lapack_opt_info:
-   openblas_lapack_info:
-   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users
-   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo
-   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData
-   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local
-   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp
-   creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0
-   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\cl.exe /c /nologo /Ox /MD /W3 /GS- /DNDEBUG /TcC:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.c /FoC:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.obj
-   Found executable C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\cl.exe
-   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\link.exe /nologo /INCREMENTAL:NO /LIBPATH:D:\tomo\Documents\bld_scipy\venv\lib openblas.lib C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.obj /OUT:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe /MANIFESTFILE:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest
-   Found executable C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\link.exe
-   mt.exe -nologo -manifest C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest -outputresource:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe;1
-   Found executable C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\mt.exe
+  D:\tomo\Documents\bld_scipy\\venv\Scripts\python.exe setup.py install
+  Cythonizing sources
+  Processing scipy\cluster\_hierarchy.pyx
+  Processing scipy\cluster\_vq.pyx
+  Processing scipy\interpolate\interpnd.pyx
+  Processing scipy\interpolate\_ppoly.pyx
+  Processing scipy\io\matlab\mio5_utils.pyx
+  Processing scipy\io\matlab\mio_utils.pyx
+  Processing scipy\io\matlab\streams.pyx
+  Processing scipy\linalg\cython_blas.pyx
+  Processing scipy\linalg\cython_lapack.pyx
+  Processing scipy\linalg\_decomp_update.pyx.in
+  Processing scipy\linalg\_solve_toeplitz.pyx
+  Processing scipy\ndimage\src\_ni_label.pyx
+  Processing scipy\optimize\_group_columns.pyx
+  Processing scipy\optimize\_lsq\givens_elimination.pyx
+  Processing scipy\signal\_max_len_seq_inner.pyx
+  Processing scipy\signal\_spectral.pyx
+  Processing scipy\sparse\_csparsetools.pyx.in
+  Processing scipy\sparse\csgraph\_min_spanning_tree.pyx
+  Processing scipy\sparse\csgraph\_reordering.pyx
+  Processing scipy\sparse\csgraph\_shortest_path.pyx
+  Processing scipy\sparse\csgraph\_tools.pyx
+  Processing scipy\sparse\csgraph\_traversal.pyx
+  Processing scipy\spatial\ckdtree.pyx
+  Processing scipy\spatial\qhull.pyx
+  Processing scipy\special\_ellip_harm_2.pyx
+  Processing scipy\special\_ufuncs.pyx
+  Processing scipy\special\_ufuncs_cxx.pyx
+  Processing scipy\stats\vonmises_cython.pyx
+  Processing scipy\stats\_rank.pyx
+  C:\Python\3.4.4.amd64\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: 'test_suite'
+    warnings.warn(msg)
+  C:\Python\3.4.4.amd64\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: 'install_requires'
+    warnings.warn(msg)
+  C:\Python\3.4.4.amd64\lib\distutils\dist.py:260: UserWarning: Unknown distribution option: 'setup_requires'
+    warnings.warn(msg)
+  lapack_opt_info:
+  openblas_lapack_info:
+  creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users
+  creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo
+  creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData
+  creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local
+  creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp
+  creating C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\cl.exe /c /nologo /Ox /MD /W3 /GS- /DNDEBUG /TcC:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.c /FoC:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.obj
+  Found executable C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\cl.exe
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\link.exe /nologo /INCREMENTAL:NO /LIBPATH:D:\tomo\Documents\bld_scipy\venv\lib openblas.lib C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\source.obj /OUT:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe /MANIFESTFILE:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest
+  Found executable C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Bin\amd64\link.exe
+  mt.exe -nologo -manifest C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest -outputresource:C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe;1
+  Found executable C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\mt.exe
 
-   C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest : general error c1010070: Failed to load and parse the manifest. ??????????????????
+  C:\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\Users\tomo\AppData\Local\Temp\tmp8tb2pzb0\a.out.exe.manifest : general error c1010070: Failed to load and parse the manifest. ??????????????????
 
-     NOT AVAILABLE
+    NOT AVAILABLE
 
-   lapack_mkl_info:
-   mkl_info:
-     libraries mkl,vml,guide not found in ['D:\\tomo\\Documents\\bld_scipy\\venv\\lib', 'C:\\']
-     NOT AVAILABLE
+  lapack_mkl_info:
+  mkl_info:
+    libraries mkl,vml,guide not found in ['D:\\tomo\\Documents\\bld_scipy\\venv\\lib', 'C:\\']
+    NOT AVAILABLE
 
-     NOT AVAILABLE
+    NOT AVAILABLE
 
-   atlas_3_10_threads_info:
-   Setting PTATLAS=ATLAS
-   D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:633: UserWarning: Specified path C:\projects\windows-wheel-builder\atlas-builds\atlas-3.11.38-sse2-64\lib is invalid.
-     warnings.warn('Specified path %s is invalid.' % d)
-   <class 'numpy.distutils.system_info.atlas_3_10_threads_info'>
-     NOT AVAILABLE
+  atlas_3_10_threads_info:
+  Setting PTATLAS=ATLAS
+  D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:633: UserWarning: Specified path C:\projects\windows-wheel-builder\atlas-builds\atlas-3.11.38-sse2-64\lib is invalid.
+    warnings.warn('Specified path %s is invalid.' % d)
+  <class 'numpy.distutils.system_info.atlas_3_10_threads_info'>
+    NOT AVAILABLE
 
-   atlas_3_10_info:
-   <class 'numpy.distutils.system_info.atlas_3_10_info'>
-     NOT AVAILABLE
+  atlas_3_10_info:
+  <class 'numpy.distutils.system_info.atlas_3_10_info'>
+    NOT AVAILABLE
 
-   atlas_threads_info:
-   Setting PTATLAS=ATLAS
-   <class 'numpy.distutils.system_info.atlas_threads_info'>
-     NOT AVAILABLE
+  atlas_threads_info:
+  Setting PTATLAS=ATLAS
+  <class 'numpy.distutils.system_info.atlas_threads_info'>
+    NOT AVAILABLE
 
-   atlas_info:
-   <class 'numpy.distutils.system_info.atlas_info'>
-     NOT AVAILABLE
+  atlas_info:
+  <class 'numpy.distutils.system_info.atlas_info'>
+    NOT AVAILABLE
 
-   D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1542: UserWarning:
-       Atlas (http://math-atlas.sourceforge.net/) libraries not found.
-       Directories to search for the libraries can be specified in the
-       numpy/distutils/site.cfg file (section [atlas]) or by setting
-       the ATLAS environment variable.
-     warnings.warn(AtlasNotFoundError.__doc__)
-   lapack_info:
-     libraries lapack not found in ['D:\\tomo\\Documents\\bld_scipy\\venv\\lib', 'C:\\']
-     NOT AVAILABLE
+  D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1542: UserWarning:
+      Atlas (http://math-atlas.sourceforge.net/) libraries not found.
+      Directories to search for the libraries can be specified in the
+      numpy/distutils/site.cfg file (section [atlas]) or by setting
+      the ATLAS environment variable.
+    warnings.warn(AtlasNotFoundError.__doc__)
+  lapack_info:
+    libraries lapack not found in ['D:\\tomo\\Documents\\bld_scipy\\venv\\lib', 'C:\\']
+    NOT AVAILABLE
 
-   D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1553: UserWarning:
-       Lapack (http://www.netlib.org/lapack/) libraries not found.
-       Directories to search for the libraries can be specified in the
-       numpy/distutils/site.cfg file (section [lapack]) or by setting
-       the LAPACK environment variable.
-     warnings.warn(LapackNotFoundError.__doc__)
-   lapack_src_info:
-     NOT AVAILABLE
+  D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1553: UserWarning:
+      Lapack (http://www.netlib.org/lapack/) libraries not found.
+      Directories to search for the libraries can be specified in the
+      numpy/distutils/site.cfg file (section [lapack]) or by setting
+      the LAPACK environment variable.
+    warnings.warn(LapackNotFoundError.__doc__)
+  lapack_src_info:
+    NOT AVAILABLE
 
-   D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1556: UserWarning:
-       Lapack (http://www.netlib.org/lapack/) sources not found.
-       Directories to search for the sources can be specified in the
-       numpy/distutils/site.cfg file (section [lapack_src]) or by setting
-       the LAPACK_SRC environment variable.
-     warnings.warn(LapackSrcNotFoundError.__doc__)
-     NOT AVAILABLE
+  D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\system_info.py:1556: UserWarning:
+      Lapack (http://www.netlib.org/lapack/) sources not found.
+      Directories to search for the sources can be specified in the
+      numpy/distutils/site.cfg file (section [lapack_src]) or by setting
+      the LAPACK_SRC environment variable.
+    warnings.warn(LapackSrcNotFoundError.__doc__)
+    NOT AVAILABLE
 
-   Running from scipy source directory.
-   Traceback (most recent call last):
-     File "setup.py", line 265, in <module>
-       setup_package()
-     File "setup.py", line 262, in setup_package
-       setup(**metadata)
-     File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\core.py", line 135, in setup
-       config = configuration()
-     File "setup.py", line 182, in configuration
-       config.add_subpackage('scipy')
-     File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 1003, in add_subpackage
-       caller_level = 2)
-     File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 972, in get_subpackage
-       caller_level = caller_level + 1)
-     File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 909, in _get_configuration_from_setup_py
-       config = setup_module.configuration(*args)
-     File "scipy\setup.py", line 15, in configuration
-       config.add_subpackage('linalg')
-     File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 1003, in add_subpackage
-       caller_level = 2)
-     File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 972, in get_subpackage
-       caller_level = caller_level + 1)
-     File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 909, in _get_configuration_from_setup_py
-       config = setup_module.configuration(*args)
-     File "scipy\linalg\setup.py", line 20, in configuration
-       raise NotFoundError('no lapack/blas resources found')
-   numpy.distutils.system_info.NotFoundError: no lapack/blas resources found
+  Running from scipy source directory.
+  Traceback (most recent call last):
+    File "setup.py", line 265, in <module>
+      setup_package()
+    File "setup.py", line 262, in setup_package
+      setup(**metadata)
+    File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\core.py", line 135, in setup
+      config = configuration()
+    File "setup.py", line 182, in configuration
+      config.add_subpackage('scipy')
+    File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 1003, in add_subpackage
+      caller_level = 2)
+    File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 972, in get_subpackage
+      caller_level = caller_level + 1)
+    File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 909, in _get_configuration_from_setup_py
+      config = setup_module.configuration(*args)
+    File "scipy\setup.py", line 15, in configuration
+      config.add_subpackage('linalg')
+    File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 1003, in add_subpackage
+      caller_level = 2)
+    File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 972, in get_subpackage
+      caller_level = caller_level + 1)
+    File "D:\tomo\Documents\bld_scipy\venv\lib\site-packages\numpy\distutils\misc_util.py", line 909, in _get_configuration_from_setup_py
+      config = setup_module.configuration(*args)
+    File "scipy\linalg\setup.py", line 20, in configuration
+      raise NotFoundError('no lapack/blas resources found')
+  numpy.distutils.system_info.NotFoundError: no lapack/blas resources found
 
-   CD "D:\tomo\Documents\bld_scipy"
+  CD "D:\tomo\Documents\bld_scipy"
 
-   endlocal
+  endlocal
 
 よくわからんね。

@@ -61,7 +61,7 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 Python 3.4 の場合の手順
 -----------------------
 
-.. code-block:: bat
+.. code-block:: batch
 
    > C:\Python\3.4.4.amd64\python.exe -m venv --copies --clear venv344
    > .\venv344\Scripts\python.exe -m pip install -U setuptools pip
@@ -72,14 +72,14 @@ Python 3.4 の場合の手順
 
 この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。
 
-.. code-block:: bat
+.. code-block:: batch
 
    > .\venv344\Scripts\jupyter-notebook --port=8888 --no-browser
 
 Python 3.5 の場合の手順
 -----------------------
 
-.. code-block:: bat
+.. code-block:: batch
 
    > C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear venv351
    > .\venv351\Scripts\python.exe -m pip install -U setuptools pip
@@ -90,7 +90,7 @@ Python 3.5 の場合の手順
 
 この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。
 
-.. code-block:: bat
+.. code-block:: batch
 
    > .\venv351\Scripts\jupyter-notebook --port=8888 --no-browser
 
