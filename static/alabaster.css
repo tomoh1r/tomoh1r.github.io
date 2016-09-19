@@ -579,12 +579,12 @@ div.document {
 }
 
 div.documentwrapper {
-  width: 740px;
+  width: 980px;
 }
 
 div.bodywrapper {
   margin: 0;
-  width: 740px;
+  width: 980px;
 }
 
 div.sphinxsidebar {

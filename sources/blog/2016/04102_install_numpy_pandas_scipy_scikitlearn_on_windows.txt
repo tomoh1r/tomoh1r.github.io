@@ -115,7 +115,7 @@ SciPy
    import numpy as np
    from scipy import optimize, special
 
-   sol = optimize.minimize(lambda x: -sp.special.jv(3, x), 1.0)
+   sol = optimize.minimize(lambda x: -special.jv(3, x), 1.0)
    x = np.linspace(0, 10, 5000)
    plt.plot(x, special.jv(3, x), '-', sol.x, -sol.fun, 'o')
 
