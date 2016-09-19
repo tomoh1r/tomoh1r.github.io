@@ -30,3 +30,12 @@ blogs
    blog/2016/[0-9]*
 
 - :doc:`blog/archives`
+
+tips
+====
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+
+   tip/*
