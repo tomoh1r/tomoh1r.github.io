@@ -143,6 +143,21 @@ CMMI ver3
    $ make
    $ make install
 
+Pillow prerequirements
+----------------------
+
+* RHEL/CentOS/Fedora
+
+  * pass
+
+* Debian/Ubuntu
+
+  * libjpeg8-dev
+  * libtiff5-dev
+  * libfreetype6-dev
+  * liblcms2-dev
+  * libwebp-dev
+
 MySQL dump で圧縮してダンプする
 ===============================
 
