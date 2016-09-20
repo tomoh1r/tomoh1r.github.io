@@ -52,6 +52,60 @@ smb をマウント
 Vim
 ====
 
+Vim src build
+-------------
+
+1. prerequirements
+++++++++++++++++++
+
+* RHEL/CentOS/Fedora
+
+  * git
+  * gcc
+  * make
+  * autoconf
+  * ncurses-devel
+  * lua-devel
+  * luajit-devel
+  * gtk2-devel
+  * libXt-devel
+
+* Debian/Ubuntu
+
+  * git
+  * gcc
+  * make
+  * autoconf
+  * libncurses5-dev
+  * libacl1-dev
+  * libgpm-dev
+  * lua5.2
+  * luajit
+  * liblua5.2-dev
+  * libluajit-5.1-dev
+
+2. check latest version
++++++++++++++++++++++++
+
+.. code-block:: console
+
+   $ git ls-remote -h git://github.com/vim/vim.git
+
+3. cmmi
++++++++
+
+.. code-block:: console
+
+   $ git clone --depth 1 -b v7.4.2263 git://github.com/vim/vim.git vim-v7.4.2263
+   $ cd vim-v7.4.2263/src
+   $ make configure
+   $ /configure --prefix=/path/to/vim/v7.4.2263 \
+     --with-features=huge --without-x --disable-gui --enable-multibyte \
+     --enable-luainterp=dynamic --with-luajit --enable-gpm --enable-cscope \
+     --enable-fontset --enable-fail-if-missing
+   $ make
+   $ make install
+
 良い感じに適当にファイルを修正できるモードライン
 ------------------------------------------------
 

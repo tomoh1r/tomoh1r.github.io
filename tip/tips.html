@@ -53,23 +53,29 @@
 <li><a class="reference internal" href="#id1" id="id5">プロセスをツリーで表示</a></li>
 <li><a class="reference internal" href="#smb" id="id6">smb をマウント</a></li>
 <li><a class="reference internal" href="#vim" id="id7">Vim</a><ul>
-<li><a class="reference internal" href="#id2" id="id8">良い感じに適当にファイルを修正できるモードライン</a></li>
-<li><a class="reference internal" href="#vim-cp932" id="id9">Vim で cp932 のファイルを開く</a></li>
-<li><a class="reference internal" href="#osx-kaoriya-vim" id="id10">OSX kaoriya Vim で各言語の拡張について利用したいものを指定する</a></li>
+<li><a class="reference internal" href="#vim-src-build" id="id8">Vim src build</a><ul>
+<li><a class="reference internal" href="#prerequirements" id="id9">1. prerequirements</a></li>
+<li><a class="reference internal" href="#check-latest-version" id="id10">2. check latest version</a></li>
+<li><a class="reference internal" href="#cmmi" id="id11">3. cmmi</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#python" id="id11">Python</a><ul>
-<li><a class="reference internal" href="#cmmi-prerequirements" id="id12">CMMI prerequirements</a></li>
-<li><a class="reference internal" href="#cmmi-ver2" id="id13">CMMI ver2</a></li>
-<li><a class="reference internal" href="#cmmi-ver3" id="id14">CMMI ver3</a></li>
-<li><a class="reference internal" href="#pillow-prerequirements" id="id15">Pillow prerequirements</a></li>
+<li><a class="reference internal" href="#id2" id="id12">良い感じに適当にファイルを修正できるモードライン</a></li>
+<li><a class="reference internal" href="#vim-cp932" id="id13">Vim で cp932 のファイルを開く</a></li>
+<li><a class="reference internal" href="#osx-kaoriya-vim" id="id14">OSX kaoriya Vim で各言語の拡張について利用したいものを指定する</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mysql-dump" id="id16">MySQL dump で圧縮してダンプする</a></li>
-<li><a class="reference internal" href="#docker" id="id17">Docker</a><ul>
-<li><a class="reference internal" href="#dockerfile" id="id18">特定の Dockerfile でビルド</a></li>
-<li><a class="reference internal" href="#id3" id="id19">コンテナ削除</a></li>
-<li><a class="reference internal" href="#none-image" id="id20">(none) image 削除</a></li>
+<li><a class="reference internal" href="#python" id="id15">Python</a><ul>
+<li><a class="reference internal" href="#cmmi-prerequirements" id="id16">CMMI prerequirements</a></li>
+<li><a class="reference internal" href="#cmmi-ver2" id="id17">CMMI ver2</a></li>
+<li><a class="reference internal" href="#cmmi-ver3" id="id18">CMMI ver3</a></li>
+<li><a class="reference internal" href="#pillow-prerequirements" id="id19">Pillow prerequirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mysql-dump" id="id20">MySQL dump で圧縮してダンプする</a></li>
+<li><a class="reference internal" href="#docker" id="id21">Docker</a><ul>
+<li><a class="reference internal" href="#dockerfile" id="id22">特定の Dockerfile でビルド</a></li>
+<li><a class="reference internal" href="#id3" id="id23">コンテナ削除</a></li>
+<li><a class="reference internal" href="#none-image" id="id24">(none) image 削除</a></li>
 </ul>
 </li>
 </ul>
@@ -119,8 +125,62 @@
 </div>
 <div class="section" id="vim">
 <h2><a class="toc-backref" href="#id7">Vim</a><a class="headerlink" href="#vim" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="vim-src-build">
+<h3><a class="toc-backref" href="#id8">Vim src build</a><a class="headerlink" href="#vim-src-build" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="prerequirements">
+<h4><a class="toc-backref" href="#id9">1. prerequirements</a><a class="headerlink" href="#prerequirements" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ul class="simple">
+<li>RHEL/CentOS/Fedora<ul>
+<li>git</li>
+<li>gcc</li>
+<li>make</li>
+<li>autoconf</li>
+<li>ncurses-devel</li>
+<li>lua-devel</li>
+<li>luajit-devel</li>
+<li>gtk2-devel</li>
+<li>libXt-devel</li>
+</ul>
+</li>
+<li>Debian/Ubuntu<ul>
+<li>git</li>
+<li>gcc</li>
+<li>make</li>
+<li>autoconf</li>
+<li>libncurses5-dev</li>
+<li>libacl1-dev</li>
+<li>libgpm-dev</li>
+<li>lua5.2</li>
+<li>luajit</li>
+<li>liblua5.2-dev</li>
+<li>libluajit-5.1-dev</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="check-latest-version">
+<h4><a class="toc-backref" href="#id10">2. check latest version</a><a class="headerlink" href="#check-latest-version" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git ls-remote -h git://github.com/vim/vim.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="cmmi">
+<h4><a class="toc-backref" href="#id11">3. cmmi</a><a class="headerlink" href="#cmmi" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone --depth <span class="m">1</span> -b v7.4.2263 git://github.com/vim/vim.git vim-v7.4.2263
+<span class="gp">$</span> <span class="nb">cd</span> vim-v7.4.2263/src
+<span class="gp">$</span> make configure
+<span class="gp">$</span> /configure --prefix<span class="o">=</span>/path/to/vim/v7.4.2263 <span class="se">\</span>
+<span class="go">  --with-features=huge --without-x --disable-gui --enable-multibyte \</span>
+<span class="go">  --enable-luainterp=dynamic --with-luajit --enable-gpm --enable-cscope \</span>
+<span class="go">  --enable-fontset --enable-fail-if-missing</span>
+<span class="gp">$</span> make
+<span class="gp">$</span> make install
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="id2">
-<h3><a class="toc-backref" href="#id8">良い感じに適当にファイルを修正できるモードライン</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">良い感じに適当にファイルを修正できるモードライン</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>2行書く。</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>vim:list lcs=tab\:&gt;-,extends\:&lt;,trail\:-,eol\:$ fdm=marker:
 vim:ts=4 sts=4 sw=4 tw=0 fenc=utf-8 ff=unix:
@@ -128,14 +188,14 @@ vim:ts=4 sts=4 sw=4 tw=0 fenc=utf-8 ff=unix:
 </div>
 </div>
 <div class="section" id="vim-cp932">
-<h3><a class="toc-backref" href="#id9">Vim で cp932 のファイルを開く</a><a class="headerlink" href="#vim-cp932" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Vim で cp932 のファイルを開く</a><a class="headerlink" href="#vim-cp932" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">alias</span> <span class="nv">edit</span><span class="o">=</span><span class="s1">&#39;vim -c &quot;:e ++enc=cp932&quot;&#39;</span>
 <span class="gp">$</span> edit file_of_cp932.txt
 </pre></div>
 </div>
 </div>
 <div class="section" id="osx-kaoriya-vim">
-<h3><a class="toc-backref" href="#id10">OSX kaoriya Vim で各言語の拡張について利用したいものを指定する</a><a class="headerlink" href="#osx-kaoriya-vim" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">OSX kaoriya Vim で各言語の拡張について利用したいものを指定する</a><a class="headerlink" href="#osx-kaoriya-vim" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span>let $PERL_DLL = &quot;/usr/local/opt/perl/lib/5.20.1/darwin-thread-multi-2level/CORE/libperl.dylib&quot;
 let $PYTHON_DLL = &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib&quot;
 let $PYTHON3_DLL=&quot;/Library/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5.dylib&quot;
@@ -146,9 +206,9 @@ let $LUA_DLL=&quot;/usr/local/homebrew/opt/lua/lib/liblua.5.2.3.dylib&quot;
 </div>
 </div>
 <div class="section" id="python">
-<h2><a class="toc-backref" href="#id11">Python</a><a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">Python</a><a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="cmmi-prerequirements">
-<h3><a class="toc-backref" href="#id12">CMMI prerequirements</a><a class="headerlink" href="#cmmi-prerequirements" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">CMMI prerequirements</a><a class="headerlink" href="#cmmi-prerequirements" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li>RHEL/CentOS/Fedora<ul>
 <li>zlib-devel</li>
@@ -185,7 +245,7 @@ let $LUA_DLL=&quot;/usr/local/homebrew/opt/lua/lib/liblua.5.2.3.dylib&quot;
 </ul>
 </div>
 <div class="section" id="cmmi-ver2">
-<h3><a class="toc-backref" href="#id13">CMMI ver2</a><a class="headerlink" href="#cmmi-ver2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">CMMI ver2</a><a class="headerlink" href="#cmmi-ver2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -LO https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xz
 <span class="gp">$</span> tar xf Python-2.7.12.tar.xz
 <span class="gp">$</span> <span class="nb">cd</span> Python-2.7.12
@@ -196,7 +256,7 @@ let $LUA_DLL=&quot;/usr/local/homebrew/opt/lua/lib/liblua.5.2.3.dylib&quot;
 </div>
 </div>
 <div class="section" id="cmmi-ver3">
-<h3><a class="toc-backref" href="#id14">CMMI ver3</a><a class="headerlink" href="#cmmi-ver3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">CMMI ver3</a><a class="headerlink" href="#cmmi-ver3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -LO https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
 <span class="gp">$</span> tar xf Python-3.5.2.tar.xz
 <span class="gp">$</span> <span class="nb">cd</span> Python-3.5.2
@@ -207,7 +267,7 @@ let $LUA_DLL=&quot;/usr/local/homebrew/opt/lua/lib/liblua.5.2.3.dylib&quot;
 </div>
 </div>
 <div class="section" id="pillow-prerequirements">
-<h3><a class="toc-backref" href="#id15">Pillow prerequirements</a><a class="headerlink" href="#pillow-prerequirements" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">Pillow prerequirements</a><a class="headerlink" href="#pillow-prerequirements" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li>RHEL/CentOS/Fedora<ul>
 <li>pass</li>
@@ -225,7 +285,7 @@ let $LUA_DLL=&quot;/usr/local/homebrew/opt/lua/lib/liblua.5.2.3.dylib&quot;
 </div>
 </div>
 <div class="section" id="mysql-dump">
-<h2><a class="toc-backref" href="#id16">MySQL dump で圧縮してダンプする</a><a class="headerlink" href="#mysql-dump" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id20">MySQL dump で圧縮してダンプする</a><a class="headerlink" href="#mysql-dump" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mysqldump -u user -p -h host --default-character-set<span class="o">=</span>binary <span class="se">\</span>
 <span class="go">  -c --compact -n -t dbname tables \</span>
 <span class="go">  | gzip &gt; mysqldump-`date +%Y_%m%d_%H%M%S`.sql.gz</span>
@@ -233,21 +293,21 @@ let $LUA_DLL=&quot;/usr/local/homebrew/opt/lua/lib/liblua.5.2.3.dylib&quot;
 </div>
 </div>
 <div class="section" id="docker">
-<h2><a class="toc-backref" href="#id17">Docker</a><a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id21">Docker</a><a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="dockerfile">
-<h3><a class="toc-backref" href="#id18">特定の Dockerfile でビルド</a><a class="headerlink" href="#dockerfile" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">特定の Dockerfile でビルド</a><a class="headerlink" href="#dockerfile" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> docker build -t local-xxx -f Dockerfile .
 </pre></div>
 </div>
 </div>
 <div class="section" id="id3">
-<h3><a class="toc-backref" href="#id19">コンテナ削除</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">コンテナ削除</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> docker rm <span class="sb">`</span>docker ps -a -q<span class="sb">`</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="none-image">
-<h3><a class="toc-backref" href="#id20">(none) image 削除</a><a class="headerlink" href="#none-image" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">(none) image 削除</a><a class="headerlink" href="#none-image" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> docker rmi <span class="sb">`</span>docker images <span class="p">|</span> awk <span class="s1">&#39;/^&lt;none&gt;/ { print $3 }&#39;</span><span class="sb">`</span>
 </pre></div>
 </div>
