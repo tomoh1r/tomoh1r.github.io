@@ -81,6 +81,68 @@ OSX kaoriya Vim で各言語の拡張について利用したいものを指定�
   let $RUBY_DLL = "/usr/local/homebrew/Cellar/ruby21/2.1.5/lib/libruby.2.1.dylib"
   let $LUA_DLL="/usr/local/homebrew/opt/lua/lib/liblua.5.2.3.dylib"
 
+Python
+======
+
+CMMI prerequirements
+--------------------
+
+* RHEL/CentOS/Fedora
+
+  * zlib-devel
+  * bzip2-devel
+  * openssl-devel
+  * ncurses-devel
+  * sqlite-devel
+  * readline-devel
+  * gdbm-devel
+  * db4-devel
+  * libpcap-devel
+  * xz-devel
+  * tk-devel
+  * tcl-devel
+  * expat-devel
+
+* Debian/Ubuntu
+
+  * zlib1g-dev
+  * libbz2-dev
+  * libssl-dev
+  * libncurses5-dev
+  * libsqlite3-dev
+  * libreadline-dev
+  * libgdbm-dev
+  * libdb-dev
+  * libpcap-dev
+  * liblzma-dev
+  * tk-dev
+  * tcl-dev
+  * libexpat-dev
+
+CMMI ver2
+---------
+
+.. code-block:: console
+
+   $ curl -LO https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xz
+   $ tar xf Python-2.7.12.tar.xz
+   $ cd Python-2.7.12
+   $ ./configure --prefix=/path/to/python/2.7.12 --enable-unicode=ucs4
+   $ make
+   $ make install
+
+CMMI ver3
+---------
+
+.. code-block:: console
+
+   $ curl -LO https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
+   $ tar xf Python-3.5.2.tar.xz
+   $ cd Python-3.5.2
+   $ ./configure --prefix=/path/to/python/3.5.2
+   $ make
+   $ make install
+
 MySQL dump で圧縮してダンプする
 ===============================
 
