@@ -42,4 +42,5 @@ tips
    :glob:
    :maxdepth: 1
 
-   tip/*
+   tip/index.rst
+   tip/tip_*

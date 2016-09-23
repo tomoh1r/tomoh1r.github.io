@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="tips" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="tips" />
+    <meta property="og:url" content="http://jptomo.github.io/tip/index.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@__10100__" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>tips &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="next" title="Python" href="tip_python.html" />
+    <link rel="prev" title="pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する" href="../blog/2016/09191_pipsi_with_custome_location.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            <p><a href="/">&lt;&lt; top</a></p>
+            
+  <div class="section" id="tips">
+<h1>tips<a class="headerlink" href="#tips" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>personal snipetts &#8211; <em>under construction</em></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#find-grep" id="id3">find/grep で検索</a></li>
+<li><a class="reference internal" href="#id1" id="id4">プロセスをツリーで表示</a></li>
+<li><a class="reference internal" href="#smb" id="id5">smb をマウント</a></li>
+<li><a class="reference internal" href="#vim" id="id6">Vim</a></li>
+<li><a class="reference internal" href="#python" id="id7">Python</a></li>
+<li><a class="reference internal" href="#mysql-dump" id="id8">MySQL dump で圧縮してダンプする</a></li>
+<li><a class="reference internal" href="#docker" id="id9">Docker</a><ul>
+<li><a class="reference internal" href="#dockerfile" id="id10">特定の Dockerfile でビルド</a></li>
+<li><a class="reference internal" href="#id2" id="id11">コンテナ削除</a></li>
+<li><a class="reference internal" href="#none-image" id="id12">(none) image 削除</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="find-grep">
+<h2><a class="toc-backref" href="#id3">find/grep で検索</a><a class="headerlink" href="#find-grep" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> find . -name <span class="s2">&quot;.git&quot;</span> -prune -o -name <span class="s2">&quot;*.py&quot;</span> -print0 <span class="se">\</span>
+<span class="go">  | xargs -0r grep -in some</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id4">プロセスをツリーで表示</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ps -efjH
+</pre></div>
+</div>
+</div>
+<div class="section" id="smb">
+<h2><a class="toc-backref" href="#id5">smb をマウント</a><a class="headerlink" href="#smb" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> dnf install cifs-utils
+
+<span class="gp">#</span> cat &gt; /etc/samba_cred
+<span class="go">username=username</span>
+<span class="go">password=password</span>
+<span class="go">domain=domain</span>
+<span class="gp">#</span> chmod <span class="m">0700</span> /etc/samba_cred
+
+<span class="gp">#</span> mount -t cifs //machine-name/Document /mnt <span class="se">\</span>
+<span class="go">  -o credentials=/etc/samba_cred,uid=1000,gid=1000,netbiosname=machine-name,iocharset=utf8,rw</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vim">
+<h2><a class="toc-backref" href="#id6">Vim</a><a class="headerlink" href="#vim" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="tip_vim.html">Vim</a></p>
+</div>
+<div class="section" id="python">
+<h2><a class="toc-backref" href="#id7">Python</a><a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="tip_python.html">Python</a></p>
+</div>
+<div class="section" id="mysql-dump">
+<h2><a class="toc-backref" href="#id8">MySQL dump で圧縮してダンプする</a><a class="headerlink" href="#mysql-dump" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mysqldump -u user -p -h host --default-character-set<span class="o">=</span>binary <span class="se">\</span>
+<span class="go">  -c --compact -n -t dbname tables \</span>
+<span class="go">  | gzip &gt; mysqldump-`date +%Y_%m%d_%H%M%S`.sql.gz</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="docker">
+<h2><a class="toc-backref" href="#id9">Docker</a><a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="dockerfile">
+<h3><a class="toc-backref" href="#id10">特定の Dockerfile でビルド</a><a class="headerlink" href="#dockerfile" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> docker build -t local-xxx -f Dockerfile .
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id11">コンテナ削除</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> docker rm <span class="sb">`</span>docker ps -a -q<span class="sb">`</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="none-image">
+<h3><a class="toc-backref" href="#id12">(none) image 削除</a><a class="headerlink" href="#none-image" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> docker rmi <span class="sb">`</span>docker images <span class="p">|</span> awk <span class="s1">&#39;/^&lt;none&gt;/ { print $3 }&#39;</span><span class="sb">`</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.6</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../sources/tip/index.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
