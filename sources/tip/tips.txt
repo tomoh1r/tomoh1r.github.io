@@ -34,20 +34,13 @@ smb をマウント
    # dnf install cifs-utils
 
    # cat > /etc/samba_cred
-   username=user123
-   password=password123
-   domain=WORKSPACE1
+   username=username
+   password=password
+   domain=domain
    # chmod 0700 /etc/samba_cred
 
-   # mount -t cifs //BNAME/Document /mnt \
-     -o credentials=/etc/samba_cred,uid=1000,gid=1000,netbiosname=BNAME,iocharset=utf8,rw
-
-ただし、以下を想定している。
-
-:netbios name: BNAME
-:domain: WORKSPACE1
-:username: user123
-:password: password123
+   # mount -t cifs //machine-name/Document /mnt \
+     -o credentials=/etc/samba_cred,uid=1000,gid=1000,netbiosname=machine-name,iocharset=utf8,rw
 
 Vim
 ====
