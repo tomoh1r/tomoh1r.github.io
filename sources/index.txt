@@ -19,6 +19,11 @@
 `about.me <https://about.me/tomohiro.nakamura>`__
 =================================================
 
+slides
+======
+
+* 2016/09 PyCon JP 2016 LT `How to modularize Pyramid/Cornice/Colander codes -- PyCon JP 2016 LT <http://www.slideshare.net/__10100__/how-to-modularize-pyramidcornicecolander-codes-pycon-jp-2016-lt>`__
+
 blogs
 =====
 
