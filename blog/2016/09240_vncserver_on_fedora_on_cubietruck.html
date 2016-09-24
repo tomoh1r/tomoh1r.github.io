@@ -2,10 +2,10 @@
 <html lang="ja">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <meta charset="utf-8" />
-    <meta property="og:title" content="pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する" />
+    <meta property="og:title" content="VNC Server を Cubietruck (ARM) 上に立てる" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する" />
-    <meta property="og:url" content="http://jptomo.github.io/blog/2016/09191_pipsi_with_custome_location.html" />
+    <meta property="og:description" content="VNC Server を Cubietruck (ARM) 上に立てる" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/09240_vncserver_on_fedora_on_cubietruck.html" />
     <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
     <meta property="og:site_name" content="適当に だらだらと 楽しく" />
     <meta property="og:email" content="quickness.net@gmail.com" />
@@ -14,7 +14,7 @@
     <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
     <meta name="twitter:image:width" content="632" />
     <meta name="twitter:image:height" content="512" />
-    <title>pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する &mdash; 適当に だらだらと 楽しく</title>
+    <title>VNC Server を Cubietruck (ARM) 上に立てる &mdash; 適当に だらだらと 楽しく</title>
     <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
@@ -31,8 +31,8 @@
     <script type="text/javascript" src="../../static/underscore.js"></script>
     <script type="text/javascript" src="../../static/doctools.js"></script>
     <script type="text/javascript" src="../../static/translations.js"></script>
-    <link rel="next" title="VNC Server を Cubietruck (ARM) 上に立てる" href="09240_vncserver_on_fedora_on_cubietruck.html" />
-    <link rel="prev" title="pip-compile で書き出す際にパッケージを更新する場合は U オプションをつける" href="09190_update_pip_comile_packages.html" />
+    <link rel="next" title="tips" href="../../tip/index.html" />
+    <link rel="prev" title="pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する" href="09191_pipsi_with_custome_location.html" />
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
@@ -44,20 +44,18 @@
           <div class="body" role="main">
             <p><a href="/">&lt;&lt; top</a></p>
             
-  <div class="section" id="pipsi-bin">
-<h1>pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する<a class="headerlink" href="#pipsi-bin" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><span class="blog_date">2016/09/19</span></p>
-<p>Python の便利ツールインストールしたいけど今の環境には入れたくない場合など pipsi
-はとても便利ですね。</p>
-<p>普通、 pipsi を利用する際は <code class="docutils literal"><span class="pre">~/.local/venvs</span></code> に環境が作られ、 <code class="docutils literal"><span class="pre">~/.local/bin</span></code>
-に実行ファイルが配置されると思います。しかし、場合によっては別の場所に作成して欲しい場合があると思います。</p>
-<p>僕はそれに当たりました。</p>
-<p>この場合 <code class="docutils literal"><span class="pre">PIPSI_HOME</span></code>/<code class="docutils literal"><span class="pre">PIPSI_BIN_DIR</span></code> を指定すると対応できます。
-お試しあれ。</p>
-<p>以下実行例。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">PIPSI_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/misc/venvs
-<span class="gp">$</span> <span class="nb">export</span> <span class="nv">PIPSI_BIN_DIR</span><span class="o">=</span><span class="nv">$HOME</span>/misc/bin
-<span class="gp">$</span> python3.5 -m pipsi install pip-tools
+  <div class="section" id="vnc-server-cubietruck-arm">
+<h1>VNC Server を Cubietruck (ARM) 上に立てる<a class="headerlink" href="#vnc-server-cubietruck-arm" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/09/24</span></p>
+<p>Cubietruck に Fedora 24 をインストールの後、以下のコマンドでインストール、実行できる。</p>
+<p>まんま <a class="reference external" href="https://www.server-world.info/query?os=Fedora_24&amp;p=desktop&amp;f=6">Fedora 24 : VNCサーバーの設定 ： Server World</a> の手順となっているが、 Systemd への登録が
+うまくいかなかったので、毎度のシステム再起動時に手動で <code class="docutils literal"><span class="pre">vncserver</span></code> 起動している。</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo dnf -y install tigervnc-server
+<span class="gp">$</span> sudo firewall-cmd --add-service<span class="o">=</span>vnc-server --permanent
+<span class="gp">$</span> sudo firewall-cmd --reload
+
+<span class="gp">$</span> vncserver :1 -geometry 1024x768 -depth 16
+<span class="gp">$</span> vncserver -kill :1
 </pre></div>
 </div>
 </div>
@@ -73,7 +71,7 @@
     </div>
     <div class="footer">
       &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.6</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/09191_pipsi_with_custome_location.txt"
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/09240_vncserver_on_fedora_on_cubietruck.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

@@ -1,0 +1,21 @@
+=========================================
+VNC Server を Cubietruck (ARM) 上に立てる
+=========================================
+
+:blog_date:`2016/09/24`
+
+Cubietruck に Fedora 24 をインストールの後、以下のコマンドでインストール、実行できる。
+
+まんま `Fedora 24 : VNCサーバーの設定 ： Server World`_ の手順となっているが、 Systemd への登録が
+うまくいかなかったので、毎度のシステム再起動時に手動で ``vncserver`` 起動している。
+
+.. code-block:: console
+
+   $ sudo dnf -y install tigervnc-server
+   $ sudo firewall-cmd --add-service=vnc-server --permanent
+   $ sudo firewall-cmd --reload
+
+   $ vncserver :1 -geometry 1024x768 -depth 16
+   $ vncserver -kill :1
+
+.. _`Fedora 24 : VNCサーバーの設定 ： Server World`: https://www.server-world.info/query?os=Fedora_24&p=desktop&f=6
