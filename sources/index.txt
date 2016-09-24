@@ -22,7 +22,11 @@
 slides
 ======
 
-* 2016/09 PyCon JP 2016 LT `How to modularize Pyramid/Cornice/Colander codes -- PyCon JP 2016 LT <http://www.slideshare.net/__10100__/how-to-modularize-pyramidcornicecolander-codes-pycon-jp-2016-lt>`__
+* 2016/09 `PyCon JP 2016`_ LT `How to modularize Pyramid/Cornice/Colander codes -- PyCon JP 2016 LT`_
+
+
+.. _`How to modularize Pyramid/Cornice/Colander codes -- PyCon JP 2016 LT`: http://www.slideshare.net/__10100__/how-to-modularize-pyramidcornicecolander-codes-pycon-jp-2016-lt
+.. _`PyCon JP 2016`: https://pycon.jp/2016/ja/
 
 blogs
 =====
