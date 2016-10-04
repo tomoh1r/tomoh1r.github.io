@@ -2,10 +2,10 @@
 <html lang="ja">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <meta charset="utf-8" />
-    <meta property="og:title" content="VNC Server を Cubietruck (ARM) 上に立てる" />
+    <meta property="og:title" content="Cornice 自体のユニットテストのやりかた" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="VNC Server を Cubietruck (ARM) 上に立てる" />
-    <meta property="og:url" content="http://jptomo.github.io/blog/2016/09240_vncserver_on_fedora_on_cubietruck.html" />
+    <meta property="og:description" content="Cornice 自体のユニットテストのやりかた" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/10040_how_to_unit_test_cornice.html" />
     <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
     <meta property="og:site_name" content="適当に だらだらと 楽しく" />
     <meta property="og:email" content="quickness.net@gmail.com" />
@@ -14,7 +14,7 @@
     <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
     <meta name="twitter:image:width" content="632" />
     <meta name="twitter:image:height" content="512" />
-    <title>VNC Server を Cubietruck (ARM) 上に立てる &mdash; 適当に だらだらと 楽しく</title>
+    <title>Cornice 自体のユニットテストのやりかた &mdash; 適当に だらだらと 楽しく</title>
     <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
@@ -31,8 +31,8 @@
     <script type="text/javascript" src="../../static/underscore.js"></script>
     <script type="text/javascript" src="../../static/doctools.js"></script>
     <script type="text/javascript" src="../../static/translations.js"></script>
-    <link rel="next" title="Cornice 自体のユニットテストのやりかた" href="10040_how_to_unit_test_cornice.html" />
-    <link rel="prev" title="pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する" href="09191_pipsi_with_custome_location.html" />
+    <link rel="next" title="tips" href="../../tip/index.html" />
+    <link rel="prev" title="VNC Server を Cubietruck (ARM) 上に立てる" href="09240_vncserver_on_fedora_on_cubietruck.html" />
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
@@ -44,19 +44,29 @@
           <div class="body" role="main">
             <p><a href="/">&lt;&lt; top</a></p>
             
-  <div class="section" id="vnc-server-cubietruck-arm">
-<h1>VNC Server を Cubietruck (ARM) 上に立てる<a class="headerlink" href="#vnc-server-cubietruck-arm" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><span class="blog_date">2016/09/24</span></p>
-<p>Cubietruck に Fedora 24 をインストールの後、以下のコマンドでインストール、実行できる。</p>
-<p>まんま <a class="reference external" href="https://www.server-world.info/query?os=Fedora_24&amp;p=desktop&amp;f=6">Fedora 24 : VNCサーバーの設定 ： Server World</a> の手順となっているが、 Systemd への登録が
-うまくいかなかったので、毎度のシステム再起動時に手動で <code class="docutils literal"><span class="pre">vncserver</span></code> 起動している。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo dnf -y install tigervnc-server
-<span class="gp">$</span> sudo firewall-cmd --add-service<span class="o">=</span>vnc-server --permanent
-<span class="gp">$</span> sudo firewall-cmd --reload
-
-<span class="gp">$</span> vncserver :1 -geometry 1024x768 -depth 16
-<span class="gp">$</span> vncserver -kill :1
+  <div class="section" id="cornice">
+<h1>Cornice 自体のユニットテストのやりかた<a class="headerlink" href="#cornice" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/10/04</span></p>
+<p>自分向けのメモ的な</p>
+<div class="section" id="id1">
+<h2>通常のユニットテスト<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ~/misc/lib/python/3.4.5/bin/python3.4 -m venv --clear venv
+<span class="gp">$</span> ./venv/bin/python3.4 setup.py develop
+<span class="gp">$</span> ./venv/bin/python3.4 -m pip install -U nose coverage webtest unittest2 <span class="se">\</span>
+<span class="go">    mock colander Sphinx rxjson</span>
+<span class="gp">$</span> ./venv/bin/nosetests --with-coverage --cover-package<span class="o">=</span>cornice
 </pre></div>
+</div>
+</div>
+<div class="section" id="tox">
+<h2>tox を利用したユニットテスト<a class="headerlink" href="#tox" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> /path/to/python2.7 virtualenv.py -p /path/to/python2.7 <span class="se">\</span>
+<span class="go">    --clear --no-setuptools --no-pip --no-wheel venv</span>
+<span class="gp">$</span> ./venv/bin/python2.7 get-pip.py
+<span class="gp">$</span> ./venv/bin/python2.7 -m pip install tox
+<span class="gp">$</span> <span class="nv">PATH</span><span class="o">=</span>/path/to/2.7/bin:/path/to/3.4/bin:<span class="nv">$PATH</span> ./venv/bin/tox
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -71,7 +81,7 @@
     </div>
     <div class="footer">
       &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.6</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/09240_vncserver_on_fedora_on_cubietruck.txt"
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/10040_how_to_unit_test_cornice.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

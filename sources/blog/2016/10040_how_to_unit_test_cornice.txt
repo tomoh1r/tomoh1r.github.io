@@ -1,0 +1,29 @@
+======================================
+Cornice 自体のユニットテストのやりかた
+======================================
+
+:blog_date:`2016/10/04`
+
+自分向けのメモ的な
+
+通常のユニットテスト
+====================
+
+.. code-block:: console
+
+   $ ~/misc/lib/python/3.4.5/bin/python3.4 -m venv --clear venv
+   $ ./venv/bin/python3.4 setup.py develop
+   $ ./venv/bin/python3.4 -m pip install -U nose coverage webtest unittest2 \
+       mock colander Sphinx rxjson
+   $ ./venv/bin/nosetests --with-coverage --cover-package=cornice
+
+tox を利用したユニットテスト
+============================
+
+.. code-block:: console
+
+   $ /path/to/python2.7 virtualenv.py -p /path/to/python2.7 \
+       --clear --no-setuptools --no-pip --no-wheel venv
+   $ ./venv/bin/python2.7 get-pip.py
+   $ ./venv/bin/python2.7 -m pip install tox
+   $ PATH=/path/to/2.7/bin:/path/to/3.4/bin:$PATH ./venv/bin/tox
