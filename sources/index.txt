@@ -5,7 +5,7 @@
 ..
   new
   - ソーシャルボタン
-  - タグ機能
+  - タグクラウド
   - インデント調整機能
 
 `about.me <https://about.me/tomohiro.nakamura>`__
