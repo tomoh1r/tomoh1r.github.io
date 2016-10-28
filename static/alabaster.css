@@ -172,6 +172,20 @@ div.sphinxsidebar hr {
 
 /* -- body styles ----------------------------------------------------------- */
 
+div.body > ul:nth-child(1) {
+    list-style-type: none;
+    margin-left: 0;
+}
+
+div.body > ul:nth-child(1) > li {
+    float: left;
+    padding-right: 10px;
+}
+
+.clearer {
+    clear: both;
+}
+
 a {
     color: #004B6B;
     text-decoration: underline;
