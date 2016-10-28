@@ -1,12 +1,7 @@
 @charset "utf-8";
 
-@font-face{
-  font-family: 'mplus-1c-regular';
-  src: url('https://mplus-webfonts.osdn.jp/mplus-1c-regular.eot');
-  src: url('https://mplus-webfonts.osdn.jp/mplus-1c-regular.eot?#iefix') format('embedded-opentype'),
-       url('https://mplus-webfonts.osdn.jp/mplus-1c-regular.woff') format('woff'),
-       url('https://mplus-webfonts.osdn.jp/mplus-1c-regular.ttf') format('truetype');
-}
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+
 
 @font-face{
   font-family: 'mplus-1mn-regular';
@@ -21,7 +16,7 @@
 /* -- page layout ----------------------------------------------------------- */
 
 body {
-    font-family: mplus-1c-regular;
+    font-family: Noto Sans Japanese;
     font-size: 16px;
     background-color: white;
     color: #000;
@@ -116,7 +111,7 @@ div.sphinxsidebarwrapper p.blurb {
 
 div.sphinxsidebar h3,
 div.sphinxsidebar h4 {
-    font-family: mplus-1c-regular;
+    font-family: Noto Sans Japanese;
     color: #444;
     font-size: 24px;
     font-weight: normal;
@@ -160,7 +155,7 @@ div.sphinxsidebar ul li.toctree-l2 > a {
 
 div.sphinxsidebar input {
     border: 1px solid #CCC;
-    font-family: mplus-1c-regular;
+    font-family: Noto Sans Japanese;
     font-size: 1em;
 }
 
@@ -193,7 +188,7 @@ div.body h3,
 div.body h4,
 div.body h5,
 div.body h6 {
-    font-family: mplus-1c-regular;
+    font-family: Noto Sans Japanese;
     font-weight: normal;
     margin: 30px 0px 10px 0px;
     padding: 0;
@@ -238,7 +233,7 @@ dd div.admonition {
 }
 
 div.admonition p.admonition-title {
-    font-family: mplus-1c-regular;
+    font-family: Noto Sans Japanese;
     font-weight: normal;
     font-size: 24px;
     margin: 0 0 10px 0;
