@@ -3,18 +3,10 @@
 ========================
 
 ..
-  on going
-  - OGP / Twitter Card
-
-..
   new
   - ソーシャルボタン
-  - RSS
   - タグ機能
-  - github-pages 管理リポジトリ向けの README.rst 出力機能
-  - 下書き機能、 rst の先頭になにかロールを書いておくなど
   - インデント調整機能
-
 
 `about.me <https://about.me/tomohiro.nakamura>`__
 =================================================
@@ -28,8 +20,8 @@ slides
 .. _`How to modularize Pyramid/Cornice/Colander codes -- PyCon JP 2016 LT`: http://www.slideshare.net/__10100__/how-to-modularize-pyramidcornicecolander-codes-pycon-jp-2016-lt
 .. _`PyCon JP 2016`: https://pycon.jp/2016/ja/
 
-blogs
-=====
+blogs (rss_/atom_)
+==================
 
 .. blog_toctree::
    :glob:
@@ -43,6 +35,9 @@ blogs
    blog/2016/[0-9]*
 
 - :doc:`blog/archives`
+
+.. _rss: https://jptomo.github.io/rss2.xml
+.. _atom:  https://jptomo.github.io/atom.xml
 
 tips
 ====
