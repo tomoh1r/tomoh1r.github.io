@@ -175,6 +175,7 @@ div.sphinxsidebar hr {
 div.body > ul:nth-child(1) {
     list-style-type: none;
     margin-left: 0;
+    padding-bottom: 20px;
 }
 
 div.body > ul:nth-child(1) > li {
