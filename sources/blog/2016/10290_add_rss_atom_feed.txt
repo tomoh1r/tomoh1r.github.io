@@ -35,7 +35,7 @@ RSS2.0/Atom は XML を構成し書き出す必要があるのですが以下の
    feed = Element('feed', {u'xmlns': u'http://www.w3.org/2005/Atom',
                            u'xml:lang': LANG})
    SubElement(feed, 'id').text = u'site の id'
-   ElementTree(feed).write(fpath, encoding="utf-8", xml_declaration=True))
+   ElementTree(feed).write('blahblahblah.xml', encoding="utf-8", xml_declaration=True))
 
 最近 GCP でシステムを構築していて、システム周りの作業が多くなり Python を書けて
 いない中でなんとか生み出せて良かった。。。
