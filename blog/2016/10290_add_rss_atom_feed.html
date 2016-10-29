@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="今更ですが RSS2.0/Atom Feed を配信するようにしました" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="今更ですが RSS2.0/Atom Feed を配信するようにしました" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/10290_add_rss_atom_feed.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@tomoh1r" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>今更ですが RSS2.0/Atom Feed を配信するようにしました &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="tips" href="../../tip/index.html" />
+    <link rel="prev" title="Cornice 自体のユニットテストのやりかた" href="10040_how_to_unit_test_cornice.html" />
+    <meta name="viewport" content="width=480">
+
+    <link rel="alternate" type="application/rss+xml" href="/rss2.xml" title="適当に だらだらと 楽しく" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="適当に だらだらと 楽しく" />
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            <ul>
+              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="/blog/archives.html">archives</a></li>
+              <li><a href="/tip/index.html">tips</a></li>
+            </ul>
+            <div class="clearer"></div>
+            
+  <div class="section" id="rss2-0-atom-feed">
+<h1>今更ですが RSS2.0/Atom Feed を配信するようにしました<a class="headerlink" href="#rss2-0-atom-feed" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/10/29</span></p>
+<p>旧時代的かもしれませんが、幾人から要望があったので RSS2.0/Atom Feed を配信するようにしました。
+ただし、エントリー毎のサマリーはまだ適当で、なんとかしないと。</p>
+<ul class="simple">
+<li><a class="reference external" href="/rss2.xml">rss2.0</a></li>
+<li><a class="reference external" href="/atom.xml">atom</a></li>
+</ul>
+<p>以下を参照にしました。</p>
+<ul class="simple">
+<li><a class="reference external" href="http://amarron.hatenablog.com/entry/2014/03/14/200556">RSS1.0,RSS2.0,ATOM のフォーマット・仕様・構造 - Amarronの日記</a></li>
+<li><a class="reference external" href="http://techmemo.biz/html/rss-feed-link-head-html/">RSSフィードが存在することを知らせるためのlinkタグ | TechMemo</a></li>
+</ul>
+<p>作業中、以下の validation が非常に役立ちました。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://validator.w3.org/feed/">W3C Feed Validation Service, for Atom and RSS</a></li>
+</ul>
+<p>作業中思ったことは、 Python はやはり batteries included な言語であって、便利だと
+思いました。</p>
+<p>RSS2.0/Atom は XML を構成し書き出す必要があるのですが以下のコードで簡単に処理す
+ることができました。Python 便利。</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ElementTree</span><span class="p">,</span>
+    <span class="n">Element</span><span class="p">,</span>
+    <span class="n">SubElement</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">feed</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">u&#39;xmlns&#39;</span><span class="p">:</span> <span class="s1">u&#39;http://www.w3.org/2005/Atom&#39;</span><span class="p">,</span>
+                        <span class="s1">u&#39;xml:lang&#39;</span><span class="p">:</span> <span class="n">LANG</span><span class="p">})</span>
+<span class="n">SubElement</span><span class="p">(</span><span class="n">feed</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">u&#39;site の id&#39;</span>
+<span class="n">ElementTree</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">xml_declaration</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>最近 GCP でシステムを構築していて、システム周りの作業が多くなり Python を書けて
+いない中でなんとか生み出せて良かった。。。</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/10290_add_rss_atom_feed.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

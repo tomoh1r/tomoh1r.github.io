@@ -36,8 +36,8 @@ blogs
 
 :doc:`blog/archives` rss2.0_ atom_
 
-.. _rss2.0: https://jptomo.github.io/rss2.xml
-.. _atom:  https://jptomo.github.io/atom.xml
+.. _rss2.0: /rss2.xml
+.. _atom:  /atom.xml
 
 tips
 ====

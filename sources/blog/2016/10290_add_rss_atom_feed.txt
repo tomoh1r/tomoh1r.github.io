@@ -1,0 +1,41 @@
+====================================================
+今更ですが RSS2.0/Atom Feed を配信するようにしました
+====================================================
+
+:blog_date:`2016/10/29`
+
+旧時代的かもしれませんが、幾人から要望があったので RSS2.0/Atom Feed を配信するようにしました。
+ただし、エントリー毎のサマリーはまだ適当で、なんとかしないと。
+
+* `rss2.0 </rss2.xml>`__
+* `atom </atom.xml>`__
+
+以下を参照にしました。
+
+* `RSS1.0,RSS2.0,ATOM のフォーマット・仕様・構造 - Amarronの日記 <http://amarron.hatenablog.com/entry/2014/03/14/200556>`__
+* `RSSフィードが存在することを知らせるためのlinkタグ | TechMemo <http://techmemo.biz/html/rss-feed-link-head-html/>`__
+
+作業中、以下の validation が非常に役立ちました。
+
+* `W3C Feed Validation Service, for Atom and RSS <https://validator.w3.org/feed/>`__
+
+作業中思ったことは、 Python はやはり batteries included な言語であって、便利だと
+思いました。
+
+RSS2.0/Atom は XML を構成し書き出す必要があるのですが以下のコードで簡単に処理す
+ることができました。Python 便利。
+
+.. code-block:: python
+
+   from xml.etree.ElementTree import (
+       ElementTree,
+       Element,
+       SubElement,
+   )
+   feed = Element('feed', {u'xmlns': u'http://www.w3.org/2005/Atom',
+                           u'xml:lang': LANG})
+   SubElement(feed, 'id').text = u'site の id'
+   ElementTree(feed).write(fpath, encoding="utf-8", xml_declaration=True))
+
+最近 GCP でシステムを構築していて、システム周りの作業が多くなり Python を書けて
+いない中でなんとか生み出せて良かった。。。
