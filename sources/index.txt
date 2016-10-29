@@ -20,8 +20,8 @@ slides
 .. _`How to modularize Pyramid/Cornice/Colander codes -- PyCon JP 2016 LT`: http://www.slideshare.net/__10100__/how-to-modularize-pyramidcornicecolander-codes-pycon-jp-2016-lt
 .. _`PyCon JP 2016`: https://pycon.jp/2016/ja/
 
-blogs (rss_/atom_)
-==================
+blogs
+=====
 
 .. blog_toctree::
    :glob:
@@ -34,7 +34,7 @@ blogs (rss_/atom_)
    blog/2015/[0-9]*
    blog/2016/[0-9]*
 
-- :doc:`blog/archives`
+:doc:`blog/archives` rss_ atom_
 
 .. _rss: https://jptomo.github.io/rss2.xml
 .. _atom:  https://jptomo.github.io/atom.xml

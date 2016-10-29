@@ -4,8 +4,34 @@
 archives
 ========
 
+2016
+====
+
+slides
+------
+
+* 2016/09 `PyCon JP 2016`_ LT `How to modularize Pyramid/Cornice/Colander codes -- PyCon JP 2016 LT`_
+
 blogs
-=====
+-----
+
+.. blog_toctree::
+   :glob:
+   :titlesonly:
+   :maxdepth: 1
+   :reverse:
+   :display_blog_date:
+
+   2016/[0-9]*
+
+.. _`How to modularize Pyramid/Cornice/Colander codes -- PyCon JP 2016 LT`: http://www.slideshare.net/__10100__/how-to-modularize-pyramidcornicecolander-codes-pycon-jp-2016-lt
+.. _`PyCon JP 2016`: https://pycon.jp/2016/ja/
+
+2015
+====
+
+blogs
+-----
 
 .. blog_toctree::
    :glob:
@@ -15,4 +41,3 @@ blogs
    :display_blog_date:
 
    2015/[0-9]*
-   2016/[0-9]*
