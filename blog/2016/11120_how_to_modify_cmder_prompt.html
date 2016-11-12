@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="Cmder の Prompt を修正する方法" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Cmder の Prompt を修正する方法" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/11120_how_to_modify_cmder_prompt.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@tomoh1r" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>Cmder の Prompt を修正する方法 &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="tips" href="../../tip/index.html" />
+    <link rel="prev" title="今更ですが RSS2.0/Atom Feed を配信するようにしました" href="10290_add_rss_atom_feed.html" />
+    <meta name="viewport" content="width=480">
+
+    <link rel="alternate" type="application/rss+xml" href="/rss2.xml" title="適当に だらだらと 楽しく" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="適当に だらだらと 楽しく" />
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            <ul>
+              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="/blog/archives.html">archives</a></li>
+              <li><a href="/tip/index.html">tips</a></li>
+            </ul>
+            <div class="clearer"></div>
+            
+  <div class="section" id="cmder-prompt">
+<h1>Cmder の Prompt を修正する方法<a class="headerlink" href="#cmder-prompt" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/11/12</span></p>
+<p>Cmder のデフォルトのプロンプトのらむだが表示上邪魔になるときがある。以下はその際
+にプロンプトを変える手順を記す。</p>
+<p><a class="reference external" href="http://cmder.net/">Cmder</a> の新しめのバージョンは内部で <a class="reference external" href="https://mridgers.github.io/clink/">Clink</a> の lua 処理で Prompt を設定している。そのため、 <code class="docutils literal"><span class="pre">config\user-profile.cmd</span></code> で <code class="docutils literal"><span class="pre">Prompt</span></code> の設定をしてもうまく反映されない。</p>
+<p>そのため、 <code class="docutils literal"><span class="pre">config\*.lua</span></code> として適当な Lua ファイルを作成し、そこで <code class="docutils literal"><span class="pre">clink.prompt.register_filter(set_my_prompt_filter,</span> <span class="pre">1)</span></code> などとして適当に上書きすると良い。</p>
+<p>僕は <code class="docutils literal"><span class="pre">vendor\clink.lua</span></code> から <code class="docutils literal"><span class="pre">set_prompt_filter()</span></code> を参照し、以下のようにし
+て <code class="docutils literal"><span class="pre">config\prompt.lua</span></code> ファイルを作成して対応している。</p>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">set_my_prompt_filter</span><span class="p">()</span>
+    <span class="c1">-- get_cwd() is differently encoded than the clink.prompt.value, so everything other than</span>
+    <span class="c1">-- pure ASCII will get garbled. So try to parse the current directory from the original prompt</span>
+    <span class="c1">-- and only if that doesn&#39;t work, use get_cwd() directly.</span>
+    <span class="c1">-- The matching relies on the default prompt which ends in X:\PATH\PATH&gt;</span>
+    <span class="c1">-- (no network path possible here!)</span>
+    <span class="kd">local</span> <span class="n">old_prompt</span> <span class="o">=</span> <span class="n">clink</span><span class="p">.</span><span class="n">prompt</span><span class="p">.</span><span class="n">value</span>
+    <span class="kd">local</span> <span class="n">cwd</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">.*(.:[^&gt;]*)&gt;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cwd</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">then</span> <span class="n">cwd</span> <span class="o">=</span> <span class="n">clink</span><span class="p">.</span><span class="n">get_cwd</span><span class="p">()</span> <span class="k">end</span>
+
+    <span class="c1">-- environment systems like pythons virtualenv change the PROMPT and usually</span>
+    <span class="c1">-- set some variable. But the variables are differently named and we would never</span>
+    <span class="c1">-- get them all, so try to parse the env name out of the PROMPT.</span>
+    <span class="c1">-- envs are usually put in round or square parentheses and before the old prompt</span>
+    <span class="kd">local</span> <span class="n">env</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">.*%(([^%)]+)%).+:&#39;</span><span class="p">)</span>
+    <span class="c1">-- also check for square brackets</span>
+    <span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">then</span> <span class="n">env</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">.*%[([^%]]+)%].+:&#39;</span><span class="p">)</span> <span class="k">end</span>
+
+    <span class="c1">-- build our own prompt</span>
+    <span class="c1">-- orig: $E[1;32;40m$P$S{git}{hg}$S$_$E[1;30;40m{lamb}$S$E[0m</span>
+    <span class="c1">-- color codes: &quot;\x1b[1;37;40m&quot;</span>
+    <span class="kd">local</span> <span class="n">cmder_prompt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">\x1b[1;32;40m{cwd} {git}{hg} </span><span class="se">\n</span><span class="s">\x1b[1;30;40m{lamb} \x1b[0m&quot;</span>
+    <span class="n">cmder_prompt</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="n">cmder_prompt</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">{cwd}&quot;</span><span class="p">,</span> <span class="n">cwd</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">then</span>
+        <span class="n">lambda</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">&gt;&quot;</span>
+    <span class="k">else</span>
+        <span class="n">lambda</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">(&quot;</span><span class="o">..</span><span class="n">env</span><span class="o">..</span><span class="s2">&quot;</span><span class="s">) &gt;&quot;</span>
+    <span class="k">end</span>
+    <span class="n">clink</span><span class="p">.</span><span class="n">prompt</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="n">cmder_prompt</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">{lamb}&quot;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">)</span>
+<span class="k">end</span>
+
+
+<span class="n">clink</span><span class="p">.</span><span class="n">prompt</span><span class="p">.</span><span class="n">register_filter</span><span class="p">(</span><span class="n">set_my_prompt_filter</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/11120_how_to_modify_cmder_prompt.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
