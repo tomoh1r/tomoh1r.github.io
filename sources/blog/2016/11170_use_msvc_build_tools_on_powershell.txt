@@ -1,0 +1,33 @@
+===============================================================
+PowerShell 上で Microsoft Visual C++ Build Tools を利用する方法
+===============================================================
+
+:blog_date:`2016/11/17`
+
+MS は VS 2015 に対応するツール群を
+`Visual C++ Build Tools <http://landinghub.visualstudio.com/visual-cpp-build-tools>`__
+として公開している。
+
+素晴らしけど、 bat 形式のセットアップツールしかインストールされないので
+PowerShell からだとつらい。
+
+この場合、 `WintellectPowerShell <https://github.com/Wintellect/WintellectPowerShell>`__
+をインストールし、中に入っている Invoke-CmdScript を利用するとよい。
+
+具体的には
+
+.. code-block:: powershell
+
+   > Install-Module -Name WintellectPowerShell -Scope CurrentUser -Force -AllowClobber
+
+としてインストールし、以下の設定をプロファイルに記載する。
+
+.. code-block:: powershell
+
+   Import-Module WintellectPowerShell
+   Invoke-CmdScript -script "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" amd64
+
+利用時にエラーが出る場合は、
+``WintellectPowerShell\3.3.2.0\Code\Set-ProjectProperties.ps1``
+の先頭のほうの ``Set-StrictMode`` が化けている場合があるので、
+``Set-StrictMode -Version Latest`` などと書き換えて利用するとよい。

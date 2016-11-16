@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="PowerShell 上で Microsoft Visual C++ Build Tools を利用する方法" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="PowerShell 上で Microsoft Visual C++ Build Tools を利用する方法" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/11170_use_msvc_build_tools_on_powershell.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@tomoh1r" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>PowerShell 上で Microsoft Visual C++ Build Tools を利用する方法 &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="tips" href="../../tip/index.html" />
+    <link rel="prev" title="Cmder の Prompt を修正する方法" href="11120_how_to_modify_cmder_prompt.html" />
+    <meta name="viewport" content="width=480">
+
+    <link rel="alternate" type="application/rss+xml" href="/rss2.xml" title="適当に だらだらと 楽しく" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="適当に だらだらと 楽しく" />
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            <ul>
+              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="/blog/archives.html">archives</a></li>
+              <li><a href="/tip/index.html">tips</a></li>
+            </ul>
+            <div class="clearer"></div>
+            
+  <div class="section" id="powershell-microsoft-visual-c-build-tools">
+<h1>PowerShell 上で Microsoft Visual C++ Build Tools を利用する方法<a class="headerlink" href="#powershell-microsoft-visual-c-build-tools" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/11/17</span></p>
+<p>MS は VS 2015 に対応するツール群を
+<a class="reference external" href="http://landinghub.visualstudio.com/visual-cpp-build-tools">Visual C++ Build Tools</a>
+として公開している。</p>
+<p>素晴らしけど、 bat 形式のセットアップツールしかインストールされないので
+PowerShell からだとつらい。</p>
+<p>この場合、 <a class="reference external" href="https://github.com/Wintellect/WintellectPowerShell">WintellectPowerShell</a>
+をインストールし、中に入っている Invoke-CmdScript を利用するとよい。</p>
+<p>具体的には</p>
+<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="p">&gt;</span> <span class="n">Install-Module</span> <span class="n">-Name</span> <span class="n">WintellectPowerShell</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span> <span class="n">-AllowClobber</span>
+</pre></div>
+</div>
+<p>としてインストールし、以下の設定をプロファイルに記載する。</p>
+<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Import-Module</span> <span class="n">WintellectPowerShell</span>
+<span class="nb">Invoke-CmdScript</span> <span class="n">-script</span> <span class="s2">&quot;C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat&quot;</span> <span class="n">amd64</span>
+</pre></div>
+</div>
+<p>利用時にエラーが出る場合は、
+<code class="docutils literal"><span class="pre">WintellectPowerShell\3.3.2.0\Code\Set-ProjectProperties.ps1</span></code>
+の先頭のほうの <code class="docutils literal"><span class="pre">Set-StrictMode</span></code> が化けている場合があるので、
+<code class="docutils literal"><span class="pre">Set-StrictMode</span> <span class="pre">-Version</span> <span class="pre">Latest</span></code> などと書き換えて利用するとよい。</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/11170_use_msvc_build_tools_on_powershell.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
