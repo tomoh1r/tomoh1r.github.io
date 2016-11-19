@@ -1,0 +1,72 @@
+================================
+Pscx\Set-LocationEx はとても便利
+================================
+
+:blog_date:`2016/11/20`
+
+`Pscx <https://github.com/Pscx/Pscx>`_ はいろいろな cmdlet を定義しておりとても
+便利ですが今回は ``Pscx\Set-LocationEx`` をば。
+
+通常 Linux では ``cd -`` で移動前にいたパスに移動できるようです。 (今回の記事で
+僕は初めて知った。。。)
+
+Pscx_ をインストールして有効化すると ``cd`` に対して ``Pscx\Set-LocationEx`` が
+エイリアスとしてつきます。
+
+この cmdlet を利用すると前述の ``cd -`` のみならず、 ``cd +`` も使えるようになり
+ます。
+
+.. code-block:: powershell
+
+   C:\Users\tomo
+   [2016/39/20 12:39:55] PS ~\
+   > cd .\misc\
+   C:\Users\tomo\misc
+   [2016/39/20 12:39:59] PS ~\misc
+   > cd .\dotfiles\
+   C:\Users\tomo\misc\dotfiles
+   (git:master) [2016/40/20 12:40:01] PS ~\misc\dotfiles
+   > Pscx\Set-LocationEx
+
+        # Directory Stack:
+      --- ----------------
+        0 C:\Users\tomo
+        1 C:\Users\tomo\misc
+   ->   2 C:\Users\tomo\misc\dotfiles
+
+この状態で ``cd -`` ``cd +`` を利用すると、
+以下のようにディレクトリを移動できます。
+
+.. code-block:: powershell
+
+   C:\Users\tomo\misc\dotfiles
+   (git:master) [2016/40/20 12:40:13] PS ~\misc\dotfiles
+   > cd -
+   C:\Users\tomo\misc
+   [2016/40/20 12:40:21] PS ~\misc
+   > cd +
+   C:\Users\tomo\misc\dotfiles
+   (git:master) [2016/40/20 12:40:27] PS ~\misc\dotfiles
+
+とても便利なので活用してみてください。　
+
+ただ僕は引数無しの cd は ``$HOME`` ディレクトリに移動してほしい口なので、
+別途以下のように定義して利用しています。
+
+.. code-block:: powershell
+
+   Remove-Item Alias:cd
+   Function cd() {
+       Param(
+           [Parameter(Mandatory = $false, Position = 0)]
+           [string]$Path
+           )
+
+       Process {
+           if([string]::IsNullOrEmpty("$Path")){
+               Pscx\Set-LocationEx -Path $HOME
+           }else{
+               Pscx\Set-LocationEx -Path $Path
+           }
+       }
+   }
