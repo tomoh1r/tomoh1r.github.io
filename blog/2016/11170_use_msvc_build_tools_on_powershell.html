@@ -57,6 +57,10 @@
   <div class="section" id="powershell-microsoft-visual-c-build-tools">
 <h1>PowerShell 上で Microsoft Visual C++ Build Tools を利用する方法<a class="headerlink" href="#powershell-microsoft-visual-c-build-tools" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><span class="blog_date">2016/11/17</span></p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">Pscx に Import-VisualStudioVars があるので、こちらを利用しましょう。 <a class="reference internal" href="#pscx">Pscx を利用しましょう</a> を参照ください。</p>
+</div>
 <p>MS は VS 2015 に対応するツール群を
 <a class="reference external" href="http://landinghub.visualstudio.com/visual-cpp-build-tools">Visual C++ Build Tools</a>
 として公開している。</p>
@@ -77,6 +81,18 @@ PowerShell からだとつらい。</p>
 <code class="docutils literal"><span class="pre">WintellectPowerShell\3.3.2.0\Code\Set-ProjectProperties.ps1</span></code>
 の先頭のほうの <code class="docutils literal"><span class="pre">Set-StrictMode</span></code> が化けている場合があるので、
 <code class="docutils literal"><span class="pre">Set-StrictMode</span> <span class="pre">-Version</span> <span class="pre">Latest</span></code> などと書き換えて利用するとよい。</p>
+<div class="section" id="pscx">
+<span id="id1"></span><h2>Pscx を利用しましょう<a class="headerlink" href="#pscx" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="https://github.com/Wintellect/WintellectPowerShell">WintellectPowerShell</a> も素晴らしいツールなのですが、おそらく通常 PowerShell
+ユーザーでしたら <a class="reference external" href="https://github.com/Pscx/Pscx">Pscx</a> の Import-VisualStudioVars
+cmdlet を利用しましょう。</p>
+<p><a class="reference external" href="https://github.com/Wintellect/WintellectPowerShell">WintellectPowerShell</a> も現時点では 2015/11/17 にメンテされてそうですが、
+わざわざ Import するのも大変だと思うので。</p>
+<p><a class="reference external" href="https://github.com/Pscx/Pscx">Pscx</a> をインストール後にプロファイルファイルにて以下のように指定ください。</p>
+<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Import-VisualStudioVars</span> <span class="n">-VisualStudioVersion</span> <span class="n">2015</span> <span class="n">-Architecture</span> <span class="n">amd64</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

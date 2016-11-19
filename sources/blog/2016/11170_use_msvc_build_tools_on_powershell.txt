@@ -4,6 +4,10 @@ PowerShell 上で Microsoft Visual C++ Build Tools を利用する方法
 
 :blog_date:`2016/11/17`
 
+.. important::
+
+   Pscx に Import-VisualStudioVars があるので、こちらを利用しましょう。 `Pscx を利用しましょう`_ を参照ください。
+
 MS は VS 2015 に対応するツール群を
 `Visual C++ Build Tools <http://landinghub.visualstudio.com/visual-cpp-build-tools>`__
 として公開している。
@@ -11,7 +15,7 @@ MS は VS 2015 に対応するツール群を
 素晴らしけど、 bat 形式のセットアップツールしかインストールされないので
 PowerShell からだとつらい。
 
-この場合、 `WintellectPowerShell <https://github.com/Wintellect/WintellectPowerShell>`__
+この場合、 `WintellectPowerShell <https://github.com/Wintellect/WintellectPowerShell>`_
 をインストールし、中に入っている Invoke-CmdScript を利用するとよい。
 
 具体的には
@@ -31,3 +35,21 @@ PowerShell からだとつらい。
 ``WintellectPowerShell\3.3.2.0\Code\Set-ProjectProperties.ps1``
 の先頭のほうの ``Set-StrictMode`` が化けている場合があるので、
 ``Set-StrictMode -Version Latest`` などと書き換えて利用するとよい。
+
+.. _`Pscx を利用しましょう`:
+
+Pscx を利用しましょう
+=====================
+
+WintellectPowerShell_ も素晴らしいツールなのですが、おそらく通常 PowerShell
+ユーザーでしたら `Pscx <https://github.com/Pscx/Pscx>`_ の Import-VisualStudioVars
+cmdlet を利用しましょう。
+
+WintellectPowerShell_ も現時点では 2015/11/17 にメンテされてそうですが、
+わざわざ Import するのも大変だと思うので。
+
+Pscx_ をインストール後にプロファイルファイルにて以下のように指定ください。
+
+.. code-block:: powershell
+
+   Import-VisualStudioVars -VisualStudioVersion 2015 -Architecture amd64
