@@ -6,7 +6,7 @@ PowerShell 上で Microsoft Visual C++ Build Tools を利用する方法
 
 .. important::
 
-   Pscx に Import-VisualStudioVars があるので、こちらを利用しましょう。 `Pscx を利用しましょう`_ を参照ください。
+   Pscx に Import-VisualStudioVars があるので、こちらを利用ください。 `Pscx を利用ください`_ を参照ください。
 
 MS は VS 2015 に対応するツール群を
 `Visual C++ Build Tools <http://landinghub.visualstudio.com/visual-cpp-build-tools>`__
@@ -36,14 +36,14 @@ PowerShell からだとつらい。
 の先頭のほうの ``Set-StrictMode`` が化けている場合があるので、
 ``Set-StrictMode -Version Latest`` などと書き換えて利用するとよい。
 
-.. _`Pscx を利用しましょう`:
+.. _`Pscx を利用ください`:
 
-Pscx を利用しましょう
-=====================
+Pscx を利用ください
+===================
 
 WintellectPowerShell_ も素晴らしいツールなのですが、おそらく通常 PowerShell
-ユーザーでしたら `Pscx <https://github.com/Pscx/Pscx>`_ の Import-VisualStudioVars
-cmdlet を利用しましょう。
+ユーザーでしたら利用している `Pscx <https://github.com/Pscx/Pscx>`_
+の Import-VisualStudioVars を利用ください。
 
 WintellectPowerShell_ も現時点では 2015/11/17 にメンテされてそうですが、
 わざわざ Import するのも大変だと思うので。
