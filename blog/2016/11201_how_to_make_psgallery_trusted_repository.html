@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="PSGallery を信頼できるリポジトリとして設定する手順" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="PSGallery を信頼できるリポジトリとして設定する手順" />
+    <meta property="og:url" content="http://jptomo.github.io/blog/2016/11201_how_to_make_psgallery_trusted_repository.html" />
+    <meta property="og:image" content="http://jptomo.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@tomoh1r" />
+    <meta name="twitter:image" content="http://jptomo.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>PSGallery を信頼できるリポジトリとして設定する手順 &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="tips" href="../../tip/index.html" />
+    <link rel="prev" title="Pscx\Set-LocationEx はとても便利" href="11200_pscx_set_locationex_is_very_useful.html" />
+    <meta name="viewport" content="width=480">
+
+    <link rel="alternate" type="application/rss+xml" href="/rss2.xml" title="適当に だらだらと 楽しく" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="適当に だらだらと 楽しく" />
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            <ul>
+              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="/blog/archives.html">archives</a></li>
+              <li><a href="/tip/index.html">tips</a></li>
+            </ul>
+            <div class="clearer"></div>
+            
+  <div class="section" id="psgallery">
+<h1>PSGallery を信頼できるリポジトリとして設定する手順<a class="headerlink" href="#psgallery" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2016/11/20</span></p>
+<p>初期だと <code class="docutils literal"><span class="pre">PowerShell</span></code> にて <code class="docutils literal"><span class="pre">Install-Module</span></code> などで <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> が
+信頼されていないリポジトリとして設定されており、以下のような警告が表されると
+思います。</p>
+<div class="highlight-guess"><div class="highlight"><pre><span></span>C:\Users\tomo
+[2016/41/20 10:41:16] PS ~\
+&gt; Find-Module –Includes DSCResource –Name xHyper-V | Install-Module -Scope CurrentUser
+
+信頼されていないリポジトリ
+信頼されていないリポジトリからモジュールをインストールしようとしています。このリポジトリを信頼する場合は、Set-PSRepository コマンドレットを実行して、リポジトリの InstallationPolicy
+の値を変更してください。&#39;https://www.powershellgallery.com/api/v2/&#39; からモジュールをインストールしますか?
+[Y] はい(Y)  [A] すべて続行(A)  [N] いいえ(N)  [L] すべて無視(L)  [S] 中断(S)  [?] ヘルプ (既定値は &quot;N&quot;):
+</pre></div>
+</div>
+<p><a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> はある程度信頼できるだろう、といった場合この警告を表示しないようにする
+ことができます。
+<code class="docutils literal"><span class="pre">Set-PSRepository</span></code> を利用して信頼できるリポジトリとして設定することによって
+<a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> から警告無しにインストールできるようになります。</p>
+<div class="highlight-guess"><div class="highlight"><pre><span></span>[2016/50/20 10:50:44] PS ~\
+&gt; Get-PSRepository
+
+Name                      InstallationPolicy   SourceLocation
+----                      ------------------   --------------
+PSGallery                 Untrusted            https://www.powershellgallery.com/api/v2/
+
+
+C:\Users\tomo
+[2016/51/20 10:51:48] PS ~\
+&gt; Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+C:\Users\tomo
+[2016/51/20 10:51:58] PS ~\
+&gt; Get-PSRepository
+
+Name                      InstallationPolicy   SourceLocation
+----                      ------------------   --------------
+PSGallery                 Trusted              https://www.powershellgallery.com/api/v2/
+</pre></div>
+</div>
+<p>最終的に、 <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> から以下のように警告なくインストールできるようになります。</p>
+<div class="highlight-guess"><div class="highlight"><pre><span></span>C:\Users\tomo
+[2016/52/20 10:52:16] PS ~\
+&gt; Find-Module –Includes DSCResource –Name xHyper-V | Install-Module -Scope CurrentUser
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/11201_how_to_make_psgallery_trusted_repository.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

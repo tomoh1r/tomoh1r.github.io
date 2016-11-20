@@ -1,0 +1,54 @@
+==================================================
+PSGallery を信頼できるリポジトリとして設定する手順
+==================================================
+
+:blog_date:`2016/11/20`
+
+初期だと ``PowerShell`` にて ``Install-Module`` などで `PSGallery <https://www.powershellgallery.com/>`_ が
+信頼されていないリポジトリとして設定されており、以下のような警告が表されると
+思います。
+
+.. code-block:: guess
+
+   C:\Users\tomo
+   [2016/41/20 10:41:16] PS ~\
+   > Find-Module –Includes DSCResource –Name xHyper-V | Install-Module -Scope CurrentUser
+
+   信頼されていないリポジトリ
+   信頼されていないリポジトリからモジュールをインストールしようとしています。このリポジトリを信頼する場合は、Set-PSRepository コマンドレットを実行して、リポジトリの InstallationPolicy
+   の値を変更してください。'https://www.powershellgallery.com/api/v2/' からモジュールをインストールしますか?
+   [Y] はい(Y)  [A] すべて続行(A)  [N] いいえ(N)  [L] すべて無視(L)  [S] 中断(S)  [?] ヘルプ (既定値は "N"):
+
+PSGallery_ はある程度信頼できるだろう、といった場合この警告を表示しないようにする
+ことができます。
+``Set-PSRepository`` を利用して信頼できるリポジトリとして設定することによって
+PSGallery_ から警告無しにインストールできるようになります。
+
+.. code-block:: guess
+
+   [2016/50/20 10:50:44] PS ~\
+   > Get-PSRepository
+
+   Name                      InstallationPolicy   SourceLocation
+   ----                      ------------------   --------------
+   PSGallery                 Untrusted            https://www.powershellgallery.com/api/v2/
+
+
+   C:\Users\tomo
+   [2016/51/20 10:51:48] PS ~\
+   > Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+   C:\Users\tomo
+   [2016/51/20 10:51:58] PS ~\
+   > Get-PSRepository
+
+   Name                      InstallationPolicy   SourceLocation
+   ----                      ------------------   --------------
+   PSGallery                 Trusted              https://www.powershellgallery.com/api/v2/
+
+最終的に、 PSGallery_ から以下のように警告なくインストールできるようになります。
+
+.. code-block:: guess
+
+   C:\Users\tomo
+   [2016/52/20 10:52:16] PS ~\
+   > Find-Module –Includes DSCResource –Name xHyper-V | Install-Module -Scope CurrentUser
