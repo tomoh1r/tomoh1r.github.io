@@ -1,0 +1,79 @@
+==================================
+Windows 10 で Spring Boot を動かす
+==================================
+
+:blog_date:`2016/01/03`
+
+概要
+====
+
+* Windows 10 の PowerShell 上で作業を想定する。
+* 最初に Windows に Java をインストールし Maven を配置する。
+* 最終的に ``mvn archetype:generate`` でプロジェクトを作成し、 ``Hello World``
+  と表示するところまで作業を進める。
+
+手順
+====
+
+1. Java のインストール
+----------------------
+
+1. `Java SE Development Kit 8 Download`_ より JDK をダウンロードする。
+2. 適当な場所にインストールする。
+3. 環境変数を設定する。
+   ``$Env:JAVA_HOME`` に JDK をインストールしたパスを、また ``$Env:JRE_HOME`` に
+   JDK をインストールしたパス配下の ``jre`` ディレクトリを指定する。
+4. JDK をインストールしたパス配下の ``jre\bin`` ディレクトリを ``$Env:Path``
+   に通す。
+
+.. _`Java SE Development Kit 8 Download`: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+2. Maven のインストール
+-----------------------
+
+1. Maven_ のページから左側の Download をクリック。
+2. ページ中程の Files にある Binary zip archive のファイルをダウンロードする。
+3. 適当な場所に 2 のファイルを解凍し、ディレクトリ内の ``bin`` ディレクトリ
+   のパスを ``$Env:Path`` に通しておく。
+
+.. _Maven: https://maven.apache.org/
+
+3. Maven によるプロジェクトの作成
+---------------------------------
+
+1. プロジェクトを作成したい親ディレクトリに PowerShell 上で移動する。
+2. 以下のコマンドを実行する。適宜 ``groupId`` と ``artifactId`` を修正のこと。
+
+   .. code-block:: console
+
+      PS> mvn archetype:generate -B "-DarchetypeGroupId=org.springframework.boot" `
+          "-DarchetypeArtifactId=spring-boot-sample-simple-archetype" `
+          "-DgroupId=com.example" "-DartifactId=hello" "-Dversion=1.0.0-SNAPSHOT" "-DinteractiveMode=false"
+
+.. tip::
+
+   PowerShell 上で mvn コマンドを実行する場合 ``-D`` で始まるオプションは
+   クォートする必要があるようだ。参考: `Maven works in cmd but not powershell`_
+
+.. _`Maven works in cmd but not powershell`: http://stackoverflow.com/questions/21902668/maven-works-in-cmd-but-not-powershell
+
+4. ビルドして実行
+-----------------
+
+.. code-block:: console
+
+   PS> cd hello
+   PS> mvn package
+   (snip)
+   PS> java -jar target\hello-1.0.0-SNAPSHOT.jar --name="foo bar baz"
+   (snip)
+   2017-01-07 17:40:47.802  INFO 5876 --- [main] o.s.j.e.a.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+   Hello foo bar baz
+   (snip)
+
+.. tip:: `Spring Boot Reference Guid - 11. Developing your first Spring Boot application`_
+
+.. _`Spring Boot Reference Guid - 11. Developing your first Spring Boot application`: https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started-first-application
+
+
+
