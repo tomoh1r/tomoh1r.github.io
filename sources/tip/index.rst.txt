@@ -64,6 +64,25 @@ MySQL dump で圧縮してダンプする
      -c --compact -n -t dbname tables \
      | gzip > mysqldump-`date +%Y_%m%d_%H%M%S`.sql.gz
 
+Java
+====
+
+Linux に Official Java をインストールする
+-----------------------------------------
+
+.. code-block:: console
+
+   $ curl -OL -b "oraclelicense=accept-securebackup-cookie" \
+     http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.tar.gz
+   $ tar xf jdk-8u112-linux-x64.tar.gz
+   $ sudo mkdir -p /usr/java
+   $ sudo mv jdk1.8.0_112 /usr/java/
+   $ sudo alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_112/jre/bin/java 1
+   $ sudo alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.0_112/bin/javac 1
+   $ sudo sh -c 'cat >> /etc/environment'
+   JAVA_HOME=/usr/java/jdk1.8.0_112
+   JRE_HOME=/usr/java/jdk1.8.0_112/jre
+
 Docker
 ======
 
