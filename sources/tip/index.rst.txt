@@ -48,6 +48,13 @@ Python
 
 `Python <tip_python.html>`__
 
+closure-linter をインストールする
+=================================
+
+.. code-block:: console
+
+   $ python -m pip install -U install git+https://github.com/google/closure-linter#egg=closure-linter
+
 MySQL dump で圧縮してダンプする
 ===============================
 
