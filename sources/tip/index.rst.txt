@@ -48,6 +48,22 @@ Python
 
 `Python <tip_python.html>`__
 
+Java
+====
+
+雑にプロジェクトを作る
+----------------------
+
+要 Maven/Gradle
+
+.. code-block:: bat
+
+   > mvn.cmd archetype:generate -B "-DarchetypeGroupId=org.springframework.boot" `
+       "-DarchetypeArtifactId=spring-boot-sample-simple-archetype" `
+       "-DgroupId=io.github.jptomo" "-DartifactId=example" "-Dversion=0.0.1-SNAPSHOT" "-DinteractiveMode=false"
+   > cd example
+   > gradle init --type pom
+
 closure-linter をインストールする
 =================================
 
