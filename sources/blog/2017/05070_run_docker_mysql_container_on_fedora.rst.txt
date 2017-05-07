@@ -1,0 +1,141 @@
+================================================
+MySQL の Docker コンテナーを Fedora 上に構築する
+================================================
+
+:blog_date:`2017/05/07`
+
+Alpine Linux で MySQL を立ち上げようかなと思いましたが、主目的は MySQL
+を使えるようにすることなので手軽に MySQL の公式 Docker
+イメージを利用することとしました。
+
+環境
+====
+
+* Fedora 25
+
+目的
+====
+
+* MySQL の Docker コンテナを Fedora 上に立てる。
+* 設定ファイルやデータをコンテナ外にて管理する。
+* Firewalld の設定で Fedora ホスト外からアクセスできるようにする。
+
+手順
+====
+
+以下、 ``/etc/mysql/conf.d`` を設定ファイルの、 ``/var/lib/mysql``
+をデータのホスト上の保存ディレクトリパスとする。
+
+.. contents::
+   :local:
+
+1. docker のインストール
+------------------------
+
+.. code-block:: console
+
+   $ sudo dnf install docker
+
+2. 設定ファイルやデータ向けディレクトリの構築
+---------------------------------------------
+
+.. code-block:: console
+
+   $ mkdir -p /etc/mysql/conf.d
+   $ mkdir -p /var/lib/mysql
+   $ chcon -Rt svirt_sandbox_file_t /etc/mysql/conf.d
+   $ chcon -Rt svirt_sandbox_file_t /var/lib/mysql
+
+3. 自動起動のために Systemd のユニットファイルを作成し起動する
+--------------------------------------------------------------
+
+.. code-block:: console
+
+   $ sudo sh -c 'cat >> /systemd/system/docker-mysql.service'
+   [Unit]
+   Description=Docker Container for MySQL
+   Requires=docker.service
+   After=docker.service
+
+   [Service]
+   ExecStart=
+   ExecStart=/usr/bin/docker run --rm -v
+   /etc/mysql/conf.d:/etc/mysql/conf.d -v
+   /var/lib/mysql:/var/lib/mysql -p 3306:3306 -e
+   MYSQL_ROOT_PASSWORD=root mysql:5.7
+
+   [Install]
+   WantedBy=default.target
+   $ sudo systemctl daemon-reload
+   $ sudo systemctl enable docker-mysql.service
+   $ sudo systemctl start docker-mysql.service
+
+4. root ユーザーについてコンテナ外から接続できるようにする
+----------------------------------------------------------
+
+最初にコンテナの ID を確認し、 ``docker exec`` で対象のホストに入り、 mysql
+コマンドにて接続設定を行う。
+
+最初 docker ps にて起動コンテナの id を確認する。
+
+.. code-block:: console
+
+   $ docker ps
+   CONTAINER ID        IMAGE               COMMAND                  CREATED            STATUS              PORTS                    NAMES
+   3cecfcdec9f4        mysql:5.7           "docker-entrypoint.sh"   29 minutes ago     Up 29 minutes       0.0.0.0:3306->3306/tcp   condescending_hawking
+
+次にコンテナに入り、設定をする。 ``172.17.%``
+はホストマシンからアクセス時の設定、 ``192.168.%`` は、今回は Hyper-V 上に
+Fedora を構築しているのでその IP となる。必要に応じて後者を変えること。
+
+.. code-block:: console
+
+   $ docker exec -it 3ce bash
+   $ mysql -h localhost -u root
+   mysql> GRANT ALL PRIVILEGES ON *.* TO root@'172.17.%' IDENTIFIED BY 'root' WITH GRANT OPTION ;
+   mysql> GRANT ALL PRIVILEGES ON *.* TO root@'192.168.%' IDENTIFIED BY 'root' WITH GRANT OPTION ;
+
+5. firewalld に接続を通すように設定する
+---------------------------------------
+
+firewalld 向け設定ファイルを作成する。
+``192.168.137.0/24`` は、今回は Hyper-V 上に Fedora を構築しているのでその
+IPとなる。必要に応じて後者を変えること。
+
+.. code-block:: console
+
+   $ sudo sh -c 'cat >> /etc/firewalld/services/mysql.xml'
+   <?xml version="1.0" encoding="utf-8"?>
+   <service>
+     <short>MySQL</short>
+     <description>MySQL Database Server</description>
+     <port protocol="tcp" port="3306"/>
+     <destination ipv4="192.168.137.0/24"/>
+   </service>
+
+次にデフォルトのゾーンにサービスを追加するため、デフォルトのゾーンを確認する。今回は
+``FedoraServer`` となった。
+
+.. code-block:: console
+
+   $ firewall-cmd --get-default-zone
+   FedoraServer
+
+最後にゾーン ``FedoraServer`` にサービスを追加し、設定を反映する。
+
+.. code-block:: console
+
+   $ sudo firewall-cmd --permanent --zone=FedoraServer --add-service=mysql
+   $ sudo firewall-cmd --reload
+
+参考
+====
+
+* `CentOS7 firewalldの設定方法 <http://www.unix-power.net/centos7/firewalld.html>`_
+
+  * firewall-cmd の使い方まとめ
+
+* `library/mysql - Docker Hub <https://hub.docker.com/_/mysql/>`_
+
+  * MySQL Docker Image の説明
+  * SELinux の設定
