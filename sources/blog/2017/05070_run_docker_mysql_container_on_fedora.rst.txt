@@ -20,6 +20,12 @@ Alpine Linux で MySQL を立ち上げようかなと思いましたが、主目
 * 設定ファイルやデータをコンテナ外にて管理する。
 * Firewalld の設定で Fedora ホスト外からアクセスできるようにする。
 
+お断り
+======
+
+* 以下でパスワードが脆弱なものとなっており、
+  また設定ファイルに直書きする手順となっています。
+
 手順
 ====
 
@@ -49,6 +55,8 @@ Alpine Linux で MySQL を立ち上げようかなと思いましたが、主目
 3. 自動起動のために Systemd のユニットファイルを作成し起動する
 --------------------------------------------------------------
 
+パスワードの root については適宜書く環境向けに変えること。
+
 .. code-block:: console
 
    $ sudo sh -c 'cat >> /systemd/system/docker-mysql.service'
@@ -59,10 +67,7 @@ Alpine Linux で MySQL を立ち上げようかなと思いましたが、主目
 
    [Service]
    ExecStart=
-   ExecStart=/usr/bin/docker run --rm -v
-   /etc/mysql/conf.d:/etc/mysql/conf.d -v
-   /var/lib/mysql:/var/lib/mysql -p 3306:3306 -e
-   MYSQL_ROOT_PASSWORD=root mysql:5.7
+   ExecStart=/usr/bin/docker run --rm -v /etc/mysql/conf.d:/etc/mysql/conf.d -v /var/lib/mysql:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql:5.7
 
    [Install]
    WantedBy=default.target
@@ -87,6 +92,8 @@ Alpine Linux で MySQL を立ち上げようかなと思いましたが、主目
 次にコンテナに入り、設定をする。 ``172.17.%``
 はホストマシンからアクセス時の設定、 ``192.168.%`` は、今回は Hyper-V 上に
 Fedora を構築しているのでその IP となる。必要に応じて後者を変えること。
+
+パスワードの root については適宜書く環境向けに変えること。
 
 .. code-block:: console
 

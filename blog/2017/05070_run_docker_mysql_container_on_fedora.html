@@ -75,26 +75,33 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2>手順<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>お断り<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>以下でパスワードが脆弱なものとなっており、
+また設定ファイルに直書きする手順となっています。</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>手順<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下、 <code class="docutils literal"><span class="pre">/etc/mysql/conf.d</span></code> を設定ファイルの、 <code class="docutils literal"><span class="pre">/var/lib/mysql</span></code>
 をデータのホスト上の保存ディレクトリパスとする。</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#docker" id="id6">1. docker のインストール</a></li>
-<li><a class="reference internal" href="#id4" id="id7">2. 設定ファイルやデータ向けディレクトリの構築</a></li>
-<li><a class="reference internal" href="#systemd" id="id8">3. 自動起動のために Systemd のユニットファイルを作成し起動する</a></li>
-<li><a class="reference internal" href="#root" id="id9">4. root ユーザーについてコンテナ外から接続できるようにする</a></li>
-<li><a class="reference internal" href="#firewalld" id="id10">5. firewalld に接続を通すように設定する</a></li>
+<li><a class="reference internal" href="#docker" id="id7">1. docker のインストール</a></li>
+<li><a class="reference internal" href="#id5" id="id8">2. 設定ファイルやデータ向けディレクトリの構築</a></li>
+<li><a class="reference internal" href="#systemd" id="id9">3. 自動起動のために Systemd のユニットファイルを作成し起動する</a></li>
+<li><a class="reference internal" href="#root" id="id10">4. root ユーザーについてコンテナ外から接続できるようにする</a></li>
+<li><a class="reference internal" href="#firewalld" id="id11">5. firewalld に接続を通すように設定する</a></li>
 </ul>
 </div>
 <div class="section" id="docker">
-<h3><a class="toc-backref" href="#id6">1. docker のインストール</a><a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">1. docker のインストール</a><a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo dnf install docker
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
-<h3><a class="toc-backref" href="#id7">2. 設定ファイルやデータ向けディレクトリの構築</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id8">2. 設定ファイルやデータ向けディレクトリの構築</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir -p /etc/mysql/conf.d
 <span class="gp">$</span> mkdir -p /var/lib/mysql
 <span class="gp">$</span> chcon -Rt svirt_sandbox_file_t /etc/mysql/conf.d
@@ -103,7 +110,8 @@
 </div>
 </div>
 <div class="section" id="systemd">
-<h3><a class="toc-backref" href="#id8">3. 自動起動のために Systemd のユニットファイルを作成し起動する</a><a class="headerlink" href="#systemd" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">3. 自動起動のために Systemd のユニットファイルを作成し起動する</a><a class="headerlink" href="#systemd" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>パスワードの root については適宜書く環境向けに変えること。</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo sh -c <span class="s1">&#39;cat &gt;&gt; /systemd/system/docker-mysql.service&#39;</span>
 <span class="go">[Unit]</span>
 <span class="go">Description=Docker Container for MySQL</span>
@@ -112,10 +120,7 @@
 
 <span class="go">[Service]</span>
 <span class="go">ExecStart=</span>
-<span class="go">ExecStart=/usr/bin/docker run --rm -v</span>
-<span class="go">/etc/mysql/conf.d:/etc/mysql/conf.d -v</span>
-<span class="go">/var/lib/mysql:/var/lib/mysql -p 3306:3306 -e</span>
-<span class="go">MYSQL_ROOT_PASSWORD=root mysql:5.7</span>
+<span class="go">ExecStart=/usr/bin/docker run --rm -v /etc/mysql/conf.d:/etc/mysql/conf.d -v /var/lib/mysql:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql:5.7</span>
 
 <span class="go">[Install]</span>
 <span class="go">WantedBy=default.target</span>
@@ -126,7 +131,7 @@
 </div>
 </div>
 <div class="section" id="root">
-<h3><a class="toc-backref" href="#id9">4. root ユーザーについてコンテナ外から接続できるようにする</a><a class="headerlink" href="#root" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">4. root ユーザーについてコンテナ外から接続できるようにする</a><a class="headerlink" href="#root" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>最初にコンテナの ID を確認し、 <code class="docutils literal"><span class="pre">docker</span> <span class="pre">exec</span></code> で対象のホストに入り、 mysql
 コマンドにて接続設定を行う。</p>
 <p>最初 docker ps にて起動コンテナの id を確認する。</p>
@@ -138,6 +143,7 @@
 <p>次にコンテナに入り、設定をする。 <code class="docutils literal"><span class="pre">172.17.%</span></code>
 はホストマシンからアクセス時の設定、 <code class="docutils literal"><span class="pre">192.168.%</span></code> は、今回は Hyper-V 上に
 Fedora を構築しているのでその IP となる。必要に応じて後者を変えること。</p>
+<p>パスワードの root については適宜書く環境向けに変えること。</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> docker <span class="nb">exec</span> -it 3ce bash
 <span class="gp">$</span> mysql -h localhost -u root
 <span class="go">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO root@&#39;172.17.%&#39; IDENTIFIED BY &#39;root&#39; WITH GRANT OPTION ;</span>
@@ -146,7 +152,7 @@ Fedora を構築しているのでその IP となる。必要に応じて後者
 </div>
 </div>
 <div class="section" id="firewalld">
-<h3><a class="toc-backref" href="#id10">5. firewalld に接続を通すように設定する</a><a class="headerlink" href="#firewalld" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">5. firewalld に接続を通すように設定する</a><a class="headerlink" href="#firewalld" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>firewalld 向け設定ファイルを作成する。
 <code class="docutils literal"><span class="pre">192.168.137.0/24</span></code> は、今回は Hyper-V 上に Fedora を構築しているのでその
 IPとなる。必要に応じて後者を変えること。</p>
@@ -173,8 +179,8 @@ IPとなる。必要に応じて後者を変えること。</p>
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>参考<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id6">
+<h2>参考<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="http://www.unix-power.net/centos7/firewalld.html">CentOS7 firewalldの設定方法</a><ul>
 <li>firewall-cmd の使い方まとめ</li>
