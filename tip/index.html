@@ -47,10 +47,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             <ul>
-              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
-              <li><a href="/blog/archives.html">archives</a></li>
-              <li><a href="/tip/index.html">tips</a></li>
+              <li><a href="../blog/archives.html">archives</a></li>
+              <li><a href="#">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
@@ -85,7 +85,7 @@
 <div class="section" id="find-grep">
 <h2><a class="toc-backref" href="#id5">find/grep で検索</a><a class="headerlink" href="#find-grep" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> find . -name <span class="s2">&quot;.git&quot;</span> -prune -o -name <span class="s2">&quot;*.py&quot;</span> -print0 <span class="se">\</span>
-<span class="go">  | xargs -0r grep -in some</span>
+  <span class="p">|</span> xargs -0r grep -in some
 </pre></div>
 </div>
 </div>
@@ -106,7 +106,7 @@
 <span class="gp">#</span> chmod <span class="m">0700</span> /etc/samba_cred
 
 <span class="gp">#</span> mount -t cifs //machine-name/Document /mnt <span class="se">\</span>
-<span class="go">  -o credentials=/etc/samba_cred,uid=1000,gid=1000,netbiosname=machine-name,iocharset=utf8,rw</span>
+  -o <span class="nv">credentials</span><span class="o">=</span>/etc/samba_cred,uid<span class="o">=</span><span class="m">1000</span>,gid<span class="o">=</span><span class="m">1000</span>,netbiosname<span class="o">=</span>machine-name,iocharset<span class="o">=</span>utf8,rw
 </pre></div>
 </div>
 </div>
@@ -141,8 +141,8 @@
 <div class="section" id="mysql-dump">
 <h2><a class="toc-backref" href="#id13">MySQL dump で圧縮してダンプする</a><a class="headerlink" href="#mysql-dump" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mysqldump -u user -p -h host --default-character-set<span class="o">=</span>binary <span class="se">\</span>
-<span class="go">  -c --compact -n -t dbname tables \</span>
-<span class="go">  | gzip &gt; mysqldump-`date +%Y_%m%d_%H%M%S`.sql.gz</span>
+  -c --compact -n -t dbname tables <span class="se">\</span>
+  <span class="p">|</span> gzip &gt; mysqldump-<span class="sb">`</span>date +%Y_%m%d_%H%M%S<span class="sb">`</span>.sql.gz
 </pre></div>
 </div>
 </div>
@@ -151,12 +151,12 @@
 <div class="section" id="linux-official-java">
 <h3><a class="toc-backref" href="#id15">Linux に Official Java をインストールする</a><a class="headerlink" href="#linux-official-java" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -OL -b <span class="s2">&quot;oraclelicense=accept-securebackup-cookie&quot;</span> <span class="se">\</span>
-<span class="go">  http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.tar.gz</span>
+  http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.tar.gz
 <span class="gp">$</span> tar xf jdk-8u112-linux-x64.tar.gz
 <span class="gp">$</span> sudo mkdir -p /usr/java
 <span class="gp">$</span> sudo mv jdk1.8.0_112 /usr/java/
-<span class="gp">$</span> sudo alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_112/jre/bin/java 1
-<span class="gp">$</span> sudo alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.0_112/bin/javac 1
+<span class="gp">$</span> sudo alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_112/jre/bin/java <span class="m">1</span>
+<span class="gp">$</span> sudo alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.0_112/bin/javac <span class="m">1</span>
 <span class="gp">$</span> sudo sh -c <span class="s1">&#39;cat &gt;&gt; /etc/environment&#39;</span>
 <span class="go">JAVA_HOME=/usr/java/jdk1.8.0_112</span>
 <span class="go">JRE_HOME=/usr/java/jdk1.8.0_112/jre</span>
@@ -197,8 +197,8 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../sources/tip/index.rst.txt"
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../sources/tip/index.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-62097156-1']);

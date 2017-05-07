@@ -47,10 +47,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             <ul>
-              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
-              <li><a href="/blog/archives.html">archives</a></li>
-              <li><a href="/tip/index.html">tips</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../tip/index.html">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
@@ -132,7 +132,7 @@ CSSファイルを書き出すので、対策が必要。</p>
     <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;_static&#39;</span><span class="p">,</span> <span class="n">NEW_STATIC_NAME</span><span class="p">),</span>
                          <span class="p">(</span><span class="s1">&#39;_source&#39;</span><span class="p">,</span> <span class="n">NEW_SOURCES_NAME</span><span class="p">)]:</span>
-            <span class="n">replacer</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">uri</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">r&#39;^{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">old</span><span class="p">),</span> <span class="n">new</span><span class="p">,</span> <span class="n">uri</span><span class="p">))</span>
+            <span class="n">replacer</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">uri</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">old</span><span class="p">),</span> <span class="n">new</span><span class="p">,</span> <span class="n">uri</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">script_files</span><span class="p">):</span>
                 <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">script_files</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">replacer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">css_files</span><span class="p">):</span>
@@ -143,8 +143,8 @@ CSSファイルを書き出すので、対策が必要。</p>
     <span class="n">original_pathto</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;pathto&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">pathto</span><span class="p">(</span><span class="n">otheruri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">otheruri</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">r&#39;^_static/&#39;</span><span class="p">,</span> <span class="n">NEW_STATIC_NAME</span><span class="p">,</span> <span class="n">otheruri</span><span class="p">)</span>
-        <span class="n">otheruri</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">r&#39;^_sources/&#39;</span><span class="p">,</span> <span class="n">NEW_SOURCES_NAME</span><span class="p">,</span> <span class="n">otheruri</span><span class="p">)</span>
+        <span class="n">otheruri</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^_static/&#39;</span><span class="p">,</span> <span class="n">NEW_STATIC_NAME</span><span class="p">,</span> <span class="n">otheruri</span><span class="p">)</span>
+        <span class="n">otheruri</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^_sources/&#39;</span><span class="p">,</span> <span class="n">NEW_SOURCES_NAME</span><span class="p">,</span> <span class="n">otheruri</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">original_pathto</span><span class="p">(</span><span class="n">otheruri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="n">context</span><span class="p">[</span><span class="s1">&#39;pathto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pathto</span>
@@ -185,16 +185,16 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 </div>
 <p>その上で、以下のCSS (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_static/style.css">github</a>) を
 <cite>_static/</cite> 配下に配置する。</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="k">@charset</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">;</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">charset</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">;</span>
 
-<span class="nt">div</span><span class="nc">.bodywrapper</span> <span class="p">{</span>
-  <span class="nb">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nb">width</span><span class="o">:</span> <span class="m">730px</span><span class="p">;</span>
+<span class="nt">div</span><span class="p">.</span><span class="nc">bodywrapper</span> <span class="p">{</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">730</span><span class="kt">px</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nt">div</span><span class="nc">.sphinxsidebar</span> <span class="p">{</span>
-  <span class="nb">float</span><span class="o">:</span> <span class="nb">right</span><span class="p">;</span>
-  <span class="nb">width</span><span class="o">:</span> <span class="m">230px</span><span class="p">;</span>
+<span class="nt">div</span><span class="p">.</span><span class="nc">sphinxsidebar</span> <span class="p">{</span>
+  <span class="k">float</span><span class="p">:</span> <span class="kc">right</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">230</span><span class="kt">px</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -300,8 +300,8 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2015/04190_github_pages_with_sphinx.rst.txt"
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2015/04190_github_pages_with_sphinx.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

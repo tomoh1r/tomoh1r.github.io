@@ -47,10 +47,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             <ul>
-              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
-              <li><a href="/blog/archives.html">archives</a></li>
-              <li><a href="/tip/index.html">tips</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../tip/index.html">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
@@ -97,21 +97,21 @@ C:\Users\tomo\misc\dotfiles
 <p>とても便利なので活用してみてください。</p>
 <p>ただ僕は引数無しの cd は <code class="docutils literal"><span class="pre">$HOME</span></code> ディレクトリに移動してほしい口なので、
 別途以下のように定義して利用しています。</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span><span class="x">Remove-Item Alias:cd</span>
-<span class="x">Function cd() </span><span class="err">{</span><span class="x"></span>
-<span class="x">    Param(</span>
-<span class="x">        [Parameter(Mandatory = </span><span class="p">$</span><span class="nv">false</span><span class="x">, Position = 0)]</span>
-<span class="x">        [string]</span><span class="p">$</span><span class="nv">Path</span><span class="x"></span>
-<span class="x">        )</span>
+<div class="highlight-guess"><div class="highlight"><pre><span></span>Remove-Item Alias:cd
+Function cd() {
+    Param(
+        [Parameter(Mandatory = $false, Position = 0)]
+        [string]$Path
+        )
 
-<span class="x">    Process </span><span class="err">{</span><span class="x"></span>
-<span class="x">        if([string]::IsNullOrEmpty(&quot;</span><span class="p">$</span><span class="nv">Path</span><span class="x">&quot;))</span><span class="err">{</span><span class="x"></span>
-<span class="x">            Pscx\Set-LocationEx -Path </span><span class="p">$</span><span class="nv">HOME</span><span class="x"></span>
-<span class="x">        }else</span><span class="err">{</span><span class="x"></span>
-<span class="x">            Pscx\Set-LocationEx -Path </span><span class="p">$</span><span class="nv">Path</span><span class="x"></span>
-<span class="x">        }</span>
-<span class="x">    }</span>
-<span class="x">}</span>
+    Process {
+        if([string]::IsNullOrEmpty(&quot;$Path&quot;)){
+            Pscx\Set-LocationEx -Path $HOME
+        }else{
+            Pscx\Set-LocationEx -Path $Path
+        }
+    }
+}
 </pre></div>
 </div>
 </div>
@@ -126,8 +126,8 @@ C:\Users\tomo\misc\dotfiles
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/11200_pscx_set_locationex_is_very_useful.rst.txt"
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/11200_pscx_set_locationex_is_very_useful.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

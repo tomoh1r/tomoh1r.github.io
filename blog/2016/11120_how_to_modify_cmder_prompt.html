@@ -47,10 +47,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             <ul>
-              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
-              <li><a href="/blog/archives.html">archives</a></li>
-              <li><a href="/tip/index.html">tips</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../tip/index.html">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
@@ -63,36 +63,36 @@
 <p>そのため、 <code class="docutils literal"><span class="pre">config\*.lua</span></code> として適当な Lua ファイルを作成し、そこで <code class="docutils literal"><span class="pre">clink.prompt.register_filter(set_my_prompt_filter,</span> <span class="pre">1)</span></code> などとして適当に上書きすると良い。</p>
 <p>僕は <code class="docutils literal"><span class="pre">vendor\clink.lua</span></code> から <code class="docutils literal"><span class="pre">set_prompt_filter()</span></code> を参照し、以下のようにし
 て <code class="docutils literal"><span class="pre">config\prompt.lua</span></code> ファイルを作成して対応している。</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">set_my_prompt_filter</span><span class="p">()</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kr">function</span> <span class="nf">set_my_prompt_filter</span><span class="p">()</span>
     <span class="c1">-- get_cwd() is differently encoded than the clink.prompt.value, so everything other than</span>
     <span class="c1">-- pure ASCII will get garbled. So try to parse the current directory from the original prompt</span>
     <span class="c1">-- and only if that doesn&#39;t work, use get_cwd() directly.</span>
     <span class="c1">-- The matching relies on the default prompt which ends in X:\PATH\PATH&gt;</span>
     <span class="c1">-- (no network path possible here!)</span>
     <span class="kd">local</span> <span class="n">old_prompt</span> <span class="o">=</span> <span class="n">clink</span><span class="p">.</span><span class="n">prompt</span><span class="p">.</span><span class="n">value</span>
-    <span class="kd">local</span> <span class="n">cwd</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">.*(.:[^&gt;]*)&gt;&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">cwd</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">then</span> <span class="n">cwd</span> <span class="o">=</span> <span class="n">clink</span><span class="p">.</span><span class="n">get_cwd</span><span class="p">()</span> <span class="k">end</span>
+    <span class="kd">local</span> <span class="n">cwd</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;.*(.:[^&gt;]*)&gt;&#39;</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">cwd</span> <span class="o">==</span> <span class="kc">nil</span> <span class="kr">then</span> <span class="n">cwd</span> <span class="o">=</span> <span class="n">clink</span><span class="p">.</span><span class="n">get_cwd</span><span class="p">()</span> <span class="kr">end</span>
 
     <span class="c1">-- environment systems like pythons virtualenv change the PROMPT and usually</span>
     <span class="c1">-- set some variable. But the variables are differently named and we would never</span>
     <span class="c1">-- get them all, so try to parse the env name out of the PROMPT.</span>
     <span class="c1">-- envs are usually put in round or square parentheses and before the old prompt</span>
-    <span class="kd">local</span> <span class="n">env</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">.*%(([^%)]+)%).+:&#39;</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">env</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;.*%(([^%)]+)%).+:&#39;</span><span class="p">)</span>
     <span class="c1">-- also check for square brackets</span>
-    <span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">then</span> <span class="n">env</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">.*%[([^%]]+)%].+:&#39;</span><span class="p">)</span> <span class="k">end</span>
+    <span class="kr">if</span> <span class="n">env</span> <span class="o">==</span> <span class="kc">nil</span> <span class="kr">then</span> <span class="n">env</span> <span class="o">=</span> <span class="n">old_prompt</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;.*%[([^%]]+)%].+:&#39;</span><span class="p">)</span> <span class="kr">end</span>
 
     <span class="c1">-- build our own prompt</span>
     <span class="c1">-- orig: $E[1;32;40m$P$S{git}{hg}$S$_$E[1;30;40m{lamb}$S$E[0m</span>
     <span class="c1">-- color codes: &quot;\x1b[1;37;40m&quot;</span>
-    <span class="kd">local</span> <span class="n">cmder_prompt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">\x1b[1;32;40m{cwd} {git}{hg} </span><span class="se">\n</span><span class="s">\x1b[1;30;40m{lamb} \x1b[0m&quot;</span>
-    <span class="n">cmder_prompt</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="n">cmder_prompt</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">{cwd}&quot;</span><span class="p">,</span> <span class="n">cwd</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">then</span>
-        <span class="n">lambda</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">&gt;&quot;</span>
-    <span class="k">else</span>
-        <span class="n">lambda</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">(&quot;</span><span class="o">..</span><span class="n">env</span><span class="o">..</span><span class="s2">&quot;</span><span class="s">) &gt;&quot;</span>
-    <span class="k">end</span>
-    <span class="n">clink</span><span class="p">.</span><span class="n">prompt</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="n">cmder_prompt</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">{lamb}&quot;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">)</span>
-<span class="k">end</span>
+    <span class="kd">local</span> <span class="n">cmder_prompt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[1;32;40m{cwd} {git}{hg} </span><span class="se">\n\x1b</span><span class="s2">[1;30;40m{lamb} </span><span class="se">\x1b</span><span class="s2">[0m&quot;</span>
+    <span class="n">cmder_prompt</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="n">cmder_prompt</span><span class="p">,</span> <span class="s2">&quot;{cwd}&quot;</span><span class="p">,</span> <span class="n">cwd</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">env</span> <span class="o">==</span> <span class="kc">nil</span> <span class="kr">then</span>
+        <span class="n">lambda</span> <span class="o">=</span> <span class="s2">&quot;&gt;&quot;</span>
+    <span class="kr">else</span>
+        <span class="n">lambda</span> <span class="o">=</span> <span class="s2">&quot;(&quot;</span><span class="o">..</span><span class="n">env</span><span class="o">..</span><span class="s2">&quot;) &gt;&quot;</span>
+    <span class="kr">end</span>
+    <span class="n">clink</span><span class="p">.</span><span class="n">prompt</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="n">cmder_prompt</span><span class="p">,</span> <span class="s2">&quot;{lamb}&quot;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">)</span>
+<span class="kr">end</span>
 
 
 <span class="n">clink</span><span class="p">.</span><span class="n">prompt</span><span class="p">.</span><span class="n">register_filter</span><span class="p">(</span><span class="n">set_my_prompt_filter</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -110,8 +110,8 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/11120_how_to_modify_cmder_prompt.rst.txt"
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/11120_how_to_modify_cmder_prompt.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

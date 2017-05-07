@@ -47,10 +47,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             <ul>
-              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
-              <li><a href="/blog/archives.html">archives</a></li>
-              <li><a href="/tip/index.html">tips</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../tip/index.html">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
@@ -114,7 +114,7 @@
 </li>
 <li><p class="first">xrdp の vnc 参照ポートを更新する。</p>
 <p>以下のコマンドで利用しているポートを取得する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ss -nae <span class="p">|</span> grep <span class="se">\:\:\:</span>59
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ss -nae <span class="p">|</span> grep <span class="se">\:\:\:</span><span class="m">59</span>
 <span class="go">tcp    LISTEN     0      5        :::5902                 :::*</span>
 </pre></div>
 </div>
@@ -126,7 +126,7 @@
 </div>
 </li>
 <li><p class="first">ファイアウォールにて rdp のポートを許可する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> firewall-cmd --add-port<span class="o">=</span>3389/tcp --permanent
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> firewall-cmd --add-port<span class="o">=</span><span class="m">3389</span>/tcp --permanent
 <span class="gp">#</span> firewall-cmd --reload
 </pre></div>
 </div>
@@ -157,8 +157,8 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/01030_use_xrdp_on_fedora.rst.txt"
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/01030_use_xrdp_on_fedora.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {

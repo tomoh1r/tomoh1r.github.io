@@ -47,10 +47,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             <ul>
-              <li><a href="/">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
-              <li><a href="/blog/archives.html">archives</a></li>
-              <li><a href="/tip/index.html">tips</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../tip/index.html">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
@@ -203,16 +203,16 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <span class="c1"># 分類器の訓練</span>
 <span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">u&#39;### 推定値を表示する ###&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 推定値を表示する ###&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
 
 <span class="c1"># 値の予測</span>
 <span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">u&#39;### 予測値を表示する ###&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 予測値を表示する ###&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1</span><span class="p">))</span>
 
 <span class="c1"># 評価</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">u&#39;### 結果を評価する ###&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 結果を評価する ###&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 
 <span class="c1"># 可視化</span>
@@ -249,8 +249,8 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>| <a href="../../sources/blog/2016/04102_install_numpy_pandas_scipy_scikitlearn_on_windows.rst.txt"
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/04102_install_numpy_pandas_scipy_scikitlearn_on_windows.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
       (function() {
