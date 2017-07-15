@@ -50,24 +50,23 @@
               <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
-              <li><a href="../../tip/index.html">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
   <div class="section" id="qemu-fedora-22">
 <h1>QEMU 上の Fedora 22 にシリアルで接続出きるようにする<a class="headerlink" href="#qemu-fedora-22" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><span class="blog_date">2015/06/01</span></p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#id1" id="id4">動機</a></li>
-<li><a class="reference internal" href="#os" id="id5">対象ゲスト OS</a></li>
-<li><a class="reference internal" href="#grub" id="id6">grub の設定</a></li>
-<li><a class="reference internal" href="#id2" id="id7">接続</a></li>
-<li><a class="reference internal" href="#id3" id="id8">参照</a></li>
+<li><a class="reference internal" href="#id2" id="id5">動機</a></li>
+<li><a class="reference internal" href="#os" id="id6">対象ゲスト OS</a></li>
+<li><a class="reference internal" href="#grub" id="id7">grub の設定</a></li>
+<li><a class="reference internal" href="#id3" id="id8">接続</a></li>
+<li><a class="reference internal" href="#id4" id="id9">参照</a></li>
 </ul>
 </div>
-<div class="section" id="id1">
-<h2><a class="toc-backref" href="#id4">動機</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id5">動機</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>仮想マシンマネージャーから Fedora 22 環境を構築後、
 GUI から入力するのではなく、ホスト OS の仮想ターミナル
 エミュレータにて操作をしたかった。</p>
@@ -75,13 +74,13 @@ GUI から入力するのではなく、ホスト OS の仮想ターミナル
 <cite>grub</cite> に設定をしてみようと思った。</p>
 </div>
 <div class="section" id="os">
-<h2><a class="toc-backref" href="#id5">対象ゲスト OS</a><a class="headerlink" href="#os" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">対象ゲスト OS</a><a class="headerlink" href="#os" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>Fedora 22</li>
 </ul>
 </div>
 <div class="section" id="grub">
-<h2><a class="toc-backref" href="#id6">grub の設定</a><a class="headerlink" href="#grub" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">grub の設定</a><a class="headerlink" href="#grub" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ゲスト OS にて <cite>/etc/default/grub</cite> に以下の設定を追記する。</p>
 <div class="highlight-guess"><div class="highlight"><pre><span></span>GRUB_TERMINAL=&quot;serial&quot;
 GRUB_SERIAL_COMMAND=&quot;serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1&quot;
@@ -119,13 +118,13 @@ GRUB_CMDLINE_LINUX=&quot;console=tty0 console=ttyS0,115200n8&quot;
 </pre></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id7">接続</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id8">接続</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>上述の設定をし、ゲスト OS を再起動すれば、ホスト OS にて
 <cite>sudo virsh console target</cite> でシリアル接続できる。</p>
 </div>
-<div class="section" id="id3">
-<h2><a class="toc-backref" href="#id8">参照</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id9">参照</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="http://dotnsf.blog.jp/archives/980512.html">KVM のゲストOS(Linux)にコンソールログインするための設定 : まだプログラマーですが何か？</a></li>
 <li><a class="reference external" href="https://docs.fedoraproject.org/en-US/Fedora/22/html/System_Administrators_Guide/sec-GRUB_2_over_Serial_Console.html">fedora DOCUMENTATION - 20.5. GRUB 2 over Serial Console</a></li>
@@ -151,7 +150,7 @@ GRUB_CMDLINE_LINUX=&quot;console=tty0 console=ttyS0,115200n8&quot;
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2015/06010_how_to_connect_fedora_22_with_serial.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

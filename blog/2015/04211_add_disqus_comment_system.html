@@ -50,7 +50,6 @@
               <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
-              <li><a href="../../tip/index.html">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
@@ -59,37 +58,37 @@
 <p><span class="blog_date">2015/04/21</span></p>
 <p>ブログなので簡単なコメントシステムが欲しい。</p>
 <p>静的ページでも使える <a class="reference external" href="https://disqus.com/">DISQUS</a> を導入する。</p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id10">DISQUS のコメント欄を設置する</a></li>
-<li><a class="reference internal" href="#id6" id="id11">特定のページのみに設置する</a></li>
-<li><a class="reference internal" href="#id7" id="id12">サイドバーの位置調整</a></li>
-<li><a class="reference internal" href="#id8" id="id13">終わりに</a></li>
-<li><a class="reference internal" href="#id9" id="id14">参考</a></li>
+<li><a class="reference internal" href="#id3" id="id11">DISQUS のコメント欄を設置する</a></li>
+<li><a class="reference internal" href="#id7" id="id12">特定のページのみに設置する</a></li>
+<li><a class="reference internal" href="#id8" id="id13">サイドバーの位置調整</a></li>
+<li><a class="reference internal" href="#id9" id="id14">終わりに</a></li>
+<li><a class="reference internal" href="#id10" id="id15">参考</a></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id10">DISQUS のコメント欄を設置する</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id3">
-<h3>DISQUS のアカウントを取得する<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h2><a class="toc-backref" href="#id11">DISQUS のコメント欄を設置する</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h3>DISQUS のアカウントを取得する<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference external" href="https://disqus.com/">DISQUS</a> にアクセスして、右上の <cite>Sign Up</cite>
 よりアカウントを作成してください。</p>
 </div>
-<div class="section" id="id4">
-<h3>管理するページを登録する<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3>管理するページを登録する<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>アカウントを取得したのち、画面遷移し、ページを設定する。
 対象のページの設定をしてください。</p>
 </div>
-<div class="section" id="id5">
-<h3>記載するコードを取得する<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id6">
+<h3>記載するコードを取得する<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ページの Settings -&gt; Install
 を選択すると各種環境向けのアイコンが表示されると思う。
 <cite>Universal Code</cite> を選択すると <cite>JavaScript</cite> が表示されるので、
 そのコードを適宜ページに貼り付ける。</p>
 </div>
 </div>
-<div class="section" id="id6">
-<h2><a class="toc-backref" href="#id11">特定のページのみに設置する</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id12">特定のページのみに設置する</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><cite>layout.html</cite> は <a class="reference external" href="http://jinja.pocoo.org/">Jinja2</a> 記法を使えるので、以下のように <cite>startswith</cite>
 でページを判定した。</p>
 <p>僕はファイル名に <cite>blog/%Y%m%dN_name</cite> としているので、以下で問題無かった。</p>
@@ -99,8 +98,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id7">
-<h2><a class="toc-backref" href="#id12">サイドバーの位置調整</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id13">サイドバーの位置調整</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>僕の場合、 <a class="reference external" href="https://disqus.com/">DISQUS</a> 向け <cite>div</cite> を設置するとサイドバーが画面の下の方に
 移動してしまった。</p>
 <p>対応するため、 <cite>document</cite> クラスに <cite>position: relative</cite> をつけ、
@@ -122,13 +121,13 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id8">
-<h2><a class="toc-backref" href="#id13">終わりに</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id14">終わりに</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>上記の手順で問題なく <a class="reference external" href="https://disqus.com/">DISQUS</a> を導入できた。</p>
 <p>参考になればうれしい。</p>
 </div>
-<div class="section" id="id9">
-<h2><a class="toc-backref" href="#id14">参考</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id15">参考</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="http://www.css-lecture.com/log/css/037.html">CSS : positionの「absolute」「relative」「fixed」のリファレンス | CSS Lecture</a></li>
 </ul>
@@ -145,7 +144,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2015/04211_add_disqus_comment_system.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

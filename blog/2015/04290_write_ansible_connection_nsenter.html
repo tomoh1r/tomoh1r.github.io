@@ -50,22 +50,21 @@
               <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
-              <li><a href="../../tip/index.html">tips</a></li>
             </ul>
             <div class="clearer"></div>
             
   <div class="section" id="ansible-nsenter-connection-plugin-ansible-connection-nsenter">
 <h1>Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた<a class="headerlink" href="#ansible-nsenter-connection-plugin-ansible-connection-nsenter" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><span class="blog_date">2015/04/29</span></p>
-<div class="contents local topic" id="contents">
+<div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#id1" id="id9">動機</a></li>
-<li><a class="reference internal" href="#id2" id="id10">進めかた</a></li>
-<li><a class="reference internal" href="#id7" id="id11">使い方</a></li>
+<li><a class="reference internal" href="#id2" id="id10">動機</a></li>
+<li><a class="reference internal" href="#id3" id="id11">進めかた</a></li>
+<li><a class="reference internal" href="#id8" id="id12">使い方</a></li>
 </ul>
 </div>
-<div class="section" id="id1">
-<h2><a class="toc-backref" href="#id9">動機</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id10">動機</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>自宅で開発に利用している X41 が 32bit しか対応しておらず、 <a class="reference external" href="http://www.docker.com/">Docker</a>
 に対応してなかった。</p>
 <p>そのため、 <a class="reference external" href="http://www.freedesktop.org/software/systemd/man/systemd-nspawn.html">Systemd-nspawn</a> で環境を構築することにした。</p>
@@ -73,19 +72,19 @@
 接続方式がるのかと軽く確認したところ、 nsenter というコマンドがあったので、
 使えたらよいと思い、<a class="reference external" href="https://github.com/jptomo/ansible-connection-nsenter">ansible-connection-nsenter</a> を書いた。</p>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id10">進めかた</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id11">進めかた</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="http://www.ansible.com/home">Ansible</a> の plugin は大雑把に以下の流れで作成できる。</p>
-<div class="contents local topic" id="id3">
+<div class="contents local topic" id="id4">
 <ul class="simple">
-<li><a class="reference internal" href="#plugin" id="id12">1. Plugin を書く。</a></li>
-<li><a class="reference internal" href="#id6" id="id13">2. ディレクトリに配置する。</a></li>
-<li><a class="reference internal" href="#ansible" id="id14">3. Ansible に認識させる。</a></li>
+<li><a class="reference internal" href="#plugin" id="id13">1. Plugin を書く。</a></li>
+<li><a class="reference internal" href="#id7" id="id14">2. ディレクトリに配置する。</a></li>
+<li><a class="reference internal" href="#ansible" id="id15">3. Ansible に認識させる。</a></li>
 </ul>
 </div>
 <p>それぞれ見ていこう。</p>
 <div class="section" id="plugin">
-<h3><a class="toc-backref" href="#id12">1. Plugin を書く。</a><a class="headerlink" href="#plugin" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">1. Plugin を書く。</a><a class="headerlink" href="#plugin" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>今回は <a class="reference external" href="https://github.com/">GitHub</a> の Ansible のリポジトリ、
 <a class="reference external" href="https://github.com/ansible/ansible/blob/devel/lib/ansible/runner/connection_plugins/ssh.py">lib/ansible/runner/connection_plugins/ssh.py</a>
 をコピペして進めた。つくりもよくわかってなかったし。</p>
@@ -93,8 +92,8 @@
 を見つけたのはご愛嬌。</p>
 <p><a class="reference external" href="http://www.ansible.com/home">Ansible</a> で生にシェルを実行しようとするらしく、環境変数の取り回しや、パイプ、
 <code class="docutils literal"><span class="pre">&amp;&amp;</span></code> <code class="docutils literal"><span class="pre">;</span></code> の取り扱いが難儀した。</p>
-<div class="section" id="id4">
-<h4>環境変数<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id5">
+<h4>環境変数<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>コンテナ内の環境変数は、以下のように <code class="docutils literal"><span class="pre">/proc/&lt;PID&gt;/environ</span></code> からとれる。</p>
 <p>ヌル文字列で区切られているようなので、区切って、あとは <code class="docutils literal"><span class="pre">=</span></code>
 で切り分けて、辞書にして取り扱うようにした。</p>
@@ -119,8 +118,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id5">
-<h4><code class="docutils literal"><span class="pre">&amp;&amp;</span></code> や <code class="docutils literal"><span class="pre">;</span></code><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id6">
+<h4><code class="docutils literal"><span class="pre">&amp;&amp;</span></code> や <code class="docutils literal"><span class="pre">;</span></code><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p><code class="docutils literal"><span class="pre">&amp;&amp;</span></code> <code class="docutils literal"><span class="pre">;</span></code> はその位置でとりあえず分割して、
 個別にコマンドを実行するようにした。</p>
 <p><code class="docutils literal"><span class="pre">()</span></code> とか <code class="docutils literal"><span class="pre">||</span></code> とかには対応してないが、とりあえず <a class="reference external" href="http://www.ansible.com/home">Ansible</a>
@@ -166,8 +165,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id6">
-<h3><a class="toc-backref" href="#id13">2. ディレクトリに配置する。</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id14">2. ディレクトリに配置する。</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference external" href="https://github.com/jptomo/ansible-connection-nsenter/blob/master/README.rst">README.rst</a> に書いたように以下のように配置する。</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir -p /etc/ansible/plugins/connection_plugins
 <span class="gp">$</span> curl https://raw.githubusercontent.com/jptomo/ansible-nsenter/master/nsenter.py -o /etc/ansible/plugins/connection_plugins/nsenter.py
@@ -198,8 +197,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id7">
-<h2><a class="toc-backref" href="#id11">使い方</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id12">使い方</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>個人的に勉強用に進めている <a class="reference external" href="https://github.com/jptomo/compare-rdbms">compare-rdbms</a> を見ると何となく使い方がわかると思う。</p>
 <p><code class="docutils literal"><span class="pre">ansible.cfg</span></code> はトップディレクトリに配置し、このディレクトリで
 <code class="docutils literal"><span class="pre">ansible-playbook</span></code> を実行した場合、参照されるようにする。</p>
@@ -219,7 +218,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2015/04290_write_ansible_connection_nsenter.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
