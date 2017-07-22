@@ -1,0 +1,16 @@
+==========================
+複数の Bundle を使い分ける
+==========================
+
+:blog_date:`2017/07/22`
+
+Ruby bundler の環境変数として BUNDLE_GEM がある。この変数は Gemfile
+を指定する変数だが、 bundler 環境のルートディレクトリを指定する変数でもある。
+
+そのため、 bundler 実行時に以下の通り BUNDLE_GEM を指定すると利用する bundle
+を切り替えることができる。
+
+.. code-block:: console
+
+   $ bundle install --gemfile=vendor/Gemfile --path=bundle
+   $ BUNDLE_GEMFILE=vendor/Gemfile bundle exec some
