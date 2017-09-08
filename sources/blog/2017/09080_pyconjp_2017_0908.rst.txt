@@ -1,0 +1,134 @@
+==================================
+PyCon JP 2017 9/8 分自分向けまとめ
+==================================
+
+:blog_date:`2017/09/08`
+
+.. contents::
+   :local:
+
+キーノート
+==========
+
+* 協力してくれと Guide にいったら自分でやってと
+* Numba Bokeh Dask とか必要な者を作成した。
+* Python は LEGO のようだ
+* QandA
+
+  * なぜパッケージング最近問題が起きているか？
+
+    * 昔は Python パッケージングばらばらだった。動くようにした。また、依存ライブラリのインストールも有り、このようにしている。
+
+202) ベンリに使おう変数アノテーション - typing.pyとの楽しいお付き合い
+=====================================================================
+
+`資料へのリンク <https://speakerdeck.com/puhitaku/bian-li-nishi-oubian-shu-afalsetesiyon-typing-dot-py-tofalsele-siiofu-kihe-i>`__ (Speaker Deck)
+
+* PEP と実装の mypy の両輪で設計が進んできた。
+
+  * Syntax (書き方) と Semantics (int とか) の熟議がされてきた。
+
+* 実装時に annotation が読めるようになった。
+* typings により型を詳細に、例えば文字列のリスト List[str] とか、書けるようになるジェネリック型が導入された。
+* 後はこれらの仕組みの使い方
+
+203) Pythonとパッケージングと私
+===============================
+
+`資料へのリンク <https://www.slideshare.net/aodag/python-79546865>`__ (SlideShare)
+
+* pip について requirements.txt は広く使われているが、 pip freeze の結果を constrains.txt として書き出し、lock ファイルとして利用することができる。
+* virtualenv は古い setuptools/pip が同梱されているので注意。
+* setup.py について、通常設定ファイルで綴じることができるように策定が進められている。
+
+  * 普通に書くと、設定と実行コードが混在する。
+  * setup.cfg にメタデータ (metadata) とオプション (option) を切り出すと見通しが良くなる。
+
+    * ただし、ある程度後発の setuptools でないと対応していない。
+    * file: でファイルの内容を読み込めるようになる。ただし一ファイルのみ。
+    * attr: でオブジェクトの属性、または callable の戻り値を取得できるようになる。
+    * 後は options に extras_require, packages.find でパッケージの検知とか。
+    * ただし、 `pbr <https://docs.openstack.org/pbr/latest/>`_ の書き方と異なるので、併用できない。
+
+      * とはいえ、 `setuptools_scm <https://github.com/pypa/setuptools_scm>`_ を利用するといくつかの機能を使うことができる。
+
+* build-system について、 setuptools の対応している境界を定義し、仕様として定義する取り組みが進められている。
+
+  * PEP-516,517 で議論。516 でコマンドラインでの実装は rejected。517 で api ベースで改めて。
+  * PEP-518 でメタデータの仕様を策定。
+  * `flit <https://flit.readthedocs.io/en/latest/>`_ って実装が、おそらくテストベッド的な者だけど、出てきている。
+
+202) Djangoフレームワークのユーザーモデルと認証
+===============================================
+
+`資料へのリンク <https://www.slideshare.net/tokibito/django-79549364>`__ (SlideShare)
+
+* Django も基本の HTTP セッションの仕組みに乗っていて動いている。
+* Django の contribution としてデフォルトで有効な django.contrib.auth がある。
+
+  * View は Class Baased View になった。
+  * login 必須な view は decorator で指定する。
+
+* 実際の処理は？
+
+  * セッションのユーザーを確認して、DB 問い合わせる。
+
+* 認証データはどう扱われているか？
+
+  * AuthenticationMiddleware クラスで、ユーザーID の取得と DB への問い合わせを行っている。
+  * アルゴリズム PBKDF2
+
+* カスタマイズ
+
+  * ユーザークラスの変更や、 LDAP OpenID とか利用可能。
+
+203) len()関数がオブジェクトの長さを手にいれる仕組み
+====================================================
+
+`資料へのリンク <https://www.slideshare.net/shimizukawa/how-does-python-get-the-length-with-the-len-function>`__ (SlideShare)
+
+* len() は各オブジェクト (後で確認したい) の __len__() の結果。
+
+  * __len__() が int を返さないと TypeError おこる。int 以外の場合の意味は、ユースケースがあるのではなく int を返せとただそういうことなんだろう。 (後で確認したい)
+
+* bool()
+
+  * 内部的に len() が 0以上のときか __bool__() が true
+
+* iter() の例
+* abc を利用して protocol を明示するのは良い。
+* (後で len() vs .length の議論を追いたい。個人的には変更するコストなんだろうとは思うけど)
+
+201) How (and Why) We Speak in Unicode
+======================================
+
+テンポ良かった。。。
+
+* 人類は昔から文字列の伝達のための表現 (文字コード) を考えてきた。途中、文字列の種類の扱いも考えだした。
+
+  * モールス信号について、文字列から信号への変換は endode、信号を文字列に返るのは decode。
+  * モールス信号は 2進数だけど、指の数 5進数のも出てきた。改善された。パンチカードのようだ。
+  * ASCII が戦後でてきた。ARPANET とかー。でだいたいアメリカで使う分には問題なかった。
+  * Latin-1 がでてきた。
+  * 日本語、漢字ひらがなカタカナあって辛いよね。キャラクターセット。そして文字コードの JIS-X-0201 Shift-JIS EUC-JP
+  * 漢字マックから Unicode がでてきた。
+  * キャラクターセットとして USC-2 が出てきた。
+  * USC-4 もでてきた。
+  * エンコーディングとして UTF-8 が出てきた。
+
+* Python 3 は文字列の扱いについて安全になっているので、 Python 3 を使いましょう。
+
+  * Python 2 は str と Unicode、 Python 3 は Unicode と Byte
+  * Python 2 は str と Unicode 結合できるけど、 Python 3 は Unicode と Byte 結合できないので、安全。
+  * Python 3 使え
+
+201) Secrets of a WSGI master.
+==============================
+
+* mod_wsgi は実は mod_wsgi-express といったコマンドもある。直接 WSGI ファイルを読み込み実行することができる。
+
+  * 直接 http レスポンスを返せる。
+  * docker でも利用できる。起動ユーザーを指定することもできる。
+
+* warpdrive といった環境構築アプリも作成をした。これを利用して Dockerfile なしに Docker Image を作成できる。
+* mod_wsgi は Apache のプラグインのイメージがあるが、別にたてる Daemon モードもある。
