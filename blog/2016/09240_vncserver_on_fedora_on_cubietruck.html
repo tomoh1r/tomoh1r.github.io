@@ -58,8 +58,8 @@
 <p><span class="blog_date">2016/09/24</span></p>
 <p>Cubietruck に Fedora 24 をインストールの後、以下のコマンドでインストール、実行できる。</p>
 <p>まんま <a class="reference external" href="https://www.server-world.info/query?os=Fedora_24&amp;p=desktop&amp;f=6">Fedora 24 : VNCサーバーの設定 ： Server World</a> の手順となっているが、 Systemd への登録が
-うまくいかなかったので、毎度のシステム再起動時に手動で <code class="docutils literal"><span class="pre">vncserver</span></code> 起動している。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo dnf -y install tigervnc-server
+うまくいかなかったので、毎度のシステム再起動時に手動で <code class="docutils literal notranslate"><span class="pre">vncserver</span></code> 起動している。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo dnf -y install tigervnc-server
 <span class="gp">$</span> sudo firewall-cmd --add-service<span class="o">=</span>vnc-server --permanent
 <span class="gp">$</span> sudo firewall-cmd --reload
 
@@ -79,7 +79,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/09240_vncserver_on_fedora_on_cubietruck.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

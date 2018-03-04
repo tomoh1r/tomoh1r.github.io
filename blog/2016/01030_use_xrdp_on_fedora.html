@@ -62,16 +62,16 @@
 どう直せば良いのかわからないのが、現在の問題点。</p>
 <ol class="arabic">
 <li><p class="first">xrdp と依存の tigervnc-server をインストールする</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> dnf install xrdp tigervnc-server
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> dnf install xrdp tigervnc-server
 <span class="gp">#</span> chcon -t bin_t /usr/sbin/xrdp*
 <span class="gp">#</span> systemctl <span class="nb">enable</span> xrdp.service
 <span class="gp">#</span> systemctl start xrdp.service
 </pre></div>
 </div>
 <p>tiger-vncserver は一度起動したことがないと systemd 経由に起動できないので、
-<a class="reference external" href="https://www.centos.org/forums/viewtopic.php?f=48&amp;t=47713">CentOS • View topic - VNC won’t start CentOS 7</a> の手順に従う。</p>
+<a class="reference external" href="https://www.centos.org/forums/viewtopic.php?f=48&amp;t=47713">CentOS • View topic - VNC won't start CentOS 7</a> の手順に従う。</p>
 <p>ログインパスワードを設定する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> vncserver :2 -geometry 1280x720
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> vncserver :2 -geometry 1280x720
 <span class="gp">$</span> vncserver -kill :2
 </pre></div>
 </div>
@@ -91,7 +91,7 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p><a class="reference external" href="https://www.centos.org/forums/viewtopic.php?f=48&amp;t=47713">CentOS • View topic - VNC won’t start CentOS 7</a></p>
+<p><a class="reference external" href="https://www.centos.org/forums/viewtopic.php?f=48&amp;t=47713">CentOS • View topic - VNC won't start CentOS 7</a></p>
 <ul class="last simple">
 <li>あらかじめ vncsrever コマンドを起動する必要がある件</li>
 </ul>
@@ -99,33 +99,33 @@
 </li>
 <li><p class="first">vnc の systemd 設定をする。</p>
 <p>起動ファイルをコピーする。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">/etc/systemd/system/vncserver&#64;.service</span></code> ファイル内の <code class="docutils literal"><span class="pre">&lt;USER&gt;</span></code> をログインしたい
+<p><code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/vncserver&#64;.service</span></code> ファイル内の <code class="docutils literal notranslate"><span class="pre">&lt;USER&gt;</span></code> をログインしたい
 ユーザーid に更新する。</p>
-<p>また、別に tiger-vncserver のオプションを指定する場合は <code class="docutils literal"><span class="pre">ExecStart</span></code> に設定する。</p>
+<p>また、別に tiger-vncserver のオプションを指定する場合は <code class="docutils literal notranslate"><span class="pre">ExecStart</span></code> に設定する。</p>
 <p>その上で、以下のコマンドで有効化し、起動する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> systemctl <span class="nb">enable</span> vncserver@:2.service
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> systemctl <span class="nb">enable</span> vncserver@:2.service
 <span class="gp">#</span> systemctl start vncserver@:2.service
 </pre></div>
 </div>
 </li>
 <li><p class="first">xrdp の vnc 参照ポートを更新する。</p>
 <p>以下のコマンドで利用しているポートを取得する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ss -nae <span class="p">|</span> grep <span class="se">\:\:\:</span><span class="m">59</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ss -nae <span class="p">|</span> grep <span class="se">\:\:\:</span><span class="m">59</span>
 <span class="go">tcp    LISTEN     0      5        :::5902                 :::*</span>
 </pre></div>
 </div>
-<p>その上で、 <code class="docutils literal"><span class="pre">/etc/xrdp/xrdp.ini</span></code> の下の方の <code class="docutils literal"><span class="pre">xrdpN</span></code> (Nは数字)
-の設定中の <code class="docutils literal"><span class="pre">port</span></code> の番号を <code class="docutils literal"><span class="pre">-1</span></code> から上記で取得した数字に更新する。</p>
+<p>その上で、 <code class="docutils literal notranslate"><span class="pre">/etc/xrdp/xrdp.ini</span></code> の下の方の <code class="docutils literal notranslate"><span class="pre">xrdpN</span></code> (Nは数字)
+の設定中の <code class="docutils literal notranslate"><span class="pre">port</span></code> の番号を <code class="docutils literal notranslate"><span class="pre">-1</span></code> から上記で取得した数字に更新する。</p>
 <p>その上で、 xrdp を再読込する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> systemctl restart xrdp.service
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> systemctl restart xrdp.service
 </pre></div>
 </div>
 </li>
 <li><p class="first">ファイアウォールにて rdp のポートを許可する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> firewall-cmd --add-port<span class="o">=</span><span class="m">3389</span>/tcp --permanent
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> firewall-cmd --add-port<span class="o">=</span><span class="m">3389</span>/tcp --permanent
 <span class="gp">#</span> firewall-cmd --reload
 </pre></div>
 </div>
@@ -140,8 +140,8 @@
 </ol>
 <ol class="upperalpha" start="24">
 <li><p class="first">LXQt を利用するようにする。</p>
-<p><code class="docutils literal"><span class="pre">~/.vnc/xstartup</span></code> が起動時に実行されるので、
-最終行を <code class="docutils literal"><span class="pre">exec</span> <span class="pre">/usr/bin/startlxqt</span></code> に更新する。</p>
+<p><code class="docutils literal notranslate"><span class="pre">~/.vnc/xstartup</span></code> が起動時に実行されるので、
+最終行を <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">/usr/bin/startlxqt</span></code> に更新する。</p>
 </li>
 </ol>
 </div>
@@ -156,7 +156,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/01030_use_xrdp_on_fedora.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

@@ -64,17 +64,17 @@
 隔離された環境をつくれると良いよねってことで <a class="reference external" href="https://www.python.org/dev/peps/pep-0405/">PEP 0405</a>
 で議論され, <a class="reference external" href="https://www.python.org/download/releases/3.3.0/">Python 3.3</a>
 で標準のライブラリに <a class="reference external" href="http://docs.python.jp/3.5/library/venv.html">venv</a> が追加された。</p>
-<p>この <a class="reference external" href="http://docs.python.jp/3.5/library/venv.html">venv</a> 、 <code class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span></code> といったかたちで <a class="reference external" href="http://docs.python.jp/3.5/library/venv.html">venv</a> モジュールを呼び出してあげると
-つかえるが、 <code class="docutils literal"><span class="pre">pyvenv</span></code> といったコマンドも利用できた。</p>
-<p>ただ、 <code class="docutils literal"><span class="pre">pyvnev</span></code> コマンドだと、どのバージョンの Python が利用されるか
+<p>この <a class="reference external" href="http://docs.python.jp/3.5/library/venv.html">venv</a> 、 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span></code> といったかたちで <a class="reference external" href="http://docs.python.jp/3.5/library/venv.html">venv</a> モジュールを呼び出してあげると
+つかえるが、 <code class="docutils literal notranslate"><span class="pre">pyvenv</span></code> といったコマンドも利用できた。</p>
+<p>ただ、 <code class="docutils literal notranslate"><span class="pre">pyvnev</span></code> コマンドだと、どのバージョンの Python が利用されるか
 分かり辛かったらしい。確かに僕も最初は <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> と混同していた。</p>
 <p>ここらへんの話は
-<a class="reference external" href="https://bugs.python.org/issue25152">Issue 25152: venv documentation doesn’t tell you how to specify a particular version of python - Python tracker</a>
+<a class="reference external" href="https://bugs.python.org/issue25152">Issue 25152: venv documentation doesn't tell you how to specify a particular version of python - Python tracker</a>
 で進められていて、
 <a class="reference external" href="https://bugs.python.org/issue25154">Issue 25154: Drop the pyvenv script - Python tracker</a>
 にて将来の Python 3.8 で pyvenv を消す方針とされたらしい。</p>
-<p>今後、消されてしまう <code class="docutils literal"><span class="pre">pyvenv</span></code> ではなく <code class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">vnev</span></code> を利用するようにしましょう。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python3 -m venv some_venv
+<p>今後、消されてしまう <code class="docutils literal notranslate"><span class="pre">pyvenv</span></code> ではなく <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">vnev</span></code> を利用するようにしましょう。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python3 -m venv some_venv
 </pre></div>
 </div>
 <p>とかで呼び出して。</p>
@@ -82,7 +82,7 @@
 <div class="section" id="id1">
 <h2>ヘルプ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下、 Python 3.5.1 の <a class="reference external" href="http://docs.python.jp/3.5/library/venv.html">venv</a> ヘルプ</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python3.5 -m venv -h
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python3.5 -m venv -h
 <span class="go">usage: venv [-h] [--system-site-packages] [--symlinks | --copies] [--clear]</span>
 <span class="go">            [--upgrade] [--without-pip]</span>
 <span class="go">            ENV_DIR [ENV_DIR ...]</span>
@@ -131,7 +131,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/01310_not_use_pyvenv_but_venv.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

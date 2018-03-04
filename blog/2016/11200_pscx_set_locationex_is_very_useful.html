@@ -57,14 +57,14 @@
 <h1>Pscx\Set-LocationEx はとても便利<a class="headerlink" href="#pscx-set-locationex" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><span class="blog_date">2016/11/20</span></p>
 <p><a class="reference external" href="https://github.com/Pscx/Pscx">Pscx</a> はいろいろな cmdlet を定義しておりとても
-便利ですが今回は <code class="docutils literal"><span class="pre">Pscx\Set-LocationEx</span></code> をば。</p>
-<p>通常 Linux では <code class="docutils literal"><span class="pre">cd</span> <span class="pre">-</span></code> で移動前にいたパスに移動できるようです。 (今回の記事で
+便利ですが今回は <code class="docutils literal notranslate"><span class="pre">Pscx\Set-LocationEx</span></code> をば。</p>
+<p>通常 Linux では <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> で移動前にいたパスに移動できるようです。 (今回の記事で
 僕は初めて知った。。。)</p>
-<p><a class="reference external" href="https://github.com/Pscx/Pscx">Pscx</a> をインストールして有効化すると <code class="docutils literal"><span class="pre">cd</span></code> に対して <code class="docutils literal"><span class="pre">Pscx\Set-LocationEx</span></code> が
+<p><a class="reference external" href="https://github.com/Pscx/Pscx">Pscx</a> をインストールして有効化すると <code class="docutils literal notranslate"><span class="pre">cd</span></code> に対して <code class="docutils literal notranslate"><span class="pre">Pscx\Set-LocationEx</span></code> が
 エイリアスとしてつきます。</p>
-<p>この cmdlet を利用すると前述の <code class="docutils literal"><span class="pre">cd</span> <span class="pre">-</span></code> のみならず、 <code class="docutils literal"><span class="pre">cd</span> <span class="pre">+</span></code> も使えるようになり
+<p>この cmdlet を利用すると前述の <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> のみならず、 <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">+</span></code> も使えるようになり
 ます。</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>C:\Users\tomo
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Users\tomo
 [2016/39/20 12:39:55] PS ~\
 &gt; cd .\misc\
 C:\Users\tomo\misc
@@ -81,9 +81,9 @@ C:\Users\tomo\misc\dotfiles
 -&gt;   2 C:\Users\tomo\misc\dotfiles
 </pre></div>
 </div>
-<p>この状態で <code class="docutils literal"><span class="pre">cd</span> <span class="pre">-</span></code> <code class="docutils literal"><span class="pre">cd</span> <span class="pre">+</span></code> を利用すると、
+<p>この状態で <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">+</span></code> を利用すると、
 以下のようにディレクトリを移動できます。</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>C:\Users\tomo\misc\dotfiles
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Users\tomo\misc\dotfiles
 (git:master) [2016/40/20 12:40:13] PS ~\misc\dotfiles
 &gt; cd -
 C:\Users\tomo\misc
@@ -94,9 +94,9 @@ C:\Users\tomo\misc\dotfiles
 </pre></div>
 </div>
 <p>とても便利なので活用してみてください。</p>
-<p>ただ僕は引数無しの cd は <code class="docutils literal"><span class="pre">$HOME</span></code> ディレクトリに移動してほしい口なので、
+<p>ただ僕は引数無しの cd は <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> ディレクトリに移動してほしい口なので、
 別途以下のように定義して利用しています。</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>Remove-Item Alias:cd
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>Remove-Item Alias:cd
 Function cd() {
     Param(
         [Parameter(Mandatory = $false, Position = 0)]
@@ -125,7 +125,7 @@ Function cd() {
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/11200_pscx_set_locationex_is_very_useful.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

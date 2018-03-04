@@ -56,10 +56,10 @@
   <div class="section" id="psgallery">
 <h1>PSGallery を信頼できるリポジトリとして設定する手順<a class="headerlink" href="#psgallery" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><span class="blog_date">2016/11/20</span></p>
-<p>初期だと <code class="docutils literal"><span class="pre">PowerShell</span></code> にて <code class="docutils literal"><span class="pre">Install-Module</span></code> などで <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> が
+<p>初期だと <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> にて <code class="docutils literal notranslate"><span class="pre">Install-Module</span></code> などで <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> が
 信頼されていないリポジトリとして設定されており、以下のような警告が表されると
 思います。</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>C:\Users\tomo
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Users\tomo
 [2016/41/20 10:41:16] PS ~\
 &gt; Find-Module –Includes DSCResource –Name xHyper-V | Install-Module -Scope CurrentUser
 
@@ -71,9 +71,9 @@
 </div>
 <p><a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> はある程度信頼できるだろう、といった場合この警告を表示しないようにする
 ことができます。
-<code class="docutils literal"><span class="pre">Set-PSRepository</span></code> を利用して信頼できるリポジトリとして設定することによって
+<code class="docutils literal notranslate"><span class="pre">Set-PSRepository</span></code> を利用して信頼できるリポジトリとして設定することによって
 <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> から警告無しにインストールできるようになります。</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>[2016/50/20 10:50:44] PS ~\
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>[2016/50/20 10:50:44] PS ~\
 &gt; Get-PSRepository
 
 Name                      InstallationPolicy   SourceLocation
@@ -94,7 +94,7 @@ PSGallery                 Trusted              https://www.powershellgallery.com
 </pre></div>
 </div>
 <p>最終的に、 <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> から以下のように警告なくインストールできるようになります。</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>C:\Users\tomo
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Users\tomo
 [2016/52/20 10:52:16] PS ~\
 &gt; Find-Module –Includes DSCResource –Name xHyper-V | Install-Module -Scope CurrentUser
 </pre></div>
@@ -111,7 +111,7 @@ PSGallery                 Trusted              https://www.powershellgallery.com
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/11201_how_to_make_psgallery_trusted_repository.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

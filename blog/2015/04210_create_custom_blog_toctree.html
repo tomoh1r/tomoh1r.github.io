@@ -69,11 +69,11 @@
 <div class="section" id="n">
 <h2><a class="toc-backref" href="#id4">名前降順 N 件のみ表示</a><a class="headerlink" href="#n" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>TocTree を継承した BlogTocTree を作り、 option_spec に設定をつけた。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;reverse&#39;</span><span class="p">:</span> <span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;reverse&#39;</span><span class="p">:</span> <span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
 <span class="s1">&#39;maxnum&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 </pre></div>
 </div>
-<p>のような形で定義。後は <cite>run()</cite> メソッドで <cite>ret[0][0][『entries』]</cite> に <cite>toctree</cite>
+<p>のような形で定義。後は <cite>run()</cite> メソッドで <cite>ret[0][0]['entries']</cite> に <cite>toctree</cite>
 に含まれる記事が入っているので、これらを処理した。</p>
 </div>
 <div class="section" id="id2">
@@ -83,7 +83,7 @@
 を表示したかった。</p>
 <p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> のコードを読んでみたが、どこの処理で <cite>toctree</cite> を HTML
 のリストに変えているか分からなかったので、手抜き。</p>
-<p><cite>ret[0][0][『entries』]</cite> は <cite>(display_name, docname)</cite>
+<p><cite>ret[0][0]['entries']</cite> は <cite>(display_name, docname)</cite>
 のタプルのリストで並んでおり、この <cite>display_name</cite>
 を書き換えると表示される文字列を変えることができる。</p>
 <p><cite>for</cite> でループして、ファイルを読み込んで、
@@ -107,7 +107,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2015/04210_create_custom_blog_toctree.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

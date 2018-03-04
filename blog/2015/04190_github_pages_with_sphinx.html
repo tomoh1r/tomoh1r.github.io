@@ -112,7 +112,7 @@ CSSファイルを書き出すので、対策が必要。</p>
 <li>sphinxcontrib_staticdir_hack.py (<a class="reference external" href="https://gist.github.com/tk0miya/a6b5dd01a019fb303a13">gist</a>)</li>
 </ul>
 <p>以下コード (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_staticdir_hack.py">github</a>):</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1">#</span>
 <span class="c1"># Sphinx extension for renaming _static/ directory</span>
 <span class="c1">#</span>
@@ -178,13 +178,13 @@ CSSを追加し、文章とサイドバーの位置を逆にした。</p>
 Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ会</a></li>
 </ul>
 <p><cite>conf.py</cite> の末尾に以下の記載をする。</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="n">app</span><span class="o">.</span><span class="n">add_stylesheet</span><span class="p">(</span><span class="s1">&#39;style.css&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>その上で、以下のCSS (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_static/style.css">github</a>) を
 <cite>_static/</cite> 配下に配置する。</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">charset</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">;</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">charset</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">;</span>
 
 <span class="nt">div</span><span class="p">.</span><span class="nc">bodywrapper</span> <span class="p">{</span>
   <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
@@ -202,7 +202,7 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 <h2><a class="toc-backref" href="#id14">サイドバー修正</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>標準の前の記事、次の記事、を少し書き換えて、 Top ページへのリンクにしたかった。</p>
 <p>先ずは、 <cite>conf.py</cite> の以下の設定を書き換える。</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;**&#39;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s1">&#39;side_index.html&#39;</span><span class="p">,</span>
         <span class="s1">&#39;searchbox.html&#39;</span><span class="p">,</span>
@@ -215,12 +215,12 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 <p>以下は作成したもの。 なお、 <cite>searchbox.html</cite> は組込である。</p>
 <ul>
 <li><p class="first">side_index.html (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_templates/side_index.html">github</a>)</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;h3&gt;&lt;a href=&quot;/index.html&quot;&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Top&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;&lt;/h3&gt;</span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;h3&gt;&lt;a href=&quot;/index.html&quot;&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Top&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;&lt;/h3&gt;</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">side_genindex.html (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_templates/side_genindex.html">github</a>)</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;h3&gt;&lt;a href=&quot;/genindex.html&quot;&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Index&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;&lt;/h3&gt;</span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;h3&gt;&lt;a href=&quot;/genindex.html&quot;&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Index&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;&lt;/h3&gt;</span>
 </pre></div>
 </div>
 </li>
@@ -235,7 +235,7 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 <li>サンプル: <a class="reference external" href="http://labs.timedia.co.jp/2012/04/sphinx.html">Sphinxで打ち消しを使う - TIM Labs</a></li>
 </ul>
 <p>以下コード (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_date.py">github</a>):</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">dedent</span>
 
@@ -299,7 +299,7 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2015/04190_github_pages_with_sphinx.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

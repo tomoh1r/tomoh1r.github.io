@@ -61,7 +61,7 @@
 感想等をまとめることにする。</p>
 <p>以下のように clone し docker-compose を利用して環境を構築すると環境を構築でき、
 <a class="reference external" href="http://localhost:8000/">http://localhost:8000/</a> にて動作を確認することができる。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone --depth <span class="m">1</span> -b <span class="m">01</span>-basic-restful-server-client https://github.com/jptomo/example-pyramid-rest-app.git
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone --depth <span class="m">1</span> -b <span class="m">01</span>-basic-restful-server-client https://github.com/jptomo/example-pyramid-rest-app.git
 <span class="gp">$</span> <span class="nb">cd</span> example-pyramid-rest-app/
 <span class="gp">$</span> docker-compose up -d
 </pre></div>
@@ -75,10 +75,10 @@
 一通り読む。基本的なことは記載がある。</p>
 <p><a class="reference external" href="https://docs.angularjs.org/api/ngResource/service/$resource">ngResource</a> を利用した API アクセスは、軽く探したところ、 POST/PUT は
 URLパラメーターとしてデータを送信し、JSONデータとしては送信しない。</p>
-<p>JSONデータとして送信したい場合、 <code class="docutils literal"><span class="pre">$http</span></code> を利用して低レイヤーの処理として
+<p>JSONデータとして送信したい場合、 <code class="docutils literal notranslate"><span class="pre">$http</span></code> を利用して低レイヤーの処理として
 組むんだろうなと思った。</p>
 <p><a class="reference external" href="https://docs.angularjs.org/api/ngResource/service/$resource">ngResource</a> にて取ってきたデータを加工する処理をする際は、
-<code class="docutils literal"><span class="pre">$SomeService.someMethod().$promise.then(function()</span> <span class="pre">{</span> <span class="pre">/*</span> <span class="pre">some</span> <span class="pre">processure</span> <span class="pre">*/</span> <span class="pre">});</span></code> として
+<code class="docutils literal notranslate"><span class="pre">$SomeService.someMethod().$promise.then(function()</span> <span class="pre">{</span> <span class="pre">/*</span> <span class="pre">some</span> <span class="pre">processure</span> <span class="pre">*/</span> <span class="pre">});</span></code> として
 処理を callback として記載しないといけないのが手間 (
 <a class="reference external" href="https://github.com/jptomo/example-pyramid-rest-app/blob/01-basic-restful-server-client/frontend/main.js#L39">ここらへん</a>
 参照)、だけどそんなもんですね、非同期処理だし。</p>
@@ -102,7 +102,7 @@ URLパラメーターとしてデータを送信し、JSONデータとしては�
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/01010_angularjs_and_cornice.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

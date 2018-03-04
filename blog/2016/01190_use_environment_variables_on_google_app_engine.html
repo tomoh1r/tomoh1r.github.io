@@ -56,8 +56,8 @@
   <div class="section" id="google-app-engine">
 <h1>Google App Engine で環境変数を利用する<a class="headerlink" href="#google-app-engine" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><span class="blog_date">2016/01/19</span></p>
-<p><code class="docutils literal"><span class="pre">app.yaml</span></code> の <code class="docutils literal"><span class="pre">env_variables</span></code> を利用すると、アプリケーションで利用する環境変数を設定することができる。</p>
-<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_OWN_APP_ID&gt;</span>
+<p><code class="docutils literal notranslate"><span class="pre">app.yaml</span></code> の <code class="docutils literal notranslate"><span class="pre">env_variables</span></code> を利用すると、アプリケーションで利用する環境変数を設定することができる。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_OWN_APP_ID&gt;</span>
 <span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_OWN_VERSION&gt;</span>
 
 <span class="l l-Scalar l-Scalar-Plain">runtime</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">python27</span>
@@ -73,12 +73,12 @@
   <span class="l l-Scalar l-Scalar-Plain">BAR</span><span class="p p-Indicator">:</span> <span class="s">&#39;my</span><span class="nv"> </span><span class="s">BAR&#39;</span>
 </pre></div>
 </div>
-<p>また、この環境変数を <code class="docutils literal"><span class="pre">appcfg.py</span></code> コマンドのオプション、
-<code class="docutils literal"><span class="pre">-E</span> <span class="pre">NAME:VALUE,</span> <span class="pre">--env_variable=NAME:VALUE</span></code> にて上書きすることができる。</p>
+<p>また、この環境変数を <code class="docutils literal notranslate"><span class="pre">appcfg.py</span></code> コマンドのオプション、
+<code class="docutils literal notranslate"><span class="pre">-E</span> <span class="pre">NAME:VALUE,</span> <span class="pre">--env_variable=NAME:VALUE</span></code> にて上書きすることができる。</p>
 <p>そのため、環境毎に読み込む設定ファイルなどを同じソースコードを利用して、
 異なる App Engine のバージョンでデプロイするなどを簡易にすることができる。</p>
 <p>複数環境変数を設定するときは、以下のように複数引数を記載すると良いようだ。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> appcfg.py update . -E FOO:<span class="s2">&quot;Injected!&quot;</span> -E BAR:<span class="s2">&quot;Injected!&quot;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> appcfg.py update . -E FOO:<span class="s2">&quot;Injected!&quot;</span> -E BAR:<span class="s2">&quot;Injected!&quot;</span>
 </pre></div>
 </div>
 <p>サンプルのソースコードは <a class="reference external" href="https://github.com/jptomo/example-app-engine-environment-variables">こちら</a>
@@ -95,7 +95,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/01190_use_environment_variables_on_google_app_engine.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

@@ -61,7 +61,7 @@
 <ul class="simple">
 <li>Windows 10 の PowerShell 上で作業を想定する。</li>
 <li>最初に Windows に Java をインストールし Maven を配置する。</li>
-<li>最終的に <code class="docutils literal"><span class="pre">mvn</span> <span class="pre">archetype:generate</span></code> でプロジェクトを作成し、 <code class="docutils literal"><span class="pre">Hello</span> <span class="pre">World</span></code>
+<li>最終的に <code class="docutils literal notranslate"><span class="pre">mvn</span> <span class="pre">archetype:generate</span></code> でプロジェクトを作成し、 <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code>
 と表示するところまで作業を進める。</li>
 </ul>
 </div>
@@ -73,9 +73,9 @@
 <li><a class="reference external" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java SE Development Kit 8 Download</a> より JDK をダウンロードする。</li>
 <li>適当な場所にインストールする。</li>
 <li>環境変数を設定する。
-<code class="docutils literal"><span class="pre">$Env:JAVA_HOME</span></code> に JDK をインストールしたパスを、また <code class="docutils literal"><span class="pre">$Env:JRE_HOME</span></code> に
-JDK をインストールしたパス配下の <code class="docutils literal"><span class="pre">jre</span></code> ディレクトリを指定する。</li>
-<li>JDK をインストールしたパス配下の <code class="docutils literal"><span class="pre">jre\bin</span></code> ディレクトリを <code class="docutils literal"><span class="pre">$Env:Path</span></code>
+<code class="docutils literal notranslate"><span class="pre">$Env:JAVA_HOME</span></code> に JDK をインストールしたパスを、また <code class="docutils literal notranslate"><span class="pre">$Env:JRE_HOME</span></code> に
+JDK をインストールしたパス配下の <code class="docutils literal notranslate"><span class="pre">jre</span></code> ディレクトリを指定する。</li>
+<li>JDK をインストールしたパス配下の <code class="docutils literal notranslate"><span class="pre">jre\bin</span></code> ディレクトリを <code class="docutils literal notranslate"><span class="pre">$Env:Path</span></code>
 に通す。</li>
 </ol>
 </div>
@@ -84,8 +84,8 @@ JDK をインストールしたパス配下の <code class="docutils literal"><s
 <ol class="arabic simple">
 <li><a class="reference external" href="https://maven.apache.org/">Maven</a> のページから左側の Download をクリック。</li>
 <li>ページ中程の Files にある Binary zip archive のファイルをダウンロードする。</li>
-<li>適当な場所に 2 のファイルを解凍し、ディレクトリ内の <code class="docutils literal"><span class="pre">bin</span></code> ディレクトリ
-のパスを <code class="docutils literal"><span class="pre">$Env:Path</span></code> に通しておく。</li>
+<li>適当な場所に 2 のファイルを解凍し、ディレクトリ内の <code class="docutils literal notranslate"><span class="pre">bin</span></code> ディレクトリ
+のパスを <code class="docutils literal notranslate"><span class="pre">$Env:Path</span></code> に通しておく。</li>
 </ol>
 </div>
 <div class="section" id="id4">
@@ -93,8 +93,8 @@ JDK をインストールしたパス配下の <code class="docutils literal"><s
 <ol class="arabic">
 <li><p class="first">プロジェクトを作成したい親ディレクトリに PowerShell 上で移動する。</p>
 </li>
-<li><p class="first">以下のコマンドを実行する。適宜 <code class="docutils literal"><span class="pre">groupId</span></code> と <code class="docutils literal"><span class="pre">artifactId</span></code> を修正のこと。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">PS&gt; mvn archetype:generate -B &quot;-DarchetypeGroupId=org.springframework.boot&quot; `</span>
+<li><p class="first">以下のコマンドを実行する。適宜 <code class="docutils literal notranslate"><span class="pre">groupId</span></code> と <code class="docutils literal notranslate"><span class="pre">artifactId</span></code> を修正のこと。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">PS&gt; mvn archetype:generate -B &quot;-DarchetypeGroupId=org.springframework.boot&quot; `</span>
 <span class="go">    &quot;-DarchetypeArtifactId=spring-boot-sample-simple-archetype&quot; `</span>
 <span class="go">    &quot;-DgroupId=com.example&quot; &quot;-DartifactId=hello&quot; &quot;-Dversion=1.0.0-SNAPSHOT&quot; &quot;-DinteractiveMode=false&quot;</span>
 </pre></div>
@@ -103,13 +103,13 @@ JDK をインストールしたパス配下の <code class="docutils literal"><s
 </ol>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">PowerShell 上で mvn コマンドを実行する場合 <code class="docutils literal"><span class="pre">-D</span></code> で始まるオプションは
+<p class="last">PowerShell 上で mvn コマンドを実行する場合 <code class="docutils literal notranslate"><span class="pre">-D</span></code> で始まるオプションは
 クォートする必要があるようだ。参考: <a class="reference external" href="http://stackoverflow.com/questions/21902668/maven-works-in-cmd-but-not-powershell">Maven works in cmd but not powershell</a></p>
 </div>
 </div>
 <div class="section" id="id5">
 <h3>4. ビルドして実行<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">PS&gt; cd hello</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">PS&gt; cd hello</span>
 <span class="go">PS&gt; mvn package</span>
 <span class="go">(snip)</span>
 <span class="go">PS&gt; java -jar target\hello-1.0.0-SNAPSHOT.jar --name=&quot;foo bar baz&quot;</span>
@@ -137,7 +137,7 @@ JDK をインストールしたパス配下の <code class="docutils literal"><s
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2017/01070_quickstart_springboot_on_windows10.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

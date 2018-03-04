@@ -71,7 +71,7 @@
 <p><cite>conf.py</cite> の <cite>html_theme_path</cite> に <cite>_themes</cite> (適宜変更可能) を指定し、
 <cite>html_theme</cite> に改編後の名前を指定する</p>
 <p>以下 <cite>conf.py</cite> の抜粋</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">..</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span>
 
 <span class="c1"># The theme to use for HTML and HTML Help pages.  See the documentation for</span>
 <span class="c1"># a list of builtin themes.</span>
@@ -99,7 +99,7 @@
 <h3>トップページのページタイトルをページのもののみにした (suffix 削除)<a class="headerlink" href="#suffix" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><cite>htmltitle</cite> ブロック内の記載がタイトルに出力されるので、以下のように
 <cite>laytou.html</cite> にて記載する。</p>
-<div class="highlight-html+jinja"><div class="highlight"><pre><span></span><span class="c">{#- トップページは、ページのタイトルのみ表示 #}</span>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="c">{#- トップページは、ページのタイトルのみ表示 #}</span>
 <span class="cp">{%</span>- <span class="k">block</span> <span class="nv">htmltitle</span> <span class="cp">%}</span>
 <span class="cp">{%</span>- <span class="k">if</span> <span class="nv">pagename</span> <span class="o">==</span> <span class="s1">&#39;index&#39;</span> <span class="cp">%}</span>
     <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
@@ -130,7 +130,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2015/04200_create_custom_html_theme.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

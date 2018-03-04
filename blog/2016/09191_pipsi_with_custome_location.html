@@ -58,13 +58,13 @@
 <p><span class="blog_date">2016/09/19</span></p>
 <p>Python の便利ツールインストールしたいけど今の環境には入れたくない場合など pipsi
 はとても便利ですね。</p>
-<p>普通、 pipsi を利用する際は <code class="docutils literal"><span class="pre">~/.local/venvs</span></code> に環境が作られ、 <code class="docutils literal"><span class="pre">~/.local/bin</span></code>
+<p>普通、 pipsi を利用する際は <code class="docutils literal notranslate"><span class="pre">~/.local/venvs</span></code> に環境が作られ、 <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code>
 に実行ファイルが配置されると思います。しかし、場合によっては別の場所に作成して欲しい場合があると思います。</p>
 <p>僕はそれに当たりました。</p>
-<p>この場合 <code class="docutils literal"><span class="pre">PIPSI_HOME</span></code>/<code class="docutils literal"><span class="pre">PIPSI_BIN_DIR</span></code> を指定すると対応できます。
+<p>この場合 <code class="docutils literal notranslate"><span class="pre">PIPSI_HOME</span></code>/<code class="docutils literal notranslate"><span class="pre">PIPSI_BIN_DIR</span></code> を指定すると対応できます。
 お試しあれ。</p>
 <p>以下実行例。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">PIPSI_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/misc/venvs
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">PIPSI_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/misc/venvs
 <span class="gp">$</span> <span class="nb">export</span> <span class="nv">PIPSI_BIN_DIR</span><span class="o">=</span><span class="nv">$HOME</span>/misc/bin
 <span class="gp">$</span> python3.5 -m pipsi install pip-tools
 </pre></div>
@@ -81,7 +81,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/09191_pipsi_with_custome_location.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

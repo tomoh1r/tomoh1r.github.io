@@ -91,13 +91,13 @@
 <p>後ほど <a class="reference external" href="https://github.com/ansible/ansible/blob/devel/lib/ansible/runner/connection_plugins/chroot.py">chroot</a>
 を見つけたのはご愛嬌。</p>
 <p><a class="reference external" href="http://www.ansible.com/home">Ansible</a> で生にシェルを実行しようとするらしく、環境変数の取り回しや、パイプ、
-<code class="docutils literal"><span class="pre">&amp;&amp;</span></code> <code class="docutils literal"><span class="pre">;</span></code> の取り扱いが難儀した。</p>
+<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> <code class="docutils literal notranslate"><span class="pre">;</span></code> の取り扱いが難儀した。</p>
 <div class="section" id="id5">
 <h4>環境変数<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>コンテナ内の環境変数は、以下のように <code class="docutils literal"><span class="pre">/proc/&lt;PID&gt;/environ</span></code> からとれる。</p>
-<p>ヌル文字列で区切られているようなので、区切って、あとは <code class="docutils literal"><span class="pre">=</span></code>
+<p>コンテナ内の環境変数は、以下のように <code class="docutils literal notranslate"><span class="pre">/proc/&lt;PID&gt;/environ</span></code> からとれる。</p>
+<p>ヌル文字列で区切られているようなので、区切って、あとは <code class="docutils literal notranslate"><span class="pre">=</span></code>
 で切り分けて、辞書にして取り扱うようにした。</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_get_container_env</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_get_container_env</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;return container env dict&#39;&#39;&#39;</span>
     <span class="c1"># get environ path</span>
     <span class="n">env_path</span> <span class="o">=</span> <span class="s1">&#39;/proc/{}/environ&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extract_var</span><span class="p">(</span><span class="s1">&#39;Leader&#39;</span><span class="p">))</span>
@@ -119,12 +119,12 @@
 </div>
 </div>
 <div class="section" id="id6">
-<h4><code class="docutils literal"><span class="pre">&amp;&amp;</span></code> や <code class="docutils literal"><span class="pre">;</span></code><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p><code class="docutils literal"><span class="pre">&amp;&amp;</span></code> <code class="docutils literal"><span class="pre">;</span></code> はその位置でとりあえず分割して、
+<h4><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> や <code class="docutils literal notranslate"><span class="pre">;</span></code><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> <code class="docutils literal notranslate"><span class="pre">;</span></code> はその位置でとりあえず分割して、
 個別にコマンドを実行するようにした。</p>
-<p><code class="docutils literal"><span class="pre">()</span></code> とか <code class="docutils literal"><span class="pre">||</span></code> とかには対応してないが、とりあえず <a class="reference external" href="http://www.ansible.com/home">Ansible</a>
+<p><code class="docutils literal notranslate"><span class="pre">()</span></code> とか <code class="docutils literal notranslate"><span class="pre">||</span></code> とかには対応してないが、とりあえず <a class="reference external" href="http://www.ansible.com/home">Ansible</a>
 が動くのでまずはよしとする。</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># if multiple command then split it</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># if multiple command then split it</span>
 <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;&amp;&amp;&#39;</span><span class="p">,</span> <span class="s1">&#39;;&#39;</span><span class="p">]):</span>
     <span class="c1"># split set env and actual command</span>
     <span class="n">cmd_env</span><span class="p">,</span> <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_env</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
@@ -168,14 +168,14 @@
 <div class="section" id="id7">
 <h3><a class="toc-backref" href="#id14">2. ディレクトリに配置する。</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference external" href="https://github.com/jptomo/ansible-connection-nsenter/blob/master/README.rst">README.rst</a> に書いたように以下のように配置する。</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir -p /etc/ansible/plugins/connection_plugins
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir -p /etc/ansible/plugins/connection_plugins
 <span class="gp">$</span> curl https://raw.githubusercontent.com/jptomo/ansible-nsenter/master/nsenter.py -o /etc/ansible/plugins/connection_plugins/nsenter.py
 </pre></div>
 </div>
-<p><a class="reference external" href="https://pypi.python.org/pypi">PyPI</a> において、 <code class="docutils literal"><span class="pre">pip</span></code> で入れたときに自動で <a class="reference external" href="http://www.ansible.com/home">Ansible</a> に認識されるような
+<p><a class="reference external" href="https://pypi.python.org/pypi">PyPI</a> において、 <code class="docutils literal notranslate"><span class="pre">pip</span></code> で入れたときに自動で <a class="reference external" href="http://www.ansible.com/home">Ansible</a> に認識されるような
 仕組みができるとよいかと思ったが、依存で入って別に使わないけど影響しちゃうのもなあ
 と思い、悩ましいと思う。</p>
-<p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> でも <code class="docutils literal"><span class="pre">pip</span></code> で入れた上に設定ファイルである <code class="docutils literal"><span class="pre">conf.py</span></code>
+<p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> でも <code class="docutils literal notranslate"><span class="pre">pip</span></code> で入れた上に設定ファイルである <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>
 に書く必要があるので辛いと思ったことがあったが、
 でも、依存で影響するのもとも思う。</p>
 </div>
@@ -188,10 +188,10 @@
 <li>.ansible.cfg (in the home directory)</li>
 <li>/etc/ansible/ansible.cfg</li>
 </ul>
-<p>4つのいずれかの <code class="docutils literal"><span class="pre">connection_plugins</span></code> の設定でパスを認識させる。
-今回は <code class="docutils literal"><span class="pre">/etc/ansible/plugins/connection_plugins/</span></code> となる。</p>
-<p>書く際は <code class="docutils literal"><span class="pre">defaults</span></code> セクションに書く必要があるので、以下のように書く。</p>
-<div class="highlight-cfg"><div class="highlight"><pre><span></span><span class="k">[defaults]</span>
+<p>4つのいずれかの <code class="docutils literal notranslate"><span class="pre">connection_plugins</span></code> の設定でパスを認識させる。
+今回は <code class="docutils literal notranslate"><span class="pre">/etc/ansible/plugins/connection_plugins/</span></code> となる。</p>
+<p>書く際は <code class="docutils literal notranslate"><span class="pre">defaults</span></code> セクションに書く必要があるので、以下のように書く。</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[defaults]</span>
 <span class="na">connection_plugins</span> <span class="o">=</span> <span class="s">/etc/ansible/plugins/connection_plugins/</span>
 </pre></div>
 </div>
@@ -200,11 +200,11 @@
 <div class="section" id="id8">
 <h2><a class="toc-backref" href="#id12">使い方</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>個人的に勉強用に進めている <a class="reference external" href="https://github.com/jptomo/compare-rdbms">compare-rdbms</a> を見ると何となく使い方がわかると思う。</p>
-<p><code class="docutils literal"><span class="pre">ansible.cfg</span></code> はトップディレクトリに配置し、このディレクトリで
-<code class="docutils literal"><span class="pre">ansible-playbook</span></code> を実行した場合、参照されるようにする。</p>
-<p><code class="docutils literal"><span class="pre">ansible/local.yml</span></code> の通り、 <code class="docutils literal"><span class="pre">connection</span></code> に <code class="docutils literal"><span class="pre">nsenter</span></code> を指定すると
+<p><code class="docutils literal notranslate"><span class="pre">ansible.cfg</span></code> はトップディレクトリに配置し、このディレクトリで
+<code class="docutils literal notranslate"><span class="pre">ansible-playbook</span></code> を実行した場合、参照されるようにする。</p>
+<p><code class="docutils literal notranslate"><span class="pre">ansible/local.yml</span></code> の通り、 <code class="docutils literal notranslate"><span class="pre">connection</span></code> に <code class="docutils literal notranslate"><span class="pre">nsenter</span></code> を指定すると
 使われるようになるので、指定する。</p>
-<p>後は、この <code class="docutils literal"><span class="pre">connection</span></code> を利用してタスクが動く。</p>
+<p>後は、この <code class="docutils literal notranslate"><span class="pre">connection</span></code> を利用してタスクが動く。</p>
 </div>
 </div>
 
@@ -218,7 +218,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2015/04290_write_ansible_connection_nsenter.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

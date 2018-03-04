@@ -89,15 +89,15 @@
 <div class="section" id="python-3-4">
 <h3><a class="toc-backref" href="#id7">Python 3.4 の場合</a><a class="headerlink" href="#python-3-4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl</span></code></li>
-<li><code class="docutils literal"><span class="pre">scipy-0.17.0-cp34-none-win_amd64.whl</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">scipy-0.17.0-cp34-none-win_amd64.whl</span></code></li>
 </ul>
 </div>
 <div class="section" id="python-3-5">
 <h3><a class="toc-backref" href="#id8">Python 3.5 の場合</a><a class="headerlink" href="#python-3-5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl</span></code></li>
-<li><code class="docutils literal"><span class="pre">scipy-0.17.0-cp35-none-win_amd64.whl</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">scipy-0.17.0-cp35-none-win_amd64.whl</span></code></li>
 </ul>
 </div>
 </div>
@@ -119,14 +119,14 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id10">前提</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">C:\Python\3.x.y.amd64\python.exe</span></code> に Python の 3.x.y を
+<li><code class="docutils literal notranslate"><span class="pre">C:\Python\3.x.y.amd64\python.exe</span></code> に Python の 3.x.y を
 インストールしている事を前提としている。</li>
-<li><code class="docutils literal"><span class="pre">C:\path\to</span></code> は 手順 1 でダウンロードしたディレクトリを想定している。</li>
+<li><code class="docutils literal notranslate"><span class="pre">C:\path\to</span></code> は 手順 1 でダウンロードしたディレクトリを想定している。</li>
 </ul>
 </div>
 <div class="section" id="id4">
 <h3><a class="toc-backref" href="#id11">Python 3.4 の場合の手順</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-batch"><div class="highlight"><pre><span></span><span class="p">&gt;</span> C:\Python\3.4.4.amd64\python.exe -m venv --copies --clear venv344
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> C:\Python\3.4.4.amd64\python.exe -m venv --copies --clear venv344
 <span class="p">&gt;</span> .\venv344\Scripts\python.exe -m pip install -U setuptools pip
 <span class="p">&gt;</span> .\venv344\Scripts\python.exe -m pip install -U C:\path\to\numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl
 <span class="p">&gt;</span> .\venv344\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
@@ -135,13 +135,13 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 </pre></div>
 </div>
 <p>この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。</p>
-<div class="highlight-batch"><div class="highlight"><pre><span></span><span class="p">&gt;</span> .\venv344\Scripts\jupyter-notebook --port=8888 --no-browser
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> .\venv344\Scripts\jupyter-notebook --port=8888 --no-browser
 </pre></div>
 </div>
 </div>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id12">Python 3.5 の場合の手順</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-batch"><div class="highlight"><pre><span></span><span class="p">&gt;</span> C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear venv351
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear venv351
 <span class="p">&gt;</span> .\venv351\Scripts\python.exe -m pip install -U setuptools pip
 <span class="p">&gt;</span> .\venv351\Scripts\python.exe -m pip install -U C:\path\to\numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl
 <span class="p">&gt;</span> .\venv351\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
@@ -150,7 +150,7 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 </pre></div>
 </div>
 <p>この状態で jupyter-notebook を起動する場合は以下のコマンドで起動する。</p>
-<div class="highlight-batch"><div class="highlight"><pre><span></span><span class="p">&gt;</span> .\venv351\Scripts\jupyter-notebook --port=8888 --no-browser
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> .\venv351\Scripts\jupyter-notebook --port=8888 --no-browser
 </pre></div>
 </div>
 </div>
@@ -163,7 +163,7 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <p>確認手順は
 <a class="reference external" href="https://www.scipy.org/getting-started.html#an-example-session">Getting Started — SciPy.org - An example session</a>
 の手順をお借りした。</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -181,7 +181,7 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <p>確認手順は
 <a class="reference external" href="http://qiita.com/ynakayama/items/88b4dd5d0dd9b1604006">scikit-learn を使った回帰モデルとその可視化 - Qiita</a>
 の手順をお借りした。</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -248,7 +248,7 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/04102_install_numpy_pandas_scipy_scikitlearn_on_windows.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

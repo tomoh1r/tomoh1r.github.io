@@ -68,18 +68,18 @@ PowerShell からだとつらい。</p>
 <p>この場合、 <a class="reference external" href="https://github.com/Wintellect/WintellectPowerShell">WintellectPowerShell</a>
 をインストールし、中に入っている Invoke-CmdScript を利用するとよい。</p>
 <p>具体的には</p>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="p">&gt;</span> <span class="n">Install-Module</span> <span class="n">-Name</span> <span class="n">WintellectPowerShell</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span> <span class="n">-AllowClobber</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> <span class="n">Install-Module</span> <span class="n">-Name</span> <span class="n">WintellectPowerShell</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span> <span class="n">-AllowClobber</span>
 </pre></div>
 </div>
 <p>としてインストールし、以下の設定をプロファイルに記載する。</p>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Import-Module</span> <span class="n">WintellectPowerShell</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Import-Module</span> <span class="n">WintellectPowerShell</span>
 <span class="nb">Invoke-CmdScript</span> <span class="n">-script</span> <span class="s2">&quot;C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat&quot;</span> <span class="n">amd64</span>
 </pre></div>
 </div>
 <p>利用時にエラーが出る場合は、
-<code class="docutils literal"><span class="pre">WintellectPowerShell\3.3.2.0\Code\Set-ProjectProperties.ps1</span></code>
-の先頭のほうの <code class="docutils literal"><span class="pre">Set-StrictMode</span></code> が化けている場合があるので、
-<code class="docutils literal"><span class="pre">Set-StrictMode</span> <span class="pre">-Version</span> <span class="pre">Latest</span></code> などと書き換えて利用するとよい。</p>
+<code class="docutils literal notranslate"><span class="pre">WintellectPowerShell\3.3.2.0\Code\Set-ProjectProperties.ps1</span></code>
+の先頭のほうの <code class="docutils literal notranslate"><span class="pre">Set-StrictMode</span></code> が化けている場合があるので、
+<code class="docutils literal notranslate"><span class="pre">Set-StrictMode</span> <span class="pre">-Version</span> <span class="pre">Latest</span></code> などと書き換えて利用するとよい。</p>
 <div class="section" id="pscx">
 <span id="id1"></span><h2>Pscx を利用ください<a class="headerlink" href="#pscx" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://github.com/Wintellect/WintellectPowerShell">WintellectPowerShell</a> も素晴らしいツールなのですが、おそらく通常 PowerShell
@@ -88,7 +88,7 @@ PowerShell からだとつらい。</p>
 <p><a class="reference external" href="https://github.com/Wintellect/WintellectPowerShell">WintellectPowerShell</a> も現時点では 2015/11/17 にメンテされてそうですが、
 わざわざ Import するのも大変だと思うので。</p>
 <p><a class="reference external" href="https://github.com/Pscx/Pscx">Pscx</a> をインストール後にプロファイルファイルにて以下のように指定ください。</p>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Import-VisualStudioVars</span> <span class="n">-VisualStudioVersion</span> <span class="n">2015</span> <span class="n">-Architecture</span> <span class="n">amd64</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Import-VisualStudioVars</span> <span class="n">-VisualStudioVersion</span> <span class="n">2015</span> <span class="n">-Architecture</span> <span class="n">amd64</span>
 </pre></div>
 </div>
 </div>
@@ -104,7 +104,7 @@ PowerShell からだとつらい。</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/11170_use_msvc_build_tools_on_powershell.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';

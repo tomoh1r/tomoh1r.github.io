@@ -60,15 +60,15 @@
 <div class="section" id="pager">
 <h2>PAGER を設定する<a class="headerlink" href="#pager" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>psql 起動前に PAGER 環境変数を設定しておくと more ではなくその設定を優先してくれる.</p>
-<p>最近指定しているのは <code class="docutils literal"><span class="pre">export</span> <span class="pre">PAGER='less</span> <span class="pre">-iSRMn'</span></code> としていて、
+<p>最近指定しているのは <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PAGER='less</span> <span class="pre">-iSRMn'</span></code> としていて、
 行毎に改行せずに表示できて便利。</p>
-<p>あと、PAGER に渡さないで表示したい場合は <code class="docutils literal"><span class="pre">\pset</span> <span class="pre">pager</span> <span class="pre">off</span></code> とする。</p>
-<p>やっぱり PAGER に渡して表示したい場合は、 <code class="docutils literal"><span class="pre">\pset</span> <span class="pre">pager</span> <span class="pre">on</span></code> とする。</p>
+<p>あと、PAGER に渡さないで表示したい場合は <code class="docutils literal notranslate"><span class="pre">\pset</span> <span class="pre">pager</span> <span class="pre">off</span></code> とする。</p>
+<p>やっぱり PAGER に渡して表示したい場合は、 <code class="docutils literal notranslate"><span class="pre">\pset</span> <span class="pre">pager</span> <span class="pre">on</span></code> とする。</p>
 </div>
 <div class="section" id="vertical">
 <h2>vertical に表示する<a class="headerlink" href="#vertical" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Query 実行時にセミコロンで終わるのではなく <code class="docutils literal"><span class="pre">\x\g\x</span></code> で終わらせると、
-ちょうど MySQL で <code class="docutils literal"><span class="pre">\G</span></code> した感じに vertical に表示できる。便利。</p>
+<p>Query 実行時にセミコロンで終わるのではなく <code class="docutils literal notranslate"><span class="pre">\x\g\x</span></code> で終わらせると、
+ちょうど MySQL で <code class="docutils literal notranslate"><span class="pre">\G</span></code> した感じに vertical に表示できる。便利。</p>
 </div>
 </div>
 
@@ -82,7 +82,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>| <a href="../../sources/blog/2016/02090_psql_pager_and_vertical.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
