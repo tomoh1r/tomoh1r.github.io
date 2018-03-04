@@ -1,0 +1,63 @@
+=====================================================
+Jenkins Pipeline で Groovy と shell step を混在させる
+=====================================================
+
+:blog_date:`2018/03/04`
+
+そもそもは、Jenkins の Pipeline で日付ディレクトリを扱いたかった。
+
+ちょっと調べていく打ちに script step ( ``script { ... }`` ) にて Groovy
+を動かし、日時を取得できそうなので試した。
+
+日時のフォーマットを扱う際に ``SimpleDateFormat`` を利用するが、これは
+import されてないので、きちんと import すること。また、
+script step と shell step ( ``sh '...'`` ) は世界が違うので、定義済みのグローバル変数
+``env`` を用いて世界をまたぐことが重要となる。
+
+以下が例となる。
+
+.. code:: groovy
+
+   import java.text.SimpleDateFormat
+
+   pipeline {
+       agent none
+
+       stages {
+           stage('publish-html') {
+               agent any
+               steps {
+                   script {
+                       def dateFormat = new SimpleDateFormat("yyyyMMddHHmmss")
+                       def current = dateFormat.format(new Date())
+                       def baseDir = '/var/www/'
+
+                       env.workDir = baseDir + '/' + current
+                       env.htmlDir = baseDir + '/' + 'html'
+                   }
+
+                   sh "mv _build/html ${env.workDir}"
+                   sh "ln -sfn ${env.workDir} ${env.htmlDir}"
+               }
+           }
+       }
+   }
+
+参考
+====
+
+* `jenkins - How to set and reference a variable in a Jenkinsfile - Stack Overflow <https://stackoverflow.com/questions/42540148/how-to-set-and-reference-a-variable-in-a-jenkinsfile>`__
+
+  * 検索し、 env 変数に気づいた。
+
+* `Using a Jenkinsfile - Jenkins <https://jenkins.io/doc/book/pipeline/jenkinsfile/>`__
+
+  * env 変数の一次資料となる。
+
+* `Pipeline Syntax - Jenkins <https://jenkins.io/doc/book/pipeline/syntax/>`__
+
+  * script step の一次資料となる。
+
+* `How to use Date with Pipeline? – CloudBees Support <https://support.cloudbees.com/hc/en-us/articles/226504048-How-to-use-Date-with-Pipeline>`__
+
+  * SimpleDateFormat の使い方。
