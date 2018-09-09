@@ -1,5 +1,5 @@
-================
-jptomo.github.io
-================
+=================
+tomoh1r.github.io
+=================
 
-see `<http://jptomo.github.io/>`_
+see `<http://tomoh1r.github.io/>`_
