@@ -30,6 +30,7 @@
     <script type="text/javascript" src="../../static/jquery.js"></script>
     <script type="text/javascript" src="../../static/underscore.js"></script>
     <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/language_data.js"></script>
     <script type="text/javascript" src="../../static/translations.js"></script>
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
@@ -57,20 +58,20 @@
 <h1>Google App Engine で環境変数を利用する<a class="headerlink" href="#google-app-engine" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><span class="blog_date">2016/01/19</span></p>
 <p><code class="docutils literal notranslate"><span class="pre">app.yaml</span></code> の <code class="docutils literal notranslate"><span class="pre">env_variables</span></code> を利用すると、アプリケーションで利用する環境変数を設定することができる。</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_OWN_APP_ID&gt;</span>
-<span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_OWN_VERSION&gt;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">application</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_OWN_APP_ID&gt;</span>
+<span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_OWN_VERSION&gt;</span>
 
-<span class="l l-Scalar l-Scalar-Plain">runtime</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">python27</span>
-<span class="l l-Scalar l-Scalar-Plain">api_version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="l l-Scalar l-Scalar-Plain">threadsafe</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">runtime</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python27</span>
+<span class="nt">api_version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">threadsafe</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 
-<span class="l l-Scalar l-Scalar-Plain">handlers</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/.*</span>
-    <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">main.app</span>
+<span class="nt">handlers</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/.*</span>
+    <span class="nt">script</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">main.app</span>
 
-<span class="l l-Scalar l-Scalar-Plain">env_variables</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">FOO</span><span class="p p-Indicator">:</span> <span class="s">&#39;my</span><span class="nv"> </span><span class="s">FOO&#39;</span>
-  <span class="l l-Scalar l-Scalar-Plain">BAR</span><span class="p p-Indicator">:</span> <span class="s">&#39;my</span><span class="nv"> </span><span class="s">BAR&#39;</span>
+<span class="nt">env_variables</span><span class="p">:</span>
+  <span class="nt">FOO</span><span class="p">:</span> <span class="s">&#39;my</span><span class="nv"> </span><span class="s">FOO&#39;</span>
+  <span class="nt">BAR</span><span class="p">:</span> <span class="s">&#39;my</span><span class="nv"> </span><span class="s">BAR&#39;</span>
 </pre></div>
 </div>
 <p>また、この環境変数を <code class="docutils literal notranslate"><span class="pre">appcfg.py</span></code> コマンドのオプション、
@@ -95,7 +96,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>| <a href="../../sources/blog/2016/01190_use_environment_variables_on_google_app_engine.rst.txt"
           rel="nofollow">Page source</a></div><script type="text/javascript">
       var disqus_shortname = 'jptomo';
