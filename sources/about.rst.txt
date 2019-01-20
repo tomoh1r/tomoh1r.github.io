@@ -1,0 +1,13 @@
+==================
+このサイトについて
+==================
+
+`管理人 <https://about.me/tomohiro.nakamura>`__
+
+利用しているソフトウェア
+
+* Sphinx: SPHINX_VERSION
+* Alabaster: ALABASTER_VERSION
+* sphinxcontrib-blockdiag
+* pip-tools
+* make-clean
