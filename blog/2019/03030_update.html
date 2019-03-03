@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="ブログ構築システムの見直しがやっと出来た" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="ブログ構築システムの見直しがやっと出来た" />
+    <meta property="og:url" content="http://tomoh1r.github.io/blog/2019/03030_update.html" />
+    <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@tomoh1r" />
+    <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>ブログ構築システムの見直しがやっと出来た &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/language_data.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="author" title="このドキュメントについて" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="Jenkins Pipeline で Groovy と shell step を混在させる" href="../2018/03040_jenkins_pipeline.html" />
+    <meta name="viewport" content="width=480">
+
+    <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="適当に だらだらと 楽しく" />
+    <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="適当に だらだらと 楽しく" />
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            <ul>
+              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../about.html">このサイトについて</a></li>
+            </ul>
+            <div class="clearer"></div>
+            
+  <div class="section" id="id1">
+<h1>ブログ構築システムの見直しがやっと出来た<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2019/03/03</span></p>
+<p><a class="reference external" href="http://sphinx-users.jp/">Sphinx</a> を利用して静的ファイル出力としてgithub-pagesを活用している。</p>
+<p>今まで直したいことがあったけど、なんとか対応出来た。以下</p>
+<ul class="simple">
+<li>シングルリポジトリにした。</li>
+<li>github-pagesについては、git worktreeにて管理する。
+いままでsubmoduleで管理していて、対応したかった。</li>
+<li><a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a> で記事をまとめるとして、簡易処理用との
+Pythonスニペットを作成した。 <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a> でシェルの
+簡易スクリプトと同じように作業したいとしたら、
+スクリプト書いてPyCharmの外部ツールで利用するのがまずは良いのかなと思う。</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster</a>| <a href="../../sources/blog/2019/03030_update.rst.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'jptomo';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

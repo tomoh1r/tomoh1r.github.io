@@ -1,0 +1,19 @@
+ブログ構築システムの見直しがやっと出来た
+========================================
+
+:blog_date:`2019/03/03`
+
+Sphinx_ を利用して静的ファイル出力としてgithub-pagesを活用している。
+
+今まで直したいことがあったけど、なんとか対応出来た。以下
+
+* シングルリポジトリにした。
+* github-pagesについては、git worktreeにて管理する。
+  いままでsubmoduleで管理していて、対応したかった。
+* PyCharm_ で記事をまとめるとして、簡易処理用との
+  Pythonスニペットを作成した。 PyCharm_ でシェルの
+  簡易スクリプトと同じように作業したいとしたら、
+  スクリプト書いてPyCharmの外部ツールで利用するのがまずは良いのかなと思う。
+
+.. _Sphinx: http://sphinx-users.jp/
+.. _PyCharm: https://www.jetbrains.com/pycharm/
