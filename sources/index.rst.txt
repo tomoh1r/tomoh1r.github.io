@@ -36,6 +36,7 @@ blogs
    blog/2017/[0-9]*
    blog/2018/[0-9]*
    blog/2019/[0-9]*
+   blog/2020/[0-9]*
 
 :doc:`blog/archives` rss2.0_ atom_
 
