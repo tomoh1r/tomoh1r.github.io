@@ -11,11 +11,11 @@ blogs
 -----
 
 .. blog_toctree::
-:glob:
-:titlesonly:
-:maxdepth: 1
-:reverse:
-:display_blog_date:
+   :glob:
+   :titlesonly:
+   :maxdepth: 1
+   :reverse:
+   :display_blog_date:
 
    2020/[0-9]*
 
