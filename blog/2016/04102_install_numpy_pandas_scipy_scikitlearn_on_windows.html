@@ -67,20 +67,23 @@
 書いてみる。</p>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#whl" id="id6">1. あらかじめ必要な whl ファイルをダウンロードする</a><ul>
-<li><a class="reference internal" href="#python-3-4" id="id7">Python 3.4 の場合</a></li>
-<li><a class="reference internal" href="#python-3-5" id="id8">Python 3.5 の場合</a></li>
+<li><p><a class="reference internal" href="#whl" id="id6">1. あらかじめ必要な whl ファイルをダウンロードする</a></p>
+<ul>
+<li><p><a class="reference internal" href="#python-3-4" id="id7">Python 3.4 の場合</a></p></li>
+<li><p><a class="reference internal" href="#python-3-5" id="id8">Python 3.5 の場合</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id2" id="id9">2. 環境に必要なパッケージをインストールする</a><ul>
-<li><a class="reference internal" href="#id3" id="id10">前提</a></li>
-<li><a class="reference internal" href="#id4" id="id11">Python 3.4 の場合の手順</a></li>
-<li><a class="reference internal" href="#id5" id="id12">Python 3.5 の場合の手順</a></li>
+<li><p><a class="reference internal" href="#id2" id="id9">2. 環境に必要なパッケージをインストールする</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id10">前提</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id11">Python 3.4 の場合の手順</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id12">Python 3.5 の場合の手順</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#x" id="id13">X. 動作確認</a><ul>
-<li><a class="reference internal" href="#scipy" id="id14">SciPy</a></li>
-<li><a class="reference internal" href="#scikit-learn" id="id15">scikit-learn</a></li>
+<li><p><a class="reference internal" href="#x" id="id13">X. 動作確認</a></p>
+<ul>
+<li><p><a class="reference internal" href="#scipy" id="id14">SciPy</a></p></li>
+<li><p><a class="reference internal" href="#scikit-learn" id="id15">scikit-learn</a></p></li>
 </ul>
 </li>
 </ul>
@@ -92,15 +95,15 @@
 <div class="section" id="python-3-4">
 <h3><a class="toc-backref" href="#id7">Python 3.4 の場合</a><a class="headerlink" href="#python-3-4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">scipy-0.17.0-cp34-none-win_amd64.whl</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scipy-0.17.0-cp34-none-win_amd64.whl</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="python-3-5">
 <h3><a class="toc-backref" href="#id8">Python 3.5 の場合</a><a class="headerlink" href="#python-3-5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">scipy-0.17.0-cp35-none-win_amd64.whl</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scipy-0.17.0-cp35-none-win_amd64.whl</span></code></p></li>
 </ul>
 </div>
 </div>
@@ -109,11 +112,11 @@
 <p>以下のパッケージは PyPI 上に whl ファイルがあるので、
 特に何の必要もなく pip によってインストールができる。</p>
 <ul class="simple">
-<li>pandas</li>
-<li>matplotlib</li>
-<li>sympy</li>
-<li>jupyter</li>
-<li>scikit-learn</li>
+<li><p>pandas</p></li>
+<li><p>matplotlib</p></li>
+<li><p>sympy</p></li>
+<li><p>jupyter</p></li>
+<li><p>scikit-learn</p></li>
 </ul>
 <p>以下の手順では venv (
 <a class="reference external" href="/blog/2016/01310_not_use_pyvenv_but_venv.html">参考記事</a>
@@ -122,9 +125,9 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id10">前提</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">C:\Python\3.x.y.amd64\python.exe</span></code> に Python の 3.x.y を
-インストールしている事を前提としている。</li>
-<li><code class="docutils literal notranslate"><span class="pre">C:\path\to</span></code> は 手順 1 でダウンロードしたディレクトリを想定している。</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\Python\3.x.y.amd64\python.exe</span></code> に Python の 3.x.y を
+インストールしている事を前提としている。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\path\to</span></code> は 手順 1 でダウンロードしたディレクトリを想定している。</p></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -169,8 +172,8 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span><span class="p">,</span> <span class="n">special</span>
 
 <span class="n">sol</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">special</span><span class="o">.</span><span class="n">jv</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -187,8 +190,8 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets.samples_generator</span> <span class="kn">import</span> <span class="n">make_regression</span>
@@ -205,17 +208,17 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <span class="c1"># 分類器の訓練</span>
 <span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 推定値を表示する ###&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 推定値を表示する ###&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
 
 <span class="c1"># 値の予測</span>
 <span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 予測値を表示する ###&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 予測値を表示する ###&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1</span><span class="p">))</span>
 
 <span class="c1"># 評価</span>
-<span class="k">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 結果を評価する ###&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;### 結果を評価する ###&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 
 <span class="c1"># 可視化</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -228,12 +231,12 @@ venv は環境を分けるのに便利なので、利用すると良いと思う
 <span class="n">coef</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">coef_</span>
 <span class="n">line</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">:</span> <span class="n">coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x2</span>
 
-<span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10j</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10j</span><span class="p">]</span>
+<span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="n">j</span><span class="p">]</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span><span class="p">,</span> <span class="n">line</span><span class="p">(</span><span class="n">grid_x1</span><span class="p">,</span> <span class="n">grid_x2</span><span class="p">),</span>
                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

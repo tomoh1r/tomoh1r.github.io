@@ -67,47 +67,47 @@
 エイリアスとしてつきます。</p>
 <p>この cmdlet を利用すると前述の <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> のみならず、 <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">+</span></code> も使えるようになり
 ます。</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Users\tomo
+<div class="highlight-winbatch notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Users\tomo</span>
 [2016/39/20 12:39:55] PS ~\
-&gt; cd .\misc\
-C:\Users\tomo\misc
+<span class="p">&gt;</span> cd .\misc\
+C<span class="p">:</span><span class="nl">\Users\tomo\misc</span>
 [2016/39/20 12:39:59] PS ~\misc
-&gt; cd .\dotfiles\
-C:\Users\tomo\misc\dotfiles
-(git:master) [2016/40/20 12:40:01] PS ~\misc\dotfiles
-&gt; Pscx\Set-LocationEx
+<span class="p">&gt;</span> cd .\dotfiles\
+C<span class="p">:</span><span class="nl">\Users\tomo\misc\dotfiles</span>
+<span class="p">(</span>git:master<span class="p">)</span> [2016/40/20 12:40:01] PS ~\misc\dotfiles
+<span class="p">&gt;</span> Pscx\Set-LocationEx
 
      # Directory Stack:
    --- ----------------
      0 C:\Users\tomo
      1 C:\Users\tomo\misc
--&gt;   2 C:\Users\tomo\misc\dotfiles
+-<span class="p">&gt;</span>   2 C:\Users\tomo\misc\dotfiles
 </pre></div>
 </div>
 <p>この状態で <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">+</span></code> を利用すると、
 以下のようにディレクトリを移動できます。</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Users\tomo\misc\dotfiles
-(git:master) [2016/40/20 12:40:13] PS ~\misc\dotfiles
-&gt; cd -
-C:\Users\tomo\misc
+<div class="highlight-winbatch notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Users\tomo\misc\dotfiles</span>
+<span class="p">(</span>git:master<span class="p">)</span> [2016/40/20 12:40:13] PS ~\misc\dotfiles
+<span class="p">&gt;</span> cd -
+C<span class="p">:</span><span class="nl">\Users\tomo\misc</span>
 [2016/40/20 12:40:21] PS ~\misc
-&gt; cd +
-C:\Users\tomo\misc\dotfiles
-(git:master) [2016/40/20 12:40:27] PS ~\misc\dotfiles
+<span class="p">&gt;</span> cd +
+C<span class="p">:</span><span class="nl">\Users\tomo\misc\dotfiles</span>
+<span class="p">(</span>git:master<span class="p">)</span> [2016/40/20 12:40:27] PS ~\misc\dotfiles
 </pre></div>
 </div>
 <p>とても便利なので活用してみてください。</p>
 <p>ただ僕は引数無しの cd は <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> ディレクトリに移動してほしい口なので、
 別途以下のように定義して利用しています。</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>Remove-Item Alias:cd
+<div class="highlight-winbatch notranslate"><div class="highlight"><pre><span></span>Remove-Item Alias:cd
 Function cd() {
     Param(
         [Parameter(Mandatory = $false, Position = 0)]
         [string]$Path
-        )
+        <span class="c1">)</span>
 
     Process {
-        if([string]::IsNullOrEmpty(&quot;$Path&quot;)){
+        <span class="k">if</span>([string]::IsNullOrEmpty(<span class="s2">&quot;$Path&quot;</span>)){
             Pscx\Set-LocationEx -Path $HOME
         }else{
             Pscx\Set-LocationEx -Path $Path

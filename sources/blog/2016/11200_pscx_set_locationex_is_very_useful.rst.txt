@@ -16,7 +16,7 @@ Pscx_ をインストールして有効化すると ``cd`` に対して ``Pscx\S
 この cmdlet を利用すると前述の ``cd -`` のみならず、 ``cd +`` も使えるようになり
 ます。
 
-.. code-block:: guess
+.. code-block:: winbatch
 
    C:\Users\tomo
    [2016/39/20 12:39:55] PS ~\
@@ -37,7 +37,7 @@ Pscx_ をインストールして有効化すると ``cd`` に対して ``Pscx\S
 この状態で ``cd -`` ``cd +`` を利用すると、
 以下のようにディレクトリを移動できます。
 
-.. code-block:: guess
+.. code-block:: winbatch
 
    C:\Users\tomo\misc\dotfiles
    (git:master) [2016/40/20 12:40:13] PS ~\misc\dotfiles
@@ -53,7 +53,7 @@ Pscx_ をインストールして有効化すると ``cd`` に対して ``Pscx\S
 ただ僕は引数無しの cd は ``$HOME`` ディレクトリに移動してほしい口なので、
 別途以下のように定義して利用しています。
 
-.. code-block:: guess
+.. code-block:: winbatch
 
    Remove-Item Alias:cd
    Function cd() {

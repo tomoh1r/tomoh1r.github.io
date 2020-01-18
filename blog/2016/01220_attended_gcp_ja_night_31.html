@@ -65,126 +65,139 @@
 <p>以下タイトルは connpass より取得したものだったりするので不正確です。</p>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id3">個人的まとめ</a></li>
-<li><a class="reference internal" href="#gke-introduction-gcp-ja-night-31-by-ianmlewis" id="id4">19:15 GKE Introduction &#64; gcp ja night #31 by &#64;IanMLewis</a></li>
-<li><a class="reference internal" href="#gke-by-na-ga" id="id5">20:00 GKEで半年運用してみた by &#64;na_ga</a></li>
-<li><a class="reference internal" href="#gcp-by-morikuma-works" id="id6">20:50 GCPで新規サービスを開発した話 by &#64;Morikuma_Works</a></li>
-<li><a class="reference internal" href="#gceautoscalercloudlogging-by-zoo" id="id7">21:20 広告配信システムにおけるGCEでのAutoscalerとCloudLoggingの活用 by &#64;_zoo</a></li>
-<li><a class="reference internal" href="#cloud-datalabbigquery-by-hagino3000" id="id8">21:40 Cloud DatalabとBigQueryを使ったアドホックデータ解析 by &#64;hagino3000</a></li>
+<li><p><a class="reference internal" href="#id2" id="id3">個人的まとめ</a></p></li>
+<li><p><a class="reference internal" href="#gke-introduction-gcp-ja-night-31-by-ianmlewis" id="id4">19:15 GKE Introduction &#64; gcp ja night #31 by &#64;IanMLewis</a></p></li>
+<li><p><a class="reference internal" href="#gke-by-na-ga" id="id5">20:00 GKEで半年運用してみた by &#64;na_ga</a></p></li>
+<li><p><a class="reference internal" href="#gcp-by-morikuma-works" id="id6">20:50 GCPで新規サービスを開発した話 by &#64;Morikuma_Works</a></p></li>
+<li><p><a class="reference internal" href="#gceautoscalercloudlogging-by-zoo" id="id7">21:20 広告配信システムにおけるGCEでのAutoscalerとCloudLoggingの活用 by &#64;_zoo</a></p></li>
+<li><p><a class="reference internal" href="#cloud-datalabbigquery-by-hagino3000" id="id8">21:40 Cloud DatalabとBigQueryを使ったアドホックデータ解析 by &#64;hagino3000</a></p></li>
 </ul>
 </div>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id3">個人的まとめ</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>K8s の RC と Service は独立した構成要素。 RC は Pod の死活監視、 Service は L4
-LB 的な動きをする。</li>
-<li><a class="reference external" href="https://cloud.google.com/container-engine/pricing#pricing_for_cluster_management">GKE は 5 node まで無料で使える</a> ので、安く動かせることが多い。</li>
-<li>BigQuery の操作には <a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a> (<a class="reference external" href="http://jupyter.org/">Jupytter Notebook</a> 派生) が便利。 python で BigQuery を動かしたり
-pandas などを動かすことができる。</li>
+<li><p>K8s の RC と Service は独立した構成要素。 RC は Pod の死活監視、 Service は L4
+LB 的な動きをする。</p></li>
+<li><p><a class="reference external" href="https://cloud.google.com/container-engine/pricing#pricing_for_cluster_management">GKE は 5 node まで無料で使える</a> ので、安く動かせることが多い。</p></li>
+<li><p>BigQuery の操作には <a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a> (<a class="reference external" href="http://jupyter.org/">Jupytter Notebook</a> 派生) が便利。 python で BigQuery を動かしたり
+pandas などを動かすことができる。</p></li>
 </ul>
 </div>
 <div class="section" id="gke-introduction-gcp-ja-night-31-by-ianmlewis">
 <h2><a class="toc-backref" href="#id4">19:15 GKE Introduction &#64; gcp ja night #31 by &#64;IanMLewis</a><a class="headerlink" href="#gke-introduction-gcp-ja-night-31-by-ianmlewis" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <script async class="speakerdeck-embed" data-id="6ccba7e944b54306876509d1e250dd63" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script><ul class="simple">
-<li>今日の話は 2015 Borg -&gt; <a class="reference external" href="http://www.infoq.com/jp/news/2015/04/google-borg">GoogleがBorgの詳細を公開 - InfoQ</a></li>
-<li>コンテナー は chroot ulimit とかで実現されている</li>
-<li>コンテナ 軽量ポータブル 効率性</li>
-<li>Borg は Google社内で利用しているコンテナエンジン</li>
-<li>Borg は DCaaS (Datacenter as a Service)<ul>
-<li>Borg は DC の OS</li>
+<li><p>今日の話は 2015 Borg -&gt; <a class="reference external" href="http://www.infoq.com/jp/news/2015/04/google-borg">GoogleがBorgの詳細を公開 - InfoQ</a></p></li>
+<li><p>コンテナー は chroot ulimit とかで実現されている</p></li>
+<li><p>コンテナ 軽量ポータブル 効率性</p></li>
+<li><p>Borg は Google社内で利用しているコンテナエンジン</p></li>
+<li><p>Borg は DCaaS (Datacenter as a Service)</p>
+<ul>
+<li><p>Borg は DC の OS</p></li>
 </ul>
 </li>
-<li>Borg の設定ファイル は DSL だな 「some = { some = { some = some } }」 みたいな<ul>
-<li>(感想) Borg で Kubernetes (K8s) を管理するんだなこれは</li>
+<li><p>Borg の設定ファイル は DSL だな 「some = { some = { some = some } }」 みたいな</p>
+<ul>
+<li><p>(感想) Borg で Kubernetes (K8s) を管理するんだなこれは</p></li>
 </ul>
 </li>
-<li>scheduler から BorgMaster に設定が渡され、コンテナにいろいろ展開される</li>
-<li>コンテナ管理の課題 とは 複数サーバーのデプロイ、ノード障害時のリカバリー、コンテナ障害時のリカバリー、コンテナのアップグレード</li>
-<li>K8s は Borg の対外的な実装、K8s の実装者は Borg の実装者と同じ</li>
-<li>CNCF (Cloud Native Compiuting Foundatoin) で K8s の開発を支援</li>
-<li>Container Engine は K8s のhosted版</li>
-<li>(疑問) 実際 Docker を直接動かしてるの？ Docker 互換の何か？</li>
-<li>ポッド とは 複数のコンテナを同じホストで動かしたもの</li>
-<li>多数のポッドを識別する には 各々のポッドに種別のラベルを設定して識別<ul>
-<li>(感想) ラベルはタグ的な</li>
+<li><p>scheduler から BorgMaster に設定が渡され、コンテナにいろいろ展開される</p></li>
+<li><p>コンテナ管理の課題 とは 複数サーバーのデプロイ、ノード障害時のリカバリー、コンテナ障害時のリカバリー、コンテナのアップグレード</p></li>
+<li><p>K8s は Borg の対外的な実装、K8s の実装者は Borg の実装者と同じ</p></li>
+<li><p>CNCF (Cloud Native Compiuting Foundatoin) で K8s の開発を支援</p></li>
+<li><p>Container Engine は K8s のhosted版</p></li>
+<li><p>(疑問) 実際 Docker を直接動かしてるの？ Docker 互換の何か？</p></li>
+<li><p>ポッド とは 複数のコンテナを同じホストで動かしたもの</p></li>
+<li><p>多数のポッドを識別する には 各々のポッドに種別のラベルを設定して識別</p>
+<ul>
+<li><p>(感想) ラベルはタグ的な</p></li>
 </ul>
 </li>
-<li>レプリケーションコントローラー は ポッドの実行状態を管理<ul>
-<li>管理対象はポッド</li>
+<li><p>レプリケーションコントローラー は ポッドの実行状態を管理</p>
+<ul>
+<li><p>管理対象はポッド</p></li>
 </ul>
 </li>
-<li>サービス とは エンドポイントを抽象化したもの<ul>
-<li>仮想IPが割り振られる</li>
-<li>ポッド間 は ラウンドロビン的に Load Balancing する</li>
+<li><p>サービス とは エンドポイントを抽象化したもの</p>
+<ul>
+<li><p>仮想IPが割り振られる</p></li>
+<li><p>ポッド間 は ラウンドロビン的に Load Balancing する</p></li>
 </ul>
 </li>
-<li>yaml ファイルに <code class="docutils literal notranslate"><span class="pre">type:</span> <span class="pre">LoadBalancer</span></code> とかかくと LoadBalancing してくれて便利</li>
-<li>(感想) K8s は GUI でコンテナーの状態を表示する機能がありそうで、便利そう</li>
-<li>Google Cloud Platform を使ってみよう ってイベントある</li>
-<li>GCP NEXT 2016 (参加費 499ドル) ってイベントある</li>
+<li><p>yaml ファイルに <code class="docutils literal notranslate"><span class="pre">type:</span> <span class="pre">LoadBalancer</span></code> とかかくと LoadBalancing してくれて便利</p></li>
+<li><p>(感想) K8s は GUI でコンテナーの状態を表示する機能がありそうで、便利そう</p></li>
+<li><p>Google Cloud Platform を使ってみよう ってイベントある</p></li>
+<li><p>GCP NEXT 2016 (参加費 499ドル) ってイベントある</p></li>
 </ul>
 </div>
 <div class="section" id="gke-by-na-ga">
 <h2><a class="toc-backref" href="#id5">20:00 GKEで半年運用してみた by &#64;na_ga</a><a class="headerlink" href="#gke-by-na-ga" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/i2VmMzEKFKugRk" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/katsutoshinagaoka/gke-57322091" title="GKEで半年運用してみた" target="_blank">GKEで半年運用してみた</a> </strong> from <strong><a href="//www.slideshare.net/katsutoshinagaoka" target="_blank">Katsutoshi Nagaoka</a></strong> </div><ul class="simple">
-<li>takusuta では AWS/GKE 利用している</li>
-<li>takusuta<ul>
-<li>Web版は GKE で作成</li>
-<li>モバイルは AWS Web は GKE</li>
-<li>GA 前だけど GKE 利用したかったため、利用した</li>
+<li><p>takusuta では AWS/GKE 利用している</p></li>
+<li><p>takusuta</p>
+<ul>
+<li><p>Web版は GKE で作成</p></li>
+<li><p>モバイルは AWS Web は GKE</p></li>
+<li><p>GA 前だけど GKE 利用したかったため、利用した</p></li>
 </ul>
 </li>
-<li>GKE ざっくり説明<ul>
-<li>K8s のフルマネージドサービス</li>
-<li>すごい安い</li>
-<li>5Node まで無料なので、安い</li>
-<li>Pod と RC (Replication Controller) をしっていれば何とか使える</li>
-<li>Service は Pod に対する L4 の LB な見たいな奴</li>
-<li>kube-proxy が動いていて便利</li>
+<li><p>GKE ざっくり説明</p>
+<ul>
+<li><p>K8s のフルマネージドサービス</p></li>
+<li><p>すごい安い</p></li>
+<li><p>5Node まで無料なので、安い</p></li>
+<li><p>Pod と RC (Replication Controller) をしっていれば何とか使える</p></li>
+<li><p>Service は Pod に対する L4 の LB な見たいな奴</p></li>
+<li><p>kube-proxy が動いていて便利</p></li>
 </ul>
 </li>
-<li>GKE 構成した場合<ul>
-<li>Service に SSL 証明書置けない</li>
-<li>GCE の LB をおいて, GKE を NodePort として起動して使った</li>
-<li>Cross Region LB 構成ができて、 CPU/リクエストの閾値を指定して、変更できる</li>
-<li>ただ、 Zone によって性能に差があるので、気をつける</li>
+<li><p>GKE 構成した場合</p>
+<ul>
+<li><p>Service に SSL 証明書置けない</p></li>
+<li><p>GCE の LB をおいて, GKE を NodePort として起動して使った</p></li>
+<li><p>Cross Region LB 構成ができて、 CPU/リクエストの閾値を指定して、変更できる</p></li>
+<li><p>ただ、 Zone によって性能に差があるので、気をつける</p></li>
 </ul>
 </li>
-<li>GKE の構成<ul>
-<li>Google Cloud SDK を利用すればワンストップで利用できる</li>
-<li>gcloud コマンドで動かせる</li>
-<li>コンテナ作成時しか指定できない設定もあるので、注意。作り直しになる</li>
-<li>gci.io ってコンテナのアップロード先が地域毎に存在する、日本は asia.gcr.io を利用すると早い</li>
-<li>kubectl でコンテナにアタッチできる</li>
+<li><p>GKE の構成</p>
+<ul>
+<li><p>Google Cloud SDK を利用すればワンストップで利用できる</p></li>
+<li><p>gcloud コマンドで動かせる</p></li>
+<li><p>コンテナ作成時しか指定できない設定もあるので、注意。作り直しになる</p></li>
+<li><p>gci.io ってコンテナのアップロード先が地域毎に存在する、日本は asia.gcr.io を利用すると早い</p></li>
+<li><p>kubectl でコンテナにアタッチできる</p></li>
 </ul>
 </li>
-<li>GKE 活用例<ul>
-<li>5 ノード以下は無料なので、大きなクラスターは作らない</li>
-<li>ennis-asia-app-001 がポッドの命名規則<ul>
-<li>ennis はプロジェクト名、 asia はリージョン、app コンテナの種別、001 はユニークキー</li>
+<li><p>GKE 活用例</p>
+<ul>
+<li><p>5 ノード以下は無料なので、大きなクラスターは作らない</p></li>
+<li><p>ennis-asia-app-001 がポッドの命名規則</p>
+<ul>
+<li><p>ennis はプロジェクト名、 asia はリージョン、app コンテナの種別、001 はユニークキー</p></li>
 </ul>
 </li>
-<li>インスタンステンプレートを更新する API がないので、不便</li>
-<li>gcr へのアップロードは、遅い</li>
-<li>アップロードは Jenkins でビルド後にアップロード、 hubot でリリース指示</li>
-<li>今のところ gcr は落ちたことなさそう</li>
-<li>gcr のイメージの名前は、ハッシュなので、消し辛い。そのうち改善するでしょう</li>
-<li>kubectl rolling-update ってコマンドがあって、一台ずつ inc/dec してくれる</li>
-<li>multi-container-pod の場合は同じ名前ではアップデート失敗するので、駄目</li>
-<li>クラスタの方は gcloud コマンドで制御</li>
-<li>RC の数は kubectl で replica を制御</li>
-<li>Cloud Logging によるログ管理もでき、 Pod ごとにクラスタごとに検索できる<ul>
-<li>標準の状態では標準出力もみるので、ノイズが多い。ログ名とかレベル名とかでフィルターできるようにしよう</li>
+<li><p>インスタンステンプレートを更新する API がないので、不便</p></li>
+<li><p>gcr へのアップロードは、遅い</p></li>
+<li><p>アップロードは Jenkins でビルド後にアップロード、 hubot でリリース指示</p></li>
+<li><p>今のところ gcr は落ちたことなさそう</p></li>
+<li><p>gcr のイメージの名前は、ハッシュなので、消し辛い。そのうち改善するでしょう</p></li>
+<li><p>kubectl rolling-update ってコマンドがあって、一台ずつ inc/dec してくれる</p></li>
+<li><p>multi-container-pod の場合は同じ名前ではアップデート失敗するので、駄目</p></li>
+<li><p>クラスタの方は gcloud コマンドで制御</p></li>
+<li><p>RC の数は kubectl で replica を制御</p></li>
+<li><p>Cloud Logging によるログ管理もでき、 Pod ごとにクラスタごとに検索できる</p>
+<ul>
+<li><p>標準の状態では標準出力もみるので、ノイズが多い。ログ名とかレベル名とかでフィルターできるようにしよう</p></li>
 </ul>
 </li>
-<li>Monitoring は StackDricer ベータなので、 Monitoring できる</li>
-<li>Kubernetes dashboard は表示が不正確で、使い辛い</li>
-<li>Kubedash 結構使えるので、便利</li>
+<li><p>Monitoring は StackDricer ベータなので、 Monitoring できる</p></li>
+<li><p>Kubernetes dashboard は表示が不正確で、使い辛い</p></li>
+<li><p>Kubedash 結構使えるので、便利</p></li>
 </ul>
 </li>
-<li>まとめ<ul>
-<li>簡単、安い、将来へ期待</li>
-<li>本番でとりあえず使えるのでは</li>
+<li><p>まとめ</p>
+<ul>
+<li><p>簡単、安い、将来へ期待</p></li>
+<li><p>本番でとりあえず使えるのでは</p></li>
 </ul>
 </li>
 </ul>
@@ -192,79 +205,92 @@ pandas などを動かすことができる。</li>
 <div class="section" id="gcp-by-morikuma-works">
 <h2><a class="toc-backref" href="#id6">20:50 GCPで新規サービスを開発した話 by &#64;Morikuma_Works</a><a class="headerlink" href="#gcp-by-morikuma-works" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>内容が被った<ul>
-<li>構成や使う動機が同じ</li>
+<li><p>内容が被った</p>
+<ul>
+<li><p>構成や使う動機が同じ</p></li>
 </ul>
 </li>
-<li>どんなプロジェクトだったか<ul>
-<li>現実世界の混雑度合を IoT を利用して検知を行う系</li>
-<li>必要な物<ul>
-<li>センサデバイス</li>
-<li>20億レコード/月 を保存する DB</li>
-<li>デバイスの管理、解析をするバックエンド</li>
-<li>画面を実際に提供するフロントエンド</li>
+<li><p>どんなプロジェクトだったか</p>
+<ul>
+<li><p>現実世界の混雑度合を IoT を利用して検知を行う系</p></li>
+<li><p>必要な物</p>
+<ul>
+<li><p>センサデバイス</p></li>
+<li><p>20億レコード/月 を保存する DB</p></li>
+<li><p>デバイスの管理、解析をするバックエンド</p></li>
+<li><p>画面を実際に提供するフロントエンド</p></li>
 </ul>
 </li>
-<li>1.5ヶ月で作成する</li>
-<li>3人で作った<ul>
-<li>フロントエンドの人がいて、すごいできた人だった</li>
+<li><p>1.5ヶ月で作成する</p></li>
+<li><p>3人で作った</p>
+<ul>
+<li><p>フロントエンドの人がいて、すごいできた人だった</p></li>
 </ul>
 </li>
-<li>プロトタイプ的なものなので、人が少なかった</li>
-<li>下の二つ話す<ul>
-<li>デバイスの管理、解析をするバックエンド</li>
-<li>画面を実際に提供するフロントエンド</li>
+<li><p>プロトタイプ的なものなので、人が少なかった</p></li>
+<li><p>下の二つ話す</p>
+<ul>
+<li><p>デバイスの管理、解析をするバックエンド</p></li>
+<li><p>画面を実際に提供するフロントエンド</p></li>
 </ul>
 </li>
-<li>設計<ul>
-<li>マイクロサービスアーキテクチャー</li>
+<li><p>設計</p>
+<ul>
+<li><p>マイクロサービスアーキテクチャー</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li>何が問題だったか<ul>
-<li>資源の無駄遣い</li>
-<li>人が少なく、Ansible を利用していたが、無理がでた</li>
-<li>リリースなどの Ops の作業が難しかった</li>
+<li><p>何が問題だったか</p>
+<ul>
+<li><p>資源の無駄遣い</p></li>
+<li><p>人が少なく、Ansible を利用していたが、無理がでた</p></li>
+<li><p>リリースなどの Ops の作業が難しかった</p></li>
 </ul>
 </li>
-<li>どう解決したか<ul>
-<li>フロントエンド/バックエンド<ul>
-<li>GKE は GCP の他のサービスと連携できる点が良かった</li>
-<li>GKE は CI が行いやすい<ul>
-<li>GHE -(CI)-&gt; circleci -(upload)-&gt; gcr -(ローリングアップデート)-&gt; GKE</li>
+<li><p>どう解決したか</p>
+<ul>
+<li><p>フロントエンド/バックエンド</p>
+<ul>
+<li><p>GKE は GCP の他のサービスと連携できる点が良かった</p></li>
+<li><p>GKE は CI が行いやすい</p>
+<ul>
+<li><p>GHE -(CI)-&gt; circleci -(upload)-&gt; gcr -(ローリングアップデート)-&gt; GKE</p></li>
 </ul>
 </li>
-<li>デプロイとロールバックが容易だった</li>
-<li>Dockerfile/Docker Image ですべてコンテナ管理できて便利</li>
-<li>モジュールなどを細かく記述できるので、マイクロサービスと親和性があった</li>
-<li>GKE L7LB (Load Balancer) を使った<ul>
-<li>100万リクエスト/s をウォームアップなしでさばける</li>
-<li>SSL</li>
-<li>http2</li>
-<li>url-map</li>
+<li><p>デプロイとロールバックが容易だった</p></li>
+<li><p>Dockerfile/Docker Image ですべてコンテナ管理できて便利</p></li>
+<li><p>モジュールなどを細かく記述できるので、マイクロサービスと親和性があった</p></li>
+<li><p>GKE L7LB (Load Balancer) を使った</p>
+<ul>
+<li><p>100万リクエスト/s をウォームアップなしでさばける</p></li>
+<li><p>SSL</p></li>
+<li><p>http2</p></li>
+<li><p>url-map</p></li>
 </ul>
 </li>
-<li>HTTP LB はまだ Beta</li>
-<li>セットアップの記載は複雑</li>
-<li>Google Cloud Monitoring を利用</li>
+<li><p>HTTP LB はまだ Beta</p></li>
+<li><p>セットアップの記載は複雑</p></li>
+<li><p>Google Cloud Monitoring を利用</p></li>
 </ul>
 </li>
-<li>20億レコード/月 を保存する DB<ul>
-<li>Streaming Insert でほぼリアルタイプでセンサデータをインサートできる</li>
-<li>BQ はリアルタイム性が必要ない分析には速度十分、ちょっとまっても良い処理</li>
-<li>保存、分析料金が安い</li>
-<li>GCE で静的なIP取得してほっておくとお金かかる、、、</li>
+<li><p>20億レコード/月 を保存する DB</p>
+<ul>
+<li><p>Streaming Insert でほぼリアルタイプでセンサデータをインサートできる</p></li>
+<li><p>BQ はリアルタイム性が必要ない分析には速度十分、ちょっとまっても良い処理</p></li>
+<li><p>保存、分析料金が安い</p></li>
+<li><p>GCE で静的なIP取得してほっておくとお金かかる、、、</p></li>
 </ul>
 </li>
-<li>BigQuery へは fluentd でデータを入れている</li>
+<li><p>BigQuery へは fluentd でデータを入れている</p></li>
 </ul>
 </li>
-<li>GCPを使ってみてどうだったか<ul>
-<li>k8s はマイクロサービスアーキテクチャに最適</li>
-<li>k8s + GKE は時短になる</li>
-<li>BQ ででかいデータの分析ができる</li>
-<li>-&gt; IoT サービスと GCP は親和性が高いのでは</li>
+<li><p>GCPを使ってみてどうだったか</p>
+<ul>
+<li><p>k8s はマイクロサービスアーキテクチャに最適</p></li>
+<li><p>k8s + GKE は時短になる</p></li>
+<li><p>BQ ででかいデータの分析ができる</p></li>
+<li><p>-&gt; IoT サービスと GCP は親和性が高いのでは</p></li>
 </ul>
 </li>
 </ul>
@@ -272,53 +298,61 @@ pandas などを動かすことができる。</li>
 <div class="section" id="gceautoscalercloudlogging-by-zoo">
 <h2><a class="toc-backref" href="#id7">21:20 広告配信システムにおけるGCEでのAutoscalerとCloudLoggingの活用 by &#64;_zoo</a><a class="headerlink" href="#gceautoscalercloudlogging-by-zoo" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>GCE の Autoscaler と CloudLogging<ul>
-<li>配信の一部で HTTP(S) LB と GCE を利用</li>
-<li>fluct に所属、純国産 SSP(SuplySidePlatform)</li>
-<li>広告素材の CDN</li>
-<li>インプレッション計測サーバー、計画値ゅ</li>
-<li>利用したもの<ul>
-<li>GCE</li>
-<li>HTTP(SP) LB</li>
-<li>Autoscaler</li>
-<li>Cloud Monitoring</li>
-<li>Cloud Logging</li>
-<li>BigQuery</li>
+<li><p>GCE の Autoscaler と CloudLogging</p>
+<ul>
+<li><p>配信の一部で HTTP(S) LB と GCE を利用</p></li>
+<li><p>fluct に所属、純国産 SSP(SuplySidePlatform)</p></li>
+<li><p>広告素材の CDN</p></li>
+<li><p>インプレッション計測サーバー、計画値ゅ</p></li>
+<li><p>利用したもの</p>
+<ul>
+<li><p>GCE</p></li>
+<li><p>HTTP(SP) LB</p></li>
+<li><p>Autoscaler</p></li>
+<li><p>Cloud Monitoring</p></li>
+<li><p>Cloud Logging</p></li>
+<li><p>BigQuery</p></li>
 </ul>
 </li>
-<li>official に発表されたものが中心</li>
-<li>ハマったところや、利用したものを書いた</li>
-<li>LB は組み合わせて利用するもの、 AWS とは異なる感じ</li>
+<li><p>official に発表されたものが中心</p></li>
+<li><p>ハマったところや、利用したものを書いた</p></li>
+<li><p>LB は組み合わせて利用するもの、 AWS とは異なる感じ</p></li>
 </ul>
 </li>
-<li>GCE の Autoscaler<ul>
-<li>CPU utilization</li>
-<li>Cloud Monitoring Metrics</li>
-<li>HTTP LB serving cap<ul>
-<li>インスタンスごとの RPS(RequestPerSec) を見る</li>
+<li><p>GCE の Autoscaler</p>
+<ul>
+<li><p>CPU utilization</p></li>
+<li><p>Cloud Monitoring Metrics</p></li>
+<li><p>HTTP LB serving cap</p>
+<ul>
+<li><p>インスタンスごとの RPS(RequestPerSec) を見る</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li>管理方法<ul>
-<li>gcloud をラップしたコマンドを利用</li>
-<li>さらに <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 書いて、 <code class="docutils literal notranslate"><span class="pre">make</span></code> コマンドで動くようにしている</li>
+<li><p>管理方法</p>
+<ul>
+<li><p>gcloud をラップしたコマンドを利用</p></li>
+<li><p>さらに <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 書いて、 <code class="docutils literal notranslate"><span class="pre">make</span></code> コマンドで動くようにしている</p></li>
 </ul>
 </li>
-<li>Cloud Monitoring<ul>
-<li>Agent方式</li>
-<li>Disk Usage, Memory Usage が見られる</li>
-<li>Network, Load Average</li>
+<li><p>Cloud Monitoring</p>
+<ul>
+<li><p>Agent方式</p></li>
+<li><p>Disk Usage, Memory Usage が見られる</p></li>
+<li><p>Network, Load Average</p></li>
 </ul>
 </li>
-<li>Cloud Logging<ul>
-<li>広告といえばログ、ログといえば解析、解析といえば BigQuery</li>
-<li>Cloud Logging は google 提供の td-agent<ul>
-<li>入れると設定サンプルとかごっそり入れる</li>
+<li><p>Cloud Logging</p>
+<ul>
+<li><p>広告といえばログ、ログといえば解析、解析といえば BigQuery</p></li>
+<li><p>Cloud Logging は google 提供の td-agent</p>
+<ul>
+<li><p>入れると設定サンプルとかごっそり入れる</p></li>
 </ul>
 </li>
-<li>tag 単位で export できる</li>
-<li>BigQuery, Google Cloud Storage に export できる</li>
+<li><p>tag 単位で export できる</p></li>
+<li><p>BigQuery, Google Cloud Storage に export できる</p></li>
 </ul>
 </li>
 </ul>
@@ -326,84 +360,73 @@ pandas などを動かすことができる。</li>
 <div class="section" id="cloud-datalabbigquery-by-hagino3000">
 <h2><a class="toc-backref" href="#id8">21:40 Cloud DatalabとBigQueryを使ったアドホックデータ解析 by &#64;hagino3000</a><a class="headerlink" href="#cloud-datalabbigquery-by-hagino3000" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/sME2jZHLrjTlQT" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/hagino_3000/cloud-datalabbigquery" title="Cloud DatalabとBigQueryを使ったアドホックデータ解析" target="_blank">Cloud DatalabとBigQueryを使ったアドホックデータ解析</a> </strong> from <strong><a href="//www.slideshare.net/hagino_3000" target="_blank">hagino 3000</a></strong> </div><ul>
-<li><p class="first">Zucks</p>
-</li>
-<li><p class="first">多椀バンデットアルゴリズム</p>
-</li>
-<li><p class="first">バナー広告</p>
-</li>
-<li><p class="first">機械学習やら最適化やっている</p>
-</li>
-<li><p class="first">担当</p>
+<li><p>Zucks</p></li>
+<li><p>多椀バンデットアルゴリズム</p></li>
+<li><p>バナー広告</p></li>
+<li><p>機械学習やら最適化やっている</p></li>
+<li><p>担当</p>
 <ul class="simple">
-<li>CTRの予測</li>
-<li>CVRの予測</li>
-<li>最適な入札価格</li>
-<li>インプレッションの予測</li>
-<li>異常枠の検知</li>
+<li><p>CTRの予測</p></li>
+<li><p>CVRの予測</p></li>
+<li><p>最適な入札価格</p></li>
+<li><p>インプレッションの予測</p></li>
+<li><p>異常枠の検知</p></li>
 </ul>
 </li>
-<li><p class="first">アドホックな解析に <a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a> を利用し始めた</p>
-</li>
-<li><p class="first">S3 -(トリガー)-&gt; ColudStorage -(1時間に一回)-&gt; BigQuery って感じに流す</p>
-</li>
-<li><p class="first">Hadoopクラスタ無い</p>
-</li>
-<li><p class="first">AdHok なデータ利用する環境</p>
-</li>
-<li><p class="first"><em>複数の環境から BigQuery 流すと動かないことがある</em></p>
-</li>
-<li><p class="first">300GB/day 取り込めれば良い</p>
-</li>
-<li><p class="first">マネージドサービスなので、楽</p>
-</li>
-<li><p class="first">73TBで2000ドル/月</p>
-</li>
-<li><p class="first">DataLoad</p>
+<li><p>アドホックな解析に <a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a> を利用し始めた</p></li>
+<li><p>S3 -(トリガー)-&gt; ColudStorage -(1時間に一回)-&gt; BigQuery って感じに流す</p></li>
+<li><p>Hadoopクラスタ無い</p></li>
+<li><p>AdHok なデータ利用する環境</p></li>
+<li><p><em>複数の環境から BigQuery 流すと動かないことがある</em></p></li>
+<li><p>300GB/day 取り込めれば良い</p></li>
+<li><p>マネージドサービスなので、楽</p></li>
+<li><p>73TBで2000ドル/月</p></li>
+<li><p>DataLoad</p>
 <ul class="simple">
-<li>既存のシステムに影響したくないので、 Streaming Insert は利用しない</li>
-<li>Streaming Insert お金かかるので リアルタイムに見るデータでは無いので別にいい</li>
-<li>今なら Embulk, Cloud Dataflow を利用するかも</li>
+<li><p>既存のシステムに影響したくないので、 Streaming Insert は利用しない</p></li>
+<li><p>Streaming Insert お金かかるので リアルタイムに見るデータでは無いので別にいい</p></li>
+<li><p>今なら Embulk, Cloud Dataflow を利用するかも</p></li>
 </ul>
 </li>
-<li><p class="first">Job管理</p>
+<li><p>Job管理</p>
 <ul class="simple">
-<li>Luigi を利用している</li>
-<li>タスク間の依存性定義</li>
-<li>入出力管理の抽象化</li>
-<li>リトライエラー管理</li>
-<li>モニタリング用UIある</li>
-<li>処理は Python で書ける</li>
+<li><p>Luigi を利用している</p></li>
+<li><p>タスク間の依存性定義</p></li>
+<li><p>入出力管理の抽象化</p></li>
+<li><p>リトライエラー管理</p></li>
+<li><p>モニタリング用UIある</p></li>
+<li><p>処理は Python で書ける</p></li>
 </ul>
 </li>
-<li><p class="first">チームへの共有</p>
+<li><p>チームへの共有</p>
 <ul class="simple">
-<li>Google App Script は Cron的に使えるので便利</li>
-<li>GAS で Google Spreadsheet に書き出している</li>
+<li><p>Google App Script は Cron的に使えるので便利</p></li>
+<li><p>GAS で Google Spreadsheet に書き出している</p></li>
 </ul>
 </li>
-<li><p class="first">re:dash <a class="reference external" href="http://redash.io">http://redash.io</a></p>
+<li><p>re:dash <a class="reference external" href="http://redash.io">http://redash.io</a></p>
 <ul class="simple">
-<li>Kibana っぽい画面を使える</li>
-<li>EC2 / GCE のイメージがある</li>
-<li>ちゃんと使うなら、 TLS + Google Account 認証にする</li>
+<li><p>Kibana っぽい画面を使える</p></li>
+<li><p>EC2 / GCE のイメージがある</p></li>
+<li><p>ちゃんと使うなら、 TLS + Google Account 認証にする</p></li>
 </ul>
 </li>
-<li><p class="first"><a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a></p>
+<li><p><a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a></p>
 <ul class="simple">
-<li>Jupyter Notebook ベース</li>
-<li>AppEngine + ManagedVM で動作</li>
-<li>Jupyter Notebook 課題<ul>
-<li>実験ノートをもっと気軽に</li>
-<li>アクセス制限をかけたい</li>
-<li>管理したくない</li>
+<li><p>Jupyter Notebook ベース</p></li>
+<li><p>AppEngine + ManagedVM で動作</p></li>
+<li><p>Jupyter Notebook 課題</p>
+<ul>
+<li><p>実験ノートをもっと気軽に</p></li>
+<li><p>アクセス制限をかけたい</p></li>
+<li><p>管理したくない</p></li>
 </ul>
 </li>
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a> はコンテナなので、もろもろ解決</li>
-<li><a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a> は BigQuery にもアクセスでき、便利</li>
+<li><p><a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a> はコンテナなので、もろもろ解決</p></li>
+<li><p><a class="reference external" href="https://cloud.google.com/datalab/?hl=ja">Cloud Datalab</a> は BigQuery にもアクセスでき、便利</p></li>
 </ul>
 </div></blockquote>
 </li>
