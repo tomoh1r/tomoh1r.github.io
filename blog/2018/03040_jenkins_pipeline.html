@@ -67,49 +67,53 @@ import されてないので、きちんと import すること。また、
 script step と shell step ( <code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">'...'</span></code> ) は世界が違うので、定義済みのグローバル変数
 <code class="docutils literal notranslate"><span class="pre">env</span></code> を用いて世界をまたぐことが重要となる。</p>
 <p>以下が例となる。</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span>
 
-<span class="n">pipeline</span> <span class="p">{</span>
+<span class="n">pipeline</span> <span class="o">{</span>
     <span class="n">agent</span> <span class="n">none</span>
 
-    <span class="n">stages</span> <span class="p">{</span>
-        <span class="n">stage</span><span class="p">(</span><span class="s1">&#39;publish-html&#39;</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">agent</span> <span class="nb">any</span>
-            <span class="n">steps</span> <span class="p">{</span>
-                <span class="n">script</span> <span class="p">{</span>
-                    <span class="k">def</span> <span class="nf">dateFormat</span> <span class="o">=</span> <span class="n">new</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s2">&quot;yyyyMMddHHmmss&quot;</span><span class="p">)</span>
-                    <span class="k">def</span> <span class="nf">current</span> <span class="o">=</span> <span class="n">dateFormat</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new</span> <span class="n">Date</span><span class="p">())</span>
-                    <span class="k">def</span> <span class="nf">baseDir</span> <span class="o">=</span> <span class="s1">&#39;/var/www/&#39;</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;publish-html&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">agent</span> <span class="n">any</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="kt">def</span> <span class="n">dateFormat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s2">&quot;yyyyMMddHHmmss&quot;</span><span class="o">)</span>
+                    <span class="kt">def</span> <span class="n">current</span> <span class="o">=</span> <span class="n">dateFormat</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">())</span>
+                    <span class="kt">def</span> <span class="n">baseDir</span> <span class="o">=</span> <span class="s1">&#39;/var/www/&#39;</span>
 
-                    <span class="n">env</span><span class="o">.</span><span class="n">workDir</span> <span class="o">=</span> <span class="n">baseDir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">current</span>
-                    <span class="n">env</span><span class="o">.</span><span class="n">htmlDir</span> <span class="o">=</span> <span class="n">baseDir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="s1">&#39;html&#39;</span>
-                <span class="p">}</span>
+                    <span class="n">env</span><span class="o">.</span><span class="na">workDir</span> <span class="o">=</span> <span class="n">baseDir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">current</span>
+                    <span class="n">env</span><span class="o">.</span><span class="na">htmlDir</span> <span class="o">=</span> <span class="n">baseDir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="s1">&#39;html&#39;</span>
+                <span class="o">}</span>
 
-                <span class="n">sh</span> <span class="s2">&quot;mv _build/html $</span><span class="si">{env.workDir}</span><span class="s2">&quot;</span>
-                <span class="n">sh</span> <span class="s2">&quot;ln -sfn $</span><span class="si">{env.workDir}</span><span class="s2"> $</span><span class="si">{env.htmlDir}</span><span class="s2">&quot;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+                <span class="n">sh</span> <span class="s2">&quot;mv _build/html ${env.workDir}&quot;</span>
+                <span class="n">sh</span> <span class="s2">&quot;ln -sfn ${env.workDir} ${env.htmlDir}&quot;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 <div class="section" id="id1">
 <h2>参考<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://stackoverflow.com/questions/42540148/how-to-set-and-reference-a-variable-in-a-jenkinsfile">jenkins - How to set and reference a variable in a Jenkinsfile - Stack Overflow</a><ul>
-<li>検索し、 env 変数に気づいた。</li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/42540148/how-to-set-and-reference-a-variable-in-a-jenkinsfile">jenkins - How to set and reference a variable in a Jenkinsfile - Stack Overflow</a></p>
+<ul>
+<li><p>検索し、 env 変数に気づいた。</p></li>
 </ul>
 </li>
-<li><a class="reference external" href="https://jenkins.io/doc/book/pipeline/jenkinsfile/">Using a Jenkinsfile - Jenkins</a><ul>
-<li>env 変数の一次資料となる。</li>
+<li><p><a class="reference external" href="https://jenkins.io/doc/book/pipeline/jenkinsfile/">Using a Jenkinsfile - Jenkins</a></p>
+<ul>
+<li><p>env 変数の一次資料となる。</p></li>
 </ul>
 </li>
-<li><a class="reference external" href="https://jenkins.io/doc/book/pipeline/syntax/">Pipeline Syntax - Jenkins</a><ul>
-<li>script step の一次資料となる。</li>
+<li><p><a class="reference external" href="https://jenkins.io/doc/book/pipeline/syntax/">Pipeline Syntax - Jenkins</a></p>
+<ul>
+<li><p>script step の一次資料となる。</p></li>
 </ul>
 </li>
-<li><a class="reference external" href="https://support.cloudbees.com/hc/en-us/articles/226504048-How-to-use-Date-with-Pipeline">How to use Date with Pipeline? – CloudBees Support</a><ul>
-<li>SimpleDateFormat の使い方。</li>
+<li><p><a class="reference external" href="https://support.cloudbees.com/hc/en-us/articles/226504048-How-to-use-Date-with-Pipeline">How to use Date with Pipeline? – CloudBees Support</a></p>
+<ul>
+<li><p>SimpleDateFormat の使い方。</p></li>
 </ul>
 </li>
 </ul>

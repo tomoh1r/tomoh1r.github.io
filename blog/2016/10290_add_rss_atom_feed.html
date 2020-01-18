@@ -62,17 +62,17 @@
 <p>旧時代的かもしれませんが、幾人から要望があったので RSS2.0/Atom Feed を配信するようにしました。
 ただし、エントリー毎のサマリーはまだ適当で、なんとかしないと。</p>
 <ul class="simple">
-<li><a class="reference external" href="/rss2.xml">rss2.0</a></li>
-<li><a class="reference external" href="/atom.xml">atom</a></li>
+<li><p><a class="reference external" href="/rss2.xml">rss2.0</a></p></li>
+<li><p><a class="reference external" href="/atom.xml">atom</a></p></li>
 </ul>
 <p>以下を参照にしました。</p>
 <ul class="simple">
-<li><a class="reference external" href="http://amarron.hatenablog.com/entry/2014/03/14/200556">RSS1.0,RSS2.0,ATOM のフォーマット・仕様・構造 - Amarronの日記</a></li>
-<li><a class="reference external" href="http://techmemo.biz/html/rss-feed-link-head-html/">RSSフィードが存在することを知らせるためのlinkタグ | TechMemo</a></li>
+<li><p><a class="reference external" href="http://amarron.hatenablog.com/entry/2014/03/14/200556">RSS1.0,RSS2.0,ATOM のフォーマット・仕様・構造 - Amarronの日記</a></p></li>
+<li><p><a class="reference external" href="http://techmemo.biz/html/rss-feed-link-head-html/">RSSフィードが存在することを知らせるためのlinkタグ | TechMemo</a></p></li>
 </ul>
 <p>作業中、以下の validation が非常に役立ちました。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://validator.w3.org/feed/">W3C Feed Validation Service, for Atom and RSS</a></li>
+<li><p><a class="reference external" href="https://validator.w3.org/feed/">W3C Feed Validation Service, for Atom and RSS</a></p></li>
 </ul>
 <p>作業中思ったことは、 Python はやはり batteries included な言語であって、便利だと
 思いました。</p>
@@ -86,7 +86,7 @@
 <span class="n">feed</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">,</span> <span class="p">{</span><span class="sa">u</span><span class="s1">&#39;xmlns&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;http://www.w3.org/2005/Atom&#39;</span><span class="p">,</span>
                         <span class="sa">u</span><span class="s1">&#39;xml:lang&#39;</span><span class="p">:</span> <span class="n">LANG</span><span class="p">})</span>
 <span class="n">SubElement</span><span class="p">(</span><span class="n">feed</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;site の id&#39;</span>
-<span class="n">ElementTree</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;blahblahblah.xml&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">xml_declaration</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<span class="n">ElementTree</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;blahblahblah.xml&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">xml_declaration</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>最近 GCP でシステムを構築していて、システム周りの作業が多くなり Python を書けて

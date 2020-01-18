@@ -115,7 +115,7 @@ MySQL の人の発表。この人のプレゼンうまいと思う、さすが�
 
 Generated Column は面白い、構文は以下。
 
-.. code-block:: guess
+.. code-block:: none
 
     <type>   [ GENERATED ALWAYS ]   AS   ( <expression> )   [ VIRTUAL|STORED ]
     [ UNIQUE [KEY] ]   [ [PRIMARY] KEY ]   [ NOT NULL ]   [ COMMENT <text> ]

@@ -61,9 +61,9 @@
 <p><span class="blog_date">2015/04/29</span></p>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id10">動機</a></li>
-<li><a class="reference internal" href="#id3" id="id11">進めかた</a></li>
-<li><a class="reference internal" href="#id8" id="id12">使い方</a></li>
+<li><p><a class="reference internal" href="#id2" id="id10">動機</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id11">進めかた</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id12">使い方</a></p></li>
 </ul>
 </div>
 <div class="section" id="id2">
@@ -80,9 +80,9 @@
 <p><a class="reference external" href="http://www.ansible.com/home">Ansible</a> の plugin は大雑把に以下の流れで作成できる。</p>
 <div class="contents local topic" id="id4">
 <ul class="simple">
-<li><a class="reference internal" href="#plugin" id="id13">1. Plugin を書く。</a></li>
-<li><a class="reference internal" href="#id7" id="id14">2. ディレクトリに配置する。</a></li>
-<li><a class="reference internal" href="#ansible" id="id15">3. Ansible に認識させる。</a></li>
+<li><p><a class="reference internal" href="#plugin" id="id13">1. Plugin を書く。</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id14">2. ディレクトリに配置する。</a></p></li>
+<li><p><a class="reference internal" href="#ansible" id="id15">3. Ansible に認識させる。</a></p></li>
 </ul>
 </div>
 <p>それぞれ見ていこう。</p>
@@ -103,7 +103,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_get_container_env</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;return container env dict&#39;&#39;&#39;</span>
     <span class="c1"># get environ path</span>
-    <span class="n">env_path</span> <span class="o">=</span> <span class="s1">&#39;/proc/{}/environ&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extract_var</span><span class="p">(</span><span class="s1">&#39;Leader&#39;</span><span class="p">))</span>
+    <span class="n">env_path</span> <span class="o">=</span> <span class="s1">&#39;/proc/</span><span class="si">{}</span><span class="s1">/environ&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extract_var</span><span class="p">(</span><span class="s1">&#39;Leader&#39;</span><span class="p">))</span>
 
     <span class="c1"># get container env separated by null char</span>
     <span class="n">env_str</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;cat &#39;</span> <span class="o">+</span> <span class="n">env_path</span><span class="p">))</span>
@@ -135,17 +135,17 @@
     <span class="c1"># calc symbol position</span>
     <span class="n">pos_and</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&amp;&amp;&#39;</span><span class="p">)</span>
     <span class="n">pos_sc</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>  <span class="c1"># semicolon</span>
-    <span class="n">conn_and</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">conn_sc</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">conn_and</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">conn_sc</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">pos_and</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span>
             <span class="p">((</span><span class="n">pos_sc</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">pos_and</span> <span class="o">&lt;</span> <span class="n">pos_sc</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pos_sc</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">pos_and</span>
         <span class="n">post_pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span>
-        <span class="n">conn_and</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">conn_and</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">pos_sc</span>
         <span class="n">post_pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">conn_sc</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">conn_sc</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="c1"># parse cmd</span>
     <span class="n">cmd_pre</span><span class="p">,</span> <span class="n">cmd_post</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">[:</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">cmd</span><span class="p">[</span><span class="n">post_pos</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -186,10 +186,10 @@
 <h3>3. <a class="reference external" href="http://www.ansible.com/home">Ansible</a> に認識させる。<a class="headerlink" href="#ansible" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference external" href="http://docs.ansible.com/intro_configuration.html">The Ansible Configuration File — Ansible Documentation</a> を参考に、</p>
 <ul class="simple">
-<li>ANSIBLE_CONFIG (an environment variable)</li>
-<li>ansible.cfg (in the current directory)</li>
-<li>.ansible.cfg (in the home directory)</li>
-<li>/etc/ansible/ansible.cfg</li>
+<li><p>ANSIBLE_CONFIG (an environment variable)</p></li>
+<li><p>ansible.cfg (in the current directory)</p></li>
+<li><p>.ansible.cfg (in the home directory)</p></li>
+<li><p>/etc/ansible/ansible.cfg</p></li>
 </ul>
 <p>4つのいずれかの <code class="docutils literal notranslate"><span class="pre">connection_plugins</span></code> の設定でパスを認識させる。
 今回は <code class="docutils literal notranslate"><span class="pre">/etc/ansible/plugins/connection_plugins/</span></code> となる。</p>

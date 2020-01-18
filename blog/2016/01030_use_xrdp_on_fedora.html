@@ -64,7 +64,7 @@
 <p>ただ、ホスト側が US キーボードなんだけど、リモート側が JP キーボードになってしまい
 どう直せば良いのかわからないのが、現在の問題点。</p>
 <ol class="arabic">
-<li><p class="first">xrdp と依存の tigervnc-server をインストールする</p>
+<li><p>xrdp と依存の tigervnc-server をインストールする</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> dnf install xrdp tigervnc-server
 <span class="gp">#</span> chcon -t bin_t /usr/sbin/xrdp*
 <span class="gp">#</span> systemctl <span class="nb">enable</span> xrdp.service
@@ -79,28 +79,28 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">注釈</p>
+<p class="admonition-title">注釈</p>
 <p><a class="reference external" href="http://hiroom2.jimdo.com/2015/06/13/xrdpのインストール方法/">XRDPのインストール方法 - Narrow Escape</a></p>
-<ul class="last simple">
-<li>SELinux の対応</li>
+<ul class="simple">
+<li><p>SELinux の対応</p></li>
 </ul>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">注釈</p>
+<p class="admonition-title">注釈</p>
 <p><a class="reference external" href="http://blog.clock-up.jp/entry/2014/12/29/centos-rdp">リモートの CentOS に Windows からリモートデスクトップ接続する - clock-up-blog</a></p>
-<ul class="last simple">
-<li>VNC に依存する件</li>
+<ul class="simple">
+<li><p>VNC に依存する件</p></li>
 </ul>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">注釈</p>
+<p class="admonition-title">注釈</p>
 <p><a class="reference external" href="https://www.centos.org/forums/viewtopic.php?f=48&amp;t=47713">CentOS • View topic - VNC won't start CentOS 7</a></p>
-<ul class="last simple">
-<li>あらかじめ vncsrever コマンドを起動する必要がある件</li>
+<ul class="simple">
+<li><p>あらかじめ vncsrever コマンドを起動する必要がある件</p></li>
 </ul>
 </div>
 </li>
-<li><p class="first">vnc の systemd 設定をする。</p>
+<li><p>vnc の systemd 設定をする。</p>
 <p>起動ファイルをコピーする。</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
 </pre></div>
@@ -114,7 +114,7 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">xrdp の vnc 参照ポートを更新する。</p>
+<li><p>xrdp の vnc 参照ポートを更新する。</p>
 <p>以下のコマンドで利用しているポートを取得する。</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ss -nae <span class="p">|</span> grep <span class="se">\:\:\:</span><span class="m">59</span>
 <span class="go">tcp    LISTEN     0      5        :::5902                 :::*</span>
@@ -127,22 +127,22 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">ファイアウォールにて rdp のポートを許可する。</p>
+<li><p>ファイアウォールにて rdp のポートを許可する。</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> firewall-cmd --add-port<span class="o">=</span><span class="m">3389</span>/tcp --permanent
 <span class="gp">#</span> firewall-cmd --reload
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">注釈</p>
+<p class="admonition-title">注釈</p>
 <p><a class="reference external" href="http://jlinuxer.dip.jp/?p=1100">[Fedora19] XRDPでリモートデスクトップ : J-Linuxer</a></p>
-<ul class="last simple">
-<li>ファイアウォールの設定方法の参照</li>
+<ul class="simple">
+<li><p>ファイアウォールの設定方法の参照</p></li>
 </ul>
 </div>
 </li>
 </ol>
 <ol class="upperalpha" start="24">
-<li><p class="first">LXQt を利用するようにする。</p>
+<li><p>LXQt を利用するようにする。</p>
 <p><code class="docutils literal notranslate"><span class="pre">~/.vnc/xstartup</span></code> が起動時に実行されるので、
 最終行を <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">/usr/bin/startlxqt</span></code> に更新する。</p>
 </li>

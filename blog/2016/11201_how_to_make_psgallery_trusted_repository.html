@@ -62,34 +62,34 @@
 <p>初期だと <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> にて <code class="docutils literal notranslate"><span class="pre">Install-Module</span></code> などで <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> が
 信頼されていないリポジトリとして設定されており、以下のような警告が表されると
 思います。</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Users\tomo
+<div class="highlight-winbatch notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Users\tomo</span>
 [2016/41/20 10:41:16] PS ~\
-&gt; Find-Module –Includes DSCResource –Name xHyper-V | Install-Module -Scope CurrentUser
+<span class="p">&gt;</span> Find-Module –Includes DSCResource –Name xHyper-V <span class="p">|</span> Install-Module -Scope CurrentUser
 
 信頼されていないリポジトリ
 信頼されていないリポジトリからモジュールをインストールしようとしています。このリポジトリを信頼する場合は、Set-PSRepository コマンドレットを実行して、リポジトリの InstallationPolicy
 の値を変更してください。&#39;https://www.powershellgallery.com/api/v2/&#39; からモジュールをインストールしますか?
-[Y] はい(Y)  [A] すべて続行(A)  [N] いいえ(N)  [L] すべて無視(L)  [S] 中断(S)  [?] ヘルプ (既定値は &quot;N&quot;):
+[Y] はい(Y)  [A] すべて続行(A)  [N] いいえ(N)  [L] すべて無視(L)  [S] 中断(S)  [?] ヘルプ (既定値は <span class="s2">&quot;N&quot;</span>):
 </pre></div>
 </div>
 <p><a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> はある程度信頼できるだろう、といった場合この警告を表示しないようにする
 ことができます。
 <code class="docutils literal notranslate"><span class="pre">Set-PSRepository</span></code> を利用して信頼できるリポジトリとして設定することによって
 <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> から警告無しにインストールできるようになります。</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>[2016/50/20 10:50:44] PS ~\
-&gt; Get-PSRepository
+<div class="highlight-winbatch notranslate"><div class="highlight"><pre><span></span>[2016/50/20 10:50:44] PS ~\
+<span class="p">&gt;</span> Get-PSRepository
 
 Name                      InstallationPolicy   SourceLocation
 ----                      ------------------   --------------
 PSGallery                 Untrusted            https://www.powershellgallery.com/api/v2/
 
 
-C:\Users\tomo
+C<span class="p">:</span><span class="nl">\Users\tomo</span>
 [2016/51/20 10:51:48] PS ~\
-&gt; Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-C:\Users\tomo
+<span class="p">&gt;</span> Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+C<span class="p">:</span><span class="nl">\Users\tomo</span>
 [2016/51/20 10:51:58] PS ~\
-&gt; Get-PSRepository
+<span class="p">&gt;</span> Get-PSRepository
 
 Name                      InstallationPolicy   SourceLocation
 ----                      ------------------   --------------
@@ -97,9 +97,9 @@ PSGallery                 Trusted              https://www.powershellgallery.com
 </pre></div>
 </div>
 <p>最終的に、 <a class="reference external" href="https://www.powershellgallery.com/">PSGallery</a> から以下のように警告なくインストールできるようになります。</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Users\tomo
+<div class="highlight-winbatch notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Users\tomo</span>
 [2016/52/20 10:52:16] PS ~\
-&gt; Find-Module –Includes DSCResource –Name xHyper-V | Install-Module -Scope CurrentUser
+<span class="p">&gt;</span> Find-Module –Includes DSCResource –Name xHyper-V <span class="p">|</span> Install-Module -Scope CurrentUser
 </pre></div>
 </div>
 </div>

@@ -68,25 +68,25 @@
 <p>結果使えそうなので、以下に流れをまとめる。</p>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#tl-dr" id="id10">tl;dr</a></li>
-<li><a class="reference internal" href="#id3" id="id11">ソースコード分割</a></li>
-<li><a class="reference internal" href="#id4" id="id12">アンダーバー対策</a></li>
-<li><a class="reference internal" href="#css" id="id13">CSS 追加</a></li>
-<li><a class="reference internal" href="#id5" id="id14">サイドバー修正</a></li>
-<li><a class="reference internal" href="#id6" id="id15">日付のロール作成</a></li>
-<li><a class="reference internal" href="#id8" id="id16">終わりに</a></li>
+<li><p><a class="reference internal" href="#tl-dr" id="id10">tl;dr</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id11">ソースコード分割</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id12">アンダーバー対策</a></p></li>
+<li><p><a class="reference internal" href="#css" id="id13">CSS 追加</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id14">サイドバー修正</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id15">日付のロール作成</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id16">終わりに</a></p></li>
 </ul>
 </div>
 <p>細かい点は <a class="reference external" href="https://github.com/jptomo/github-pages">github のリポジトリ</a> をみてください。</p>
 <div class="section" id="tl-dr">
 <h2><a class="toc-backref" href="#id10">tl;dr</a><a class="headerlink" href="#tl-dr" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>ソースと <cite>jptomo.github.io</cite> のリポジトリを分割した。</li>
-<li><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> では _static などのアンダーバー始まりのディレクトリは
-公開できないので、 <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> の実行時にパッチを当てるようにした。</li>
-<li>CSS を追加した。</li>
-<li>サイドバーのリンクを書き換えた。</li>
-<li>日付けのロール <cite>my_date</cite> を作成した。</li>
+<li><p>ソースと <cite>jptomo.github.io</cite> のリポジトリを分割した。</p></li>
+<li><p><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> では _static などのアンダーバー始まりのディレクトリは
+公開できないので、 <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> の実行時にパッチを当てるようにした。</p></li>
+<li><p>CSS を追加した。</p></li>
+<li><p>サイドバーのリンクを書き換えた。</p></li>
+<li><p>日付けのロール <cite>my_date</cite> を作成した。</p></li>
 </ul>
 </div>
 <div class="section" id="id3">
@@ -95,24 +95,24 @@
 <p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> で <cite>make html</cite> したものがリポジトリ直下に欲しかった。</p>
 <p>これを解決するため、記事のソースコードと、 <a class="reference external" href="https://pages.github.com/">GitHub Pages</a> のコードを分けた。</p>
 <ul class="simple">
-<li>記事のソースコード: <a class="reference external" href="https://github.com/jptomo/github-pages">jptomo/github-pages</a></li>
-<li><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> のコード: <a class="reference external" href="https://github.com/jptomo/jptomo.github.io">jptomo/jptomo.github.io</a></li>
+<li><p>記事のソースコード: <a class="reference external" href="https://github.com/jptomo/github-pages">jptomo/github-pages</a></p></li>
+<li><p><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> のコード: <a class="reference external" href="https://github.com/jptomo/jptomo.github.io">jptomo/jptomo.github.io</a></p></li>
 </ul>
 </div>
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id12">アンダーバー対策</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> では、アンダーバーを接頭辞として持つディレクトリを公開できない。</p>
 <ul class="simple">
-<li><a class="reference external" href="http://stackoverflow.com/questions/6397780/names-starting-with-underscore-shows-errors-page-doesnot-exists-for-gh-pages-bra">github - Names starting with underscore shows errors Page
-doesnot exists for gh-pages branch - Stack Overflow</a> とか</li>
+<li><p><a class="reference external" href="http://stackoverflow.com/questions/6397780/names-starting-with-underscore-shows-errors-page-doesnot-exists-for-gh-pages-bra">github - Names starting with underscore shows errors Page
+doesnot exists for gh-pages branch - Stack Overflow</a> とか</p></li>
 </ul>
 <p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> は標準では <cite>_static/</cite> などのディレクトリに
 CSSファイルを書き出すので、対策が必要。</p>
 <p><a class="reference external" href="https://twitter.com/tk0miya/">tk0miya</a> さんのロール作成サンプルがあったので
 流用させていただきました。ありがとうございます。</p>
 <ul class="simple">
-<li><a class="reference external" href="http://tdoc.info/blog/2014/10/21/sphinx_static.html">Sphinx で _static ではないディレクトリに書き出す — そこはかとなく書くよん。</a></li>
-<li>sphinxcontrib_staticdir_hack.py (<a class="reference external" href="https://gist.github.com/tk0miya/a6b5dd01a019fb303a13">gist</a>)</li>
+<li><p><a class="reference external" href="http://tdoc.info/blog/2014/10/21/sphinx_static.html">Sphinx で _static ではないディレクトリに書き出す — そこはかとなく書くよん。</a></p></li>
+<li><p>sphinxcontrib_staticdir_hack.py (<a class="reference external" href="https://gist.github.com/tk0miya/a6b5dd01a019fb303a13">gist</a>)</p></li>
 </ul>
 <p>以下コード (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_staticdir_hack.py">github</a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
@@ -134,7 +134,7 @@ CSSファイルを書き出すので、対策が必要。</p>
     <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;_static&#39;</span><span class="p">,</span> <span class="n">NEW_STATIC_NAME</span><span class="p">),</span>
                          <span class="p">(</span><span class="s1">&#39;_source&#39;</span><span class="p">,</span> <span class="n">NEW_SOURCES_NAME</span><span class="p">)]:</span>
-            <span class="n">replacer</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">uri</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">old</span><span class="p">),</span> <span class="n">new</span><span class="p">,</span> <span class="n">uri</span><span class="p">))</span>
+            <span class="n">replacer</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">uri</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^</span><span class="si">{}</span><span class="s1">/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">old</span><span class="p">),</span> <span class="n">new</span><span class="p">,</span> <span class="n">uri</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">script_files</span><span class="p">):</span>
                 <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">script_files</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">replacer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">css_files</span><span class="p">):</span>
@@ -153,7 +153,7 @@ CSSファイルを書き出すので、対策が必要。</p>
 
 
 <span class="k">def</span> <span class="nf">on_build_finished</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">exception</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span> <span class="ow">and</span> <span class="n">exception</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span> <span class="ow">and</span> <span class="n">exception</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;_static&#39;</span><span class="p">,</span> <span class="n">NEW_STATIC_NAME</span><span class="p">),</span>
                          <span class="p">(</span><span class="s1">&#39;_sources&#39;</span><span class="p">,</span> <span class="n">NEW_SOURCES_NAME</span><span class="p">)]:</span>
             <span class="n">old_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span> <span class="n">old</span><span class="p">)</span>
@@ -177,8 +177,8 @@ CSSファイルを書き出すので、対策が必要。</p>
 <p>ただ、サイドバーを右側に寄せたかったので、
 CSSを追加し、文章とサイドバーの位置を逆にした。</p>
 <ul class="simple">
-<li><a class="reference external" href="http://sphinx-users.jp/reverse-dict/html/custom-css-js.html">HTMLテーマに独自のCSS/JSファイルを読み込ませてデザイン調整等したい —
-Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ会</a></li>
+<li><p><a class="reference external" href="http://sphinx-users.jp/reverse-dict/html/custom-css-js.html">HTMLテーマに独自のCSS/JSファイルを読み込ませてデザイン調整等したい —
+Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ会</a></p></li>
 </ul>
 <p><cite>conf.py</cite> の末尾に以下の記載をする。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
@@ -217,12 +217,12 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 <p>後は、先程追加した <cite>html</cite> ファイルを <cite>_templates</cite> 配下に作成すれば良い。</p>
 <p>以下は作成したもの。 なお、 <cite>searchbox.html</cite> は組込である。</p>
 <ul>
-<li><p class="first">side_index.html (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_templates/side_index.html">github</a>)</p>
+<li><p>side_index.html (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_templates/side_index.html">github</a>)</p>
 <div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;h3&gt;&lt;a href=&quot;/index.html&quot;&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Top&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;&lt;/h3&gt;</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">side_genindex.html (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_templates/side_genindex.html">github</a>)</p>
+<li><p>side_genindex.html (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_templates/side_genindex.html">github</a>)</p>
 <div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;h3&gt;&lt;a href=&quot;/genindex.html&quot;&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Index&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;&lt;/h3&gt;</span>
 </pre></div>
 </div>
@@ -235,7 +235,7 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 <p>またまた <a class="reference external" href="https://twitter.com/tk0miya/">tk0miya</a> さんのロール作成サンプルがあったので
 流用させていただきました。ありがとうございます。</p>
 <ul class="simple">
-<li>サンプル: <a class="reference external" href="http://labs.timedia.co.jp/2012/04/sphinx.html">Sphinxで打ち消しを使う - TIM Labs</a></li>
+<li><p>サンプル: <a class="reference external" href="http://labs.timedia.co.jp/2012/04/sphinx.html">Sphinxで打ち消しを使う - TIM Labs</a></p></li>
 </ul>
 <p>以下コード (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_date.py">github</a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>

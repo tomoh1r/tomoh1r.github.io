@@ -65,22 +65,22 @@
 <div class="section" id="id1">
 <h2>環境<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>Fedora 25</li>
+<li><p>Fedora 25</p></li>
 </ul>
 </div>
 <div class="section" id="id2">
 <h2>目的<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>MySQL の Docker コンテナを Fedora 上に立てる。</li>
-<li>設定ファイルやデータをコンテナ外にて管理する。</li>
-<li>Firewalld の設定で Fedora ホスト外からアクセスできるようにする。</li>
+<li><p>MySQL の Docker コンテナを Fedora 上に立てる。</p></li>
+<li><p>設定ファイルやデータをコンテナ外にて管理する。</p></li>
+<li><p>Firewalld の設定で Fedora ホスト外からアクセスできるようにする。</p></li>
 </ul>
 </div>
 <div class="section" id="id3">
 <h2>お断り<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>以下でパスワードが脆弱なものとなっており、
-また設定ファイルに直書きする手順となっています。</li>
+<li><p>以下でパスワードが脆弱なものとなっており、
+また設定ファイルに直書きする手順となっています。</p></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -89,11 +89,11 @@
 をデータのホスト上の保存ディレクトリパスとする。</p>
 <div class="contents local topic" id="id5">
 <ul class="simple">
-<li><a class="reference internal" href="#docker" id="id8">1. docker のインストール</a></li>
-<li><a class="reference internal" href="#id6" id="id9">2. 設定ファイルやデータ向けディレクトリの構築</a></li>
-<li><a class="reference internal" href="#systemd" id="id10">3. 自動起動のために Systemd のユニットファイルを作成し起動する</a></li>
-<li><a class="reference internal" href="#root" id="id11">4. root ユーザーについてコンテナ外から接続できるようにする</a></li>
-<li><a class="reference internal" href="#firewalld" id="id12">5. firewalld に接続を通すように設定する</a></li>
+<li><p><a class="reference internal" href="#docker" id="id8">1. docker のインストール</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id9">2. 設定ファイルやデータ向けディレクトリの構築</a></p></li>
+<li><p><a class="reference internal" href="#systemd" id="id10">3. 自動起動のために Systemd のユニットファイルを作成し起動する</a></p></li>
+<li><p><a class="reference internal" href="#root" id="id11">4. root ユーザーについてコンテナ外から接続できるようにする</a></p></li>
+<li><p><a class="reference internal" href="#firewalld" id="id12">5. firewalld に接続を通すように設定する</a></p></li>
 </ul>
 </div>
 <div class="section" id="docker">
@@ -184,13 +184,15 @@ IPとなる。必要に応じて後者を変えること。</p>
 <div class="section" id="id7">
 <h2>参考<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="http://www.unix-power.net/centos7/firewalld.html">CentOS7 firewalldの設定方法</a><ul>
-<li>firewall-cmd の使い方まとめ</li>
+<li><p><a class="reference external" href="http://www.unix-power.net/centos7/firewalld.html">CentOS7 firewalldの設定方法</a></p>
+<ul>
+<li><p>firewall-cmd の使い方まとめ</p></li>
 </ul>
 </li>
-<li><a class="reference external" href="https://hub.docker.com/_/mysql/">library/mysql - Docker Hub</a><ul>
-<li>MySQL Docker Image の説明</li>
-<li>SELinux の設定</li>
+<li><p><a class="reference external" href="https://hub.docker.com/_/mysql/">library/mysql - Docker Hub</a></p>
+<ul>
+<li><p>MySQL Docker Image の説明</p></li>
+<li><p>SELinux の設定</p></li>
 </ul>
 </li>
 </ul>

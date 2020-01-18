@@ -63,37 +63,37 @@
 Fedora に <a class="reference external" href="https://www.samba.org/">Samba</a> をインストールし、 Windows からアクセスできるまでを実施する。</p>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id10">0. 環境</a></li>
-<li><a class="reference internal" href="#fedora-samba" id="id11">1. (Fedora) Samba をインストールする</a><ul>
-<li><a class="reference internal" href="#id3" id="id12">1. インストール</a></li>
-<li><a class="reference internal" href="#id4" id="id13">2. 設定</a></li>
-<li><a class="reference internal" href="#id5" id="id14">3. Samba 認証用のアカウント追加</a></li>
-<li><a class="reference internal" href="#id6" id="id15">4. 再起動とサーバー起動時に起動するようにする</a></li>
+<li><p><a class="reference internal" href="#id2" id="id10">0. 環境</a></p></li>
+<li><p><a class="reference internal" href="#fedora-samba" id="id11">1. (Fedora) Samba をインストールする</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id12">1. インストール</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id13">2. 設定</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id14">3. Samba 認証用のアカウント追加</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id15">4. 再起動とサーバー起動時に起動するようにする</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fedora-selinux-samba" id="id16">2. (Fedora) SELinux で Samba 公開ディレクトリへのアクセスを許可する</a></li>
-<li><a class="reference internal" href="#fedora-firewall" id="id17">3. (Fedora) firewall で外部からの接続を許可する</a></li>
-<li><a class="reference internal" href="#id7" id="id18">4. まとめ</a></li>
-<li><a class="reference internal" href="#x" id="id19">X. デバッグ方法</a><ul>
-<li><a class="reference internal" href="#id8" id="id20">Fedora 上で接続できるか確認する</a></li>
-<li><a class="reference internal" href="#windows" id="id21">Windows 上で接続できるか確認する</a></li>
+<li><p><a class="reference internal" href="#fedora-selinux-samba" id="id16">2. (Fedora) SELinux で Samba 公開ディレクトリへのアクセスを許可する</a></p></li>
+<li><p><a class="reference internal" href="#fedora-firewall" id="id17">3. (Fedora) firewall で外部からの接続を許可する</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id18">4. まとめ</a></p></li>
+<li><p><a class="reference internal" href="#x" id="id19">X. デバッグ方法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id8" id="id20">Fedora 上で接続できるか確認する</a></p></li>
+<li><p><a class="reference internal" href="#windows" id="id21">Windows 上で接続できるか確認する</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id9" id="id22">参考</a></li>
+<li><p><a class="reference internal" href="#id9" id="id22">参考</a></p></li>
 </ul>
 </div>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id10">0. 環境</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">サーバー:</th><td class="field-body">Fedora 23</td>
-</tr>
-<tr class="field-even field"><th class="field-name">クライアント:</th><td class="field-body">Windows 8.1 64-bit Pro</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">サーバー</dt>
+<dd class="field-odd"><p>Fedora 23</p>
+</dd>
+<dt class="field-even">クライアント</dt>
+<dd class="field-even"><p>Windows 8.1 64-bit Pro</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="fedora-samba">
 <h2><a class="toc-backref" href="#id11">1. (Fedora) Samba をインストールする</a><a class="headerlink" href="#fedora-samba" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -109,13 +109,13 @@ Fedora に <a class="reference external" href="https://www.samba.org/">Samba</a>
 <p><code class="docutils literal notranslate"><span class="pre">/etc/samba/smb.conf</span></code> を更新し、ディレクトリ共有できるように設定する。
 エディターで前述ファイルを開き、以下のように更新する。</p>
 <ul>
-<li><p class="first">65行目あたりの <code class="docutils literal notranslate"><span class="pre">[global]</span></code> セクション直下に以下を記載する。</p>
+<li><p>65行目あたりの <code class="docutils literal notranslate"><span class="pre">[global]</span></code> セクション直下に以下を記載する。</p>
 <p>Windows が読み取る際のファイル名の文字コード</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dos</span> <span class="n">charset</span> <span class="o">=</span> <span class="n">CP932</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">workgroup</span></code>/<code class="docutils literal notranslate"><span class="pre">netbios</span> <span class="pre">name</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">workgroup</span></code>/<code class="docutils literal notranslate"><span class="pre">netbios</span> <span class="pre">name</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">workgroup</span></code> は Windows のワークグループ名である。
 <code class="docutils literal notranslate"><span class="pre">netbios</span> <span class="pre">name</span></code> はサーバーの Windows 認識用のホスト名である。</p>
 <p>先頭のセミコロン ( <code class="docutils literal notranslate"><span class="pre">;</span></code> ) はコメントを示すので、
@@ -126,14 +126,14 @@ Fedora に <a class="reference external" href="https://www.samba.org/">Samba</a>
 </pre></div>
 </div>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">hosts</span> <span class="pre">allow</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span> <span class="pre">allow</span></code></p>
 <p>利用する LAN の IP に合わせ、設定ください。</p>
 <p><code class="docutils literal notranslate"><span class="pre">192.168.1.0/24</span></code> であれば、 <code class="docutils literal notranslate"><span class="pre">hosta</span> <span class="pre">allow</span></code> は <code class="docutils literal notranslate"><span class="pre">hosts</span> <span class="pre">allow</span> <span class="pre">=</span> <span class="pre">127.</span> <span class="pre">192.168.1.</span></code> と設定すれば良いです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span>   <span class="n">hosts</span> <span class="n">allow</span> <span class="o">=</span> <span class="mf">127.</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">12.</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">13.</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">ディレクトリ共有の設定</p>
+<li><p>ディレクトリ共有の設定</p>
 <p>下の方の <code class="docutils literal notranslate"><span class="pre">[homes]</span></code> の <code class="docutils literal notranslate"><span class="pre">valid</span> <span class="pre">users</span> <span class="pre">=</span> <span class="pre">%S</span></code> の行頭のセミコロンを外すと、
 各ユーザーのホームディレクトリが共有されるので、簡便である。</p>
 </li>
@@ -204,7 +204,7 @@ Fedora に <a class="reference external" href="https://www.samba.org/">Samba</a>
 <p>これは、手順 3 の動作確認に利用できる。</p>
 <p>なお、 <code class="docutils literal notranslate"><span class="pre">user_password</span></code> は <code class="docutils literal notranslate"><span class="pre">pdbedit</span></code> で設定したパスワードである。</p>
 <p>以下はうまくいった場合を示す。</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>C:\Windows\system32&gt;NET USE \\SMB_SERVER\user_name /USER:user_name user_pasword
+<div class="highlight-winbatch notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Windows\system32</span><span class="c1">&gt;NET USE \\SMB_SERVER\user_name /USER:user_name user_pasword</span>
 コマンドは正常に終了しました。
 </pre></div>
 </div>
@@ -213,10 +213,10 @@ Fedora に <a class="reference external" href="https://www.samba.org/">Samba</a>
 <div class="section" id="id9">
 <h2><a class="toc-backref" href="#id22">参考</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://docs.fedoraproject.org/en-US/Fedora/23/html/System_Administrators_Guide/ch-File_and_Print_Servers.html#sect-Samba-Configuring_a_Samba_Server">Fedora 23 - Chapter 13. File and Print Servers - 13.1.5. Configuring a Samba Server</a></li>
-<li>手順 1 smb.conf の設定: <a class="reference external" href="http://fedorasrv.com/samba.shtml">Windowsファイルサーバー構築(Samba) - Fedoraで自宅サーバー構築</a></li>
-<li>手順 2 コマンドを引用: <a class="reference external" href="http://blog2.zunbe.com/?p=1821">プログラマ ずんべ の日記 Ⅱ » Sambaで小ハマリ</a></li>
-<li>手順 3 コマンド引用: <a class="reference external" href="http://d.hatena.ne.jp/superstring04/20130814/1376512931">Fedoraの新しいファイアウォールでSambaを使用可能にする - 公的内省</a></li>
+<li><p><a class="reference external" href="https://docs.fedoraproject.org/en-US/Fedora/23/html/System_Administrators_Guide/ch-File_and_Print_Servers.html#sect-Samba-Configuring_a_Samba_Server">Fedora 23 - Chapter 13. File and Print Servers - 13.1.5. Configuring a Samba Server</a></p></li>
+<li><p>手順 1 smb.conf の設定: <a class="reference external" href="http://fedorasrv.com/samba.shtml">Windowsファイルサーバー構築(Samba) - Fedoraで自宅サーバー構築</a></p></li>
+<li><p>手順 2 コマンドを引用: <a class="reference external" href="http://blog2.zunbe.com/?p=1821">プログラマ ずんべ の日記 Ⅱ » Sambaで小ハマリ</a></p></li>
+<li><p>手順 3 コマンド引用: <a class="reference external" href="http://d.hatena.ne.jp/superstring04/20130814/1376512931">Fedoraの新しいファイアウォールでSambaを使用可能にする - 公的内省</a></p></li>
 </ul>
 </div>
 </div>

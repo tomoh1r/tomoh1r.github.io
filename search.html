@@ -35,11 +35,7 @@
     <link rel="author" title="このドキュメントについて" href="about.html" />
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="#" />
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
+  <script type="text/javascript" src="searchindex.js" defer></script>
   
     <meta name="viewport" content="width=480">
 
@@ -72,7 +68,7 @@
     このページからドキュメントを検索できます。キーワードを下のボックスに入力して、「検索」をクリックしてください。入力された全てのキーワードを含むページが検索されます。一部のキーワードしか含まないページは検索結果に表示されないので注意してください。
   </p>
   <form action="" method="get">
-    <input type="text" name="q" value="" />
+    <input type="text" name="q" aria-labelledby="search-documentation" value="" />
     <input type="submit" value="検索" />
     <span id="search-progress" style="padding-left: 10px"></span>
   </form>

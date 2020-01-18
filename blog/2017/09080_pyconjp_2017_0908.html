@@ -61,24 +61,26 @@
 <p><span class="blog_date">2017/09/08</span></p>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id3">キーノート</a></li>
-<li><a class="reference internal" href="#typing-py" id="id4">202) ベンリに使おう変数アノテーション - typing.pyとの楽しいお付き合い</a></li>
-<li><a class="reference internal" href="#python" id="id5">203) Pythonとパッケージングと私</a></li>
-<li><a class="reference internal" href="#django" id="id6">202) Djangoフレームワークのユーザーモデルと認証</a></li>
-<li><a class="reference internal" href="#len" id="id7">203) len()関数がオブジェクトの長さを手にいれる仕組み</a></li>
-<li><a class="reference internal" href="#how-and-why-we-speak-in-unicode" id="id8">201) How (and Why) We Speak in Unicode</a></li>
-<li><a class="reference internal" href="#secrets-of-a-wsgi-master" id="id9">201) Secrets of a WSGI master.</a></li>
+<li><p><a class="reference internal" href="#id2" id="id3">キーノート</a></p></li>
+<li><p><a class="reference internal" href="#typing-py" id="id4">202) ベンリに使おう変数アノテーション - typing.pyとの楽しいお付き合い</a></p></li>
+<li><p><a class="reference internal" href="#python" id="id5">203) Pythonとパッケージングと私</a></p></li>
+<li><p><a class="reference internal" href="#django" id="id6">202) Djangoフレームワークのユーザーモデルと認証</a></p></li>
+<li><p><a class="reference internal" href="#len" id="id7">203) len()関数がオブジェクトの長さを手にいれる仕組み</a></p></li>
+<li><p><a class="reference internal" href="#how-and-why-we-speak-in-unicode" id="id8">201) How (and Why) We Speak in Unicode</a></p></li>
+<li><p><a class="reference internal" href="#secrets-of-a-wsgi-master" id="id9">201) Secrets of a WSGI master.</a></p></li>
 </ul>
 </div>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id3">キーノート</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>協力してくれと Guide にいったら自分でやってと</li>
-<li>Numba Bokeh Dask とか必要な者を作成した。</li>
-<li>Python は LEGO のようだ</li>
-<li>QandA<ul>
-<li>なぜパッケージング最近問題が起きているか？<ul>
-<li>昔は Python パッケージングばらばらだった。動くようにした。また、依存ライブラリのインストールも有り、このようにしている。</li>
+<li><p>協力してくれと Guide にいったら自分でやってと</p></li>
+<li><p>Numba Bokeh Dask とか必要な者を作成した。</p></li>
+<li><p>Python は LEGO のようだ</p></li>
+<li><p>QandA</p>
+<ul>
+<li><p>なぜパッケージング最近問題が起きているか？</p>
+<ul>
+<li><p>昔は Python パッケージングばらばらだった。動くようにした。また、依存ライブラリのインストールも有り、このようにしている。</p></li>
 </ul>
 </li>
 </ul>
@@ -89,40 +91,45 @@
 <h2><a class="toc-backref" href="#id4">202) ベンリに使おう変数アノテーション - typing.pyとの楽しいお付き合い</a><a class="headerlink" href="#typing-py" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://speakerdeck.com/puhitaku/bian-li-nishi-oubian-shu-afalsetesiyon-typing-dot-py-tofalsele-siiofu-kihe-i">資料へのリンク</a> (Speaker Deck)</p>
 <ul class="simple">
-<li>PEP と実装の mypy の両輪で設計が進んできた。<ul>
-<li>Syntax (書き方) と Semantics (int とか) の熟議がされてきた。</li>
+<li><p>PEP と実装の mypy の両輪で設計が進んできた。</p>
+<ul>
+<li><p>Syntax (書き方) と Semantics (int とか) の熟議がされてきた。</p></li>
 </ul>
 </li>
-<li>実装時に annotation が読めるようになった。</li>
-<li>typings により型を詳細に、例えば文字列のリスト List[str] とか、書けるようになるジェネリック型が導入された。</li>
-<li>後はこれらの仕組みの使い方</li>
+<li><p>実装時に annotation が読めるようになった。</p></li>
+<li><p>typings により型を詳細に、例えば文字列のリスト List[str] とか、書けるようになるジェネリック型が導入された。</p></li>
+<li><p>後はこれらの仕組みの使い方</p></li>
 </ul>
 </div>
 <div class="section" id="python">
 <h2><a class="toc-backref" href="#id5">203) Pythonとパッケージングと私</a><a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://www.slideshare.net/aodag/python-79546865">資料へのリンク</a> (SlideShare)</p>
 <ul class="simple">
-<li>pip について requirements.txt は広く使われているが、 pip freeze の結果を constrains.txt として書き出し、lock ファイルとして利用することができる。</li>
-<li>virtualenv は古い setuptools/pip が同梱されているので注意。</li>
-<li>setup.py について、通常設定ファイルで綴じることができるように策定が進められている。<ul>
-<li>普通に書くと、設定と実行コードが混在する。</li>
-<li>setup.cfg にメタデータ (metadata) とオプション (option) を切り出すと見通しが良くなる。<ul>
-<li>ただし、ある程度後発の setuptools でないと対応していない。</li>
-<li>file: でファイルの内容を読み込めるようになる。ただし一ファイルのみ。</li>
-<li>attr: でオブジェクトの属性、または callable の戻り値を取得できるようになる。</li>
-<li>後は options に extras_require, packages.find でパッケージの検知とか。</li>
-<li>ただし、 <a class="reference external" href="https://docs.openstack.org/pbr/latest/">pbr</a> の書き方と異なるので、併用できない。<ul>
-<li>とはいえ、 <a class="reference external" href="https://github.com/pypa/setuptools_scm">setuptools_scm</a> を利用するといくつかの機能を使うことができる。</li>
+<li><p>pip について requirements.txt は広く使われているが、 pip freeze の結果を constrains.txt として書き出し、lock ファイルとして利用することができる。</p></li>
+<li><p>virtualenv は古い setuptools/pip が同梱されているので注意。</p></li>
+<li><p>setup.py について、通常設定ファイルで綴じることができるように策定が進められている。</p>
+<ul>
+<li><p>普通に書くと、設定と実行コードが混在する。</p></li>
+<li><p>setup.cfg にメタデータ (metadata) とオプション (option) を切り出すと見通しが良くなる。</p>
+<ul>
+<li><p>ただし、ある程度後発の setuptools でないと対応していない。</p></li>
+<li><p>file: でファイルの内容を読み込めるようになる。ただし一ファイルのみ。</p></li>
+<li><p>attr: でオブジェクトの属性、または callable の戻り値を取得できるようになる。</p></li>
+<li><p>後は options に extras_require, packages.find でパッケージの検知とか。</p></li>
+<li><p>ただし、 <a class="reference external" href="https://docs.openstack.org/pbr/latest/">pbr</a> の書き方と異なるので、併用できない。</p>
+<ul>
+<li><p>とはいえ、 <a class="reference external" href="https://github.com/pypa/setuptools_scm">setuptools_scm</a> を利用するといくつかの機能を使うことができる。</p></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li>build-system について、 setuptools の対応している境界を定義し、仕様として定義する取り組みが進められている。<ul>
-<li>PEP-516,517 で議論。516 でコマンドラインでの実装は rejected。517 で api ベースで改めて。</li>
-<li>PEP-518 でメタデータの仕様を策定。</li>
-<li><a class="reference external" href="https://flit.readthedocs.io/en/latest/">flit</a> って実装が、おそらくテストベッド的な者だけど、出てきている。</li>
+<li><p>build-system について、 setuptools の対応している境界を定義し、仕様として定義する取り組みが進められている。</p>
+<ul>
+<li><p>PEP-516,517 で議論。516 でコマンドラインでの実装は rejected。517 で api ベースで改めて。</p></li>
+<li><p>PEP-518 でメタデータの仕様を策定。</p></li>
+<li><p><a class="reference external" href="https://flit.readthedocs.io/en/latest/">flit</a> って実装が、おそらくテストベッド的な者だけど、出てきている。</p></li>
 </ul>
 </li>
 </ul>
@@ -131,23 +138,27 @@
 <h2><a class="toc-backref" href="#id6">202) Djangoフレームワークのユーザーモデルと認証</a><a class="headerlink" href="#django" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://www.slideshare.net/tokibito/django-79549364">資料へのリンク</a> (SlideShare)</p>
 <ul class="simple">
-<li>Django も基本の HTTP セッションの仕組みに乗っていて動いている。</li>
-<li>Django の contribution としてデフォルトで有効な django.contrib.auth がある。<ul>
-<li>View は Class Baased View になった。</li>
-<li>login 必須な view は decorator で指定する。</li>
+<li><p>Django も基本の HTTP セッションの仕組みに乗っていて動いている。</p></li>
+<li><p>Django の contribution としてデフォルトで有効な django.contrib.auth がある。</p>
+<ul>
+<li><p>View は Class Baased View になった。</p></li>
+<li><p>login 必須な view は decorator で指定する。</p></li>
 </ul>
 </li>
-<li>実際の処理は？<ul>
-<li>セッションのユーザーを確認して、DB 問い合わせる。</li>
+<li><p>実際の処理は？</p>
+<ul>
+<li><p>セッションのユーザーを確認して、DB 問い合わせる。</p></li>
 </ul>
 </li>
-<li>認証データはどう扱われているか？<ul>
-<li>AuthenticationMiddleware クラスで、ユーザーID の取得と DB への問い合わせを行っている。</li>
-<li>アルゴリズム PBKDF2</li>
+<li><p>認証データはどう扱われているか？</p>
+<ul>
+<li><p>AuthenticationMiddleware クラスで、ユーザーID の取得と DB への問い合わせを行っている。</p></li>
+<li><p>アルゴリズム PBKDF2</p></li>
 </ul>
 </li>
-<li>カスタマイズ<ul>
-<li>ユーザークラスの変更や、 LDAP OpenID とか利用可能。</li>
+<li><p>カスタマイズ</p>
+<ul>
+<li><p>ユーザークラスの変更や、 LDAP OpenID とか利用可能。</p></li>
 </ul>
 </li>
 </ul>
@@ -156,39 +167,43 @@
 <h2><a class="toc-backref" href="#id7">203) len()関数がオブジェクトの長さを手にいれる仕組み</a><a class="headerlink" href="#len" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://www.slideshare.net/shimizukawa/how-does-python-get-the-length-with-the-len-function">資料へのリンク</a> (SlideShare)</p>
 <ul class="simple">
-<li>len() は各オブジェクト (後で確認したい) の __len__() の結果。<ul>
-<li>__len__() が int を返さないと TypeError おこる。int 以外の場合の意味は、ユースケースがあるのではなく int を返せとただそういうことなんだろう。 (後で確認したい)</li>
+<li><p>len() は各オブジェクト (後で確認したい) の __len__() の結果。</p>
+<ul>
+<li><p>__len__() が int を返さないと TypeError おこる。int 以外の場合の意味は、ユースケースがあるのではなく int を返せとただそういうことなんだろう。 (後で確認したい)</p></li>
 </ul>
 </li>
-<li>bool()<ul>
-<li>内部的に len() が 0以上のときか __bool__() が true</li>
+<li><p>bool()</p>
+<ul>
+<li><p>内部的に len() が 0以上のときか __bool__() が true</p></li>
 </ul>
 </li>
-<li>iter() の例</li>
-<li>abc を利用して protocol を明示するのは良い。</li>
-<li>(後で len() vs .length の議論を追いたい。個人的には変更するコストなんだろうとは思うけど)</li>
+<li><p>iter() の例</p></li>
+<li><p>abc を利用して protocol を明示するのは良い。</p></li>
+<li><p>(後で len() vs .length の議論を追いたい。個人的には変更するコストなんだろうとは思うけど)</p></li>
 </ul>
 </div>
 <div class="section" id="how-and-why-we-speak-in-unicode">
 <h2><a class="toc-backref" href="#id8">201) How (and Why) We Speak in Unicode</a><a class="headerlink" href="#how-and-why-we-speak-in-unicode" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テンポ良かった。。。</p>
 <ul class="simple">
-<li>人類は昔から文字列の伝達のための表現 (文字コード) を考えてきた。途中、文字列の種類の扱いも考えだした。<ul>
-<li>モールス信号について、文字列から信号への変換は endode、信号を文字列に返るのは decode。</li>
-<li>モールス信号は 2進数だけど、指の数 5進数のも出てきた。改善された。パンチカードのようだ。</li>
-<li>ASCII が戦後でてきた。ARPANET とかー。でだいたいアメリカで使う分には問題なかった。</li>
-<li>Latin-1 がでてきた。</li>
-<li>日本語、漢字ひらがなカタカナあって辛いよね。キャラクターセット。そして文字コードの JIS-X-0201 Shift-JIS EUC-JP</li>
-<li>漢字マックから Unicode がでてきた。</li>
-<li>キャラクターセットとして USC-2 が出てきた。</li>
-<li>USC-4 もでてきた。</li>
-<li>エンコーディングとして UTF-8 が出てきた。</li>
+<li><p>人類は昔から文字列の伝達のための表現 (文字コード) を考えてきた。途中、文字列の種類の扱いも考えだした。</p>
+<ul>
+<li><p>モールス信号について、文字列から信号への変換は endode、信号を文字列に返るのは decode。</p></li>
+<li><p>モールス信号は 2進数だけど、指の数 5進数のも出てきた。改善された。パンチカードのようだ。</p></li>
+<li><p>ASCII が戦後でてきた。ARPANET とかー。でだいたいアメリカで使う分には問題なかった。</p></li>
+<li><p>Latin-1 がでてきた。</p></li>
+<li><p>日本語、漢字ひらがなカタカナあって辛いよね。キャラクターセット。そして文字コードの JIS-X-0201 Shift-JIS EUC-JP</p></li>
+<li><p>漢字マックから Unicode がでてきた。</p></li>
+<li><p>キャラクターセットとして USC-2 が出てきた。</p></li>
+<li><p>USC-4 もでてきた。</p></li>
+<li><p>エンコーディングとして UTF-8 が出てきた。</p></li>
 </ul>
 </li>
-<li>Python 3 は文字列の扱いについて安全になっているので、 Python 3 を使いましょう。<ul>
-<li>Python 2 は str と Unicode、 Python 3 は Unicode と Byte</li>
-<li>Python 2 は str と Unicode 結合できるけど、 Python 3 は Unicode と Byte 結合できないので、安全。</li>
-<li>Python 3 使え</li>
+<li><p>Python 3 は文字列の扱いについて安全になっているので、 Python 3 を使いましょう。</p>
+<ul>
+<li><p>Python 2 は str と Unicode、 Python 3 は Unicode と Byte</p></li>
+<li><p>Python 2 は str と Unicode 結合できるけど、 Python 3 は Unicode と Byte 結合できないので、安全。</p></li>
+<li><p>Python 3 使え</p></li>
 </ul>
 </li>
 </ul>
@@ -196,13 +211,14 @@
 <div class="section" id="secrets-of-a-wsgi-master">
 <h2><a class="toc-backref" href="#id9">201) Secrets of a WSGI master.</a><a class="headerlink" href="#secrets-of-a-wsgi-master" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>mod_wsgi は実は mod_wsgi-express といったコマンドもある。直接 WSGI ファイルを読み込み実行することができる。<ul>
-<li>直接 http レスポンスを返せる。</li>
-<li>docker でも利用できる。起動ユーザーを指定することもできる。</li>
+<li><p>mod_wsgi は実は mod_wsgi-express といったコマンドもある。直接 WSGI ファイルを読み込み実行することができる。</p>
+<ul>
+<li><p>直接 http レスポンスを返せる。</p></li>
+<li><p>docker でも利用できる。起動ユーザーを指定することもできる。</p></li>
 </ul>
 </li>
-<li>warpdrive といった環境構築アプリも作成をした。これを利用して Dockerfile なしに Docker Image を作成できる。</li>
-<li>mod_wsgi は Apache のプラグインのイメージがあるが、別にたてる Daemon モードもある。</li>
+<li><p>warpdrive といった環境構築アプリも作成をした。これを利用して Dockerfile なしに Docker Image を作成できる。</p></li>
+<li><p>mod_wsgi は Apache のプラグインのイメージがあるが、別にたてる Daemon モードもある。</p></li>
 </ul>
 </div>
 </div>

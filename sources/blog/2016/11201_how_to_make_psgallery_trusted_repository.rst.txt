@@ -8,7 +8,7 @@ PSGallery を信頼できるリポジトリとして設定する手順
 信頼されていないリポジトリとして設定されており、以下のような警告が表されると
 思います。
 
-.. code-block:: guess
+.. code-block:: winbatch
 
    C:\Users\tomo
    [2016/41/20 10:41:16] PS ~\
@@ -24,7 +24,7 @@ PSGallery_ はある程度信頼できるだろう、といった場合この警
 ``Set-PSRepository`` を利用して信頼できるリポジトリとして設定することによって
 PSGallery_ から警告無しにインストールできるようになります。
 
-.. code-block:: guess
+.. code-block:: winbatch
 
    [2016/50/20 10:50:44] PS ~\
    > Get-PSRepository
@@ -47,7 +47,7 @@ PSGallery_ から警告無しにインストールできるようになります
 
 最終的に、 PSGallery_ から以下のように警告なくインストールできるようになります。
 
-.. code-block:: guess
+.. code-block:: winbatch
 
    C:\Users\tomo
    [2016/52/20 10:52:16] PS ~\
