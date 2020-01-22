@@ -70,6 +70,16 @@
 <h2><a class="toc-backref" href="#id3">1. <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code> 等で <code class="docutils literal notranslate"><span class="pre">c:/Users</span></code> を参照できるようにする。</a><a class="headerlink" href="#docker-compose-override-yml-c-users" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>PyCharmでは実は <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> を複数指定できるので、追加のファイルなどで次のように volume
 をマウントする様にする。</p>
+<p>設定例: <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&quot;3.7&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">app</span><span class="p">:</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bind</span>
+        <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">c:/Users</span>
+        <span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/c/Users</span>
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="../../images/202001220_docker_compose_yml.png"><img alt="../../images/202001220_docker_compose_yml.png" src="../../images/202001220_docker_compose_yml.png" style="width: 474px;" /></a>
 </div>
 <div class="section" id="id2">

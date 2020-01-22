@@ -15,6 +15,18 @@ scratchファイルはPyCharm構成ディレクトリ配下に存在するため
 PyCharmでは実は ``docker-compose.yml`` を複数指定できるので、追加のファイルなどで次のように volume
 をマウントする様にする。
 
+設定例: ``docker-compose.override.yml``
+
+.. code-block:: yaml
+
+    version: "3.7"
+    services:
+      app:
+        volumes:
+          - type: bind
+            source: c:/Users
+            target: /c/Users
+
 .. image:: /_images/202001220_docker_compose_yml.png
    :width: 474px
 
