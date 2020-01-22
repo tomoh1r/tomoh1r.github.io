@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta property="og:title" content="PyCharmでdocker-composeを利用してる場合にscratchファイルを実行できるようにする。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="PyCharmでdocker-composeを利用してる場合にscratchファイルを実行できるようにする。" />
+    <meta property="og:url" content="http://tomoh1r.github.io/blog/2020/01220_pycharm_exec_scratch_files_with_docker_compose.html" />
+    <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
+    <meta property="og:email" content="quickness.net@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@tomoh1r" />
+    <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+    <meta name="twitter:image:width" content="632" />
+    <meta name="twitter:image:height" content="512" />
+    <title>PyCharmでdocker-composeを利用してる場合にscratchファイルを実行できるようにする。 &mdash; 適当に だらだらと 楽しく</title>
+    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../static/language_data.js"></script>
+    <script type="text/javascript" src="../../static/translations.js"></script>
+    <link rel="author" title="このドキュメントについて" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="PyCharmとdocker-composeを利用した場合通常と同じくユニットテストをIDE上から一つずつクリックで実行し結果を確認出来る。" href="01180_pycharm_docker_compose.html" />
+    <meta name="viewport" content="width=480">
+
+    <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="適当に だらだらと 楽しく" />
+    <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="適当に だらだらと 楽しく" />
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            <ul>
+              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../about.html">このサイトについて</a></li>
+            </ul>
+            <div class="clearer"></div>
+            
+  <div class="section" id="pycharmdocker-composescratch">
+<h1>PyCharmでdocker-composeを利用してる場合にscratchファイルを実行できるようにする。<a class="headerlink" href="#pycharmdocker-composescratch" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="blog_date">2020/01/22</span></p>
+<p>scratchファイルはPyCharm構成ディレクトリ配下に存在するため、通常はコンテナ内から参照できない。
+これをvolumeとして定義し、またパスマッピングを設定することにより参照、実行することができる。</p>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#docker-compose-override-yml-c-users" id="id3">1. <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code> 等で <code class="docutils literal notranslate"><span class="pre">c:/Users</span></code> を参照できるようにする。</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id4">2. 構成を編集し、作業ディレクトリとパス/マッピングを構成する。</a></p></li>
+</ul>
+</div>
+<div class="section" id="docker-compose-override-yml-c-users">
+<h2><a class="toc-backref" href="#id3">1. <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code> 等で <code class="docutils literal notranslate"><span class="pre">c:/Users</span></code> を参照できるようにする。</a><a class="headerlink" href="#docker-compose-override-yml-c-users" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>PyCharmでは実は <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> を複数指定できるので、追加のファイルなどで次のように volume
+をマウントする様にする。</p>
+<a class="reference internal image-reference" href="../../images/202001220_docker_compose_yml.png"><img alt="../../images/202001220_docker_compose_yml.png" src="../../images/202001220_docker_compose_yml.png" style="width: 474px;" /></a>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id4">2. 構成を編集し、作業ディレクトリとパス/マッピングを構成する。</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>scratchファイルがあるディレクトリは作業ディレクトリとして利用できないので、適当な、例えばプロジェクトのルートディレクトリなどを指定しておく。</p>
+<p>また、標準では <code class="docutils literal notranslate"><span class="pre">c:/Users</span></code> はパス・マッピングされないので設定をする。</p>
+<a class="reference internal image-reference" href="../../images/202001220_pycharm_path_mapping.png"><img alt="../../images/202001220_pycharm_path_mapping.png" src="../../images/202001220_pycharm_path_mapping.png" style="width: 714px;" /></a>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx</a>
+      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster</a>| <a href="../../sources/blog/2020/01220_pycharm_exec_scratch_files_with_docker_compose.rst.txt"
+          rel="nofollow">Page source</a></div><script type="text/javascript">
+      var disqus_shortname = 'tomoh1r';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
