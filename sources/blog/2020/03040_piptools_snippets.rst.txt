@@ -1,0 +1,71 @@
+piptools向けスニペット
+======================
+
+:blog_date:`2020/03/04`
+
+依存管理に `piptools <https://github.com/jazzband/pip-tools>`_ を利用する事があると思います。
+その際に、PyCharmなどからIDE上の操作で簡単に ``pip compile`` ``pip sync`` できると良いと
+思うことがあると思います。
+
+本記事ではその際に利用できるPythonスニペットを記載しました。ご参考ください。
+
+なお、 ``pip sync`` 相当の処理については、内部で ``requirements.txt``
+``requirements-dev.txt`` を参照するようにしています。
+
+なお、実行には Python 3.8.1 を利用して動作確認をしています。
+
+想定するディレクトリ構成。
+
+.. code-block:: text
+
+    repo-foo/                           ... 適当なルートディレクトリ
+        misc/                           ... 適当な作業ディレクトリ
+            pip_compile.py              ... pip compile実行処理
+            pip_sync.py                 ... pip sync実行処理
+            requirements.in             ... requirements.txtの生成元
+        requirements.txt                ... デプロイなどで利用する依存指定ファイル
+        requirements-dev.txt            ... 開発環境むけ依存指定ファイル
+        requirements-dev.txt.example    ... 開発環境むけ依存指定ファイル
+                                            スケルトン(中身空)
+
+.. code-block:: python3
+    :caption: pip_compile.py
+
+    import os
+    from pathlib import Path
+
+    from piptools.scripts.compile import cli as compile_cli
+
+
+    if __name__ == "__main__":
+        cwd = None
+        try:
+            cwd = os.getcwd()
+            os.chdir(Path(__file__).parent.parent)
+
+            req_in_fpath = (Path("_misc") / "requirements.in").as_posix()
+            compile_cli(["-U", "-o", "requirements.txt", req_in_fpath])
+        finally:
+            if cwd:
+                os.chdir(cwd)
+
+.. code-block:: python3
+    :caption: pip_sync.py
+
+    import os
+    from pathlib import Path
+
+    from piptools.scripts.sync import cli as sync_cli
+
+
+    if __name__ == "__main__":
+        cwd = None
+        try:
+            cwd = os.getcwd()
+            os.chdir(Path(__file__).parent.parent)
+
+            sync_cli(["requirements.txt", "requirements-dev.txt"])
+        finally:
+            if cwd:
+                os.chdir(cwd)
+
