@@ -1,63 +1,64 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+<html lang="ja" data-content_root="../../">
+  <head>
     <meta charset="utf-8" />
-    <meta property="og:title" content="Fedora 23 で xrdp を利用する" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="Fedora 23 で xrdp を利用する" />
-    <meta property="og:url" content="http://tomoh1r.github.io/blog/2016/01030_use_xrdp_on_fedora.html" />
-    <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
-    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
-    <meta property="og:email" content="quickness.net@gmail.com" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@tomoh1r" />
-    <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
-    <meta name="twitter:image:width" content="632" />
-    <meta name="twitter:image:height" content="512" />
-    <title>Fedora 23 で xrdp を利用する &mdash; 適当に だらだらと 楽しく</title>
-    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Fedora 23 で xrdp を利用する" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Fedora 23 で xrdp を利用する" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2016/01030_use_xrdp_on_fedora.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>Fedora 23 で xrdp を利用する &#8212; t_note</title>
+
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../../static/jquery.js"></script>
-    <script type="text/javascript" src="../../static/underscore.js"></script>
-    <script type="text/javascript" src="../../static/doctools.js"></script>
-    <script type="text/javascript" src="../../static/language_data.js"></script>
-    <script type="text/javascript" src="../../static/translations.js"></script>
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+
     <link rel="author" title="このドキュメントについて" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
     <link rel="next" title="いったん shallow に git clone して、clone 後に完全なリポジトリに変換する" href="01040_git_clone_shallow_and_unshallowing.html" />
     <link rel="prev" title="Angular.js と Cornice を用いて簡単に RESTful の練習をする" href="01010_angularjs_and_cornice.html" />
-    <meta name="viewport" content="width=480">
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="Fedora 23 で xrdp を利用する &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="Fedora 23 で xrdp を利用する &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
 
-    <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="適当に だらだらと 楽しく" />
-    <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="適当に だらだらと 楽しく" />
-  </head>
-  <body>  
+  
+  
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
-        <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             <ul>
-              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">t_note</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
               <li><a href="../../about.html">このサイトについて</a></li>
             </ul>
             <div class="clearer"></div>
+
             
-  <div class="section" id="fedora-23-xrdp">
-<h1>Fedora 23 で xrdp を利用する<a class="headerlink" href="#fedora-23-xrdp" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <section id="fedora-23-xrdp">
+<h1>Fedora 23 で xrdp を利用する<a class="headerlink" href="#fedora-23-xrdp" title="Link to this heading">¶</a></h1>
 <p><span class="blog_date">2016/01/03</span></p>
 <p>Fedora 23 に xrdp をインストールして表示するところまで動作確認できたので、
 手順をまとめます。</p>
@@ -65,17 +66,17 @@
 どう直せば良いのかわからないのが、現在の問題点。</p>
 <ol class="arabic">
 <li><p>xrdp と依存の tigervnc-server をインストールする</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> dnf install xrdp tigervnc-server
-<span class="gp">#</span> chcon -t bin_t /usr/sbin/xrdp*
-<span class="gp">#</span> systemctl <span class="nb">enable</span> xrdp.service
-<span class="gp">#</span> systemctl start xrdp.service
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>dnf<span class="w"> </span>install<span class="w"> </span>xrdp<span class="w"> </span>tigervnc-server
+<span class="gp"># </span>chcon<span class="w"> </span>-t<span class="w"> </span>bin_t<span class="w"> </span>/usr/sbin/xrdp*
+<span class="gp"># </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>xrdp.service
+<span class="gp"># </span>systemctl<span class="w"> </span>start<span class="w"> </span>xrdp.service
 </pre></div>
 </div>
 <p>tiger-vncserver は一度起動したことがないと systemd 経由に起動できないので、
 <a class="reference external" href="https://www.centos.org/forums/viewtopic.php?f=48&amp;t=47713">CentOS • View topic - VNC won't start CentOS 7</a> の手順に従う。</p>
 <p>ログインパスワードを設定する。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> vncserver :2 -geometry 1280x720
-<span class="gp">$</span> vncserver -kill :2
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>vncserver<span class="w"> </span>:2<span class="w"> </span>-geometry<span class="w"> </span>1280x720
+<span class="gp">$ </span>vncserver<span class="w"> </span>-kill<span class="w"> </span>:2
 </pre></div>
 </div>
 <div class="admonition note">
@@ -102,34 +103,34 @@
 </li>
 <li><p>vnc の systemd 設定をする。</p>
 <p>起動ファイルをコピーする。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>cp<span class="w"> </span>/usr/lib/systemd/system/vncserver@.service<span class="w"> </span>/etc/systemd/system/vncserver@.service
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/vncserver&#64;.service</span></code> ファイル内の <code class="docutils literal notranslate"><span class="pre">&lt;USER&gt;</span></code> をログインしたい
 ユーザーid に更新する。</p>
 <p>また、別に tiger-vncserver のオプションを指定する場合は <code class="docutils literal notranslate"><span class="pre">ExecStart</span></code> に設定する。</p>
 <p>その上で、以下のコマンドで有効化し、起動する。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> systemctl <span class="nb">enable</span> vncserver@:2.service
-<span class="gp">#</span> systemctl start vncserver@:2.service
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>vncserver@:2.service
+<span class="gp"># </span>systemctl<span class="w"> </span>start<span class="w"> </span>vncserver@:2.service
 </pre></div>
 </div>
 </li>
 <li><p>xrdp の vnc 参照ポートを更新する。</p>
 <p>以下のコマンドで利用しているポートを取得する。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ss -nae <span class="p">|</span> grep <span class="se">\:\:\:</span><span class="m">59</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ss<span class="w"> </span>-nae<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="se">\:\:\:</span><span class="m">59</span>
 <span class="go">tcp    LISTEN     0      5        :::5902                 :::*</span>
 </pre></div>
 </div>
 <p>その上で、 <code class="docutils literal notranslate"><span class="pre">/etc/xrdp/xrdp.ini</span></code> の下の方の <code class="docutils literal notranslate"><span class="pre">xrdpN</span></code> (Nは数字)
 の設定中の <code class="docutils literal notranslate"><span class="pre">port</span></code> の番号を <code class="docutils literal notranslate"><span class="pre">-1</span></code> から上記で取得した数字に更新する。</p>
 <p>その上で、 xrdp を再読込する。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> systemctl restart xrdp.service
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>systemctl<span class="w"> </span>restart<span class="w"> </span>xrdp.service
 </pre></div>
 </div>
 </li>
 <li><p>ファイアウォールにて rdp のポートを許可する。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> firewall-cmd --add-port<span class="o">=</span><span class="m">3389</span>/tcp --permanent
-<span class="gp">#</span> firewall-cmd --reload
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>firewall-cmd<span class="w"> </span>--add-port<span class="o">=</span><span class="m">3389</span>/tcp<span class="w"> </span>--permanent
+<span class="gp"># </span>firewall-cmd<span class="w"> </span>--reload
 </pre></div>
 </div>
 <div class="admonition note">
@@ -147,27 +148,35 @@
 最終行を <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">/usr/bin/startlxqt</span></code> に更新する。</p>
 </li>
 </ol>
-</div>
+</section>
 
-
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
           </div>
-        </div>
+          
       </div>
-      <div id="disqus_thread"></div>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
       <div class="clearer"></div>
     </div>
+
     <div class="footer">
-      &copy;2020, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster</a>| <a href="../../sources/blog/2016/01030_use_xrdp_on_fedora.rst.txt"
-          rel="nofollow">Page source</a></div><script type="text/javascript">
-      var disqus_shortname = 'tomoh1r';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../sources/blog/2016/01030_use_xrdp_on_fedora.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script>
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-62097156-1']);
       _gaq.push(['_setDomainName', 'none']);
@@ -175,10 +184,21 @@
       _gaq.push(['_trackPageview']);
 
       (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var ga = document.createElement('script'); ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
     </script>
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
   </body>
 </html>

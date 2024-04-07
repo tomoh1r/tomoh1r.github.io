@@ -1,93 +1,94 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+<html lang="ja" data-content_root="../../">
+  <head>
     <meta charset="utf-8" />
-    <meta property="og:title" content="Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた" />
-    <meta property="og:url" content="http://tomoh1r.github.io/blog/2015/04290_write_ansible_connection_nsenter.html" />
-    <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
-    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
-    <meta property="og:email" content="quickness.net@gmail.com" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@tomoh1r" />
-    <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
-    <meta name="twitter:image:width" content="632" />
-    <meta name="twitter:image:height" content="512" />
-    <title>Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた &mdash; 適当に だらだらと 楽しく</title>
-    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2015/04290_write_ansible_connection_nsenter.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた &#8212; t_note</title>
+
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../../static/jquery.js"></script>
-    <script type="text/javascript" src="../../static/underscore.js"></script>
-    <script type="text/javascript" src="../../static/doctools.js"></script>
-    <script type="text/javascript" src="../../static/language_data.js"></script>
-    <script type="text/javascript" src="../../static/translations.js"></script>
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+
     <link rel="author" title="このドキュメントについて" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
     <link rel="next" title="今って、 Fedora 21 で bluetoothctl でヘッドセットに接続して、オンザフライで音声出力先変えられるのね、すごい。" href="05170_fedora21_bluetoothctl_audio.html" />
     <link rel="prev" title="DISQUS を利用して、静的ページにコメント欄をつける" href="04211_add_disqus_comment_system.html" />
-    <meta name="viewport" content="width=480">
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
 
-    <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="適当に だらだらと 楽しく" />
-    <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="適当に だらだらと 楽しく" />
-  </head>
-  <body>  
+  
+  
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
-        <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             <ul>
-              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">t_note</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
               <li><a href="../../about.html">このサイトについて</a></li>
             </ul>
             <div class="clearer"></div>
+
             
-  <div class="section" id="ansible-nsenter-connection-plugin-ansible-connection-nsenter">
-<h1>Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた<a class="headerlink" href="#ansible-nsenter-connection-plugin-ansible-connection-nsenter" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <section id="ansible-nsenter-connection-plugin-ansible-connection-nsenter">
+<h1>Ansible の nsenter connection plugin, ansible-connection-nsenter を書いた<a class="headerlink" href="#ansible-nsenter-connection-plugin-ansible-connection-nsenter" title="Link to this heading">¶</a></h1>
 <p><span class="blog_date">2015/04/29</span></p>
-<div class="contents local topic" id="id1">
+<nav class="contents local" id="id1">
 <ul class="simple">
 <li><p><a class="reference internal" href="#id2" id="id10">動機</a></p></li>
 <li><p><a class="reference internal" href="#id3" id="id11">進めかた</a></p></li>
 <li><p><a class="reference internal" href="#id8" id="id12">使い方</a></p></li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id10">動機</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</nav>
+<section id="id2">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">動機</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>自宅で開発に利用している X41 が 32bit しか対応しておらず、 <a class="reference external" href="http://www.docker.com/">Docker</a>
 に対応してなかった。</p>
 <p>そのため、 <a class="reference external" href="http://www.freedesktop.org/software/systemd/man/systemd-nspawn.html">Systemd-nspawn</a> で環境を構築することにした。</p>
 <p>開発環境を構築する際に <a class="reference external" href="http://www.ansible.com/home">Ansible</a> を使いたいと思い、 <a class="reference external" href="http://www.freedesktop.org/software/systemd/man/systemd-nspawn.html">Systemd-nspawn</a> に対応する
 接続方式がるのかと軽く確認したところ、 nsenter というコマンドがあったので、
 使えたらよいと思い、<a class="reference external" href="https://github.com/jptomo/ansible-connection-nsenter">ansible-connection-nsenter</a> を書いた。</p>
-</div>
-<div class="section" id="id3">
-<h2><a class="toc-backref" href="#id11">進めかた</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">進めかた</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="http://www.ansible.com/home">Ansible</a> の plugin は大雑把に以下の流れで作成できる。</p>
-<div class="contents local topic" id="id4">
+<nav class="contents local" id="id4">
 <ul class="simple">
 <li><p><a class="reference internal" href="#plugin" id="id13">1. Plugin を書く。</a></p></li>
 <li><p><a class="reference internal" href="#id7" id="id14">2. ディレクトリに配置する。</a></p></li>
 <li><p><a class="reference internal" href="#ansible" id="id15">3. Ansible に認識させる。</a></p></li>
 </ul>
-</div>
+</nav>
 <p>それぞれ見ていこう。</p>
-<div class="section" id="plugin">
-<h3><a class="toc-backref" href="#id13">1. Plugin を書く。</a><a class="headerlink" href="#plugin" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<section id="plugin">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">1. Plugin を書く。</a><a class="headerlink" href="#plugin" title="Link to this heading">¶</a></h3>
 <p>今回は <a class="reference external" href="https://github.com/">GitHub</a> の Ansible のリポジトリ、
 <a class="reference external" href="https://github.com/ansible/ansible/blob/devel/lib/ansible/runner/connection_plugins/ssh.py">lib/ansible/runner/connection_plugins/ssh.py</a>
 をコピペして進めた。つくりもよくわかってなかったし。</p>
@@ -95,13 +96,13 @@
 を見つけたのはご愛嬌。</p>
 <p><a class="reference external" href="http://www.ansible.com/home">Ansible</a> で生にシェルを実行しようとするらしく、環境変数の取り回しや、パイプ、
 <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> <code class="docutils literal notranslate"><span class="pre">;</span></code> の取り扱いが難儀した。</p>
-<div class="section" id="id5">
-<h4>環境変数<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<section id="id5">
+<h4>環境変数<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <p>コンテナ内の環境変数は、以下のように <code class="docutils literal notranslate"><span class="pre">/proc/&lt;PID&gt;/environ</span></code> からとれる。</p>
 <p>ヌル文字列で区切られているようなので、区切って、あとは <code class="docutils literal notranslate"><span class="pre">=</span></code>
 で切り分けて、辞書にして取り扱うようにした。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_get_container_env</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;return container env dict&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;return container env dict&#39;&#39;&#39;</span>
     <span class="c1"># get environ path</span>
     <span class="n">env_path</span> <span class="o">=</span> <span class="s1">&#39;/proc/</span><span class="si">{}</span><span class="s1">/environ&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extract_var</span><span class="p">(</span><span class="s1">&#39;Leader&#39;</span><span class="p">))</span>
 
@@ -120,9 +121,9 @@
             <span class="k">return</span> <span class="n">row</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id6">
-<h4><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> や <code class="docutils literal notranslate"><span class="pre">;</span></code><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</section>
+<section id="id6">
+<h4><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> や <code class="docutils literal notranslate"><span class="pre">;</span></code><a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> <code class="docutils literal notranslate"><span class="pre">;</span></code> はその位置でとりあえず分割して、
 個別にコマンドを実行するようにした。</p>
 <p><code class="docutils literal notranslate"><span class="pre">()</span></code> とか <code class="docutils literal notranslate"><span class="pre">||</span></code> とかには対応してないが、とりあえず <a class="reference external" href="http://www.ansible.com/home">Ansible</a>
@@ -166,13 +167,13 @@
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exec_command</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="id7">
-<h3><a class="toc-backref" href="#id14">2. ディレクトリに配置する。</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+</section>
+<section id="id7">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">2. ディレクトリに配置する。</a><a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
 <p><a class="reference external" href="https://github.com/jptomo/ansible-connection-nsenter/blob/master/README.rst">README.rst</a> に書いたように以下のように配置する。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir -p /etc/ansible/plugins/connection_plugins
-<span class="gp">$</span> curl https://raw.githubusercontent.com/jptomo/ansible-nsenter/master/nsenter.py -o /etc/ansible/plugins/connection_plugins/nsenter.py
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/ansible/plugins/connection_plugins
+<span class="gp">$ </span>curl<span class="w"> </span>https://raw.githubusercontent.com/jptomo/ansible-nsenter/master/nsenter.py<span class="w"> </span>-o<span class="w"> </span>/etc/ansible/plugins/connection_plugins/nsenter.py
 </pre></div>
 </div>
 <p><a class="reference external" href="https://pypi.python.org/pypi">PyPI</a> において、 <code class="docutils literal notranslate"><span class="pre">pip</span></code> で入れたときに自動で <a class="reference external" href="http://www.ansible.com/home">Ansible</a> に認識されるような
@@ -181,9 +182,9 @@
 <p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> でも <code class="docutils literal notranslate"><span class="pre">pip</span></code> で入れた上に設定ファイルである <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>
 に書く必要があるので辛いと思ったことがあったが、
 でも、依存で影響するのもとも思う。</p>
-</div>
-<div class="section" id="ansible">
-<h3>3. <a class="reference external" href="http://www.ansible.com/home">Ansible</a> に認識させる。<a class="headerlink" href="#ansible" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+<section id="ansible">
+<h3>3. <a class="reference external" href="http://www.ansible.com/home">Ansible</a> に認識させる。<a class="headerlink" href="#ansible" title="Link to this heading">¶</a></h3>
 <p><a class="reference external" href="http://docs.ansible.com/intro_configuration.html">The Ansible Configuration File — Ansible Documentation</a> を参考に、</p>
 <ul class="simple">
 <li><p>ANSIBLE_CONFIG (an environment variable)</p></li>
@@ -195,41 +196,49 @@
 今回は <code class="docutils literal notranslate"><span class="pre">/etc/ansible/plugins/connection_plugins/</span></code> となる。</p>
 <p>書く際は <code class="docutils literal notranslate"><span class="pre">defaults</span></code> セクションに書く必要があるので、以下のように書く。</p>
 <div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[defaults]</span>
-<span class="na">connection_plugins</span> <span class="o">=</span> <span class="s">/etc/ansible/plugins/connection_plugins/</span>
+<span class="na">connection_plugins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/etc/ansible/plugins/connection_plugins/</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="id8">
-<h2><a class="toc-backref" href="#id12">使い方</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</section>
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">使い方</a><a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
 <p>個人的に勉強用に進めている <a class="reference external" href="https://github.com/jptomo/compare-rdbms">compare-rdbms</a> を見ると何となく使い方がわかると思う。</p>
 <p><code class="docutils literal notranslate"><span class="pre">ansible.cfg</span></code> はトップディレクトリに配置し、このディレクトリで
 <code class="docutils literal notranslate"><span class="pre">ansible-playbook</span></code> を実行した場合、参照されるようにする。</p>
 <p><code class="docutils literal notranslate"><span class="pre">ansible/local.yml</span></code> の通り、 <code class="docutils literal notranslate"><span class="pre">connection</span></code> に <code class="docutils literal notranslate"><span class="pre">nsenter</span></code> を指定すると
 使われるようになるので、指定する。</p>
 <p>後は、この <code class="docutils literal notranslate"><span class="pre">connection</span></code> を利用してタスクが動く。</p>
-</div>
-</div>
+</section>
+</section>
 
-
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
           </div>
-        </div>
+          
       </div>
-      <div id="disqus_thread"></div>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
       <div class="clearer"></div>
     </div>
+
     <div class="footer">
-      &copy;2020, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster</a>| <a href="../../sources/blog/2015/04290_write_ansible_connection_nsenter.rst.txt"
-          rel="nofollow">Page source</a></div><script type="text/javascript">
-      var disqus_shortname = 'tomoh1r';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../sources/blog/2015/04290_write_ansible_connection_nsenter.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script>
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-62097156-1']);
       _gaq.push(['_setDomainName', 'none']);
@@ -237,10 +246,21 @@
       _gaq.push(['_trackPageview']);
 
       (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var ga = document.createElement('script'); ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
     </script>
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
   </body>
 </html>

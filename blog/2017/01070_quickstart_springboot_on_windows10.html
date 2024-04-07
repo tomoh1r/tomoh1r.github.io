@@ -1,77 +1,78 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+<html lang="ja" data-content_root="../../">
+  <head>
     <meta charset="utf-8" />
-    <meta property="og:title" content="Windows 10 で Spring Boot を動かす" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="Windows 10 で Spring Boot を動かす" />
-    <meta property="og:url" content="http://tomoh1r.github.io/blog/2017/01070_quickstart_springboot_on_windows10.html" />
-    <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
-    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
-    <meta property="og:email" content="quickness.net@gmail.com" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@tomoh1r" />
-    <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
-    <meta name="twitter:image:width" content="632" />
-    <meta name="twitter:image:height" content="512" />
-    <title>Windows 10 で Spring Boot を動かす &mdash; 適当に だらだらと 楽しく</title>
-    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Windows 10 で Spring Boot を動かす" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Windows 10 で Spring Boot を動かす" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2017/01070_quickstart_springboot_on_windows10.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>Windows 10 で Spring Boot を動かす &#8212; t_note</title>
+
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../../static/jquery.js"></script>
-    <script type="text/javascript" src="../../static/underscore.js"></script>
-    <script type="text/javascript" src="../../static/doctools.js"></script>
-    <script type="text/javascript" src="../../static/language_data.js"></script>
-    <script type="text/javascript" src="../../static/translations.js"></script>
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+
     <link rel="author" title="このドキュメントについて" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
     <link rel="next" title="MySQL の Docker コンテナーを Fedora 上に構築する" href="05070_run_docker_mysql_container_on_fedora.html" />
     <link rel="prev" title="Fluentd + Elasticsearch + Kibana の Docker イメージを作成する" href="../2016/12120_create_fek_dockerfile.html" />
-    <meta name="viewport" content="width=480">
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="Windows 10 で Spring Boot を動かす &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="Windows 10 で Spring Boot を動かす &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
 
-    <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="適当に だらだらと 楽しく" />
-    <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="適当に だらだらと 楽しく" />
-  </head>
-  <body>  
+  
+  
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
-        <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             <ul>
-              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">t_note</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
               <li><a href="../../about.html">このサイトについて</a></li>
             </ul>
             <div class="clearer"></div>
+
             
-  <div class="section" id="windows-10-spring-boot">
-<h1>Windows 10 で Spring Boot を動かす<a class="headerlink" href="#windows-10-spring-boot" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <section id="windows-10-spring-boot">
+<h1>Windows 10 で Spring Boot を動かす<a class="headerlink" href="#windows-10-spring-boot" title="Link to this heading">¶</a></h1>
 <p><span class="blog_date">2017/01/07</span></p>
-<div class="section" id="id1">
-<h2>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<section id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Windows 10 の PowerShell 上で作業を想定する。</p></li>
 <li><p>最初に Windows に Java をインストールし Maven を配置する。</p></li>
 <li><p>最終的に <code class="docutils literal notranslate"><span class="pre">mvn</span> <span class="pre">archetype:generate</span></code> でプロジェクトを作成し、 <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code>
 と表示するところまで作業を進める。</p></li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h2>手順<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="java">
-<h3>1. Java のインストール<a class="headerlink" href="#java" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+<section id="id2">
+<h2>手順<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="java">
+<h3>1. Java のインストール<a class="headerlink" href="#java" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java SE Development Kit 8 Download</a> より JDK をダウンロードする。</p></li>
 <li><p>適当な場所にインストールする。</p></li>
@@ -81,18 +82,18 @@ JDK をインストールしたパス配下の <code class="docutils literal not
 <li><p>JDK をインストールしたパス配下の <code class="docutils literal notranslate"><span class="pre">jre\bin</span></code> ディレクトリを <code class="docutils literal notranslate"><span class="pre">$Env:Path</span></code>
 に通す。</p></li>
 </ol>
-</div>
-<div class="section" id="maven">
-<h3>2. Maven のインストール<a class="headerlink" href="#maven" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+<section id="maven">
+<h3>2. Maven のインストール<a class="headerlink" href="#maven" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://maven.apache.org/">Maven</a> のページから左側の Download をクリック。</p></li>
 <li><p>ページ中程の Files にある Binary zip archive のファイルをダウンロードする。</p></li>
 <li><p>適当な場所に 2 のファイルを解凍し、ディレクトリ内の <code class="docutils literal notranslate"><span class="pre">bin</span></code> ディレクトリ
 のパスを <code class="docutils literal notranslate"><span class="pre">$Env:Path</span></code> に通しておく。</p></li>
 </ol>
-</div>
-<div class="section" id="id4">
-<h3>3. Maven によるプロジェクトの作成<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+<section id="id4">
+<h3>3. Maven によるプロジェクトの作成<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>プロジェクトを作成したい親ディレクトリに PowerShell 上で移動する。</p></li>
 <li><p>以下のコマンドを実行する。適宜 <code class="docutils literal notranslate"><span class="pre">groupId</span></code> と <code class="docutils literal notranslate"><span class="pre">artifactId</span></code> を修正のこと。</p>
@@ -104,13 +105,13 @@ JDK をインストールしたパス配下の <code class="docutils literal not
 </li>
 </ol>
 <div class="admonition tip">
-<p class="admonition-title">ちなみに</p>
+<p class="admonition-title">Tip</p>
 <p>PowerShell 上で mvn コマンドを実行する場合 <code class="docutils literal notranslate"><span class="pre">-D</span></code> で始まるオプションは
 クォートする必要があるようだ。参考: <a class="reference external" href="http://stackoverflow.com/questions/21902668/maven-works-in-cmd-but-not-powershell">Maven works in cmd but not powershell</a></p>
 </div>
-</div>
-<div class="section" id="id5">
-<h3>4. ビルドして実行<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+<section id="id5">
+<h3>4. ビルドして実行<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">PS&gt; cd hello</span>
 <span class="go">PS&gt; mvn package</span>
 <span class="gp gp-VirtualEnv">(snip)</span>
@@ -122,32 +123,40 @@ JDK をインストールしたパス配下の <code class="docutils literal not
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="admonition-title">ちなみに</p>
+<p class="admonition-title">Tip</p>
 <p><a class="reference external" href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started-first-application">Spring Boot Reference Guid - 11. Developing your first Spring Boot application</a></p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
-
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
           </div>
-        </div>
+          
       </div>
-      <div id="disqus_thread"></div>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
       <div class="clearer"></div>
     </div>
+
     <div class="footer">
-      &copy;2020, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster</a>| <a href="../../sources/blog/2017/01070_quickstart_springboot_on_windows10.rst.txt"
-          rel="nofollow">Page source</a></div><script type="text/javascript">
-      var disqus_shortname = 'tomoh1r';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../sources/blog/2017/01070_quickstart_springboot_on_windows10.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script>
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-62097156-1']);
       _gaq.push(['_setDomainName', 'none']);
@@ -155,10 +164,21 @@ JDK をインストールしたパス配下の <code class="docutils literal not
       _gaq.push(['_trackPageview']);
 
       (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var ga = document.createElement('script'); ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
     </script>
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
   </body>
 </html>

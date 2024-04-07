@@ -1,93 +1,94 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+<html lang="ja" data-content_root="../../">
+  <head>
     <meta charset="utf-8" />
-    <meta property="og:title" content="MySQL の Docker コンテナーを Fedora 上に構築する" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="MySQL の Docker コンテナーを Fedora 上に構築する" />
-    <meta property="og:url" content="http://tomoh1r.github.io/blog/2017/05070_run_docker_mysql_container_on_fedora.html" />
-    <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
-    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
-    <meta property="og:email" content="quickness.net@gmail.com" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@tomoh1r" />
-    <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
-    <meta name="twitter:image:width" content="632" />
-    <meta name="twitter:image:height" content="512" />
-    <title>MySQL の Docker コンテナーを Fedora 上に構築する &mdash; 適当に だらだらと 楽しく</title>
-    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="MySQL の Docker コンテナーを Fedora 上に構築する" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="MySQL の Docker コンテナーを Fedora 上に構築する" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2017/05070_run_docker_mysql_container_on_fedora.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>MySQL の Docker コンテナーを Fedora 上に構築する &#8212; t_note</title>
+
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../../static/jquery.js"></script>
-    <script type="text/javascript" src="../../static/underscore.js"></script>
-    <script type="text/javascript" src="../../static/doctools.js"></script>
-    <script type="text/javascript" src="../../static/language_data.js"></script>
-    <script type="text/javascript" src="../../static/translations.js"></script>
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+
     <link rel="author" title="このドキュメントについて" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
     <link rel="next" title="複数の Bundle を使い分ける" href="07220_separate_ruby_bundle.html" />
     <link rel="prev" title="Windows 10 で Spring Boot を動かす" href="01070_quickstart_springboot_on_windows10.html" />
-    <meta name="viewport" content="width=480">
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="MySQL の Docker コンテナーを Fedora 上に構築する &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="MySQL の Docker コンテナーを Fedora 上に構築する &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
 
-    <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="適当に だらだらと 楽しく" />
-    <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="適当に だらだらと 楽しく" />
-  </head>
-  <body>  
+  
+  
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
-        <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             <ul>
-              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">t_note</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
               <li><a href="../../about.html">このサイトについて</a></li>
             </ul>
             <div class="clearer"></div>
+
             
-  <div class="section" id="mysql-docker-fedora">
-<h1>MySQL の Docker コンテナーを Fedora 上に構築する<a class="headerlink" href="#mysql-docker-fedora" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <section id="mysql-docker-fedora">
+<h1>MySQL の Docker コンテナーを Fedora 上に構築する<a class="headerlink" href="#mysql-docker-fedora" title="Link to this heading">¶</a></h1>
 <p><span class="blog_date">2017/05/07</span></p>
 <p>Alpine Linux で MySQL を立ち上げようかなと思いましたが、主目的は MySQL
 を使えるようにすることなので手軽に MySQL の公式 Docker
 イメージを利用することとしました。</p>
-<div class="section" id="id1">
-<h2>環境<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<section id="id1">
+<h2>環境<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Fedora 25</p></li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h2>目的<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</section>
+<section id="id2">
+<h2>目的<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>MySQL の Docker コンテナを Fedora 上に立てる。</p></li>
 <li><p>設定ファイルやデータをコンテナ外にて管理する。</p></li>
 <li><p>Firewalld の設定で Fedora ホスト外からアクセスできるようにする。</p></li>
 </ul>
-</div>
-<div class="section" id="id3">
-<h2>お断り<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</section>
+<section id="id3">
+<h2>お断り<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>以下でパスワードが脆弱なものとなっており、
 また設定ファイルに直書きする手順となっています。</p></li>
 </ul>
-</div>
-<div class="section" id="id4">
-<h2>手順<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</section>
+<section id="id4">
+<h2>手順<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>以下、 <code class="docutils literal notranslate"><span class="pre">/etc/mysql/conf.d</span></code> を設定ファイルの、 <code class="docutils literal notranslate"><span class="pre">/var/lib/mysql</span></code>
 をデータのホスト上の保存ディレクトリパスとする。</p>
-<div class="contents local topic" id="id5">
+<nav class="contents local" id="id5">
 <ul class="simple">
 <li><p><a class="reference internal" href="#docker" id="id8">1. docker のインストール</a></p></li>
 <li><p><a class="reference internal" href="#id6" id="id9">2. 設定ファイルやデータ向けディレクトリの構築</a></p></li>
@@ -95,26 +96,26 @@
 <li><p><a class="reference internal" href="#root" id="id11">4. root ユーザーについてコンテナ外から接続できるようにする</a></p></li>
 <li><p><a class="reference internal" href="#firewalld" id="id12">5. firewalld に接続を通すように設定する</a></p></li>
 </ul>
-</div>
-<div class="section" id="docker">
-<h3><a class="toc-backref" href="#id8">1. docker のインストール</a><a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo dnf install docker
+</nav>
+<section id="docker">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">1. docker のインストール</a><a class="headerlink" href="#docker" title="Link to this heading">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>docker
 </pre></div>
 </div>
-</div>
-<div class="section" id="id6">
-<h3><a class="toc-backref" href="#id9">2. 設定ファイルやデータ向けディレクトリの構築</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir -p /etc/mysql/conf.d
-<span class="gp">$</span> mkdir -p /var/lib/mysql
-<span class="gp">$</span> chcon -Rt svirt_sandbox_file_t /etc/mysql/conf.d
-<span class="gp">$</span> chcon -Rt svirt_sandbox_file_t /var/lib/mysql
+</section>
+<section id="id6">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">2. 設定ファイルやデータ向けディレクトリの構築</a><a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/mysql/conf.d
+<span class="gp">$ </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/mysql
+<span class="gp">$ </span>chcon<span class="w"> </span>-Rt<span class="w"> </span>svirt_sandbox_file_t<span class="w"> </span>/etc/mysql/conf.d
+<span class="gp">$ </span>chcon<span class="w"> </span>-Rt<span class="w"> </span>svirt_sandbox_file_t<span class="w"> </span>/var/lib/mysql
 </pre></div>
 </div>
-</div>
-<div class="section" id="systemd">
-<h3><a class="toc-backref" href="#id10">3. 自動起動のために Systemd のユニットファイルを作成し起動する</a><a class="headerlink" href="#systemd" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+<section id="systemd">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">3. 自動起動のために Systemd のユニットファイルを作成し起動する</a><a class="headerlink" href="#systemd" title="Link to this heading">¶</a></h3>
 <p>パスワードの root については適宜書く環境向けに変えること。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo sh -c <span class="s1">&#39;cat &gt;&gt; /systemd/system/docker-mysql.service&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;cat &gt;&gt; /systemd/system/docker-mysql.service&#39;</span>
 <span class="go">[Unit]</span>
 <span class="go">Description=Docker Container for MySQL</span>
 <span class="go">Requires=docker.service</span>
@@ -126,18 +127,18 @@
 
 <span class="go">[Install]</span>
 <span class="go">WantedBy=default.target</span>
-<span class="gp">$</span> sudo systemctl daemon-reload
-<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> docker-mysql.service
-<span class="gp">$</span> sudo systemctl start docker-mysql.service
+<span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+<span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>docker-mysql.service
+<span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker-mysql.service
 </pre></div>
 </div>
-</div>
-<div class="section" id="root">
-<h3><a class="toc-backref" href="#id11">4. root ユーザーについてコンテナ外から接続できるようにする</a><a class="headerlink" href="#root" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+<section id="root">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">4. root ユーザーについてコンテナ外から接続できるようにする</a><a class="headerlink" href="#root" title="Link to this heading">¶</a></h3>
 <p>最初にコンテナの ID を確認し、 <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code> で対象のホストに入り、 mysql
 コマンドにて接続設定を行う。</p>
 <p>最初 docker ps にて起動コンテナの id を確認する。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> docker ps
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>ps
 <span class="go">CONTAINER ID        IMAGE               COMMAND                  CREATED            STATUS              PORTS                    NAMES</span>
 <span class="go">3cecfcdec9f4        mysql:5.7           &quot;docker-entrypoint.sh&quot;   29 minutes ago     Up 29 minutes       0.0.0.0:3306-&gt;3306/tcp   condescending_hawking</span>
 </pre></div>
@@ -146,19 +147,19 @@
 はホストマシンからアクセス時の設定、 <code class="docutils literal notranslate"><span class="pre">192.168.%</span></code> は、今回は Hyper-V 上に
 Fedora を構築しているのでその IP となる。必要に応じて後者を変えること。</p>
 <p>パスワードの root については適宜書く環境向けに変えること。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> docker <span class="nb">exec</span> -it 3ce bash
-<span class="gp">$</span> mysql -h localhost -u root
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>3ce<span class="w"> </span>bash
+<span class="gp">$ </span>mysql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>root
 <span class="go">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO root@&#39;172.17.%&#39; IDENTIFIED BY &#39;root&#39; WITH GRANT OPTION ;</span>
 <span class="go">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO root@&#39;192.168.%&#39; IDENTIFIED BY &#39;root&#39; WITH GRANT OPTION ;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="firewalld">
-<h3><a class="toc-backref" href="#id12">5. firewalld に接続を通すように設定する</a><a class="headerlink" href="#firewalld" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</section>
+<section id="firewalld">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">5. firewalld に接続を通すように設定する</a><a class="headerlink" href="#firewalld" title="Link to this heading">¶</a></h3>
 <p>firewalld 向け設定ファイルを作成する。
 <code class="docutils literal notranslate"><span class="pre">192.168.137.0/24</span></code> は、今回は Hyper-V 上に Fedora を構築しているのでその
 IPとなる。必要に応じて後者を変えること。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo sh -c <span class="s1">&#39;cat &gt;&gt; /etc/firewalld/services/mysql.xml&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;cat &gt;&gt; /etc/firewalld/services/mysql.xml&#39;</span>
 <span class="go">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="go">&lt;service&gt;</span>
 <span class="go">  &lt;short&gt;MySQL&lt;/short&gt;</span>
@@ -170,19 +171,19 @@ IPとなる。必要に応じて後者を変えること。</p>
 </div>
 <p>次にデフォルトのゾーンにサービスを追加するため、デフォルトのゾーンを確認する。今回は
 <code class="docutils literal notranslate"><span class="pre">FedoraServer</span></code> となった。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> firewall-cmd --get-default-zone
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>firewall-cmd<span class="w"> </span>--get-default-zone
 <span class="go">FedoraServer</span>
 </pre></div>
 </div>
 <p>最後にゾーン <code class="docutils literal notranslate"><span class="pre">FedoraServer</span></code> にサービスを追加し、設定を反映する。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo firewall-cmd --permanent --zone<span class="o">=</span>FedoraServer --add-service<span class="o">=</span>mysql
-<span class="gp">$</span> sudo firewall-cmd --reload
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--zone<span class="o">=</span>FedoraServer<span class="w"> </span>--add-service<span class="o">=</span>mysql
+<span class="gp">$ </span>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="id7">
-<h2>参考<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</section>
+</section>
+<section id="id7">
+<h2>参考<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.unix-power.net/centos7/firewalld.html">CentOS7 firewalldの設定方法</a></p>
 <ul>
@@ -196,28 +197,36 @@ IPとなる。必要に応じて後者を変えること。</p>
 </ul>
 </li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
-
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
           </div>
-        </div>
+          
       </div>
-      <div id="disqus_thread"></div>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
       <div class="clearer"></div>
     </div>
+
     <div class="footer">
-      &copy;2020, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster</a>| <a href="../../sources/blog/2017/05070_run_docker_mysql_container_on_fedora.rst.txt"
-          rel="nofollow">Page source</a></div><script type="text/javascript">
-      var disqus_shortname = 'tomoh1r';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../sources/blog/2017/05070_run_docker_mysql_container_on_fedora.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script>
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-62097156-1']);
       _gaq.push(['_setDomainName', 'none']);
@@ -225,10 +234,21 @@ IPとなる。必要に応じて後者を変えること。</p>
       _gaq.push(['_trackPageview']);
 
       (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var ga = document.createElement('script'); ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
     </script>
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
   </body>
 </html>

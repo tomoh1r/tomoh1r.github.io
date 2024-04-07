@@ -1,28 +1,16 @@
-@charset "utf-8";
-
-@import url(https://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
-
-
-@font-face{
-  font-family: 'mplus-1mn-regular';
-  src: url('https://mplus-webfonts.osdn.jp/mplus-1mn-regular.eot');
-  src: url('https://mplus-webfonts.osdn.jp/mplus-1mn-regular.eot?#iefix') format('embedded-opentype'),
-       url('https://mplus-webfonts.osdn.jp/mplus-1mn-regular.woff') format('woff'),
-       url('https://mplus-webfonts.osdn.jp/mplus-1mn-regular.ttf') format('truetype');
-}
-
 @import url("basic.css");
 
 /* -- page layout ----------------------------------------------------------- */
 
 body {
-    font-family: Noto Sans Japanese;
-    font-size: 16px;
-    background-color: white;
+    font-family: 'Noto Sans JP', serif;
+    font-size: 17px;
+    background-color: #fff;
     color: #000;
     margin: 0;
     padding: 0;
 }
+
 
 div.document {
     width: 940px;
@@ -40,6 +28,8 @@ div.bodywrapper {
 
 div.sphinxsidebar {
     width: 220px;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 hr {
@@ -47,9 +37,13 @@ hr {
 }
 
 div.body {
-    background-color: #ffffff;
+    background-color: #fff;
     color: #3E4349;
-    padding: 0 30px;
+    padding: 0 30px 0 30px;
+}
+
+div.body > .section {
+    text-align: left;
 }
 
 div.footer {
@@ -64,8 +58,20 @@ div.footer a {
     color: #888;
 }
 
-div.related {
+p.caption {
+    font-family: 'Noto Sans JP';
+    font-size: inherit;
+}
+
+
+div.relations {
     display: none;
+}
+
+
+div.sphinxsidebar {
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 div.sphinxsidebar a {
@@ -76,11 +82,6 @@ div.sphinxsidebar a {
 
 div.sphinxsidebar a:hover {
     border-bottom: 1px solid #999;
-}
-
-div.sphinxsidebar {
-    font-size: 14px;
-    line-height: 1.5;
 }
 
 div.sphinxsidebarwrapper {
@@ -111,7 +112,7 @@ div.sphinxsidebarwrapper p.blurb {
 
 div.sphinxsidebar h3,
 div.sphinxsidebar h4 {
-    font-family: Noto Sans Japanese;
+    font-family: 'Noto Sans JP';
     color: #444;
     font-size: 24px;
     font-weight: normal;
@@ -155,37 +156,43 @@ div.sphinxsidebar ul li.toctree-l2 > a {
 
 div.sphinxsidebar input {
     border: 1px solid #CCC;
-    font-family: Noto Sans Japanese;
+    font-family: 'Noto Sans JP', serif;
     font-size: 1em;
+}
+
+div.sphinxsidebar #searchbox input[type="text"] {
+    width: 160px;
+}
+
+div.sphinxsidebar .search > div {
+    display: table-cell;
 }
 
 div.sphinxsidebar hr {
     border: none;
     height: 1px;
-    color: #999;
-    background: #999;
+    color: #AAA;
+    background: #AAA;
 
     text-align: left;
     margin-left: 0;
     width: 50%;
 }
 
+div.sphinxsidebar .badge {
+    border-bottom: none;
+}
+
+div.sphinxsidebar .badge:hover {
+    border-bottom: none;
+}
+
+/* To address an issue with donation coming after search */
+div.sphinxsidebar h3.donation {
+    margin-top: 10px;
+}
+
 /* -- body styles ----------------------------------------------------------- */
-
-div.body > ul:nth-child(1) {
-    list-style-type: none;
-    margin-left: 0;
-    padding-bottom: 20px;
-}
-
-div.body > ul:nth-child(1) > li {
-    float: left;
-    padding-right: 10px;
-}
-
-.clearer {
-    clear: both;
-}
 
 a {
     color: #004B6B;
@@ -203,16 +210,16 @@ div.body h3,
 div.body h4,
 div.body h5,
 div.body h6 {
-    font-family: Noto Sans Japanese;
+    font-family: 'Noto Sans JP';
     font-weight: normal;
     margin: 30px 0px 10px 0px;
     padding: 0;
 }
 
 div.body h1 { margin-top: 0; padding-top: 0; font-size: 240%; }
-div.body h2 { font-size: 140%; }
-div.body h3 { font-size: 120%; }
-div.body h4 { font-size: 110%; }
+div.body h2 { font-size: 180%; }
+div.body h3 { font-size: 150%; }
+div.body h4 { font-size: 130%; }
 div.body h5 { font-size: 100%; }
 div.body h6 { font-size: 100%; }
 
@@ -234,21 +241,17 @@ div.body p, div.body dd, div.body li {
 div.admonition {
     margin: 20px 0px;
     padding: 10px 30px;
-    background-color: #FCC;
-    border: 1px solid #FAA;
+    background-color: #EEE;
+    border: 1px solid #CCC;
 }
 
-div.admonition tt.xref, div.admonition a tt {
+div.admonition tt.xref, div.admonition code.xref, div.admonition a tt {
+    background-color: #FBFBFB;
     border-bottom: 1px solid #fafafa;
 }
 
-dd div.admonition {
-    margin-left: -60px;
-    padding-left: 60px;
-}
-
 div.admonition p.admonition-title {
-    font-family: Noto Sans Japanese;
+    font-family: 'Noto Sans JP';
     font-weight: normal;
     font-size: 24px;
     margin: 0 0 10px 0;
@@ -261,14 +264,60 @@ div.admonition p.last {
 }
 
 div.highlight {
-    background-color: white;
+    background-color: #fff;
 }
 
 dt:target, .highlight {
     background: #FAF3E8;
 }
 
+div.warning {
+    background-color: #FCC;
+    border: 1px solid #FAA;
+}
+
+div.danger {
+    background-color: #FCC;
+    border: 1px solid #FAA;
+    -moz-box-shadow: 2px 2px 4px #D52C2C;
+    -webkit-box-shadow: 2px 2px 4px #D52C2C;
+    box-shadow: 2px 2px 4px #D52C2C;
+}
+
+div.error {
+    background-color: #FCC;
+    border: 1px solid #FAA;
+    -moz-box-shadow: 2px 2px 4px #D52C2C;
+    -webkit-box-shadow: 2px 2px 4px #D52C2C;
+    box-shadow: 2px 2px 4px #D52C2C;
+}
+
+div.caution {
+    background-color: #FCC;
+    border: 1px solid #FAA;
+}
+
+div.attention {
+    background-color: #FCC;
+    border: 1px solid #FAA;
+}
+
+div.important {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+}
+
 div.note {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+}
+
+div.tip {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+}
+
+div.hint {
     background-color: #EEE;
     border: 1px solid #CCC;
 }
@@ -279,7 +328,7 @@ div.seealso {
 }
 
 div.topic {
-    background-color: #eee;
+    background-color: #EEE;
 }
 
 p.admonition-title {
@@ -291,8 +340,15 @@ p.admonition-title:after {
 }
 
 pre, tt, code {
-    font-family: mplus-1mn-regular;
+    font-family: 'Noto Sans Mono', 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
     font-size: 0.9em;
+}
+
+.hll {
+    background-color: #FFC;
+    margin: 0 -12px;
+    padding: 0 12px;
+    display: block;
 }
 
 img.screenshot {
@@ -307,16 +363,16 @@ tt.descname, code.descname {
 }
 
 img.screenshot {
-    -moz-box-shadow: 2px 2px 4px #eee;
-    -webkit-box-shadow: 2px 2px 4px #eee;
-    box-shadow: 2px 2px 4px #eee;
+    -moz-box-shadow: 2px 2px 4px #EEE;
+    -webkit-box-shadow: 2px 2px 4px #EEE;
+    box-shadow: 2px 2px 4px #EEE;
 }
 
 table.docutils {
     border: 1px solid #888;
-    -moz-box-shadow: 2px 2px 4px #eee;
-    -webkit-box-shadow: 2px 2px 4px #eee;
-    box-shadow: 2px 2px 4px #eee;
+    -moz-box-shadow: 2px 2px 4px #EEE;
+    -webkit-box-shadow: 2px 2px 4px #EEE;
+    box-shadow: 2px 2px 4px #EEE;
 }
 
 table.docutils td, table.docutils th {
@@ -352,8 +408,22 @@ table.field-list td {
     padding: 0;
 }
 
+table.field-list p {
+    margin-bottom: 0.8em;
+}
+
+/* Cloned from
+ * https://github.com/sphinx-doc/sphinx/commit/ef60dbfce09286b20b7385333d63a60321784e68
+ */
+.field-name {
+    -moz-hyphens: manual;
+    -ms-hyphens: manual;
+    -webkit-hyphens: manual;
+    hyphens: manual;
+}
+
 table.footnote td.label {
-    width: 0px;
+    width: .1px;
     padding: 0.3em 0 0.3em 0.5em;
 }
 
@@ -362,7 +432,9 @@ table.footnote td {
 }
 
 dl {
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
     padding: 0;
 }
 
@@ -376,6 +448,7 @@ blockquote {
 }
 
 ul, ol {
+    /* Matches the 30px from the narrow-screen "li > ul" selector below */
     margin: 10px 0 10px 30px;
     padding: 0;
 }
@@ -387,14 +460,13 @@ pre {
     line-height: 1.3em;
 }
 
-dl pre, blockquote pre, li pre {
-    margin-left: -60px;
-    padding-left: 60px;
+div.viewcode-block:target {
+    background: #ffd;
 }
 
-dl dl pre {
-    margin-left: -90px;
-    padding-left: 90px;
+dl pre, blockquote pre, li pre {
+    margin-left: 0;
+    padding-left: 30px;
 }
 
 tt, code {
@@ -405,12 +477,17 @@ tt, code {
 
 tt.xref, code.xref, a tt {
     background-color: #FBFBFB;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #fff;
 }
 
 a.reference {
     text-decoration: none;
     border-bottom: 1px dotted #004B6B;
+}
+
+/* Don't put an underline on images */
+a.image-reference, a.image-reference:hover {
+    border-bottom: none;
 }
 
 a.reference:hover {
@@ -434,6 +511,7 @@ a:hover tt, a:hover code {
 
 
 @media screen and (max-width: 870px) {
+
     div.sphinxsidebar {
     	display: none;
     }
@@ -461,6 +539,11 @@ a:hover tt, a:hover code {
     	margin-left: 0;
     }
 
+	li > ul {
+        /* Matches the 30px from the "ul, ol" selector above */
+		margin-left: 30px;
+	}
+
     .document {
     	width: auto;
     }
@@ -480,9 +563,15 @@ a:hover tt, a:hover code {
     .github {
         display: none;
     }
+
+
+
 }
 
+
+
 @media screen and (max-width: 875px) {
+
     body {
         margin: 0;
         padding: 20px 30px;
@@ -490,7 +579,7 @@ a:hover tt, a:hover code {
 
     div.documentwrapper {
         float: none;
-        background: white;
+        background: #fff;
     }
 
     div.sphinxsidebar {
@@ -505,7 +594,7 @@ a:hover tt, a:hover code {
 
     div.sphinxsidebar h3, div.sphinxsidebar h4, div.sphinxsidebar p,
     div.sphinxsidebar h3 a {
-        color: white;
+        color: #fff;
     }
 
     div.sphinxsidebar a {
@@ -519,18 +608,6 @@ a:hover tt, a:hover code {
     div.document {
         width: 100%;
         margin: 0;
-    }
-
-    div.related {
-        display: block;
-        margin: 0;
-        padding: 10px 0 20px 0;
-    }
-
-    div.related ul,
-    div.related ul li {
-        margin: 0;
-        padding: 0;
     }
 
     div.footer {
@@ -567,21 +644,14 @@ a:hover tt, a:hover code {
     }
 }
 
+
 /* misc. */
 
 .revsys-inline {
     display: none!important;
 }
 
-/* Make nested-list/multi-paragraph items look better in Releases changelog
- * pages. Without this, docutils' magical list fuckery causes inconsistent
- * formatting between different release sub-lists.
- */
-div#changelog > div.section > ul > li > p:only-child {
-    margin-bottom: 0;
-}
-
-/* Hide fugly table cell borders in ..bibliography:: directive output */
+/* Hide ugly table cell borders in ..bibliography:: directive output */
 table.docutils.citation, table.docutils.citation td, table.docutils.citation th {
   border: none;
   /* Below needed in some edge cases; if not applied, bottom shadows appear */
@@ -590,60 +660,49 @@ table.docutils.citation, table.docutils.citation td, table.docutils.citation th 
   box-shadow: none;
 }
 
-/* user stylesheet */
-div.document {
-  width: 980px;
-  position: relative;
+
+/* relbar */
+
+.related {
+    line-height: 30px;
+    width: 100%;
+    font-size: 0.9rem;
 }
 
-div.documentwrapper {
-  width: 980px;
+.related.top {
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 20px;
 }
 
-div.bodywrapper {
-  margin: 0;
-  width: 980px;
+.related.bottom {
+    border-top: 1px solid #EEE;
 }
 
-div.sphinxsidebar {
-  width: 240px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  float: none;
-}
-
-div#disqus_thread {
-  width: 920px;
-  margin: 0 30px;
-}
-
-@media screen and (max-width: 480px) {
-  div.body h1 { margin-top: 0; padding-top: 0; font-size: 160%; }
-
-  div.document {
-    width: 420px;
-  }
-
-  div.documentwrapper {
-    width: 420px;
-  }
-
-  div.body > p {
-    margin-top: 0;
-  }
-
-  div.bodywrapper {
-    width: 420px;
-  }
-
-  div#disqus_thread {
-    width: 420px;
+.related ul {
+    padding: 0;
     margin: 0;
-  }
+    list-style: none;
+}
 
-  pre {
-    overflow: auto;
-  }
+.related li {
+    display: inline;
+}
+
+nav#rellinks {
+    float: right;
+}
+
+nav#rellinks li+li:before {
+    content: "|";
+}
+
+nav#breadcrumbs li+li:before {
+    content: "\00BB";
+}
+
+/* Hide certain items when printing */
+@media print {
+    div.related {
+        display: none;
+    }
 }

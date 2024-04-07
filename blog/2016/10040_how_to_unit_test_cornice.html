@@ -1,106 +1,115 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+<html lang="ja" data-content_root="../../">
+  <head>
     <meta charset="utf-8" />
-    <meta property="og:title" content="Cornice 自体のユニットテストのやりかた" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="Cornice 自体のユニットテストのやりかた" />
-    <meta property="og:url" content="http://tomoh1r.github.io/blog/2016/10040_how_to_unit_test_cornice.html" />
-    <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
-    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
-    <meta property="og:email" content="quickness.net@gmail.com" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@tomoh1r" />
-    <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
-    <meta name="twitter:image:width" content="632" />
-    <meta name="twitter:image:height" content="512" />
-    <title>Cornice 自体のユニットテストのやりかた &mdash; 適当に だらだらと 楽しく</title>
-    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Cornice 自体のユニットテストのやりかた" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Cornice 自体のユニットテストのやりかた" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2016/10040_how_to_unit_test_cornice.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>Cornice 自体のユニットテストのやりかた &#8212; t_note</title>
+
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../../static/jquery.js"></script>
-    <script type="text/javascript" src="../../static/underscore.js"></script>
-    <script type="text/javascript" src="../../static/doctools.js"></script>
-    <script type="text/javascript" src="../../static/language_data.js"></script>
-    <script type="text/javascript" src="../../static/translations.js"></script>
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+
     <link rel="author" title="このドキュメントについて" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
     <link rel="next" title="今更ですが RSS2.0/Atom Feed を配信するようにしました" href="10290_add_rss_atom_feed.html" />
     <link rel="prev" title="VNC Server を Cubietruck (ARM) 上に立てる" href="09240_vncserver_on_fedora_on_cubietruck.html" />
-    <meta name="viewport" content="width=480">
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="Cornice 自体のユニットテストのやりかた &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="Cornice 自体のユニットテストのやりかた &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
 
-    <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="適当に だらだらと 楽しく" />
-    <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="適当に だらだらと 楽しく" />
-  </head>
-  <body>  
+  
+  
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
-        <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             <ul>
-              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">t_note</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
               <li><a href="../../about.html">このサイトについて</a></li>
             </ul>
             <div class="clearer"></div>
+
             
-  <div class="section" id="cornice">
-<h1>Cornice 自体のユニットテストのやりかた<a class="headerlink" href="#cornice" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <section id="cornice">
+<h1>Cornice 自体のユニットテストのやりかた<a class="headerlink" href="#cornice" title="Link to this heading">¶</a></h1>
 <p><span class="blog_date">2016/10/04</span></p>
 <p>自分向けのメモ的な</p>
-<div class="section" id="id1">
-<h2>通常のユニットテスト<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ~/misc/lib/python/3.4.5/bin/python3.4 -m venv --clear venv
-<span class="gp">$</span> ./venv/bin/python3.4 setup.py develop
-<span class="gp">$</span> ./venv/bin/python3.4 -m pip install -U nose coverage webtest unittest2 <span class="se">\</span>
-    mock colander Sphinx rxjson
-<span class="gp">$</span> ./venv/bin/nosetests --with-coverage --cover-package<span class="o">=</span>cornice
+<section id="id1">
+<h2>通常のユニットテスト<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>~/misc/lib/python/3.4.5/bin/python3.4<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--clear<span class="w"> </span>venv
+<span class="gp">$ </span>./venv/bin/python3.4<span class="w"> </span>setup.py<span class="w"> </span>develop
+<span class="gp">$ </span>./venv/bin/python3.4<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>nose<span class="w"> </span>coverage<span class="w"> </span>webtest<span class="w"> </span>unittest2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>mock<span class="w"> </span>colander<span class="w"> </span>Sphinx<span class="w"> </span>rxjson
+<span class="gp">$ </span>./venv/bin/nosetests<span class="w"> </span>--with-coverage<span class="w"> </span>--cover-package<span class="o">=</span>cornice
 </pre></div>
 </div>
-</div>
-<div class="section" id="tox">
-<h2>tox を利用したユニットテスト<a class="headerlink" href="#tox" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> /path/to/python2.7 virtualenv.py -p /path/to/python2.7 <span class="se">\</span>
-    --clear --no-setuptools --no-pip --no-wheel venv
-<span class="gp">$</span> ./venv/bin/python2.7 get-pip.py
-<span class="gp">$</span> ./venv/bin/python2.7 -m pip install tox
-<span class="gp">$</span> <span class="nv">PATH</span><span class="o">=</span>/path/to/2.7/bin:/path/to/3.4/bin:<span class="nv">$PATH</span> ./venv/bin/tox
+</section>
+<section id="tox">
+<h2>tox を利用したユニットテスト<a class="headerlink" href="#tox" title="Link to this heading">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/path/to/python2.7<span class="w"> </span>virtualenv.py<span class="w"> </span>-p<span class="w"> </span>/path/to/python2.7<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--clear<span class="w"> </span>--no-setuptools<span class="w"> </span>--no-pip<span class="w"> </span>--no-wheel<span class="w"> </span>venv
+<span class="gp">$ </span>./venv/bin/python2.7<span class="w"> </span>get-pip.py
+<span class="gp">$ </span>./venv/bin/python2.7<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tox
+<span class="gp">$ </span><span class="nv">PATH</span><span class="o">=</span>/path/to/2.7/bin:/path/to/3.4/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/tox
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
-
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
           </div>
-        </div>
+          
       </div>
-      <div id="disqus_thread"></div>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
       <div class="clearer"></div>
     </div>
+
     <div class="footer">
-      &copy;2020, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster</a>| <a href="../../sources/blog/2016/10040_how_to_unit_test_cornice.rst.txt"
-          rel="nofollow">Page source</a></div><script type="text/javascript">
-      var disqus_shortname = 'tomoh1r';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../sources/blog/2016/10040_how_to_unit_test_cornice.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script>
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-62097156-1']);
       _gaq.push(['_setDomainName', 'none']);
@@ -108,10 +117,21 @@
       _gaq.push(['_trackPageview']);
 
       (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var ga = document.createElement('script'); ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
     </script>
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
   </body>
 </html>

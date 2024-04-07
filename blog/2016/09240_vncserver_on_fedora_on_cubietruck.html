@@ -1,96 +1,105 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+<html lang="ja" data-content_root="../../">
+  <head>
     <meta charset="utf-8" />
-    <meta property="og:title" content="VNC Server を Cubietruck (ARM) 上に立てる" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="VNC Server を Cubietruck (ARM) 上に立てる" />
-    <meta property="og:url" content="http://tomoh1r.github.io/blog/2016/09240_vncserver_on_fedora_on_cubietruck.html" />
-    <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
-    <meta property="og:site_name" content="適当に だらだらと 楽しく" />
-    <meta property="og:email" content="quickness.net@gmail.com" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@tomoh1r" />
-    <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
-    <meta name="twitter:image:width" content="632" />
-    <meta name="twitter:image:height" content="512" />
-    <title>VNC Server を Cubietruck (ARM) 上に立てる &mdash; 適当に だらだらと 楽しく</title>
-    <link rel="stylesheet" href="../../static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="VNC Server を Cubietruck (ARM) 上に立てる" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="VNC Server を Cubietruck (ARM) 上に立てる" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2016/09240_vncserver_on_fedora_on_cubietruck.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>VNC Server を Cubietruck (ARM) 上に立てる &#8212; t_note</title>
+
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
     <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../../static/jquery.js"></script>
-    <script type="text/javascript" src="../../static/underscore.js"></script>
-    <script type="text/javascript" src="../../static/doctools.js"></script>
-    <script type="text/javascript" src="../../static/language_data.js"></script>
-    <script type="text/javascript" src="../../static/translations.js"></script>
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+
     <link rel="author" title="このドキュメントについて" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
     <link rel="next" title="Cornice 自体のユニットテストのやりかた" href="10040_how_to_unit_test_cornice.html" />
     <link rel="prev" title="pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する" href="09191_pipsi_with_custome_location.html" />
-    <meta name="viewport" content="width=480">
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="VNC Server を Cubietruck (ARM) 上に立てる &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="VNC Server を Cubietruck (ARM) 上に立てる &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
 
-    <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="適当に だらだらと 楽しく" />
-    <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="適当に だらだらと 楽しく" />
-  </head>
-  <body>  
+  
+  
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
-        <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             <ul>
-              <li><a href="../../index.html">適当に だらだらと 楽しく</a></li>
+              <li><a href="../../index.html">t_note</a></li>
               <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
               <li><a href="../archives.html">archives</a></li>
               <li><a href="../../about.html">このサイトについて</a></li>
             </ul>
             <div class="clearer"></div>
+
             
-  <div class="section" id="vnc-server-cubietruck-arm">
-<h1>VNC Server を Cubietruck (ARM) 上に立てる<a class="headerlink" href="#vnc-server-cubietruck-arm" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <section id="vnc-server-cubietruck-arm">
+<h1>VNC Server を Cubietruck (ARM) 上に立てる<a class="headerlink" href="#vnc-server-cubietruck-arm" title="Link to this heading">¶</a></h1>
 <p><span class="blog_date">2016/09/24</span></p>
 <p>Cubietruck に Fedora 24 をインストールの後、以下のコマンドでインストール、実行できる。</p>
 <p>まんま <a class="reference external" href="https://www.server-world.info/query?os=Fedora_24&amp;p=desktop&amp;f=6">Fedora 24 : VNCサーバーの設定 ： Server World</a> の手順となっているが、 Systemd への登録が
 うまくいかなかったので、毎度のシステム再起動時に手動で <code class="docutils literal notranslate"><span class="pre">vncserver</span></code> 起動している。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo dnf -y install tigervnc-server
-<span class="gp">$</span> sudo firewall-cmd --add-service<span class="o">=</span>vnc-server --permanent
-<span class="gp">$</span> sudo firewall-cmd --reload
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>tigervnc-server
+<span class="gp">$ </span>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>vnc-server<span class="w"> </span>--permanent
+<span class="gp">$ </span>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 
-<span class="gp">$</span> vncserver :1 -geometry 1024x768 -depth <span class="m">16</span>
-<span class="gp">$</span> vncserver -kill :1
+<span class="gp">$ </span>vncserver<span class="w"> </span>:1<span class="w"> </span>-geometry<span class="w"> </span>1024x768<span class="w"> </span>-depth<span class="w"> </span><span class="m">16</span>
+<span class="gp">$ </span>vncserver<span class="w"> </span>-kill<span class="w"> </span>:1
 </pre></div>
 </div>
-</div>
+</section>
 
-
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
           </div>
-        </div>
+          
       </div>
-      <div id="disqus_thread"></div>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
       <div class="clearer"></div>
     </div>
+
     <div class="footer">
-      &copy;2020, <a href="https://about.me/tomohiro.nakamura">Tomohiro NAKAMURA</a>.| Powered by <a href="http://sphinx-doc.org/">Sphinx</a>
-      &amp; customized <a href="https://github.com/bitprophet/alabaster">Alabaster</a>| <a href="../../sources/blog/2016/09240_vncserver_on_fedora_on_cubietruck.rst.txt"
-          rel="nofollow">Page source</a></div><script type="text/javascript">
-      var disqus_shortname = 'tomoh1r';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../sources/blog/2016/09240_vncserver_on_fedora_on_cubietruck.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script>
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-62097156-1']);
       _gaq.push(['_setDomainName', 'none']);
@@ -98,10 +107,21 @@
       _gaq.push(['_trackPageview']);
 
       (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var ga = document.createElement('script'); ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
     </script>
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
   </body>
 </html>
