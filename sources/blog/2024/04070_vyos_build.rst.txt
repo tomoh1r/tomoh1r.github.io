@@ -3,11 +3,22 @@ VyOS 1.4.x (Sagitta) のビルド
 
 :blog_date:`2024/04/07`
 
-掲題の VyOS の ISO をビルドする手順を記載する。
+ルーターとして
+`VyOS – Open source router and firewall platform
+<https://vyos.io/>`_ を利用し、他に無線AP をたてて無線利用をしている。
+
+古いバージョンを使っており、更新したく、この更新の際の資料を整理がてらブログに書き出すこととする。
+
+本記事は `Build VyOS — VyOS 1.4.x (sagitta) documentation
+<https://docs.vyos.io/en/sagitta/contributing/build-vyos.html>`_
+を参照し整理している。
 
 環境は Debian on Windows11 にて Docker コンテナ内でビルドを行う。
 ビルドは Debian でしか進まないため、Debian を利用してビルドをすること。
 最初 CentOS 9 Stream で行い進まずはまってしまった。
+
+なお、Debian における KVM の構築は `KVM - Debian Wiki <https://wiki.debian.org/KVM>`_
+を参考すること。
 
 .. contents::
    :local:
@@ -40,6 +51,13 @@ VyOS 1.4.x (Sagitta) のビルド
        docker.io/vyos/vyos-build:sagitta \
        bash
 
+コマンドのオプションなどは `Tips and Tricks — Build VyOS — VyOS 1.4.x (sagitta) documentation
+<https://docs.vyos.io/en/sagitta/contributing/build-vyos.html#tips-and-tricks>`_
+を流用している。
+
+資料によると、 ``--sysctl net.ipv6.conf.lo.disable_ipv6=0`` については、
+指定しないとビルド時のテストで失敗するようだ。
+
 3. ビルド
 ---------
 
@@ -61,7 +79,7 @@ VyOS 1.4.x (Sagitta) のビルド
 検討した設定などが VyOS 上で有効か確認を行うため、仮想環境を起動する。
 network のしても実はできるが動かなかったので試していない。
 
-環境構築と起動まで。
+環境構築と起動まで。起動時は少し時間がかかるので待つこと。
 
 .. code-block:: console
 
