@@ -1,0 +1,87 @@
+VyOS 1.4.x (Sagitta) のビルド
+=============================
+
+:blog_date:`2024/04/07`
+
+掲題の VyOS の ISO をビルドする手順を記載する。
+
+環境は Debian on Windows11 にて Docker コンテナ内でビルドを行う。
+ビルドは Debian でしか進まないため、Debian を利用してビルドをすること。
+最初 CentOS 9 Stream で行い進まずはまってしまった。
+
+.. contents::
+   :local:
+
+1. git clone
+------------
+
+対応するバージョンのビルド環境を clone する。
+
+.. code-block:: console
+
+   $ git clone -b sagitta https://github.com/vyos/vyos-build.git vyos-build-sagitta
+   $ cd vyos-build-sagitta
+
+参考: `Build VyOS — VyOS 1.4.x (sagitta) documentation <https://docs.vyos.io/en/sagitta/contributing/build-vyos.html>`_
+
+1. Docker コンテナの起動
+------------------------
+
+ビルドのためのコンテナを起動する。
+
+.. code-block:: console
+
+   $ docker pull docker.io/vyos/vyos-build:sagitta
+   $ docker run --rm -it \
+       -v "$(pwd):/mnt" -w /mnt \
+       --privileged \
+       --sysctl net.ipv6.conf.lo.disable_ipv6=0 \
+       -e GOSU_UID=$(id -u) -e GOSU_GID=$(id -g) \
+       docker.io/vyos/vyos-build:sagitta \
+       bash
+
+3. ビルド
+---------
+
+ビルドを進める。 custom-package の指定でカスタムパッケージを追加することができる。
+
+.. code-block:: console
+
+   $ sudo make clean
+   $ sudo ./scripts/build-vyos-image iso \
+       --build-by blah@example.com \
+       --version 1.4.2024_03_23 \
+       --architecture amd64 \
+       --build-type release \
+       --custom-package vim
+
+4. 動作検証
+-----------
+
+検討した設定などが VyOS 上で有効か確認を行うため、仮想環境を起動する。
+network のしても実はできるが動かなかったので試していない。
+
+環境構築と起動まで。
+
+.. code-block:: console
+
+   $ virt-install -n vyos_r1 \
+       --memory 4096 \
+       --vcpus 2 \
+       --cdrom build/live-image-amd64.hybrid.iso \
+       --os-variant debian10 \
+       --graphics vnc \
+       --hvm \
+       --virt-type kvm \
+       --disk path=/tmp/vyos_r1.qcow2,bus=virtio,size=8 \
+       --noautoconsole
+   $ virsh console vyos_r1
+   Connected to domain vyos_r1
+   Escape character is ^]
+
+実行後の環境破棄手順。
+
+.. code-block:: console
+
+   $ virsh destroy vyos_r1
+   $ virsh undefine vyos_r1

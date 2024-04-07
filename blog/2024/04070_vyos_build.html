@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="ja" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="VyOS 1.4.x (Sagitta) のビルド" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="VyOS 1.4.x (Sagitta) のビルド" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2024/04070_vyos_build.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>VyOS 1.4.x (Sagitta) のビルド &#8212; t_note</title>
+
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+
+    <link rel="author" title="このドキュメントについて" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="piptools向けスニペット" href="../2020/03040_piptools_snippets.html" />
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="VyOS 1.4.x (Sagitta) のビルド &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="VyOS 1.4.x (Sagitta) のビルド &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            <ul>
+              <li><a href="../../index.html">t_note</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../about.html">このサイトについて</a></li>
+            </ul>
+            <div class="clearer"></div>
+
+            
+  <section id="vyos-1-4-x-sagitta">
+<h1>VyOS 1.4.x (Sagitta) のビルド<a class="headerlink" href="#vyos-1-4-x-sagitta" title="Link to this heading">¶</a></h1>
+<p><span class="blog_date">2024/04/07</span></p>
+<p>掲題の VyOS の ISO をビルドする手順を記載する。</p>
+<p>環境は Debian on Windows11 にて Docker コンテナ内でビルドを行う。
+ビルドは Debian でしか進まないため、Debian を利用してビルドをすること。
+最初 CentOS 9 Stream で行い進まずはまってしまった。</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#git-clone" id="id4">1. git clone</a></p></li>
+<li><p><a class="reference internal" href="#docker" id="id5">1. Docker コンテナの起動</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id6">3. ビルド</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id7">4. 動作検証</a></p></li>
+</ul>
+</nav>
+<section id="git-clone">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">1. git clone</a><a class="headerlink" href="#git-clone" title="Link to this heading">¶</a></h2>
+<p>対応するバージョンのビルド環境を clone する。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>sagitta<span class="w"> </span>https://github.com/vyos/vyos-build.git<span class="w"> </span>vyos-build-sagitta
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>vyos-build-sagitta
+</pre></div>
+</div>
+<p>参考: <a class="reference external" href="https://docs.vyos.io/en/sagitta/contributing/build-vyos.html">Build VyOS — VyOS 1.4.x (sagitta) documentation</a></p>
+</section>
+<section id="docker">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">1. Docker コンテナの起動</a><a class="headerlink" href="#docker" title="Link to this heading">¶</a></h2>
+<p>ビルドのためのコンテナを起動する。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>pull<span class="w"> </span>docker.io/vyos/vyos-build:sagitta
+<span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/mnt&quot;</span><span class="w"> </span>-w<span class="w"> </span>/mnt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--privileged<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--sysctl<span class="w"> </span>net.ipv6.conf.lo.disable_ipv6<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GOSU_UID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">GOSU_GID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docker.io/vyos/vyos-build:sagitta<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>bash
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">3. ビルド</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>ビルドを進める。 custom-package の指定でカスタムパッケージを追加することができる。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>make<span class="w"> </span>clean
+<span class="gp">$ </span>sudo<span class="w"> </span>./scripts/build-vyos-image<span class="w"> </span>iso<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--build-by<span class="w"> </span>blah@example.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">1</span>.4.2024_03_23<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--architecture<span class="w"> </span>amd64<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--build-type<span class="w"> </span>release<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--custom-package<span class="w"> </span>vim
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">4. 動作検証</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>検討した設定などが VyOS 上で有効か確認を行うため、仮想環境を起動する。
+network のしても実はできるが動かなかったので試していない。</p>
+<p>環境構築と起動まで。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>virt-install<span class="w"> </span>-n<span class="w"> </span>vyos_r1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--memory<span class="w"> </span><span class="m">4096</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--vcpus<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cdrom<span class="w"> </span>build/live-image-amd64.hybrid.iso<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--os-variant<span class="w"> </span>debian10<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--graphics<span class="w"> </span>vnc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--hvm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--virt-type<span class="w"> </span>kvm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--disk<span class="w"> </span><span class="nv">path</span><span class="o">=</span>/tmp/vyos_r1.qcow2,bus<span class="o">=</span>virtio,size<span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--noautoconsole
+<span class="gp">$ </span>virsh<span class="w"> </span>console<span class="w"> </span>vyos_r1
+<span class="go">Connected to domain vyos_r1</span>
+<span class="go">Escape character is ^]</span>
+</pre></div>
+</div>
+<p>実行後の環境破棄手順。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>virsh<span class="w"> </span>destroy<span class="w"> </span>vyos_r1
+<span class="gp">$ </span>virsh<span class="w"> </span>undefine<span class="w"> </span>vyos_r1
+</pre></div>
+</div>
+</section>
+</section>
+
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
+          </div>
+          
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../sources/blog/2024/04070_vyos_build.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script>
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-62097156-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+  </body>
+</html>
