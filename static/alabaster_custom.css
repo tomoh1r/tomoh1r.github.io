@@ -27,32 +27,12 @@ body div.body h2 { font-size: 140%; }
 body div.body h3 { font-size: 120%; }
 body div.body h4 { font-size: 110%; }
 
-div.document {
-  width: 980px;
-  position: relative;
-}
-
-div.documentwrapper {
-  width: 980px;
-}
-
-div.bodywrapper {
-  margin: 0;
-  width: 980px;
-}
-
-div.sphinxsidebar {
-  width: 240px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  float: none;
-}
-
 div#disqus_thread {
-  width: 920px;
-  margin: 0 30px;
+  width: 800px;
+}
+
+body div.footer {
+  width: 800px;
 }
 
 @media screen and (max-width: 480px) {
