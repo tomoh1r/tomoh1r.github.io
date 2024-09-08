@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="ja" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="TestCafe でのカスタム引数の作成" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="TestCafe でのカスタム引数の作成" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2024/09080_testcafe.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>TestCafe でのカスタム引数の作成 &#8212; t_note</title>
+
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+    <link rel="icon" href="../../static/favicon.ico"/>
+
+    <link rel="author" title="このドキュメントについて" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="VyOS 1.4.x (Sagitta) のビルド" href="04070_vyos_build.html" />
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="TestCafe でのカスタム引数の作成 &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="TestCafe でのカスタム引数の作成 &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            <ul>
+              <li><a href="../../index.html">t_note</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../about.html">このサイトについて</a></li>
+            </ul>
+            <div class="clearer"></div>
+
+            
+  <section id="testcafe">
+<h1>TestCafe でのカスタム引数の作成<a class="headerlink" href="#testcafe" title="Link to this heading">¶</a></h1>
+<p><span class="blog_date">2024/09/08</span></p>
+<p><a class="reference external" href="https://testcafe.io/">TestCafe</a> は、 <a class="reference external" href="https://playwright.dev/">Playwright</a> などのE2Eテストツールで、さまざまな引数を使用してテストケースの部分実行が可能だ。</p>
+<p>テストケース内で処理を分岐させたい場合、
+独自の引数を追加して処理をカスタマイズすることができる。
+このような場合は、設定ファイルである <code class="docutils literal notranslate"><span class="pre">.testcaferc.cjs</span></code>
+を活用すると便利だ。</p>
+<p>例えば、次のように引数を処理し、 <code class="docutils literal notranslate"><span class="pre">userVariables</span></code>
+を通じて処理内での振る舞いを変更することができる。</p>
+<p>注意点として、引数に指定する <code class="docutils literal notranslate"><span class="pre">src</span></code> を正しく設定しないと、
+コードで指定した引数が <code class="docutils literal notranslate"><span class="pre">src</span></code> として参照され想定外の挙動が発生する可能性がある。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">process</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;process&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">cleanupOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">args</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;--cleanup&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">cleanupOnSetup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">args</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;--cleanup-on-setup&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">userVariables</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">cleanupOnly</span><span class="o">:</span><span class="w"> </span><span class="nx">cleanupOnly</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">cleanupOnSetup</span><span class="o">:</span><span class="w"> </span><span class="nx">cleanupOnSetup</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
+          </div>
+          
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../sources/blog/2024/09080_testcafe.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+  </body>
+</html>

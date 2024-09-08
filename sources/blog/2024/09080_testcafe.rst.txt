@@ -1,0 +1,35 @@
+TestCafe でのカスタム引数の作成
+===============================
+
+:blog_date:`2024/09/08`
+
+TestCafe_ は、 Playwright_ などのE2Eテストツールで、さまざまな引数を使用してテストケースの部分実行が可能だ。
+
+.. _TestCafe: https://testcafe.io/
+.. _Playwright: https://playwright.dev/
+
+テストケース内で処理を分岐させたい場合、
+独自の引数を追加して処理をカスタマイズすることができる。
+このような場合は、設定ファイルである ``.testcaferc.cjs``
+を活用すると便利だ。
+
+例えば、次のように引数を処理し、 ``userVariables``
+を通じて処理内での振る舞いを変更することができる。
+
+注意点として、引数に指定する ``src`` を正しく設定しないと、
+コードで指定した引数が ``src`` として参照され想定外の挙動が発生する可能性がある。
+
+.. code-block:: javascript
+
+   const process = require('process');
+
+   const args = process.argv.slice(2);
+   const cleanupOnly = args.includes('--cleanup');
+   const cleanupOnSetup = args.includes('--cleanup-on-setup');
+
+   module.exports = {
+     userVariables: {
+       cleanupOnly: cleanupOnly,
+       cleanupOnSetup: cleanupOnSetup
+     }
+   };
