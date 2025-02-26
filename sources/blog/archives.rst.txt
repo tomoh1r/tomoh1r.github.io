@@ -4,6 +4,21 @@
 archives
 ========
 
+2025
+====
+
+blogs
+-----
+
+.. blog_toctree::
+   :glob:
+   :titlesonly:
+   :maxdepth: 1
+   :reverse:
+   :display_blog_date:
+
+   2025/[0-9]*
+
 2024
 ====
 

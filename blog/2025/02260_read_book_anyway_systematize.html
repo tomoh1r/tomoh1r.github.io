@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="ブログ構築システムの見直しがやっと出来た" />
+<meta property="og:title" content="『とにかく仕組み化』を読んで感じたこと" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="ブログ構築システムの見直しがやっと出来た" />
-  <meta property="og:url" content="http://tomoh1r.github.io/blog/2019/03030_update.html" />
+  <meta property="og:description" content="『とにかく仕組み化』を読んで感じたこと" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2025/02260_read_book_anyway_systematize.html" />
   <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
   <meta property="og:site_name" content="t_note" />
   <meta property="og:email" content="quickness.net@gmail.com" />
@@ -16,7 +16,7 @@
   <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
   <meta name="twitter:image:width" content="632" />
   <meta name="twitter:image:height" content="512" />
-  <title>ブログ構築システムの見直しがやっと出来た &#8212; t_note</title>
+  <title>『とにかく仕組み化』を読んで感じたこと &#8212; t_note</title>
 
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
@@ -30,10 +30,9 @@
     <link rel="author" title="このドキュメントについて" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
-    <link rel="next" title="PyCharmとdocker-composeを利用した場合通常と同じくユニットテストをIDE上から一つずつクリックで実行し結果を確認出来る。" href="../2020/01180_pycharm_docker_compose.html" />
-    <link rel="prev" title="Jenkins Pipeline で Groovy と shell step を混在させる" href="../2018/03040_jenkins_pipeline.html" />
-  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="ブログ構築システムの見直しがやっと出来た &#8212; t_note" />
-  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="ブログ構築システムの見直しがやっと出来た &#8212; t_note" />
+    <link rel="prev" title="TestCafe でのカスタム引数の作成" href="../2024/09080_testcafe.html" />
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="『とにかく仕組み化』を読んで感じたこと &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="『とにかく仕組み化』を読んで感じたこと &#8212; t_note" />
    
   <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
   
@@ -59,19 +58,32 @@
 
             
   <section id="id1">
-<h1>ブログ構築システムの見直しがやっと出来た<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p><span class="blog_date">2019/03/03</span></p>
-<p><a class="reference external" href="http://sphinx-users.jp/">Sphinx</a> を利用して静的ファイル出力としてgithub-pagesを活用している。</p>
-<p>今まで直したいことがあったけど、なんとか対応出来た。以下</p>
-<ul class="simple">
-<li><p>シングルリポジトリにした。</p></li>
-<li><p>github-pagesについては、git worktreeにて管理する。
-いままでsubmoduleで管理していて、対応したかった。</p></li>
-<li><p><a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a> で記事をまとめるとして、簡易処理用との
-Pythonスニペットを作成した。 <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a> でシェルの
-簡易スクリプトと同じように作業したいとしたら、
-スクリプト書いてPyCharmの外部ツールで利用するのがまずは良いのかなと思う。</p></li>
-</ul>
+<h1>『とにかく仕組み化』を読んで感じたこと<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p><span class="blog_date">2025/02/26</span></p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本ページはプロモーションが含まれています</p>
+</div>
+<p>『とにかく仕組み化』は、具体的なHowTo集ではなく、理想のための意識付けに焦点を当てた一冊です。</p>
+<p>特に、リーダーやメンバー、組織、そしてプロセスの管理に携わる方々に向けた内容となっており、
+「正しさ」や「理想の状態」を理解する手助けをしてくれます。</p>
+<figure class="align-default" id="id2">
+<a class="reference external image-reference" href="https://amzn.to/3QC7Xeo"><img alt="書影" src="../../images/202502260_book.png" style="width: 360px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Amazon.co.jp: とにかく仕組み化――人の上に立ち続けるための思考法 eBook : 安藤 広大: Kindleストア</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>本書は、書店でよく目にするタイトルで気になっていたため、評価の高さから購入してみました。</p>
+<p>読む前は、仕組み化に関する具体的な手法やその意義が体系的にまとめられているのではないかと期待していたものの、
+実際に読んでみると印象は全く異なりました。</p>
+<p>序盤では、理想的な状態を実現するための考え方や意識改革に焦点が当てられており、
+「どういった状態が理想に近いか」という説明が主軸となっています。</p>
+<p>後半では、パーパス（目的）に基づいた組織運営や、
+個人の情熱と組織の方向性が一致することの重要性など、組織論的な視点も取り入れられていました。</p>
+<p>内容は新書程度の分量で、手軽に読める点も魅力です。</p>
+<p>リーダーシップに興味がある方や、これからの組織運営について考えたいと感じている方にとって、
+有益な一助となるでしょう。</p>
 </section>
 
             <div id="disqus_thread"></div>
@@ -92,7 +104,7 @@ y Disqus.</a></noscript>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |
-      <a href="../../sources/blog/2019/03030_update.rst.txt"
+      <a href="../../sources/blog/2025/02260_read_book_anyway_systematize.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
