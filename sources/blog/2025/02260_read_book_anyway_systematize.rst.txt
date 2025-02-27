@@ -12,12 +12,16 @@
 特に、リーダーやメンバー、組織、そしてプロセスの管理に携わる方々に向けた内容となっており、
 「正しさ」や「理想の状態」を理解する手助けをしてくれます。
 
+* `単行本 (ソフトカバー) <https://amzn.to/4kipc1V>`_
+* `Kindle版 (電子書籍) <https://amzn.to/4keyxYL>`_
+* `Audible版 <https://amzn.to/41z6BaQ>`_
+
 .. figure:: /_images/202502260_book.png
    :width: 360px
    :alt: 書影
    :target: https://amzn.to/3QC7Xeo
 
-   Amazon.co.jp: とにかく仕組み化――人の上に立ち続けるための思考法 eBook : 安藤 広大: Kindleストア
+   とにかく仕組み化――人の上に立ち続けるための思考法 安藤 広大
 
 本書は、書店でよく目にするタイトルで気になっていたため、評価の高さから購入してみました。
 
