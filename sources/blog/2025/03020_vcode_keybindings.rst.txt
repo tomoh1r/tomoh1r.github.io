@@ -1,0 +1,114 @@
+=======================================
+VS Code keybindings.json (2025/03版)
+=======================================
+
+:blog_date:`2025/03/02`
+
+VSCode を利用するようになったので整理をします。
+
+IntelliJ風にするために参考にしたページもあるが、失念しているため
+見つけたら追記します。
+
+参考
+====
+
+* `Tab selection with keyboard shortcuts · Issue #28391 · microsoft/vscode
+  <https://github.com/Microsoft/vscode/issues/28391>`_
+
+  * ``ctrl-n/p`` でエディターを移動できるようにする
+
+* `VSCodeのterminal上でemacsっぽいキーバインドをまともに動くようにする - 覚書
+  <https://satoru-takeuchi.hatenablog.com/entry/2020/12/23/100309>`_
+
+  * ターミナル上では Emacsモードを利用するので
+
+設定
+====
+
+.. code-block:: json
+
+   [
+       {
+           "key": "ctrl+shift+w",
+           "command": "noop"
+       },
+       {
+           "key": "shift shift",
+           "command": "workbench.action.quickOpen"
+       },
+       {
+           "key": "ctrl+shift+a",
+           "command": "workbench.action.showCommands"
+       },
+       {
+           "key": "alt alt",
+           "command": "workbench.action.terminal.toggleTerminal"
+       },
+       // editor
+       {
+           "key": "ctrl+p",
+           "command": "workbench.action.previousEditor",
+           "when": "editorTextFocus"
+       },
+       {
+           "key": "ctrl+n",
+           "command": "workbench.action.nextEditor",
+           "when": "editorTextFocus"
+       },
+       // terminal
+       {
+           "key": "ctrl+p",
+           "command": "cursorUp",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+n",
+           "command": "cursorDown",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+f",
+           "command": "cursorRight",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+b",
+           "command": "cursorLeft",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+a",
+           "command": "cursorHome",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+e",
+           "command": "cursorEnd",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+d",
+           "command": "deleteRight",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+h",
+           "command": "deleteLeft",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+k",
+           "command": "deleteAllRight",
+           "when": "terminalFocus"
+       },
+       {
+           "key": "ctrl+m",
+           "command": "type",
+           "args": { "text": "\n"},
+           "when": "terminalFocus",
+       }
+   ]
+
+
+
+
