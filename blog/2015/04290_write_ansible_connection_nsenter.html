@@ -102,7 +102,7 @@
 <p>コンテナ内の環境変数は、以下のように <code class="docutils literal notranslate"><span class="pre">/proc/&lt;PID&gt;/environ</span></code> からとれる。</p>
 <p>ヌル文字列で区切られているようなので、区切って、あとは <code class="docutils literal notranslate"><span class="pre">=</span></code>
 で切り分けて、辞書にして取り扱うようにした。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_get_container_env</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">_get_container_env</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;return container env dict&#39;&#39;&#39;</span>
     <span class="c1"># get environ path</span>
     <span class="n">env_path</span> <span class="o">=</span> <span class="s1">&#39;/proc/</span><span class="si">{}</span><span class="s1">/environ&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extract_var</span><span class="p">(</span><span class="s1">&#39;Leader&#39;</span><span class="p">))</span>
@@ -115,7 +115,7 @@
     <span class="n">proc_envs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">proc_envs</span> <span class="k">if</span> <span class="n">x</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">proc_envs</span>
 
-<span class="k">def</span> <span class="nf">_extract_var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_extract_var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span><span class="s1">&#39;machinectl&#39;</span><span class="p">,</span> <span class="s1">&#39;show&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
@@ -227,8 +227,8 @@ y Disqus.</a></noscript>
       &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../../sources/blog/2015/04290_write_ansible_connection_nsenter.rst.txt"

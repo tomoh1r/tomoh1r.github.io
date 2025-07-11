@@ -1,0 +1,33 @@
+========================================
+WSLでのFedoraによるKubeadmのセットアップ
+========================================
+
+:blog_date:`2025/07/12`
+
+.. note::
+
+   基本的なKubeadmによるクラスタ構築手順は
+   「 `Creating a Kubernetes cluster on Fedora :: Fedora Docs`_ 」を参照ください。
+
+.. _`Creating a Kubernetes cluster on Fedora :: Fedora Docs`: https://docs.fedoraproject.org/en-US/quick-docs/using-kubernetes-kubeadm/
+
+WSL2を使うと、Windows上にほぼネイティブのLinux環境を簡単に用意できます。
+Fedoraは既定のリポジトリでKubeadmを提供しており、Kubeadmを利用したクラスタ構築をスムーズに行えます。
+
+ただし、WSL2上のFedoraではOverlayFSがあらかじめ有効化されているため、
+先の記事中の対応は不要となります。
+
+有効化状況は、以下のコマンドで確認できます。
+
+.. code-block:: console
+
+   $ grep overlay /proc/filesystems
+   nodev   overlay
+
+``nodev overlay`` が出力されればOK。Fedora公式手順で指定される有効化対応は不要です。
+
+以降は `Creating a Kubernetes cluster on Fedora :: Fedora Docs`_
+の手順を実行してください。
+
+OverlayFSの確認や基本ツールの導入を事前に済ませておくことで、
+以降のKubeadmコマンドが予期せぬエラーなく動作し、開発に集中できるでしょう。

@@ -100,7 +100,7 @@ PyPI に存在するので、特に問題なくインストールできる。</p
 
 <span class="n">COPY</span> <span class="o">%</span><span class="n">MyOpenBlas</span><span class="o">%</span> <span class="o">%~</span><span class="n">dp0</span>\<span class="n">venv</span>\<span class="n">lib</span>\
 <span class="n">gendef</span><span class="o">.</span><span class="n">exe</span> <span class="o">-</span> <span class="n">libopenblas</span><span class="o">.</span><span class="n">dll</span> <span class="o">&gt;</span> <span class="n">libopenblas</span><span class="o">.</span><span class="k">def</span>
-<span class="nf">lib</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">MACHINE</span><span class="p">:</span><span class="n">x64</span> <span class="o">/</span><span class="n">DEF</span><span class="p">:</span><span class="n">libopenblas</span><span class="o">.</span><span class="k">def</span> <span class="o">/</span><span class="n">OUT</span><span class="p">:</span><span class="n">openblas</span><span class="o">.</span><span class="n">lib</span>
+<span class="nf">lib</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">MACHINE</span><span class="p">:</span><span class="n">x64</span> <span class="o">/</span><span class="n">DEF</span><span class="p">:</span><span class="n">libopenblas</span><span class="o">.</span><span class="k">def</span><span class="w"> </span><span class="o">/</span><span class="n">OUT</span><span class="p">:</span><span class="n">openblas</span><span class="o">.</span><span class="n">lib</span>
 
 <span class="p">::</span> <span class="n">install</span> <span class="n">scipy</span>
 <span class="n">CD</span> <span class="o">/</span><span class="n">D</span> <span class="o">%~</span><span class="n">dp0</span>\<span class="n">scipy</span>
@@ -354,8 +354,8 @@ y Disqus.</a></noscript>
       &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../../sources/blog/2016/04100_try_to_install_scipy_on_windows_but.rst.txt"

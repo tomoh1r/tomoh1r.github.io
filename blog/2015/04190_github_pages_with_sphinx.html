@@ -123,16 +123,16 @@ CSSファイルを書き出すので、対策が必要。</p>
 <span class="c1">#</span>
 <span class="c1"># Author: Takeshi KOMIYA / License: BSD</span>
 <span class="c1">#</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
 
 
 <span class="n">NEW_STATIC_NAME</span> <span class="o">=</span> <span class="s1">&#39;static/&#39;</span>
 <span class="n">NEW_SOURCES_NAME</span> <span class="o">=</span> <span class="s1">&#39;sources/&#39;</span>
 
 
-<span class="k">def</span> <span class="nf">on_builder_inited</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_builder_inited</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;_static&#39;</span><span class="p">,</span> <span class="n">NEW_STATIC_NAME</span><span class="p">),</span>
                          <span class="p">(</span><span class="s1">&#39;_source&#39;</span><span class="p">,</span> <span class="n">NEW_SOURCES_NAME</span><span class="p">)]:</span>
@@ -143,10 +143,10 @@ CSSファイルを書き出すので、対策が必要。</p>
                 <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">css_files</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">replacer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">on_html_page_context</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">pagename</span><span class="p">,</span> <span class="n">templatename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">doctree</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_html_page_context</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">pagename</span><span class="p">,</span> <span class="n">templatename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">doctree</span><span class="p">):</span>
     <span class="n">original_pathto</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;pathto&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">pathto</span><span class="p">(</span><span class="n">otheruri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pathto</span><span class="p">(</span><span class="n">otheruri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">otheruri</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^_static/&#39;</span><span class="p">,</span> <span class="n">NEW_STATIC_NAME</span><span class="p">,</span> <span class="n">otheruri</span><span class="p">)</span>
         <span class="n">otheruri</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^_sources/&#39;</span><span class="p">,</span> <span class="n">NEW_SOURCES_NAME</span><span class="p">,</span> <span class="n">otheruri</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">original_pathto</span><span class="p">(</span><span class="n">otheruri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -154,7 +154,7 @@ CSSファイルを書き出すので、対策が必要。</p>
     <span class="n">context</span><span class="p">[</span><span class="s1">&#39;pathto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pathto</span>
 
 
-<span class="k">def</span> <span class="nf">on_build_finished</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">exception</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_build_finished</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">exception</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span> <span class="ow">and</span> <span class="n">exception</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;_static&#39;</span><span class="p">,</span> <span class="n">NEW_STATIC_NAME</span><span class="p">),</span>
                          <span class="p">(</span><span class="s1">&#39;_sources&#39;</span><span class="p">,</span> <span class="n">NEW_SOURCES_NAME</span><span class="p">)]:</span>
@@ -166,7 +166,7 @@ CSSファイルを書き出すので、対策が必要。</p>
                 <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">old_dir</span><span class="p">,</span> <span class="n">new_dir</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;builder-inited&#39;</span><span class="p">,</span> <span class="n">on_builder_inited</span><span class="p">)</span>
     <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;html-page-context&#39;</span><span class="p">,</span> <span class="n">on_html_page_context</span><span class="p">)</span>
     <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;build-finished&#39;</span><span class="p">,</span> <span class="n">on_build_finished</span><span class="p">)</span>
@@ -183,7 +183,7 @@ CSSを追加し、文章とサイドバーの位置を逆にした。</p>
 Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ会</a></p></li>
 </ul>
 <p><cite>conf.py</cite> の末尾に以下の記載をする。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="n">app</span><span class="o">.</span><span class="n">add_stylesheet</span><span class="p">(</span><span class="s1">&#39;style.css&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -241,13 +241,13 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
 </ul>
 <p>以下コード (<a class="reference external" href="https://github.com/jptomo/github-pages/blob/master/_exts/sphinxcontrib_date.py">github</a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">dedent</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">textwrap</span><span class="w"> </span><span class="kn">import</span> <span class="n">dedent</span>
 
-<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">roles</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.parsers.rst</span><span class="w"> </span><span class="kn">import</span> <span class="n">roles</span>
 
 
-<span class="k">def</span> <span class="nf">on_builder_inited</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_builder_inited</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="n">roles</span><span class="o">.</span><span class="n">register_local_role</span><span class="p">(</span>
         <span class="s1">&#39;my_date&#39;</span><span class="p">,</span>
         <span class="n">roles</span><span class="o">.</span><span class="n">CustomRole</span><span class="p">(</span>
@@ -256,7 +256,7 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
             <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;my_date&#39;</span><span class="p">]},</span> <span class="p">[]))</span>
 
 
-<span class="k">def</span> <span class="nf">on_html_collect_pages</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_html_collect_pages</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="n">cssdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;_static&#39;</span><span class="p">)</span>
     <span class="n">cssfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cssdir</span><span class="p">,</span> <span class="s1">&#39;roles.css&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cssdir</span><span class="p">):</span>
@@ -274,12 +274,12 @@ Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ�
     <span class="k">return</span> <span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">html_page_context</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">pagename</span><span class="p">,</span> <span class="n">templatename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">doctree</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">html_page_context</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">pagename</span><span class="p">,</span> <span class="n">templatename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">doctree</span><span class="p">):</span>
     <span class="k">if</span> <span class="s1">&#39;css_files&#39;</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
         <span class="n">context</span><span class="p">[</span><span class="s1">&#39;css_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;_static/roles.css&#39;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;builder-inited&quot;</span><span class="p">,</span> <span class="n">on_builder_inited</span><span class="p">)</span>
     <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;html-collect-pages&quot;</span><span class="p">,</span> <span class="n">on_html_collect_pages</span><span class="p">)</span>
     <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;html-page-context&quot;</span><span class="p">,</span> <span class="n">html_page_context</span><span class="p">)</span>
@@ -308,8 +308,8 @@ y Disqus.</a></noscript>
       &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../../sources/blog/2015/04190_github_pages_with_sphinx.rst.txt"

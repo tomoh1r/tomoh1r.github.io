@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="pip-compile で書き出す際にパッケージを更新する場合は U オプションをつける" />
+<meta property="og:title" content="WSLでのFedoraによるKubeadmのセットアップ" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="pip-compile で書き出す際にパッケージを更新する場合は U オプションをつける" />
-  <meta property="og:url" content="http://tomoh1r.github.io/blog/2016/09190_update_pip_comile_packages.html" />
+  <meta property="og:description" content="WSLでのFedoraによるKubeadmのセットアップ" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2025/07120_wsl_fedora_kubeadm.html" />
   <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
   <meta property="og:site_name" content="t_note" />
   <meta property="og:email" content="quickness.net@gmail.com" />
@@ -16,7 +16,7 @@
   <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
   <meta name="twitter:image:width" content="632" />
   <meta name="twitter:image:height" content="512" />
-  <title>pip-compile で書き出す際にパッケージを更新する場合は U オプションをつける &#8212; t_note</title>
+  <title>WSLでのFedoraによるKubeadmのセットアップ &#8212; t_note</title>
 
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
@@ -30,10 +30,9 @@
     <link rel="author" title="このドキュメントについて" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
-    <link rel="next" title="pipsi の環境をカスタムロケーションに保存しカスタムの bin ディレクトリに実行ファイルを保存する" href="09191_pipsi_with_custome_location.html" />
-    <link rel="prev" title="Windows 上の Python に NumPy/Pandas/SciPy/scikit-learn をインストールする" href="04102_install_numpy_pandas_scipy_scikitlearn_on_windows.html" />
-  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="pip-compile で書き出す際にパッケージを更新する場合は U オプションをつける &#8212; t_note" />
-  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="pip-compile で書き出す際にパッケージを更新する場合は U オプションをつける &#8212; t_note" />
+    <link rel="prev" title="書籍『決算分析の地図』これは決算を読むための決定版ではないか" href="03021_read_financial_analysis_map_book.html" />
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="WSLでのFedoraによるKubeadmのセットアップ &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="WSLでのFedoraによるKubeadmのセットアップ &#8212; t_note" />
    
   <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
   
@@ -58,12 +57,28 @@
             <div class="clearer"></div>
 
             
-  <section id="pip-compile-u">
-<h1>pip-compile で書き出す際にパッケージを更新する場合は U オプションをつける<a class="headerlink" href="#pip-compile-u" title="Link to this heading">¶</a></h1>
-<p><span class="blog_date">2016/09/19</span></p>
-<p>お久しぶりです。</p>
-<p>T/O だけど、最初 IN ファイルを見て最新をとってくると思っていたのではまった。
-デフォルトは現状のバージョンを維持するのねと。</p>
+  <section id="wslfedorakubeadm">
+<h1>WSLでのFedoraによるKubeadmのセットアップ<a class="headerlink" href="#wslfedorakubeadm" title="Link to this heading">¶</a></h1>
+<p><span class="blog_date">2025/07/12</span></p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>基本的なKubeadmによるクラスタ構築手順は
+「 <a class="reference external" href="https://docs.fedoraproject.org/en-US/quick-docs/using-kubernetes-kubeadm/">Creating a Kubernetes cluster on Fedora :: Fedora Docs</a> 」を参照ください。</p>
+</div>
+<p>WSL2を使うと、Windows上にほぼネイティブのLinux環境を簡単に用意できます。
+Fedoraは既定のリポジトリでKubeadmを提供しており、Kubeadmを利用したクラスタ構築をスムーズに行えます。</p>
+<p>ただし、WSL2上のFedoraではOverlayFSがあらかじめ有効化されているため、
+先の記事中の対応は不要となります。</p>
+<p>有効化状況は、以下のコマンドで確認できます。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>grep<span class="w"> </span>overlay<span class="w"> </span>/proc/filesystems
+<span class="go">nodev   overlay</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">nodev</span> <span class="pre">overlay</span></code> が出力されればOK。Fedora公式手順で指定される有効化対応は不要です。</p>
+<p>以降は <a class="reference external" href="https://docs.fedoraproject.org/en-US/quick-docs/using-kubernetes-kubeadm/">Creating a Kubernetes cluster on Fedora :: Fedora Docs</a>
+の手順を実行してください。</p>
+<p>OverlayFSの確認や基本ツールの導入を事前に済ませておくことで、
+以降のKubeadmコマンドが予期せぬエラーなく動作し、開発に集中できるでしょう。</p>
 </section>
 
             <div id="disqus_thread"></div>
@@ -84,7 +99,7 @@ y Disqus.</a></noscript>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="../../sources/blog/2016/09190_update_pip_comile_packages.rst.txt"
+      <a href="../../sources/blog/2025/07120_wsl_fedora_kubeadm.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
