@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="ja" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Windows 11 Native にて Ruby on Rails をセットアップする (ucrt64)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Windows 11 Native にて Ruby on Rails をセットアップする (ucrt64)" />
+  <meta property="og:url" content="http://tomoh1r.github.io/blog/2025/07130_ruby_on_rails_ucrt64.html" />
+  <meta property="og:image" content="http://tomoh1r.github.io/static/title_img_fb.png" />
+  <meta property="og:site_name" content="t_note" />
+  <meta property="og:email" content="quickness.net@gmail.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tomoh1r" />
+  <meta name="twitter:image" content="http://tomoh1r.github.io/static/title_img_twitter.png" />
+  <meta name="twitter:image:width" content="632" />
+  <meta name="twitter:image:height" content="512" />
+  <title>Windows 11 Native にて Ruby on Rails をセットアップする (ucrt64) &#8212; t_note</title>
+
+    <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/alabaster_custom.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/roles.css" type="text/css" />
+    <script src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/translations.js"></script>
+    <link rel="icon" href="../../static/favicon.ico"/>
+
+    <link rel="author" title="このドキュメントについて" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="WSLでのFedoraによるKubeadmのセットアップ" href="07120_wsl_fedora_kubeadm.html" />
+  <link rel="alternate" type="application/rss+xml" href="../../rss2.xml" title="Windows 11 Native にて Ruby on Rails をセットアップする (ucrt64) &#8212; t_note" />
+  <link rel="alternate" type="application/atom+xml" href="../../atom.xml" title="Windows 11 Native にて Ruby on Rails をセットアップする (ucrt64) &#8212; t_note" />
+   
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            <ul>
+              <li><a href="../../index.html">t_note</a></li>
+              <li><a href="https://about.me/tomohiro.nakamura">about.me</a></li>
+              <li><a href="../archives.html">archives</a></li>
+              <li><a href="../../about.html">このサイトについて</a></li>
+            </ul>
+            <div class="clearer"></div>
+
+            
+  <section id="windows-11-native-ruby-on-rails-ucrt64">
+<h1>Windows 11 Native にて Ruby on Rails をセットアップする (ucrt64)<a class="headerlink" href="#windows-11-native-ruby-on-rails-ucrt64" title="Link to this heading">¶</a></h1>
+<p><span class="blog_date">2025/07/13</span></p>
+<p>Win11 Railsセットアップ (ucrt64) のログです。</p>
+<section id="mise">
+<h2>mise をインストールする<a class="headerlink" href="#mise" title="Link to this heading">¶</a></h2>
+<p>Winget でインストールできる、Winget とても便利である。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">winget install jdx.mise</span>
+</pre></div>
+</div>
+<p>参考: <a class="reference external" href="https://mise.jdx.dev/installing-mise.html">Installing Mise | mise-en-place</a></p>
+</section>
+<section id="mise-ruby">
+<h2>mise で Ruby をインストールする<a class="headerlink" href="#mise-ruby" title="Link to this heading">¶</a></h2>
+<p>Rails 8 は Ruby 3.3 推奨っぽいので、Ruby 3.3 をインストールする。
+mise を有効化してから実行する。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mise use -g ruby@3.3</span>
+</pre></div>
+</div>
+<p>参考: <a class="reference external" href="https://www.fastruby.io/blog/ruby/rails/versions/compatibility-table.html">Ruby &amp; Rails Compatibility Table - FastRuby.io | Rails Upgrade Service</a></p>
+</section>
+<section id="ridk">
+<h2>ridk をセットアップする<a class="headerlink" href="#ridk" title="Link to this heading">¶</a></h2>
+<p>ridk という Ruby 構築のための簡易ツールがあり、mise 経由でインストールしたら入るようだ。 Rails のインストール時にこれが必要となるため先にセットアップを行う。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ridk install</span>
+</pre></div>
+</div>
+<p>インストールオプションが [1, 3] と出るので、そのまま進める。</p>
+<p>参考: <a class="reference external" href="https://github.com/oneclick/rubyinstaller2/wiki/The-ridk-tool">The ridk tool · oneclick/rubyinstaller2 Wiki</a></p>
+</section>
+<section id="id1">
+<h2>ridk で依存パッケージをインストールする<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>ビルド時の依存パッケージをインストールする。</p>
+<p>ここは ChatGPT と会話しつつ整理しましたが、インストール不要かもしれない。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ridk exec pacman -S --noconfirm `</span>
+<span class="go">    base-devel mingw-w64-ucrt-x86_64-toolchain</span>
+<span class="go">ridk exec pacman -S --noconfirm `</span>
+<span class="go">    mingw-w64-ucrt-x86_64-openssl mingw-w64-ucrt-x86_64-zlib `</span>
+<span class="go">    mingw-w64-ucrt-x86_64-libffi mingw-w64-ucrt-x86_64-readline `</span>
+<span class="go">    mingw-w64-ucrt-x86_64-libyaml</span>
+</pre></div>
+</div>
+</section>
+<section id="rails">
+<h2>Rails をインストールする<a class="headerlink" href="#rails" title="Link to this heading">¶</a></h2>
+<p>ucrt64 を有効化してインストールを進める。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ridk enable ucrt64</span>
+<span class="go">gem install rails</span>
+</pre></div>
+</div>
+<p>参考: <a class="reference external" href="https://railsguides.jp/install_ruby_on_rails.html">Ruby on Rails インストールガイド - Railsガイド</a></p>
+</section>
+<section id="id2">
+<h2>Rails の起動を確認する<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>次のコマンドでアプリケーンを作成、サーバーを起動し表示を確認する。 <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> にアクセスすれば既定のRails初期表示画面が表示されるはず。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rails new store</span>
+<span class="go">cd store</span>
+<span class="go">ruby .\bin\rails server</span>
+</pre></div>
+</div>
+<p>参考: <a class="reference external" href="https://railsguides.jp/getting_started.html">Rails をはじめよう - Railsガイド</a></p>
+</section>
+</section>
+
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered b
+y Disqus.</a></noscript>
+          </div>
+          
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &#169;2024, <a href="https://about.me/tomohiro.nakamura">NAKAMURA, Tomohiro</a>.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../sources/blog/2025/07130_ruby_on_rails_ucrt64.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+<script>
+  var disqus_shortname = 'tomoh1r';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+  </body>
+</html>

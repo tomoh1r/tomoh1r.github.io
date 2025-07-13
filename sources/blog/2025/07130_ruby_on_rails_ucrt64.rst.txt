@@ -1,0 +1,90 @@
+================================================================
+Windows 11 Native にて Ruby on Rails をセットアップする (ucrt64)
+================================================================
+
+:blog_date:`2025/07/13`
+
+Win11 Railsセットアップ (ucrt64) のログです。
+
+mise をインストールする
+=========================
+
+Winget でインストールできる、Winget とても便利である。
+
+.. code-block:: console
+
+   winget install jdx.mise
+
+参考: `Installing Mise | mise-en-place <https://mise.jdx.dev/installing-mise.html>`_
+
+mise で Ruby をインストールする
+=================================
+
+Rails 8 は Ruby 3.3 推奨っぽいので、Ruby 3.3 をインストールする。
+mise を有効化してから実行する。
+
+.. code-block:: console
+
+   mise use -g ruby@3.3
+
+参考: `Ruby & Rails Compatibility Table - FastRuby.io | Rails Upgrade Service
+<https://www.fastruby.io/blog/ruby/rails/versions/compatibility-table.html>`_
+
+ridk をセットアップする
+=========================
+
+ridk という Ruby 構築のための簡易ツールがあり、mise 経由でインストールしたら入るようだ。 Rails のインストール時にこれが必要となるため先にセットアップを行う。
+
+.. code-block:: console
+
+   ridk install
+
+インストールオプションが [1, 3] と出るので、そのまま進める。
+
+参考: `The ridk tool · oneclick/rubyinstaller2 Wiki
+<https://github.com/oneclick/rubyinstaller2/wiki/The-ridk-tool>`_
+
+ridk で依存パッケージをインストールする
+=========================================
+
+ビルド時の依存パッケージをインストールする。
+
+ここは ChatGPT と会話しつつ整理しましたが、インストール不要かもしれない。
+
+.. code-block:: console
+
+   ridk exec pacman -S --noconfirm `
+       base-devel mingw-w64-ucrt-x86_64-toolchain
+   ridk exec pacman -S --noconfirm `
+       mingw-w64-ucrt-x86_64-openssl mingw-w64-ucrt-x86_64-zlib `
+       mingw-w64-ucrt-x86_64-libffi mingw-w64-ucrt-x86_64-readline `
+       mingw-w64-ucrt-x86_64-libyaml
+
+Rails をインストールする
+=========================
+
+ucrt64 を有効化してインストールを進める。
+
+.. code-block:: console
+
+   ridk enable ucrt64
+   gem install rails
+
+参考: `Ruby on Rails インストールガイド - Railsガイド
+<https://railsguides.jp/install_ruby_on_rails.html>`_
+
+Rails の起動を確認する
+=========================
+
+次のコマンドでアプリケーンを作成、サーバーを起動し表示を確認する。 http://localhost:3000 にアクセスすれば既定のRails初期表示画面が表示されるはず。
+
+.. code-block:: console
+
+   rails new store
+   cd store
+   ruby .\bin\rails server
+
+参考: `Rails をはじめよう - Railsガイド
+<https://railsguides.jp/getting_started.html>`_
+
+
