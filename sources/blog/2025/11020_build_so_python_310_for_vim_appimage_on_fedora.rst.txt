@@ -25,7 +25,7 @@ Debianの場合は次のようにパッケージをインストールする。
         libncursesw5-dev libreadline-dev libsqlite3-dev libgdbm-dev \
         libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev
 
-これでビルドできるようになったので、ソールコードを取ってきてビルドをする。
+これでビルドできるようになったので、ソースコードを取ってきてビルドをする。
 
 .. code-block:: console
 
