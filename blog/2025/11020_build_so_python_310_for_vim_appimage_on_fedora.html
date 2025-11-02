@@ -62,22 +62,27 @@
 <p><span class="blog_date">2025/11/02</span></p>
 <p>vim.appimage について Python 3.10 共有ライブラリを利用するため、そのビルド手順を示す。
 なお Python は /opt/Python-3.10 にインストールすることとする。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>@development-tools$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>libffi-devel<span class="w"> </span>zlib-devel<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>bzip2-devel<span class="w"> </span>openssl-devel<span class="w"> </span>ncurses-devel<span class="w"> </span>sqlite-devel<span class="w"> </span>readline-devel<span class="w"> </span>gdbm-devel<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>libdb-devel<span class="w"> </span>xz-devel<span class="w"> </span>tk-devel<span class="w"> </span>tcl-devel<span class="w"> </span>expat-devel
-<span class="gp">$ </span>curl<span class="w"> </span>-OL<span class="w"> </span>https://www.python.org/ftp/python/3.10.19/Python-3.10.19.tgz
+<p>依存を次のようにインストールする。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>@development-tools
+<span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>libffi-devel<span class="w"> </span>zlib-devel<span class="w"> </span>bzip2-devel<span class="w"> </span>openssl-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ncurses-devel<span class="w"> </span>sqlite-devel<span class="w"> </span>readline-devel<span class="w"> </span>gdbm-devel<span class="w"> </span>libdb-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>xz-devel<span class="w"> </span>tk-devel<span class="w"> </span>tcl-devel<span class="w"> </span>expat-devel
+</pre></div>
+</div>
+<p>Debianの場合は次のようにパッケージをインストールする。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential
+<span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libffi-dev<span class="w"> </span>libssl-dev<span class="w"> </span>zlib1g-dev<span class="w"> </span>libncurses5-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>libncursesw5-dev<span class="w"> </span>libreadline-dev<span class="w"> </span>libsqlite3-dev<span class="w"> </span>libgdbm-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>libdb5.3-dev<span class="w"> </span>libbz2-dev<span class="w"> </span>libexpat1-dev<span class="w"> </span>liblzma-dev<span class="w"> </span>tk-dev
+</pre></div>
+</div>
+<p>これでビルドできるようになったので、ソールコードを取ってきてビルドをする。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>-OL<span class="w"> </span>https://www.python.org/ftp/python/3.10.19/Python-3.10.19.tgz
 <span class="gp">$ </span>tar<span class="w"> </span>xf<span class="w"> </span>Python-3.10.19.tgz
 <span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>Python-3.10.19
 <span class="gp">$ </span>./configure<span class="w"> </span>--prefix<span class="o">=</span>/opt/Python-3.10<span class="w"> </span>--enable-shared
 <span class="gp">$ </span>make
 <span class="gp">$ </span>sudo<span class="w"> </span>make<span class="w"> </span>install
-</pre></div>
-</div>
-<p>Debianの場合は次のようにパッケージをインストールする。</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libffi-dev<span class="w"> </span><span class="se">\</span>
-<span class="w">     </span>libssl-dev<span class="w"> </span>zlib1g-dev<span class="w"> </span>libncurses5-dev<span class="w"> </span>libncursesw5-dev<span class="w"> </span>libreadline-dev<span class="w"> </span><span class="se">\</span>
-<span class="w">     </span>libsqlite3-dev<span class="w"> </span>libgdbm-dev<span class="w"> </span>libdb5.3-dev<span class="w"> </span>libbz2-dev<span class="w"> </span><span class="se">\</span>
-<span class="w">     </span>libexpat1-dev<span class="w"> </span>liblzma-dev<span class="w"> </span>tk-dev
 </pre></div>
 </div>
 <p>後は適宜 pythonthreedll を設定すれば動く。</p>
