@@ -1,0 +1,35 @@
+====================================================================
+Fedora で vim.appimage 向けに共有ライブラリ Python 3.10をビルドする
+====================================================================
+
+:blog_date:`2025/11/02`
+
+vim.appimage について Python 3.10 共有ライブラリを利用するため、そのビルド手順を示す。
+なお Python は /opt/Python-3.10 にインストールすることとする。
+
+.. code-block:: console
+
+   $ sudo dnf install @development-tools$ sudo dnf install libffi-devel zlib-devel \
+      bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel gdbm-devel \
+      libdb-devel xz-devel tk-devel tcl-devel expat-devel
+   $ curl -OL https://www.python.org/ftp/python/3.10.19/Python-3.10.19.tgz
+   $ tar xf Python-3.10.19.tgz
+   $ cd Python-3.10.19
+   $ ./configure --prefix=/opt/Python-3.10 --enable-shared
+   $ make
+   $ sudo make install
+
+Debianの場合は次のようにパッケージをインストールする。
+
+.. code-block:: console
+
+   $ sudo apt-get install build-essential$ sudo apt-get install libffi-dev \
+        libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev \
+        libsqlite3-dev libgdbm-dev libdb5.3-dev libbz2-dev \
+        libexpat1-dev liblzma-dev tk-dev
+
+後は適宜 pythonthreedll を設定すれば動く。
+
+.. code-block:: text
+
+   set pythonthreedll=/opt/Python-3.10/lib/libpython3.10.so.1.0
